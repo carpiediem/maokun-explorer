@@ -6,7 +6,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "cross-env NODE_ICU_DATA=node_modules/full-icu react-scripts test",
     "eject": "react-scripts eject",
     "geojson": "node build-geojson.js",
     "extract-intl": "extract-messages -l=en,zh -o src/translations -d en --flat false 'src/**/!(*.test).js'"
