@@ -1,0 +1,17 @@
+{
+  "menu.title": "繼鄭和",
+  "menu.about": "關於地圖",
+
+  "config.language": "語言",
+  "config.lockPanes": "鎖定地圖大小",
+  "config.syncMaps": "同步地圖",
+  "config.showOverlays": "顯示覆蓋",
+
+  "details.nowKnown": "現在稱為",
+  "details.navNotes": "導航說明",
+  "details.encyclopedia": "查看百科全書",
+  "details.googleMaps": "在谷歌地圖上查看",
+  "details.reference": "查看參考",
+
+  "about.title": "鄭和航海圖"
+}
