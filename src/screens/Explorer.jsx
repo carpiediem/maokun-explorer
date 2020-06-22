@@ -9,8 +9,26 @@ import PointDetails from "../components/PointDetails";
 
 import "./Explorer.css";
 
+const DEFAULT_PREFS = {
+  lockPanes: false,
+  syncMaps: true,
+  categories: {
+    town: true,
+    area: true,
+    building: true,
+    mountain: true,
+    peninsula: true,
+    island: true,
+    "water body": true,
+    descriptor: true
+  },
+  labelLocations: false
+};
+
 function Explorer(props) {
   const [geojson, setGeojson] = useState({ features: [] });
+  const [about, setAbout] = React.useState(false);
+  const [prefs, setPrefs] = React.useState(DEFAULT_PREFS);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,10 +40,9 @@ function Explorer(props) {
     fetchData();
   }, []);
 
-  //     defaultSize={parseInt(
-  //   localStorage.getItem("splitPos"),
-  //   window.innerHeight / 2
-  // )}
+  function onMove(zoomifyBounds) {
+    console.log("zoomifyBounds:", zoomifyBounds);
+  }
 
   return (
     <React.Fragment>
@@ -37,12 +54,28 @@ function Explorer(props) {
           window.innerHeight / 2
         }
         onChange={size => localStorage.setItem("splitPos", size)}
+        className={prefs.lockPanes ? "locked" : ""}
       >
-        <MaoKunMap />
-        <ModernMap />
+        <MaoKunMap
+          geojson={geojson}
+          categories={prefs.categories}
+          labelLocations={prefs.labelLocations}
+          onMove={onMove}
+        />
+        <ModernMap
+          geojson={geojson}
+          categories={prefs.categories}
+          labelLocations={prefs.labelLocations}
+        />
       </SplitPane>
-      <AboutDialog />
-      <Menu />
+      <AboutDialog open={about} handleClose={() => setAbout(false)} />
+      <Menu
+        prefs={prefs}
+        onChange={(key, value) =>
+          setPrefs(Object.assign({}, prefs, { [key]: value }))
+        }
+        onAboutClick={() => setAbout(true)}
+      />
       <PointDetails geojson={geojson} id={492} />
     </React.Fragment>
   );

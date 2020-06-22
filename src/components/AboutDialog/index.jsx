@@ -2,33 +2,59 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 import {
   Dialog,
-  DialogTitle,
+  DialogTitle as MuiDialogTitle,
   DialogContent,
-  DialogContentText
+  DialogContentText,
+  IconButton,
+  Typography
 } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
+import CloseIcon from "@material-ui/icons/Close";
 
-export default function AboutDialog() {
-  const [open, setOpen] = React.useState(true);
+const styles = theme => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(2)
+  },
+  closeButton: {
+    position: "absolute",
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: theme.palette.grey[500]
+  }
+});
+
+export default function AboutDialog(props) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const DialogTitle = withStyles(styles)(props => {
+    const { children, classes, onClose, ...other } = props;
+    return (
+      <MuiDialogTitle disableTypography className={classes.root} {...other}>
+        <Typography variant="h6">{children}</Typography>
+        {onClose ? (
+          <IconButton
+            aria-label="close"
+            className={classes.closeButton}
+            onClick={onClose}
+          >
+            <CloseIcon />
+          </IconButton>
+        ) : null}
+      </MuiDialogTitle>
+    );
+  });
 
   return (
     <div>
       <Dialog
         fullScreen={fullScreen}
-        open={open}
-        onClose={handleClose}
+        open={props.open}
+        onClose={props.handleClose}
         aria-labelledby="about-dialog-title"
       >
         <DialogTitle id="about-dialog-title">

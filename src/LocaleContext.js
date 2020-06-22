@@ -7,7 +7,7 @@ export const LocaleContext = React.createContext();
 export const useLocaleContext = () => useContext(LocaleContext);
 
 export const LocaleContextProvider = props => {
-  const [locale, setLocale] = React.useState("en");
+  const [locale, setLocale] = React.useState("zh");
   return (
     <LocaleContext.Provider value={[locale, setLocale]}>
       {props.children}

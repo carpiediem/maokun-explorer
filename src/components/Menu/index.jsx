@@ -21,6 +21,11 @@ import ConfigOptions from "../ConfigOptions";
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
+  button: {
+    position: "absolute",
+    top: 0,
+    left: "15px"
+  },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
@@ -43,11 +48,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Menu() {
-  // const [locale, setLocale] = React.useContext(LocaleContext);
-  // const nextLocale = locale === "en" ? "zh" : "en";
-
-  const [state, setState] = React.useState(false);
+function Menu(props) {
+  const [state, setState] = React.useState(true);
   const classes = useStyles();
   const intl = useIntl();
 
@@ -70,6 +72,7 @@ function Menu() {
         aria-label="open menu"
         onClick={toggleDrawer(true)}
         edge="start"
+        className={classes.button}
       >
         <MenuIcon />
       </IconButton>
@@ -95,10 +98,16 @@ function Menu() {
           </Typography>
         </div>
         <Divider />
-        <ConfigOptions />
+        <ConfigOptions {...props.prefs} onChange={props.onChange} />
         <Divider />
         <List>
-          <ListItem button>
+          <ListItem
+            button
+            onClick={() => {
+              props.onAboutClick();
+              setState(false);
+            }}
+          >
             <ListItemIcon>
               <HelpOutlineIcon />
             </ListItemIcon>

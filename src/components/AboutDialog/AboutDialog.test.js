@@ -6,7 +6,7 @@ import AboutDialog from "./index";
 
 describe("For en locale", () => {
   test("renders `The Mao Kun Map` heading", () => {
-    const { getByText } = render(<AboutDialog />, intlEnWrapper);
+    const { getByText } = render(<AboutDialog open={true} />, intlEnWrapper);
     const titleText = getByText(/^the mao kun map$/i);
     expect(titleText).toBeInTheDocument();
   });
@@ -14,7 +14,7 @@ describe("For en locale", () => {
 
 describe("For zh locale", () => {
   test("renders `The Mao Kun Map` heading", () => {
-    const { getByText } = render(<AboutDialog />, intlZhWrapper);
+    const { getByText } = render(<AboutDialog open={true} />, intlZhWrapper);
     const titleText = getByText(/^鄭和航海圖$/i);
     expect(titleText).toBeInTheDocument();
   });
