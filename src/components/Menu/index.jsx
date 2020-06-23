@@ -16,7 +16,6 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 
 import ConfigOptions from "../ConfigOptions";
-// import { LocaleContext } from "../LocaleContext";
 
 const drawerWidth = 240;
 
@@ -24,7 +23,10 @@ const useStyles = makeStyles(theme => ({
   button: {
     position: "absolute",
     top: 0,
-    left: "15px"
+    left: "15px",
+    zIndex: 999,
+    backgroundColor: "rgba(255, 255, 255, 0.4)",
+    "&:hover": { backgroundColor: "rgba(255, 255, 255,  0.8)" }
   },
   drawer: {
     width: drawerWidth,
@@ -49,7 +51,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Menu(props) {
-  const [state, setState] = React.useState(true);
+  const [state, setState] = React.useState(false);
   const classes = useStyles();
   const intl = useIntl();
 

@@ -1,5 +1,34 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css");
+
 .maokun {
   width: 100%;
   height: 100%;
   background-color: blue;
+}
+
+.maokun .leaflet-container {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.maokun path.label.leaflet-interactive {
+  -webkit-transition: opacity 1s; /* Safari prior 6.1 */
+  transition: opacity 1s;
+  fill: rgba(0, 0, 0, 0);
+}
+
+.maokun path.label.leaflet-interactive:hover {
+  opacity: 0;
+}
+
+.maokun path.path.leaflet-interactive {
+  -webkit-transition: opacity 1s; /* Safari prior 6.1 */
+  transition: opacity 1s;
+  stroke: rgba(0, 255, 0, 0.25);
+  stroke-width: 6;
+}
+
+.maokun path.path.leaflet-interactive:hover {
+  stroke: rgba(0, 255, 0, 0.5);
 }

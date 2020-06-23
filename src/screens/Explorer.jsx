@@ -3,6 +3,7 @@ import SplitPane from "react-split-pane";
 
 import MaoKunMap from "../components/MaoKunMap";
 import ModernMap from "../components/ModernMap";
+import MiniMap from "../components/MiniMap";
 import AboutDialog from "../components/AboutDialog";
 import Menu from "../components/Menu";
 import PointDetails from "../components/PointDetails";
@@ -27,8 +28,13 @@ const DEFAULT_PREFS = {
 
 function Explorer(props) {
   const [geojson, setGeojson] = useState({ features: [] });
-  const [about, setAbout] = React.useState(false);
-  const [prefs, setPrefs] = React.useState(DEFAULT_PREFS);
+  const [about, setAbout] = useState(false);
+  const [prefs, setPrefs] = useState(DEFAULT_PREFS);
+  const [bounds, setBounds] = useState({
+    _northEast: [109336, 400],
+    _southWest: [101696, 3320]
+  });
+  const [pointIds, setPointIds] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,8 +46,16 @@ function Explorer(props) {
     fetchData();
   }, []);
 
-  function onMove(zoomifyBounds) {
-    console.log("zoomifyBounds:", zoomifyBounds);
+  function handleMove(newBounds) {
+    setBounds(newBounds);
+    setPointIds([]);
+  }
+
+  function handlePrefsChange(key, value) {
+    setPrefs(Object.assign({}, prefs, { [key]: value }));
+
+    console.log(bounds);
+    setPointIds([]);
   }
 
   return (
@@ -60,20 +74,19 @@ function Explorer(props) {
           geojson={geojson}
           categories={prefs.categories}
           labelLocations={prefs.labelLocations}
-          onMove={onMove}
+          onMove={handleMove}
         />
         <ModernMap
           geojson={geojson}
-          categories={prefs.categories}
+          pointIds={pointIds}
           labelLocations={prefs.labelLocations}
         />
       </SplitPane>
+      <MiniMap bounds={bounds} />
       <AboutDialog open={about} handleClose={() => setAbout(false)} />
       <Menu
         prefs={prefs}
-        onChange={(key, value) =>
-          setPrefs(Object.assign({}, prefs, { [key]: value }))
-        }
+        onChange={handlePrefsChange}
         onAboutClick={() => setAbout(true)}
       />
       <PointDetails geojson={geojson} id={492} />

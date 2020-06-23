@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import { IntlProvider } from "react-intl";
 
+import getBrowserLocale from "./util/getBrowserLocale";
 const messages = { zh: require("./translations/zh") };
 
 export const LocaleContext = React.createContext();
 export const useLocaleContext = () => useContext(LocaleContext);
 
 export const LocaleContextProvider = props => {
-  const [locale, setLocale] = React.useState("zh");
+  const [locale, setLocale] = React.useState(getBrowserLocale());
   return (
     <LocaleContext.Provider value={[locale, setLocale]}>
       {props.children}

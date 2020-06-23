@@ -33,5 +33,10 @@
   "details.googleMaps": "在谷歌地圖上查看",
   "details.reference": "查看參考",
 
-  "about.title": "鄭和航海圖"
+  "about.title": "鄭和航海圖",
+
+  "regions.jiangsu": "江蘇",
+  "regions.shanghai": "上海",
+  "regions.zhejiang": "浙江",
+  "regions.fujian": "福建"
 }
