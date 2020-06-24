@@ -6,7 +6,10 @@ import Explorer from "./screens/Explorer";
 import "./App.css";
 
 import { LocaleContext } from "./LocaleContext";
-const messages = { zh: require("./translations/zh") };
+const messages = {
+  en: require("./translations/en"),
+  zh: require("./translations/zh")
+};
 
 function App() {
   const [locale] = React.useContext(LocaleContext);

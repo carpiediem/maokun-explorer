@@ -58,6 +58,10 @@ function Explorer(props) {
     setPointIds([]);
   }
 
+  function panTo(loc) {
+    console.log("panTo:", loc);
+  }
+
   return (
     <React.Fragment>
       <SplitPane
@@ -82,7 +86,7 @@ function Explorer(props) {
           labelLocations={prefs.labelLocations}
         />
       </SplitPane>
-      <MiniMap bounds={bounds} />
+      <MiniMap bounds={bounds} onClick={panTo} />
       <AboutDialog open={about} handleClose={() => setAbout(false)} />
       <Menu
         prefs={prefs}

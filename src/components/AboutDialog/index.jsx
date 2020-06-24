@@ -49,6 +49,12 @@ export default function AboutDialog(props) {
     );
   });
 
+  const externalLink = url => (...chunks) => (
+    <a href={url} target="_blank" rel="noopener noreferrer" class="external">
+      {chunks}
+    </a>
+  );
+
   return (
     <div>
       <Dialog
@@ -58,41 +64,59 @@ export default function AboutDialog(props) {
         aria-labelledby="about-dialog-title"
       >
         <DialogTitle id="about-dialog-title">
-          <FormattedMessage id="about.title" defaultMessage="The Mao Kun Map" />
+          <FormattedMessage
+            id="about.title"
+            defaultMessage="About the Mao Kun Map"
+          />
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            {" "}
-            The{" "}
-            <a
-              href="https://en.wikipedia.org/wiki/Mao_Kun_map"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Mao Kun map
-            </a>{" "}
-            was compiled in 1621 across many pages of the book{" "}
-            <a
-              href="https://en.wikipedia.org/wiki/Wubei_Zhi"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Wubei Zhi
-            </a>
-            . It's name is believed to be derived from the owner of the library
-            where it was compiled. It's sources include records from many
-            voyages, but the most famous of these were the treasure fleets of{" "}
-            <a
-              href="https://en.wikipedia.org/wiki/Zheng_He"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Zheng He
-            </a>{" "}
-            (between 1405 and 1433). Because of this, the map is commonly
-            referred to as Zheng He's Navigation Map (鄭和航海圖) in modern
-            Chinese. It is the earliest Chinese map to portray an adequate
-            representation of Southern Asia, Persia, Arabia and East Africa.
+            <p>
+              <FormattedMessage
+                id="about.p1"
+                values={{
+                  a1: externalLink("https://en.wikipedia.org/wiki/Zheng_He"),
+                  a2: externalLink("https://en.wikipedia.org/wiki/Mao_Kun_map")
+                }}
+              />
+            </p>
+            <p>
+              <FormattedMessage
+                id="about.p2"
+                values={{
+                  a1: externalLink(
+                    "https://en.wikipedia.org/wiki/Yongle_Emperor"
+                  ),
+                  a2: externalLink(
+                    "https://en.wikipedia.org/wiki/Yingya_Shenglan"
+                  ),
+                  a3: externalLink("https://en.wikipedia.org/wiki/Wubei_Zhi")
+                }}
+              />
+            </p>
+            <p>
+              <FormattedMessage id="about.p3" />
+            </p>
+            <p>
+              <FormattedMessage
+                id="about.p4"
+                values={{
+                  a1: externalLink("http://rslc.us"),
+                  a2: externalLink("http://www.world10k.com/blog/?page_id=192"),
+                  a3: externalLink("http://www.world10k.com/world10k.html"),
+                  a4: externalLink("http://www.world10k.com/blog/?p=2683"),
+                  a5: externalLink(
+                    "http://www1.geo.ntnu.edu.tw/climate/sihsuframe.html"
+                  ),
+                  a6: externalLink(
+                    "https://en.wikipedia.org/wiki/Kamal_(navigation)"
+                  ),
+                  a7: externalLink(
+                    "http://ciuhct.org/en/members/jose-manuel-malhao-pereira"
+                  )
+                }}
+              />
+            </p>
           </DialogContentText>
         </DialogContent>
       </Dialog>

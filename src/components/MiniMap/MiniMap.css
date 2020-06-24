@@ -28,51 +28,51 @@
   text-overflow: ellipsis;
 }
 
-#mini-map rect:nth-child(12n + 0),
+#mini-map g:nth-child(12n + 0),
 .q0-12 {
   fill: rgb(141, 211, 199);
 }
-#mini-map rect:nth-child(12n + 1),
+#mini-map g:nth-child(12n + 1),
 .q1-12 {
   fill: rgb(255, 255, 179);
 }
-#mini-map rect:nth-child(12n + 2),
+#mini-map g:nth-child(12n + 2),
 .q2-12 {
   fill: rgb(190, 186, 218);
 }
-#mini-map rect:nth-child(12n + 3),
+#mini-map g:nth-child(12n + 3),
 .q3-12 {
   fill: rgb(251, 128, 114);
 }
-#mini-map rect:nth-child(12n + 4),
+#mini-map g:nth-child(12n + 4),
 .q4-12 {
   fill: rgb(128, 177, 211);
 }
-#mini-map rect:nth-child(12n + 5),
+#mini-map g:nth-child(12n + 5),
 .q5-12 {
   fill: rgb(253, 180, 98);
 }
-#mini-map rect:nth-child(12n + 6),
+#mini-map g:nth-child(12n + 6),
 .q6-12 {
   fill: rgb(179, 222, 105);
 }
-#mini-map rect:nth-child(12n + 7),
+#mini-map g:nth-child(12n + 7),
 .q7-12 {
   fill: rgb(252, 205, 229);
 }
-#mini-map rect:nth-child(12n + 8),
+#mini-map g:nth-child(12n + 8),
 .q8-12 {
   fill: rgb(217, 217, 217);
 }
-#mini-map rect:nth-child(12n + 9),
+#mini-map g:nth-child(12n + 9),
 .q9-12 {
   fill: rgb(188, 128, 189);
 }
-#mini-map rect:nth-child(12n + 10),
+#mini-map g:nth-child(12n + 10),
 .q10-12 {
   fill: rgb(204, 235, 197);
 }
-#mini-map rect:nth-child(12n + 11),
+#mini-map g:nth-child(12n + 11),
 .q11-12 {
   fill: rgb(255, 237, 111);
 }
