@@ -97,11 +97,29 @@ export default function AboutDialog(props) {
             <p>
               <FormattedMessage id="about.p3" />
             </p>
+            <img
+              src="./jmmp.jpg"
+              width="100%"
+              alt="Mao Kun Map on 20 A4 pages"
+            />
             <p>
               <FormattedMessage
                 id="about.p4"
                 values={{
-                  a1: externalLink("http://rslc.us"),
+                  a1: externalLink("./maokun.csv"),
+                  a2: externalLink("./maokun.geo.json"),
+                  a3: externalLink("./maokun-known.geo.json")
+                }}
+              />
+            </p>
+            <p>
+              <FormattedMessage
+                id="about.p5"
+                values={{
+                  a0: externalLink("http://rslc.us"),
+                  a1: externalLink(
+                    "https://www.history.ucsb.edu/faculty/anthony-barbieri/"
+                  ),
                   a2: externalLink("http://www.world10k.com/blog/?page_id=192"),
                   a3: externalLink("http://www.world10k.com/world10k.html"),
                   a4: externalLink("http://www.world10k.com/blog/?p=2683"),
@@ -113,7 +131,18 @@ export default function AboutDialog(props) {
                   ),
                   a7: externalLink(
                     "http://ciuhct.org/en/members/jose-manuel-malhao-pereira"
-                  )
+                  ),
+                  a8: externalLink("https://www.reddit.com/r/ChineseLanguage/")
+                }}
+              />
+            </p>
+            <p>
+              <FormattedMessage
+                id="about.p6"
+                values={{
+                  a1: externalLink("https://www.flaticon.com/authors/freepik"),
+                  a2: externalLink("https://www.flaticon.com/"),
+                  a3: externalLink("./attribution.txt")
                 }}
               />
             </p>

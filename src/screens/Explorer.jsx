@@ -5,6 +5,7 @@ import MaoKunMap from "../components/MaoKunMap";
 import ModernMap from "../components/ModernMap";
 import MiniMap from "../components/MiniMap";
 import AboutDialog from "../components/AboutDialog";
+import LegendDialog from "../components/LegendDialog";
 import Menu from "../components/Menu";
 import PointDetails from "../components/PointDetails";
 
@@ -28,7 +29,10 @@ const DEFAULT_PREFS = {
 
 function Explorer(props) {
   const [geojson, setGeojson] = useState({ features: [] });
+  const [maokunCenter, setMaokunCenter] = useState(null);
   const [about, setAbout] = useState(false);
+  const [legend, setLegend] = useState(false);
+  const [selected, setSelected] = useState({});
   const [prefs, setPrefs] = useState(DEFAULT_PREFS);
   const [bounds, setBounds] = useState({
     _northEast: [109336, 400],
@@ -48,18 +52,31 @@ function Explorer(props) {
 
   function handleMove(newBounds) {
     setBounds(newBounds);
-    setPointIds([]);
+
+    // console.log(newBounds);
+    const visiblePoints = geojson.features
+      .filter(
+        m =>
+          m.geometry.type === "Point" &&
+          m.geometry.zoomify[0] >= bounds._southWest[0] &&
+          m.geometry.zoomify[0] <= bounds._northEast[0] &&
+          m.geometry.zoomify[1] >= bounds._northEast[1] &&
+          m.geometry.zoomify[1] <= bounds._southWest[1]
+      )
+      .map(m => m.properties.id);
+    setPointIds(visiblePoints);
+
+    // console.log(visiblePoints);
   }
 
   function handlePrefsChange(key, value) {
     setPrefs(Object.assign({}, prefs, { [key]: value }));
 
-    console.log(bounds);
     setPointIds([]);
   }
 
-  function panTo(loc) {
-    console.log("panTo:", loc);
+  function handleSelect(id, type) {
+    setSelected({ [type]: id });
   }
 
   return (
@@ -75,25 +92,35 @@ function Explorer(props) {
         className={prefs.lockPanes ? "locked" : ""}
       >
         <MaoKunMap
+          center={maokunCenter}
           geojson={geojson}
           categories={prefs.categories}
           labelLocations={prefs.labelLocations}
           onMove={handleMove}
+          onSelect={handleSelect}
         />
         <ModernMap
           geojson={geojson}
           pointIds={pointIds}
           labelLocations={prefs.labelLocations}
+          onSelect={handleSelect}
         />
       </SplitPane>
-      <MiniMap bounds={bounds} onClick={panTo} />
+      <MiniMap bounds={bounds} onClick={setMaokunCenter} />
       <AboutDialog open={about} handleClose={() => setAbout(false)} />
+      <LegendDialog open={legend} handleClose={() => setLegend(false)} />
       <Menu
         prefs={prefs}
         onChange={handlePrefsChange}
-        onAboutClick={() => setAbout(true)}
+        onDialogClick={key =>
+          key === "about" ? setAbout(true) : setLegend(true)
+        }
       />
-      <PointDetails geojson={geojson} id={492} />
+      <PointDetails
+        geojson={geojson}
+        id={selected.point}
+        onClose={() => setSelected({})}
+      />
     </React.Fragment>
   );
 }

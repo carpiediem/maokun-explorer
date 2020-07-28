@@ -14,6 +14,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
+import NotListedLocationIcon from "@material-ui/icons/NotListedLocation";
 
 import ConfigOptions from "../ConfigOptions";
 
@@ -106,7 +107,7 @@ function Menu(props) {
           <ListItem
             button
             onClick={() => {
-              props.onAboutClick();
+              props.onDialogClick("about");
               setState(false);
             }}
           >
@@ -117,6 +118,23 @@ function Menu(props) {
               primary={intl.formatMessage({
                 id: "menu.about",
                 defaultMessage: "About the Map"
+              })}
+            />
+          </ListItem>
+          <ListItem
+            button
+            onClick={() => {
+              props.onDialogClick("legend");
+              setState(false);
+            }}
+          >
+            <ListItemIcon>
+              <NotListedLocationIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary={intl.formatMessage({
+                id: "menu.legend",
+                defaultMessage: "Map Legend"
               })}
             />
           </ListItem>

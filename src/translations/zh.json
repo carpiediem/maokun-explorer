@@ -1,6 +1,7 @@
 {
   "menu.title": "繼鄭和",
   "menu.about": "關於地圖",
+  "menu.legend": "地圖圖例",
 
   "config.language": "語言",
   "en": "英語",
@@ -38,5 +39,25 @@
   "regions.jiangsu": "江蘇",
   "regions.shanghai": "上海",
   "regions.zhejiang": "浙江",
-  "regions.fujian": "福建"
+  "regions.fujian": "福建",
+  "regions.guangdong": "廣東",
+  "regions.guangxi": "廣西",
+  "regions.hainan": "海南",
+  "regions.vietnam": "越南",
+  "regions.indonesia": "印度尼西亞",
+  "regions.khmer": "柬埔寨/老撾",
+  "regions.thailand": "泰國",
+  "regions.malaysia": "馬來西亞",
+  "regions.singapore": "新加坡",
+  "regions.myanmar": "緬甸",
+  "regions.bangladesh": "孟加拉國",
+  "regions.maldives": "馬爾代夫",
+  "regions.srilanka": "斯里蘭卡",
+  "regions.india": "印度",
+  "regions.pakistan": "巴基斯坦",
+  "regions.iran": "伊朗",
+  "regions.oman": "阿曼",
+  "regions.yemen": "也門",
+  "regions.somalia": "索馬里",
+  "regions.eastafrica": "東非"
 }

@@ -1,0 +1,21 @@
+#legend img,
+#legend .square {
+  width: 25px;
+  height: 25px;
+}
+
+#legend img {
+  filter: saturate(0);
+}
+
+#legend .square.identified {
+  background-color: red;
+}
+
+#legend .square.unidentified {
+  background-color: orange;
+}
+
+#legend .MuiListItemText-primary {
+  text-transform: capitalize;
+}

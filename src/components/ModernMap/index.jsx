@@ -1,12 +1,29 @@
 import React, { useRef, useState } from "react";
-import { Map, TileLayer, ZoomControl } from "react-leaflet";
+import { Map, TileLayer, ZoomControl, Marker } from "react-leaflet";
+import { identified, unidentified, unknown } from "../MaoKunMap/icons";
 
 import "./ModernMap.css";
 
-function ModernMap() {
+function ModernMap(props) {
   const map = useRef(null);
   const [center] = useState({ lat: 32.039579, lng: 118.8 });
   const [zoom] = useState(13);
+  // const [markers, setMarkers] = React.useState([]);
+
+  const markers = props.geojson.features
+    .filter(m => m.geometry.type === "Point" && m.geometry.coordinates.length)
+    .map(m => ({
+      key: m.properties.id,
+      icon:
+        (m.geometry.coordinates.length ? identified : unidentified)[
+          m.properties.category
+        ] || unknown,
+      position: {
+        lat: m.geometry.coordinates[1],
+        lng: m.geometry.coordinates[0]
+      },
+      onClick: () => props.onSelect(m.properties.id, "point")
+    }));
 
   return (
     <section className="modern">
@@ -17,6 +34,9 @@ function ModernMap() {
           maxZoom={20}
         />
         <ZoomControl position="bottomright" />
+        {markers.map(m => (
+          <Marker {...m} />
+        ))}
       </Map>
     </section>
   );
