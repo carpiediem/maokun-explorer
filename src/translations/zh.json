@@ -34,8 +34,6 @@
   "details.googleMaps": "在谷歌地圖上查看",
   "details.reference": "查看參考",
 
-  "about.title": "鄭和航海圖",
-
   "regions.jiangsu": "江蘇",
   "regions.shanghai": "上海",
   "regions.zhejiang": "浙江",
@@ -59,5 +57,10 @@
   "regions.oman": "阿曼",
   "regions.yemen": "也門",
   "regions.somalia": "索馬里",
-  "regions.eastafrica": "東非"
+  "regions.eastafrica": "東非",
+
+  "about.title": "鄭和航海圖",
+
+  "about.glossary": "詞彙表",
+  "about.更": "待定"
 }

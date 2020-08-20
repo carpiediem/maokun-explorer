@@ -4,6 +4,7 @@ import SplitPane from "react-split-pane";
 import MaoKunMap from "../components/MaoKunMap";
 import ModernMap from "../components/ModernMap";
 import MiniMap from "../components/MiniMap";
+import GlossaryDialog from "../components/GlossaryDialog";
 import AboutDialog from "../components/AboutDialog";
 import LegendDialog from "../components/LegendDialog";
 import Menu from "../components/Menu";
@@ -22,21 +23,22 @@ const DEFAULT_PREFS = {
     peninsula: true,
     island: true,
     "water body": true,
-    descriptor: true
+    descriptor: true,
   },
-  labelLocations: false
+  labelLocations: false,
 };
 
 function Explorer(props) {
   const [geojson, setGeojson] = useState({ features: [] });
   const [maokunCenter, setMaokunCenter] = useState(null);
+  const [glossary, setGlossary] = useState(false);
   const [about, setAbout] = useState(false);
   const [legend, setLegend] = useState(false);
   const [selected, setSelected] = useState({});
   const [prefs, setPrefs] = useState(DEFAULT_PREFS);
   const [bounds, setBounds] = useState({
     _northEast: [109336, 400],
-    _southWest: [101696, 3320]
+    _southWest: [101696, 3320],
   });
   const [pointIds, setPointIds] = useState([]);
 
@@ -56,14 +58,14 @@ function Explorer(props) {
     // console.log(newBounds);
     const visiblePoints = geojson.features
       .filter(
-        m =>
+        (m) =>
           m.geometry.type === "Point" &&
           m.geometry.zoomify[0] >= bounds._southWest[0] &&
           m.geometry.zoomify[0] <= bounds._northEast[0] &&
           m.geometry.zoomify[1] >= bounds._northEast[1] &&
           m.geometry.zoomify[1] <= bounds._southWest[1]
       )
-      .map(m => m.properties.id);
+      .map((m) => m.properties.id);
     setPointIds(visiblePoints);
 
     // console.log(visiblePoints);
@@ -88,7 +90,7 @@ function Explorer(props) {
           parseInt(localStorage.getItem("splitPos"), 10) ||
           window.innerHeight / 2
         }
-        onChange={size => localStorage.setItem("splitPos", size)}
+        onChange={(size) => localStorage.setItem("splitPos", size)}
         className={prefs.lockPanes ? "locked" : ""}
       >
         <MaoKunMap
@@ -107,14 +109,25 @@ function Explorer(props) {
         />
       </SplitPane>
       <MiniMap bounds={bounds} onClick={setMaokunCenter} />
+      <GlossaryDialog open={glossary} handleClose={() => setGlossary(false)} />
       <AboutDialog open={about} handleClose={() => setAbout(false)} />
       <LegendDialog open={legend} handleClose={() => setLegend(false)} />
       <Menu
         prefs={prefs}
         onChange={handlePrefsChange}
-        onDialogClick={key =>
-          key === "about" ? setAbout(true) : setLegend(true)
-        }
+        onDialogClick={(key) => {
+          switch (key) {
+            case "about":
+              setAbout(true);
+              break;
+            case "legend":
+              setLegend(true);
+              break;
+            case "glossary":
+              setGlossary(true);
+              break;
+          }
+        }}
       />
       <PointDetails
         geojson={geojson}

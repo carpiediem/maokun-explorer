@@ -1,6 +1,12 @@
 import React from "react";
 import { useIntl } from "react-intl";
-import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
+import {
+  List,
+  ListSubheader,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import TranslateIcon from "@material-ui/icons/Translate";
 import LockIcon from "@material-ui/icons/Lock";
@@ -15,16 +21,16 @@ import CategoryDialog from "./CategoryDialog";
 const LOCALES = {
   en: "English",
   zh: "Traditional Chinese",
-  "zh-cn": "Simplified Chinese"
+  "zh-cn": "Simplified Chinese",
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   listItemText: {
     "& .MuiListItemText-secondary": {
       overflowX: "hidden",
-      textOverflow: "ellipsis"
-    }
-  }
+      textOverflow: "ellipsis",
+    },
+  },
 }));
 
 function ConfigOptions(props) {
@@ -36,6 +42,9 @@ function ConfigOptions(props) {
   return (
     <React.Fragment>
       <List>
+        <ListSubheader component="div" id="nested-list-subheader">
+          Preferences
+        </ListSubheader>
         <ListItem button onClick={() => setDialog("language")}>
           <ListItemIcon>
             <TranslateIcon />
@@ -43,11 +52,11 @@ function ConfigOptions(props) {
           <ListItemText
             primary={intl.formatMessage({
               id: "config.language",
-              defaultMessage: "Language"
+              defaultMessage: "Language",
             })}
             secondary={intl.formatMessage({
               id: locale,
-              defaultMessage: LOCALES[locale]
+              defaultMessage: LOCALES[locale],
             })}
           />
         </ListItem>
@@ -58,11 +67,11 @@ function ConfigOptions(props) {
           <ListItemText
             primary={intl.formatMessage({
               id: "config.lockPanes",
-              defaultMessage: "Lock Map Sizes"
+              defaultMessage: "Lock Map Sizes",
             })}
             secondary={intl.formatMessage({
               id: props.lockPanes ? "config.locked" : "config.draggable",
-              defaultMessage: props.lockPanes ? "Locked" : "Draggable"
+              defaultMessage: props.lockPanes ? "Locked" : "Draggable",
             })}
             onClick={() => props.onChange("lockPanes", !props.lockPanes)}
           />
@@ -74,11 +83,11 @@ function ConfigOptions(props) {
           <ListItemText
             primary={intl.formatMessage({
               id: "config.syncMaps",
-              defaultMessage: "Sync Map Views"
+              defaultMessage: "Sync Map Views",
             })}
             secondary={intl.formatMessage({
               id: props.syncMaps ? "config.synced" : "config.independant",
-              defaultMessage: props.syncMaps ? "Synced" : "Independant"
+              defaultMessage: props.syncMaps ? "Synced" : "Independant",
             })}
             onClick={() => props.onChange("syncMaps", !props.syncMaps)}
           />
@@ -90,14 +99,14 @@ function ConfigOptions(props) {
           <ListItemText
             primary={intl.formatMessage({
               id: "config.showOverlays",
-              defaultMessage: "Show Overlays"
+              defaultMessage: "Show Overlays",
             })}
             secondary={Object.entries(props.categories)
               .filter(([key, enabled]) => enabled)
               .map(([key]) =>
                 intl.formatMessage({
                   id: `categories.${key}`,
-                  defaultMessage: key
+                  defaultMessage: key,
                 })
               )
               .join(", ")}
@@ -111,7 +120,7 @@ function ConfigOptions(props) {
           <ListItemText
             primary={intl.formatMessage({
               id: "config.labelLocations",
-              defaultMessage: "Label Locations"
+              defaultMessage: "Label Locations",
             })}
             secondary={intl.formatMessage({
               id: props.labelLocations ? "config.shown" : "config.hidden",
@@ -119,7 +128,7 @@ function ConfigOptions(props) {
                 ? "Labels are shown"
                 : "Labels are hidden"
                 ? "Labels are shown"
-                : "Labels are hidden"
+                : "Labels are hidden",
             })}
             onClick={() =>
               props.onChange("labelLocations", !props.labelLocations)
@@ -130,7 +139,7 @@ function ConfigOptions(props) {
       <LanguageDialog
         open={dialog === "language"}
         categories={props.language}
-        onChange={language => {
+        onChange={(language) => {
           props.onChange("language", language);
           setDialog(null);
         }}

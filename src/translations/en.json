@@ -4,5 +4,25 @@
   "about.p3": "The map is read from right to left (as is the Chinese text). Starting from the imperial palace in Nanjing, it follows the Yangtze River to the coast, heads south around the Malay Peninsula and crosses the ocean, past India to the island of Hormuz. The coast of Africa doubles back along the bottom of the map, reaching all the way to Mozambique. All this territory is contorted and compressed into a long, narrow map that could be woodblock-printed onto a single scroll or twenty pages of a book.",
   "about.p4": "The data displayed in this map is available in <a1>CSV</a1> and GeoJSON formats, if you'd like to use it for another project. There are two versions of the GeoJSON: <a2>one</a2> includes all locations, even if latitude and longitude are unidentified and <a3>the other</a3> excludes unidentified locations, since they can be a problem on some platforms.",
   "about.p5": "This website was built by <a0>Ryan Carpenter</a0>, with the invaluable help of several historians and experts. I was initially inspired by <a1>Professor Anthony Barbieri</a1>, who transformed scans of the map into an image tileset capable of powering interactive maps. <a2>Aaron Jia-rong CHEN (陈佳荣)</a2> has compiled an encyclopedic catalog of Ming- and Qing-era maps of Southeast Asia and the Indian Ocean in <a3>南溟網 (South Seas Network)</a3>. He has also been kind enough to answer many questions with remarkable speed and detail and also shared the notes of his colleague <a4>Jianqiu ZHU (朱鑒秋)</a4>. The work of <a5>Sheng-I HSU (徐勝一)</a5> helped me understand how the Earth's precession explains why the <a6>kamal</a6> measurements taken by Zheng He don't match what we would see today. He was also able to answer several of my questions regarding stellar observastions in southeast Africa and the Maldives, where Polaris was not visible. <a7>José Manuel Malhão Pereira</a7> has done so much to illuminate the use of the navigation tools available to fifteenth century sailors, including helpful translations of his work from Portugese to English. Lastly, Reddit users cabaran, rankwally, ralmin, Time_Swallow, treyparkermattstone, Rogerinplay, and soowhooh in <a8>the /r/ChineseLanguage community</a8> were a big help with transcribing and translating the map text. Thanks so much to each of you.",
-  "about.p6": "Many open-source resources have been used. Icons made by <a1>Freepik</a1> from <a2> www.flaticon.com</a2>. See a full OSS attribution list <a3>here</a3>."
+  "about.p6": "Many open-source resources have been used. Icons made by <a1>Freepik</a1> from <a2> www.flaticon.com</a2>. See a full OSS attribution list <a3>here</a3>.",
+
+  "glossary.title": "Glossary",
+  "glossary.更": "The distance travelled by a sailing ship during one 'watch.' Since there were ten watchs a day and the average speed of the ship was around a walking pace, this was equivalent to 2.4 hours or about 12 kilometers. Sailors would measure their speed regularly by dropping a piece of wood into the water near the bow and comparing its speed along the side of the ship as they walked towards the stern. If the ship was travelling faster than usual, they would reduce their expected sailing time, accordingly. Likewise, if the ship were slow, they would increase their expectation.",
+  "glossary.托": "1.5m depth",
+  "glossary.北辰": "Polaris",
+  "glossary.華蓋": "Huagai",
+  "布司": "Pegasus",
+  "船底座": "Carina",
+  "北斗七星": "Big Dipper",
+  "燈籠骨星": "Southern Cross",
+  "宿": "constellation",
+  "星官": "official (astarism)",
+  "宿": "mansion (one of 28",
+  "glossary.指": "Finger",
+  "glossary.角": "Angle",
+  "glossary.坐": "Sit",
+  "glossary.針": "(Compass) needle",
+  "glossary.千戶所": "Battalion",
+  "glossary.衛": "Guard",
+  "glossary.巡司": "Inspection Division"
 }

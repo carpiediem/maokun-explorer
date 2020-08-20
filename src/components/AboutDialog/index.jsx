@@ -6,7 +6,7 @@ import {
   DialogContent,
   DialogContentText,
   IconButton,
-  Typography
+  Typography,
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -14,24 +14,24 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
 import CloseIcon from "@material-ui/icons/Close";
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     margin: 0,
-    padding: theme.spacing(2)
+    padding: theme.spacing(2),
   },
   closeButton: {
     position: "absolute",
     right: theme.spacing(1),
     top: theme.spacing(1),
-    color: theme.palette.grey[500]
-  }
+    color: theme.palette.grey[500],
+  },
 });
 
 export default function AboutDialog(props) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const DialogTitle = withStyles(styles)(props => {
+  const DialogTitle = withStyles(styles)((props) => {
     const { children, classes, onClose, ...other } = props;
     return (
       <MuiDialogTitle disableTypography className={classes.root} {...other}>
@@ -49,7 +49,7 @@ export default function AboutDialog(props) {
     );
   });
 
-  const externalLink = url => (...chunks) => (
+  const externalLink = (url) => (...chunks) => (
     <a href={url} target="_blank" rel="noopener noreferrer" class="external">
       {chunks}
     </a>
@@ -76,7 +76,7 @@ export default function AboutDialog(props) {
                 id="about.p1"
                 values={{
                   a1: externalLink("https://en.wikipedia.org/wiki/Zheng_He"),
-                  a2: externalLink("https://en.wikipedia.org/wiki/Mao_Kun_map")
+                  a2: externalLink("https://en.wikipedia.org/wiki/Mao_Kun_map"),
                 }}
               />
             </p>
@@ -90,7 +90,7 @@ export default function AboutDialog(props) {
                   a2: externalLink(
                     "https://en.wikipedia.org/wiki/Yingya_Shenglan"
                   ),
-                  a3: externalLink("https://en.wikipedia.org/wiki/Wubei_Zhi")
+                  a3: externalLink("https://en.wikipedia.org/wiki/Wubei_Zhi"),
                 }}
               />
             </p>
@@ -108,7 +108,7 @@ export default function AboutDialog(props) {
                 values={{
                   a1: externalLink("./maokun.csv"),
                   a2: externalLink("./maokun.geo.json"),
-                  a3: externalLink("./maokun-known.geo.json")
+                  a3: externalLink("./maokun-known.geo.json"),
                 }}
               />
             </p>
@@ -132,7 +132,7 @@ export default function AboutDialog(props) {
                   a7: externalLink(
                     "http://ciuhct.org/en/members/jose-manuel-malhao-pereira"
                   ),
-                  a8: externalLink("https://www.reddit.com/r/ChineseLanguage/")
+                  a8: externalLink("https://www.reddit.com/r/ChineseLanguage/"),
                 }}
               />
             </p>
@@ -142,7 +142,7 @@ export default function AboutDialog(props) {
                 values={{
                   a1: externalLink("https://www.flaticon.com/authors/freepik"),
                   a2: externalLink("https://www.flaticon.com/"),
-                  a3: externalLink("./attribution.txt")
+                  a3: externalLink("./attribution.txt"),
                 }}
               />
             </p>

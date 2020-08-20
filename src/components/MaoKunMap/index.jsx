@@ -13,7 +13,7 @@ const MAOKUN_WIDTH = 108401; // (423 * 256) + 113
 const MAOKUN_HEIGHT = 4263; // (16 * 256) + 167
 const MAOKUN_SIZE = {
   coordinates: { lat: -8.326171875, lng: 211.720703125 },
-  zoomify: [108401, 4263]
+  zoomify: [108401, 4263],
 };
 const START_PIXEL = [105513, 1863];
 const ATTRIBUTION =
@@ -28,7 +28,7 @@ function MaoKunMap(props) {
   function toLatLng([x, y]) {
     return {
       lat: (y / MAOKUN_HEIGHT) * MAOKUN_SIZE.coordinates.lat, // map.current.edges.lat
-      lng: (x / MAOKUN_WIDTH) * MAOKUN_SIZE.coordinates.lng // map.current.edges.lng
+      lng: (x / MAOKUN_WIDTH) * MAOKUN_SIZE.coordinates.lng, // map.current.edges.lng
     };
   }
 
@@ -78,35 +78,37 @@ function MaoKunMap(props) {
     props.onMove({
       _southWest: [
         (bounds._southWest.lng / MAOKUN_SIZE.coordinates.lng) * MAOKUN_WIDTH,
-        (bounds._southWest.lat / MAOKUN_SIZE.coordinates.lat) * MAOKUN_HEIGHT
+        (bounds._southWest.lat / MAOKUN_SIZE.coordinates.lat) * MAOKUN_HEIGHT,
       ],
       _northEast: [
         (bounds._northEast.lng / MAOKUN_SIZE.coordinates.lng) * MAOKUN_WIDTH,
-        (bounds._northEast.lat / MAOKUN_SIZE.coordinates.lat) * MAOKUN_HEIGHT
-      ]
+        (bounds._northEast.lat / MAOKUN_SIZE.coordinates.lat) * MAOKUN_HEIGHT,
+      ],
     });
   }
 
   const markers = props.geojson.features
-    .filter(m => m.geometry.type === "Point")
-    .map(m => ({
+    .filter((m) => m.geometry.type === "Point")
+    .map((m) => ({
       key: m.properties.id,
       icon:
         (m.geometry.coordinates.length ? identified : unidentified)[
           m.properties.category
         ] || unknown,
       position: toLatLng(m.geometry.zoomify),
-      onClick: () => props.onSelect(m.properties.id, "point")
+      onClick: () => props.onSelect(m.properties.id, "point"),
     }));
 
   const center = toLatLng(
     props.center
       ? [
           MAOKUN_SIZE.zoomify[0] * props.center.xRatio,
-          MAOKUN_SIZE.zoomify[1] * props.center.yRatio
+          MAOKUN_SIZE.zoomify[1] * props.center.yRatio,
         ]
       : START_PIXEL
   );
+
+  const showMarkers = map.current && map.current.leafletElement.getZoom() > 4;
 
   return (
     <section className="maokun">
@@ -125,9 +127,7 @@ function MaoKunMap(props) {
           width={MAOKUN_WIDTH}
           height={MAOKUN_HEIGHT}
         />
-        {markers.map(m => (
-          <Marker {...m} />
-        ))}
+        {showMarkers && markers.map((m) => <Marker {...m} />)}
       </Map>
     </section>
   );
