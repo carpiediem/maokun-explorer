@@ -25,7 +25,7 @@
     "react-intl": "^4.6.9",
     "react-leaflet": "^2.7.0",
     "react-scripts": "3.4.3",
-    "react-split-pane": "^0.1.91"
+    "react-split-pane": "^0.1.92"
   },
   "devDependencies": {
     "extract-react-intl-messages": "2.2.1"
