@@ -24,7 +24,7 @@
     "node-fetch": "^2.6.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-intl": "^4.6.9",
+    "react-intl": "^5.8.0",
     "react-leaflet": "^2.7.0",
     "react-scripts": "3.4.3",
     "react-split-pane": "^0.1.92"
