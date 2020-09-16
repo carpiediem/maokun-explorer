@@ -1,58 +1,58 @@
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 import {
   Dialog,
   DialogTitle as MuiDialogTitle,
   DialogContent,
-  DialogContentText,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
   Divider,
   IconButton,
-  Typography
-} from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
+  Typography,
+} from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { useTheme } from "@material-ui/core/styles";
-import CloseIcon from "@material-ui/icons/Close";
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
+import CloseIcon from '@material-ui/icons/Close';
 
-import "./LegendDialog.css";
+import './LegendDialog.css';
 
 const CATEGORIES = [
-  "town",
-  "area",
-  "building",
-  "mountain",
-  "peninsula",
-  "island",
-  "water body",
-  "descriptor"
+  'town',
+  'area',
+  'building',
+  'mountain',
+  'peninsula',
+  'island',
+  'water body',
+  'descriptor',
 ];
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     margin: 0,
-    padding: theme.spacing(2)
+    padding: theme.spacing(2),
   },
   closeButton: {
-    position: "absolute",
+    position: 'absolute',
     right: theme.spacing(1),
     top: theme.spacing(1),
-    color: theme.palette.grey[500]
+    color: theme.palette.grey[500],
   },
   icon: {
-    width: 25
-  }
+    width: 25,
+  },
 });
 
 export default function LegendDialog(props) {
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const intl = useIntl();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const DialogTitle = withStyles(styles)(props => {
+  const DialogTitle = withStyles(styles)((props) => {
     const { children, classes, onClose, ...other } = props;
     return (
       <MuiDialogTitle disableTypography className={classes.root} {...other}>
@@ -83,34 +83,44 @@ export default function LegendDialog(props) {
           <FormattedMessage id="legend.title" defaultMessage="Map Legend" />
         </DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            <List component="nav" aria-label="main mailbox folders">
-              {CATEGORIES.map(c => (
-                <ListItem key={c}>
-                  <ListItemIcon>
-                    <img
-                      src={`./icons/${c}-identified.svg`}
-                      alt={`${c} icon`}
-                    />
-                  </ListItemIcon>
-                  <ListItemText primary={c} />
-                </ListItem>
-              ))}
-              <Divider />
-              <ListItem>
+          <List component="nav" aria-label="main mailbox folders">
+            {CATEGORIES.map((c) => (
+              <ListItem key={c}>
                 <ListItemIcon>
-                  <div class="square identified" />
+                  <img src={`./icons/${c}-identified.svg`} alt={`${c} icon`} />
                 </ListItemIcon>
-                <ListItemText primary="Identified Locations" />
+                <ListItemText
+                  primary={intl.formatMessage({
+                    id: `categories.${c}`,
+                    defaultMessage: c,
+                  })}
+                />
               </ListItem>
-              <ListItem>
-                <ListItemIcon>
-                  <div class="square unidentified" />
-                </ListItemIcon>
-                <ListItemText primary="Unidentified Locations" />
-              </ListItem>
-            </List>
-          </DialogContentText>
+            ))}
+            <Divider />
+            <ListItem>
+              <ListItemIcon>
+                <div className="square identified" />
+              </ListItemIcon>
+              <ListItemText
+                primary={intl.formatMessage({
+                  id: `status.identified`,
+                  defaultMessage: 'Identified Locations',
+                })}
+              />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <div className="square unidentified" />
+              </ListItemIcon>
+              <ListItemText
+                primary={intl.formatMessage({
+                  id: `status.unidentified`,
+                  defaultMessage: 'Unidentified Locations',
+                })}
+              />
+            </ListItem>
+          </List>
         </DialogContent>
       </Dialog>
     </div>

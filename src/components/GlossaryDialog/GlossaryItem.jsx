@@ -1,17 +1,17 @@
-import React from "react";
-import { FormattedMessage } from "react-intl";
-import { makeStyles } from "@material-ui/core/styles";
-import ListItem from "@material-ui/core/ListItem";
-import Divider from "@material-ui/core/Divider";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import Avatar from "@material-ui/core/Avatar";
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
+import { makeStyles } from '@material-ui/core/styles';
+import ListItem from '@material-ui/core/ListItem';
+import Divider from '@material-ui/core/Divider';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    "& .MuiListItemText-primary": { color: "red", fontWeight: "bold" },
+    '& .MuiListItemText-primary': { color: 'red', fontWeight: 'bold' },
   },
-  avatar: { backgroundColor: "red" },
+  avatar: { backgroundColor: 'red' },
 }));
 
 export default function AlignItemsList(props) {
