@@ -44,7 +44,7 @@ function Explorer(props) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("maokun.geo.json");
+      const res = await fetch('geojson/maokun-places.geo.json');
 
       setGeojson(await res.json());
     };

@@ -1,5 +1,5 @@
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 import {
   Drawer,
   Card,
@@ -7,48 +7,34 @@ import {
   CardActions,
   IconButton,
   Typography,
-  Tooltip
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import MapIcon from "@material-ui/icons/Map";
-import LocalLibraryIcon from "@material-ui/icons/LocalLibrary";
+  Tooltip,
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import MapIcon from '@material-ui/icons/Map';
+import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
 
-import { LocaleContext } from "../../LocaleContext";
-import WikipediaButtonGroup, { WikipediaIcon } from "./WikipediaButtonGroup";
-import asFraction from "../../util/asFraction";
-import asLatitude from "../../util/asLatitude";
+import { LocaleContext } from '../../LocaleContext';
+import KamalDetails from './KamalDetails';
+import WikipediaButtonGroup, { WikipediaIcon } from './WikipediaButtonGroup';
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    "& dt": { fontSize: 14, marginTop: 12 },
-    " & dd p": { margin: 0 }
-  },
+const useStyles = makeStyles((theme) => ({
+  root: {},
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    "& .MuiBackdrop-root": { backgroundColor: "transparent" }
+    '& .MuiBackdrop-root': { backgroundColor: 'transparent' },
   },
-  drawerPaper: { width: drawerWidth, height: "auto", marginTop: 75 }
+  drawerPaper: { width: drawerWidth, height: 'auto', marginTop: 75 },
+  translation: { color: '#888', fontSize: '0.8em' },
+  otherNames: { color: '#888', fontSize: '0.8em' },
 }));
 
 function PointDetails(props) {
-  // const [state, setState] = React.useState(false);
   const classes = useStyles();
   const intl = useIntl();
   const [locale] = React.useContext(LocaleContext);
-
-  // const toggleDrawer = open => event => {
-  //   if (
-  //     event.type === "keydown" &&
-  //     (event.key === "Tab" || event.key === "Shift")
-  //   ) {
-  //     return;
-  //   }
-  //
-  //   setState(open);
-  // };
 
   if (!props.geojson.features.length || !props.id) {
     return null;
@@ -57,7 +43,6 @@ function PointDetails(props) {
   const { properties, geometry } = props.geojson.features.find(
     ({ properties: { id } }) => id === props.id
   );
-  const nowKnownAs = locale === "zh" ? properties.nameTc : properties.nameEn;
 
   return (
     <Drawer
@@ -70,61 +55,64 @@ function PointDetails(props) {
       <Card className={classes.root}>
         <CardContent>
           <Typography variant="h5" component="h2">
-            {properties.labelTc}
+            {properties.label}
           </Typography>
-          <Typography variant="body2" component="p">
-            {properties.labelEn}
+          <Typography variant="body2" component="p" className={classes.pinyin}>
+            {properties.pinyin}
           </Typography>
-          <dl>
-            {nowKnownAs && (
-              <React.Fragment>
-                <Typography color="textSecondary" component="dt">
-                  <FormattedMessage
-                    id="details.nowKnown"
-                    defaultMessage="Now known as"
-                  />
-                </Typography>
-                <Typography variant="body2" component="dd">
-                  {nowKnownAs}
-                </Typography>
-              </React.Fragment>
-            )}
+          <Typography
+            variant="body2"
+            component="p"
+            className={classes.translation}
+          >
+            {properties.translation}
+          </Typography>
+          <Typography
+            variant="caption"
+            component="p"
+            className={classes.category}
+          >
+            <FormattedMessage
+              id={`categories.${properties.category.toLowerCase()}`}
+              defaultMessage={properties.category}
+            />
+          </Typography>
 
-            {geometry.kamalAngle && (
-              <React.Fragment>
-                <Typography color="textSecondary" component="dt">
-                  <FormattedMessage
-                    id="details.navNotes"
-                    defaultMessage="Navigation Notes"
-                  />
-                </Typography>
-                <Typography variant="body2" component="dd">
-                  <p>一角三指</p>
-                  <p>
-                    {asFraction(geometry.kamalAngle)} fingers ={" "}
-                    {asLatitude(geometry.kamalAngle)} latitude
-                  </p>
-                </Typography>
-              </React.Fragment>
+          <hr />
+          <Typography variant="h5" component="h2">
+            {locale === 'en' ? properties.nameEn : properties.nameTc}
+          </Typography>
+          <Typography variant="body2" component="p" className={classes.region}>
+            {properties.region && (
+              <FormattedMessage
+                id={`regions.${properties.region.toLowerCase()}`}
+                defaultMessage={properties.region}
+              />
             )}
-            {geometry.coordinates.length > 0 && (
-              <React.Fragment>
-                <Typography color="textSecondary" component="dt">
-                  Latitude & Longitude
-                </Typography>
-                <Typography variant="body2" component="dd">
-                  {geometry.coordinates[1]}, {geometry.coordinates[0]}
-                </Typography>
-              </React.Fragment>
-            )}
-          </dl>
+          </Typography>
+          <Typography
+            variant="body2"
+            component="p"
+            className={classes.otherNames}
+            title={intl.formatMessage({
+              id: 'details.aka',
+              defaultMessage: 'also known as',
+            })}
+          >
+            {locale === 'en' ? properties.othersEn : properties.othersTc}
+          </Typography>
+
+          <KamalDetails
+            text={properties.kamalNotes}
+            angle={geometry.kamalAngle}
+          />
         </CardContent>
         <CardActions>
           {geometry.coordinates.length > 0 && (
             <Tooltip
               title={intl.formatMessage({
-                id: "details.googleMaps",
-                defaultMessage: "View in Google Maps"
+                id: 'details.googleMaps',
+                defaultMessage: 'View in Google Maps',
               })}
             >
               <IconButton
@@ -136,35 +124,35 @@ function PointDetails(props) {
               </IconButton>
             </Tooltip>
           )}
-          {properties.referenceUrl && (
+          {properties.sourceUrl && (
             <Tooltip
               title={intl.formatMessage({
-                id: "details.reference",
-                defaultMessage: "View reference"
+                id: 'details.reference',
+                defaultMessage: 'View reference',
               })}
             >
               <IconButton
                 component="a"
-                href={properties.referenceUrl}
+                href={properties.sourceUrl}
                 target="_blank"
               >
                 <LocalLibraryIcon />
               </IconButton>
             </Tooltip>
           )}
-          {(properties.aboutEn || properties.aboutTc) &&
-            (properties.aboutEn && properties.aboutTc ? (
+          {(properties.wikiEn || properties.wikiZh) &&
+            (properties.wikiEn && properties.wikiZh ? (
               <WikipediaButtonGroup {...properties} />
             ) : (
               <Tooltip
                 title={intl.formatMessage({
-                  id: "details.reference",
-                  defaultMessage: "View reference"
+                  id: 'details.reference',
+                  defaultMessage: 'View reference',
                 })}
               >
                 <IconButton
                   component="a"
-                  href={properties.aboutEn || properties.aboutTc}
+                  href={properties.wikiEn || properties.wikiZh}
                   target="_blank"
                 >
                   <WikipediaIcon />
