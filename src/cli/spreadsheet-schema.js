@@ -16,10 +16,7 @@ module.exports = {
   POINTS_COLUMNS: [
     'label',
     'pinyin',
-    'translation,',
-    null,
-    null,
-    null,
+    'translation',
     'nameTc',
     'nameEn',
     'othersTc',

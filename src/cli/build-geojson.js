@@ -15,6 +15,7 @@ const {
   cast,
 } = require('./spreadsheet-schema');
 
+const ENCUTF = { encoding: 'UTF-8' };
 const getBounds = (agg, { lat, lng }) =>
   !lat
     ? agg
@@ -42,6 +43,11 @@ const byCode = (agg, { code, x, y, lat, lng }) => {
     ].map((p) => p.then((r) => r.text()))
   );
 
+  // writeFileSync('public/geojson/maokun-points.csv', pointsCsv, ENCUTF);
+  // writeFileSync('public/geojson/maokun-rutters.csv', ruttersTsv, ENCUTF);
+  // writeFileSync('public/geojson/maokun-imagePaths.csv', imagePathCsv, ENCUTF);
+  // writeFileSync('public/geojson/maokun-geoPaths.csv', geoPathCsv, ENCUTF);
+
   //   const pointsCsv = await fetch(POINTS_URL).then((r) => r.text());
   const points = parse(pointsCsv, {
     columns: POINTS_COLUMNS,
@@ -49,7 +55,7 @@ const byCode = (agg, { code, x, y, lat, lng }) => {
     skip_empty_lines: true,
   });
   const pointFeatures = points.map(
-    ({ x, y, lat, lng, kamalAngle, ...properties }) => ({
+    ({ x, y, lat, lng, kamalAngle, ...rest }, index) => ({
       type: 'Feature',
       geometry: {
         type: 'Point',
@@ -57,7 +63,7 @@ const byCode = (agg, { code, x, y, lat, lng }) => {
         coordinates: lat === '' || !lat ? [] : [lng, lat],
         kamalAngle: kamalAngle === '' ? null : kamalAngle,
       },
-      properties,
+      properties: { id: index, ...rest },
     })
   );
   const pointBbox = points.reduce(getBounds, [180, 90, -180, -90]);

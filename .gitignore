@@ -11,6 +11,7 @@
 # production
 /build
 /tiles
+/public/geojson/*.csv
 
 # misc
 .DS_Store
