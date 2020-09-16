@@ -1,7 +1,9 @@
 {
   "menu.title": "繼鄭和",
+  "menu.preferences": "優先",
   "menu.about": "關於地圖",
   "menu.legend": "地圖圖例",
+  "menu.glossary": "詞彙表",
 
   "config.language": "語言",
   "en": "英語",
@@ -19,6 +21,8 @@
 
   "config.chooseLanguage": "選擇語言",
   "config.chooseCategories": "選擇類別",
+
+  "legend.title": "地圖圖例",
   "categories.town": "選擇類別",
   "categories.area": "區",
   "categories.building": "建造",
@@ -28,8 +32,14 @@
   "categories.water body": "水體",
   "categories.descriptor": "描述",
 
+  "status.identified": "確定的位置",
+  "status.unidentified": "位置不確定",
+
   "details.nowKnown": "現在稱為",
+  "details.aka": "也稱為",
   "details.navNotes": "導航說明",
+  "details.fingers": "指",
+  "details.latitude": "緯度",
   "details.encyclopedia": "查看百科全書",
   "details.googleMaps": "在谷歌地圖上查看",
   "details.reference": "查看參考",
@@ -38,6 +48,7 @@
   "regions.shanghai": "上海",
   "regions.zhejiang": "浙江",
   "regions.fujian": "福建",
+  "regions.taiwan": "台灣",
   "regions.guangdong": "廣東",
   "regions.guangxi": "廣西",
   "regions.hainan": "海南",
@@ -60,7 +71,29 @@
   "regions.eastafrica": "東非",
 
   "about.title": "鄭和航海圖",
+  "about.p1": "TBD",
+  "about.p2": "TBD",
+  "about.p3": "TBD",
+  "about.p4": "TBD",
+  "about.p5": "TBD",
+  "about.p6": "TBD",
 
-  "about.glossary": "詞彙表",
-  "about.更": "待定"
+  "glossary.title": "詞彙表",
+  "glossary.更": "待定",
+  "glossary.托": "TBD",
+  "glossary.北辰": "TBD",
+  "glossary.華蓋": "TBD",
+  "布司": "TBD",
+  "船底座": "TBD",
+  "北斗七星": "TBD",
+  "燈籠骨星": "TBD",
+  "星官": "TBD",
+  "宿": "TBD",
+  "glossary.指": "TBD",
+  "glossary.角": "TBD",
+  "glossary.坐": "TBD",
+  "glossary.針": "TBD",
+  "glossary.千戶所": "TBD",
+  "glossary.衛": "TBD",
+  "glossary.巡司": "TBD"
 }
