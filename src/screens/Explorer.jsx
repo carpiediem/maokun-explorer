@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from "react";
-import SplitPane from "react-split-pane";
+import React, { useState, useEffect, useRef } from 'react';
+import SplitPane from 'react-split-pane';
 
-import MaoKunMap from "../components/MaoKunMap";
-import ModernMap from "../components/ModernMap";
-import MiniMap from "../components/MiniMap";
-import GlossaryDialog from "../components/GlossaryDialog";
-import AboutDialog from "../components/AboutDialog";
-import LegendDialog from "../components/LegendDialog";
-import Menu from "../components/Menu";
-import PointDetails from "../components/PointDetails";
+import MaoKunMap from '../components/MaoKunMap';
+import ModernMap from '../components/ModernMap';
+import MiniMap from '../components/MiniMap';
+import GlossaryDialog from '../components/GlossaryDialog';
+import AboutDialog from '../components/AboutDialog';
+import LegendDialog from '../components/LegendDialog';
+import Menu from '../components/Menu';
+import PointDetails from '../components/PointDetails';
+import xyBoundsFilter from '../util/xyBoundsFilter';
+import latlngBoundsReducer from '../util/latlngBoundsReducer';
 
-import "./Explorer.css";
+import './Explorer.css';
 
 const DEFAULT_PREFS = {
   lockPanes: false,
@@ -29,6 +31,7 @@ const DEFAULT_PREFS = {
 };
 
 function Explorer(props) {
+  const modernMapRef = useRef(null);
   const [geojson, setGeojson] = useState({ features: [] });
   const [maokunCenter, setMaokunCenter] = useState(null);
   const [glossary, setGlossary] = useState(false);
@@ -40,7 +43,6 @@ function Explorer(props) {
     _northEast: [109336, 400],
     _southWest: [101696, 3320],
   });
-  const [pointIds, setPointIds] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,29 +54,24 @@ function Explorer(props) {
     fetchData();
   }, []);
 
-  function handleMove(newBounds) {
-    setBounds(newBounds);
+  function handleMove(xyBounds) {
+    setBounds(xyBounds);
 
-    // console.log(newBounds);
-    const visiblePoints = geojson.features
-      .filter(
-        (m) =>
-          m.geometry.type === "Point" &&
-          m.geometry.zoomify[0] >= bounds._southWest[0] &&
-          m.geometry.zoomify[0] <= bounds._northEast[0] &&
-          m.geometry.zoomify[1] >= bounds._northEast[1] &&
-          m.geometry.zoomify[1] <= bounds._southWest[1]
-      )
-      .map((m) => m.properties.id);
-    setPointIds(visiblePoints);
+    if (!modernMapRef.current) return;
 
-    // console.log(visiblePoints);
+    const visiblePoints = geojson.features.filter(xyBoundsFilter(xyBounds));
+    if (visiblePoints.length === 0) return;
+
+    const latlngBounds = visiblePoints.reduce(latlngBoundsReducer, [
+      [90, 180],
+      [-90, -180],
+    ]);
+
+    modernMapRef.current.leafletElement.fitBounds(latlngBounds);
   }
 
   function handlePrefsChange(key, value) {
     setPrefs(Object.assign({}, prefs, { [key]: value }));
-
-    setPointIds([]);
   }
 
   function handleSelect(id, type) {
@@ -102,8 +99,9 @@ function Explorer(props) {
           onSelect={handleSelect}
         />
         <ModernMap
+          ref={modernMapRef}
           geojson={geojson}
-          pointIds={pointIds}
+          // pointIds={pointIds}
           labelLocations={prefs.labelLocations}
           onSelect={handleSelect}
         />

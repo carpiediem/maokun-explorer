@@ -1,14 +1,12 @@
-import React, { useRef, useState } from "react";
-import { Map, TileLayer, ZoomControl, Marker } from "react-leaflet";
-import { identified, unidentified, unknown } from "../MaoKunMap/icons";
+import React, { useState, forwardRef } from 'react';
+import { Map, TileLayer, ZoomControl, Marker } from 'react-leaflet';
+import { identified, unidentified, unknown } from '../MaoKunMap/icons';
 
 import "./ModernMap.css";
 
-function ModernMap(props) {
-  const map = useRef(null);
+const ModernMap = forwardRef((props, ref) => {
   const [center] = useState({ lat: 32.039579, lng: 118.8 });
   const [zoom] = useState(13);
-  // const [markers, setMarkers] = React.useState([]);
 
   const markers = props.geojson.features
     .filter(m => m.geometry.type === "Point" && m.geometry.coordinates.length)
@@ -27,7 +25,7 @@ function ModernMap(props) {
 
   return (
     <section className="modern">
-      <Map ref={map} center={center} zoom={zoom} zoomControl={false}>
+      <Map ref={ref} center={center} zoom={zoom} zoomControl={false}>
         <TileLayer
           attribution='&amp;copy <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
           url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
