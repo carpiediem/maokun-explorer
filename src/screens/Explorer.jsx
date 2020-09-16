@@ -24,7 +24,7 @@ const DEFAULT_PREFS = {
     mountain: true,
     peninsula: true,
     island: true,
-    "water body": true,
+    'water body': true,
     descriptor: true,
   },
   labelLocations: false,
@@ -84,11 +84,11 @@ function Explorer(props) {
         split="horizontal"
         minSize={50}
         defaultSize={
-          parseInt(localStorage.getItem("splitPos"), 10) ||
+          parseInt(localStorage.getItem('splitPos'), 10) ||
           window.innerHeight / 2
         }
-        onChange={(size) => localStorage.setItem("splitPos", size)}
-        className={prefs.lockPanes ? "locked" : ""}
+        onChange={(size) => localStorage.setItem('splitPos', size)}
+        className={prefs.lockPanes ? 'locked' : ''}
       >
         <MaoKunMap
           center={maokunCenter}
@@ -115,15 +115,16 @@ function Explorer(props) {
         onChange={handlePrefsChange}
         onDialogClick={(key) => {
           switch (key) {
-            case "about":
+            case 'about':
               setAbout(true);
               break;
-            case "legend":
+            case 'legend':
               setLegend(true);
               break;
-            case "glossary":
+            case 'glossary':
               setGlossary(true);
               break;
+            default:
           }
         }}
       />

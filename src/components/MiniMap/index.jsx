@@ -1,7 +1,7 @@
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import "./MiniMap.css";
+import './MiniMap.css';
 
 const MAOKUN_WIDTH = 108401; // (423 * 256) + 113
 const MAOKUN_HEIGHT = 4263; // (16 * 256) + 167
@@ -14,18 +14,18 @@ function MiniMap(props) {
     x: `${x}%`,
     y: `${y}%`,
     width: `${Math.min(100, (100 * _northEast[0]) / MAOKUN_WIDTH) - x}%`,
-    height: `${Math.min(100, (100 * _southWest[1]) / MAOKUN_HEIGHT) - y}%`
+    height: `${Math.min(100, (100 * _southWest[1]) / MAOKUN_HEIGHT) - y}%`,
   };
   const MARGINS = { top: 10, left: 50, right: 50 };
   const SIZE = {
     width: window.innerWidth - MARGINS.left - MARGINS.right,
-    height: 55
+    height: 55,
   };
 
   function handleClick(evt) {
     props.onClick({
       xRatio: (evt.nativeEvent.pageX - MARGINS.left) / SIZE.width,
-      yRatio: (evt.nativeEvent.pageY - MARGINS.top) / SIZE.height
+      yRatio: (evt.nativeEvent.pageY - MARGINS.top) / SIZE.height,
     });
   }
 
@@ -42,6 +42,10 @@ function MiniMap(props) {
       </g>
       <g id="fujian">
         <rect x="60%" y="0%" width="12%" height="100%"></rect>
+      </g>
+      <g id="taiwan">
+        <rect x="61%" y="80%" width="8%" height="20%"></rect>
+        <rect x="61%" y="50%" width="1%" height="30%"></rect>
       </g>
       <g id="guangdong">
         <rect x="55.25%" y="0%" width="4.75%" height="40%"></rect>
@@ -74,11 +78,11 @@ function MiniMap(props) {
         <rect x="33%" y="0%" width="1%" height="10%"></rect>
       </g>
       <g id="myanmar">
-        <rect x="17.25%" y="0%" width="5.75%" height="50%"></rect>
+        <rect x="17.25%" y="0%" width="5.75%" height="40%"></rect>
       </g>
       <g id="bangladesh">
         <rect x="10%" y="0%" width="7.25%" height="20%"></rect>
-        <rect x="15%" y="20%" width="2.25%" height="30%"></rect>
+        <rect x="15%" y="20%" width="2.25%" height="12%"></rect>
       </g>
       <g id="maldives">
         <rect x="15%" y="50%" width="1%" height="20%"></rect>
@@ -87,6 +91,7 @@ function MiniMap(props) {
         <rect x="13%" y="20%" width="2%" height="50%"></rect>
       </g>
       <g id="india">
+        <rect x="18.25%" y="40%" width="2%" height="10%"></rect>
         <rect x="6%" y="0%" width="4%" height="20%"></rect>
         <rect x="6%" y="20%" width="7%" height="30%"></rect>
       </g>
@@ -121,6 +126,9 @@ function MiniMap(props) {
       </text>
       <text x="66%" y="60%" textAnchor="middle">
         <FormattedMessage id="regions.fujian" defaultMessage="Fujian" />
+      </text>
+      <text x="65%" y="98%" textAnchor="middle">
+        <FormattedMessage id="regions.taiwan" defaultMessage="Taiwan" />
       </text>
       <text x="57.625%" y="40%" textAnchor="middle">
         <FormattedMessage id="regions.guangdong" defaultMessage="Guangdong" />
@@ -164,7 +172,7 @@ function MiniMap(props) {
       <text x="14%" y="50%" textAnchor="middle">
         <FormattedMessage id="regions.srilanka" defaultMessage="Sri Lanka" />
       </text>
-      <text x="10%" y="40%" textAnchor="middle">
+      <text x="10%" y="35%" textAnchor="middle">
         <FormattedMessage id="regions.india" defaultMessage="India" />
       </text>
       <text x="4.75%" y="25%" textAnchor="middle">

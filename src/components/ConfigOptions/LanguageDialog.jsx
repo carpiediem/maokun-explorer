@@ -1,15 +1,15 @@
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import {
   Dialog,
   DialogContent,
   DialogTitle,
   List,
   ListItem,
-  ListItemText
-} from "@material-ui/core";
+  ListItemText,
+} from '@material-ui/core';
 
-import { LocaleContext } from "../../LocaleContext";
+import { LocaleContext } from '../../LocaleContext';
 
 // const LOCALES = {
 //   en: "English",
@@ -38,7 +38,7 @@ export default function LanguageDialog(props) {
           <ListItem
             button
             onClick={() => {
-              setLocale("en");
+              setLocale('en');
               props.onClose();
             }}
           >
@@ -47,7 +47,7 @@ export default function LanguageDialog(props) {
           <ListItem
             button
             onClick={() => {
-              setLocale("zh");
+              setLocale('zh');
               props.onClose();
             }}
           >

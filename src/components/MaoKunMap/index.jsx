@@ -1,14 +1,14 @@
-import React, { useRef } from "react"; // useEffect
-import { CRS } from "leaflet";
-import { Map, ZoomControl, Marker } from "react-leaflet";
-import { identified, unidentified, unknown } from "./icons";
+import React, { useRef } from 'react';
+import { CRS } from 'leaflet';
+import { Map, ZoomControl, Marker } from 'react-leaflet';
+import { identified, unidentified, unknown } from './icons';
 
-import ZoomifyLayer from "./ZoomifyLayer";
+import ZoomifyLayer from './ZoomifyLayer';
 
-import "./MaoKunMap.css";
+import './MaoKunMap.css';
 
 const MAOKUN_URL =
-  "https://barbierilow.faculty.history.ucsb.edu/Research/ZhengHeMapZoomify/ZhengHe/";
+  'https://barbierilow.faculty.history.ucsb.edu/Research/ZhengHeMapZoomify/ZhengHe/';
 const MAOKUN_WIDTH = 108401; // (423 * 256) + 113
 const MAOKUN_HEIGHT = 4263; // (16 * 256) + 167
 const MAOKUN_SIZE = {
@@ -21,9 +21,7 @@ const ATTRIBUTION =
 
 function MaoKunMap(props) {
   const map = useRef(null);
-  // const [center, setCenter] = React.useState({ lat: 0, lng: 0 });
   const [zoom] = React.useState(6);
-  // const [markers, setMarkers] = React.useState([]);
 
   function toLatLng([x, y]) {
     return {
@@ -32,48 +30,8 @@ function MaoKunMap(props) {
     };
   }
 
-  // useEffect(() => {
-  //   const maxZoom = Math.ceil(
-  //     Math.max(Math.log2(MAOKUN_WIDTH / 256), Math.log2(MAOKUN_HEIGHT / 256))
-  //   );
-  //   map.current.edges = map.current.leafletElement.unproject(
-  //     [MAOKUN_WIDTH, MAOKUN_HEIGHT],
-  //     maxZoom
-  //   );
-  //   map.current.toLatLng = ([x, y]) => ({
-  //     lat: (y / MAOKUN_HEIGHT) * MAOKUN_SIZE.coordinates.lat, // map.current.edges.lat
-  //     lng: (x / MAOKUN_WIDTH) * MAOKUN_SIZE.coordinates.lng // map.current.edges.lng
-  //   });
-  //
-  //
-  //
-  //   setCenter(map.current.toLatLng(START_PIXEL));
-  //
-  //   setMarkers(
-  //     props.geojson.features
-  //       .filter(m => m.geometry.type === "Point")
-  //       .map(m => ({
-  //         key: m.properties.id,
-  //         icon:
-  //           (m.geometry.coordinates.length ? identified : unidentified)[
-  //             m.properties.category
-  //           ] || unknown,
-  //         position: map.current.toLatLng(m.geometry.zoomify),
-  //         onClick: () => {
-  //           console.log("click");
-  //           props.onSelect(m.properties.id, "point");
-  //         }
-  //       }))
-  //   );
-  // }, [props]);
-
   function handleMove(e) {
     const bounds = map.current.leafletElement.getBounds();
-
-    // if (!bounds || !map.current.edges) {
-    //   console.log("map.current.edges:", map.current.edges);
-    //   return;
-    // }
 
     props.onMove({
       _southWest: [
@@ -88,7 +46,7 @@ function MaoKunMap(props) {
   }
 
   const markers = props.geojson.features
-    .filter((m) => m.geometry.type === "Point")
+    .filter((m) => m.geometry.type === 'Point')
     .map((m) => ({
       key: m.properties.id,
       icon:
@@ -96,7 +54,7 @@ function MaoKunMap(props) {
           m.properties.category
         ] || unknown,
       position: toLatLng(m.geometry.zoomify),
-      onClick: () => props.onSelect(m.properties.id, "point"),
+      onClick: () => props.onSelect(m.properties.id, 'point'),
     }));
 
   const center = toLatLng(

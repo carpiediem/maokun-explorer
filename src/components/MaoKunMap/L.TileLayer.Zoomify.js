@@ -1,4 +1,4 @@
-import { GridLayer, TileLayer, LatLngBounds, point, setOptions } from "leaflet";
+import { GridLayer, TileLayer, LatLngBounds, point, setOptions } from 'leaflet';
 
 /*
  * TileLayerZoomify display Zoomify tiles with Leaflet
@@ -15,12 +15,12 @@ export const TileLayerZoomify = TileLayer.extend({
     width: -1, // Must be set by user, max zoom image width
     height: -1, // Must be set by user, max zoom image height
     leaflet: null, // Must be set by React element
-    tileGroupPrefix: "TileGroup",
-    tilesPerTileGroup: 256
+    tileGroupPrefix: 'TileGroup',
+    tilesPerTileGroup: 256,
     // bounds: new LatLngBounds([90, 180], [-90, -180])
   },
 
-  initialize: function(url, options) {
+  initialize: function (url, options) {
     options = setOptions(this, options);
     this._url = url;
     this._map = options.leaflet.map;
@@ -28,7 +28,7 @@ export const TileLayerZoomify = TileLayer.extend({
     // Replace with automatic loading from ImageProperties.xml
     if (options.width < 0 || options.height < 0) {
       throw new Error(
-        "The user must set the Width and Height of the Zoomify image"
+        'The user must set the Width and Height of the Zoomify image'
       );
     }
 
@@ -72,7 +72,7 @@ export const TileLayerZoomify = TileLayer.extend({
   },
 
   // Calculate the grid size for a given image size (based on tile size)
-  _getGridSize: function(imageSize) {
+  _getGridSize: function (imageSize) {
     var tileSize = this.options.tileSize;
     return point(
       Math.ceil(imageSize.x / tileSize),
@@ -81,7 +81,7 @@ export const TileLayerZoomify = TileLayer.extend({
   },
 
   // Extend the add tile function to update our arbitrary sized border tiles
-  _addTile: function(coords, container) {
+  _addTile: function (coords, container) {
     // Load the tile via the original leaflet code
     TileLayer.prototype._addTile.call(this, coords, container);
 
@@ -105,28 +105,28 @@ export const TileLayerZoomify = TileLayer.extend({
 
     //Update tile dimensions if we are on a border
     if (imageSize.x % realTileSize.x > 0 && coords.x === gridSize.x - 1) {
-      tile.style.width = displayTileSize.scaleBy(scaleFactor).x + "px";
+      tile.style.width = displayTileSize.scaleBy(scaleFactor).x + 'px';
     }
 
     if (imageSize.y % realTileSize.y > 0 && coords.y === gridSize.y - 1) {
-      tile.style.height = displayTileSize.scaleBy(scaleFactor).y + "px";
+      tile.style.height = displayTileSize.scaleBy(scaleFactor).y + 'px';
     }
   },
 
   // Construct the tile url, by inserting our tilegroup before we template the url
   // this._url + 'TileGroup' + this._getTileGroup(tilePoint) + '/' + this._map.getZoom() + '-' + tilePoint.x + '-' + tilePoint.y + '.jpg';
-  getTileUrl: function(coords) {
+  getTileUrl: function (coords) {
     const url =
       this._url +
       this.options.tileGroupPrefix +
       this._getTileGroup(coords) +
-      "/" +
+      '/' +
       this._getZoomForUrl() +
-      "-" +
+      '-' +
       coords.x +
-      "-" +
+      '-' +
       coords.y +
-      ".jpg";
+      '.jpg';
 
     return url;
 
@@ -139,7 +139,7 @@ export const TileLayerZoomify = TileLayer.extend({
 
   // Calculates the TileGroup number, each group contains 256 tiles. The tiles are stored from topleft to bottomright
   // e.g. https://barbierilow.faculty.history.ucsb.edu/Research/ZhengHeMapZoomify/ZhengHe/TileGroup24/9-257-8.jpg
-  _getTileGroup: function(coords) {
+  _getTileGroup: function (coords) {
     var zoom = this._getZoomForUrl(),
       num = 0,
       gridSize;
@@ -153,7 +153,7 @@ export const TileLayerZoomify = TileLayer.extend({
     // Add the remaining tiles from this zoom layer to the running total of tiles
     num += coords.y * this._gridSize[zoom].x + coords.x;
     return Math.floor(num / this.options.tilesPerTileGroup);
-  }
+  },
 });
 
 export default TileLayerZoomify;

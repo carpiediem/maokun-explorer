@@ -1,5 +1,5 @@
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 import {
   Drawer,
   IconButton,
@@ -9,46 +9,46 @@ import {
   ListItemIcon,
   ListItemText,
   Divider,
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ListIcon from "@material-ui/icons/ListAlt";
-import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
-import NotListedLocationIcon from "@material-ui/icons/NotListedLocation";
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ListIcon from '@material-ui/icons/ListAlt';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import NotListedLocationIcon from '@material-ui/icons/NotListedLocation';
 
-import ConfigOptions from "../ConfigOptions";
+import ConfigOptions from '../ConfigOptions';
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   button: {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
-    left: "15px",
+    left: '15px',
     zIndex: 999,
-    backgroundColor: "rgba(255, 255, 255, 0.4)",
-    "&:hover": { backgroundColor: "rgba(255, 255, 255,  0.8)" },
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    '&:hover': { backgroundColor: 'rgba(255, 255, 255,  0.8)' },
   },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    whiteSpace: "nowrap",
+    whiteSpace: 'nowrap',
   },
-  drawerPaper: { width: drawerWidth, height: "auto" },
+  drawerPaper: { width: drawerWidth, height: 'auto' },
   toolbar: {
-    display: "flex",
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "flex-end",
+    display: 'flex',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   },
-  closeButton: { display: "inline-flex" },
+  closeButton: { display: 'inline-flex' },
   title: {
-    display: "inline-flex",
-    verticalAlign: "middle",
+    display: 'inline-flex',
+    verticalAlign: 'middle',
   },
 }));
 
@@ -59,8 +59,8 @@ function Menu(props) {
 
   const toggleDrawer = (open) => (event) => {
     if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
     ) {
       return;
     }
@@ -93,7 +93,7 @@ function Menu(props) {
             className={classes.closeButton}
           >
             <ChevronLeftIcon />
-          </IconButton>{" "}
+          </IconButton>{' '}
           <Typography variant="h6" noWrap className={classes.title}>
             <FormattedMessage
               id="menu.title"
@@ -108,7 +108,7 @@ function Menu(props) {
           <ListItem
             button
             onClick={() => {
-              props.onDialogClick("glossary");
+              props.onDialogClick('glossary');
               setState(false);
             }}
           >
@@ -117,15 +117,15 @@ function Menu(props) {
             </ListItemIcon>
             <ListItemText
               primary={intl.formatMessage({
-                id: "menu.glossary",
-                defaultMessage: "Glossary",
+                id: 'menu.glossary',
+                defaultMessage: 'Glossary',
               })}
             />
           </ListItem>
           <ListItem
             button
             onClick={() => {
-              props.onDialogClick("about");
+              props.onDialogClick('about');
               setState(false);
             }}
           >
@@ -134,15 +134,15 @@ function Menu(props) {
             </ListItemIcon>
             <ListItemText
               primary={intl.formatMessage({
-                id: "menu.about",
-                defaultMessage: "About the Map",
+                id: 'menu.about',
+                defaultMessage: 'About the Map',
               })}
             />
           </ListItem>
           <ListItem
             button
             onClick={() => {
-              props.onDialogClick("legend");
+              props.onDialogClick('legend');
               setState(false);
             }}
           >
@@ -151,8 +151,8 @@ function Menu(props) {
             </ListItemIcon>
             <ListItemText
               primary={intl.formatMessage({
-                id: "menu.legend",
-                defaultMessage: "Map Legend",
+                id: 'menu.legend',
+                defaultMessage: 'Map Legend',
               })}
             />
           </ListItem>

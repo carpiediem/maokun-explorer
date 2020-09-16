@@ -1,5 +1,5 @@
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import React from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 import {
   Dialog,
   DialogContent,
@@ -7,18 +7,18 @@ import {
   FormControl,
   FormGroup,
   FormControlLabel,
-  Switch
-} from "@material-ui/core";
+  Switch,
+} from '@material-ui/core';
 
 const CATEGORIES = [
-  "town",
-  "area",
-  "building",
-  "mountain",
-  "peninsula",
-  "island",
-  "water body",
-  "descriptor"
+  'town',
+  'area',
+  'building',
+  'mountain',
+  'peninsula',
+  'island',
+  'water body',
+  'descriptor',
 ];
 
 export default function CategoryDialog(props) {
@@ -39,7 +39,7 @@ export default function CategoryDialog(props) {
       <DialogContent>
         <FormControl component="fieldset">
           <FormGroup>
-            {CATEGORIES.map(category => (
+            {CATEGORIES.map((category) => (
               <FormControlLabel
                 key={category}
                 control={
@@ -53,7 +53,7 @@ export default function CategoryDialog(props) {
                 }
                 label={intl.formatMessage({
                   id: `categories.${category}`,
-                  defaultMessage: category
+                  defaultMessage: category,
                 })}
               />
             ))}

@@ -1,10 +1,10 @@
 // @flow
 
-import isEqual from "fast-deep-equal";
-import { withLeaflet, GridLayer, GridLayerProps } from "react-leaflet";
+import isEqual from 'fast-deep-equal';
+import { withLeaflet, GridLayer, GridLayerProps } from 'react-leaflet';
 // import { LatLngBounds } from "leaflet";
 
-import { TileLayerZoomify } from "./L.TileLayer.Zoomify";
+import { TileLayerZoomify } from './L.TileLayer.Zoomify';
 
 type LeafletElement = TileLayerZoomify;
 type Props = { url: string } & GridLayerProps;
