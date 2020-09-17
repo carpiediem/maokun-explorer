@@ -2,7 +2,10 @@ import React, { useContext } from 'react';
 import { IntlProvider } from 'react-intl';
 
 import getBrowserLocale from './util/getBrowserLocale';
-const messages = { zh: require('./translations/zh') };
+const messages = {
+  en: require('./translations/en'),
+  zh: require('./translations/zh'),
+};
 
 export const LocaleContext = React.createContext();
 export const useLocaleContext = () => useContext(LocaleContext);

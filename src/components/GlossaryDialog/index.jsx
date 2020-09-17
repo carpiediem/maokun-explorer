@@ -58,12 +58,6 @@ export default function GlossaryDialog(props) {
     );
   });
 
-  // const externalLink = (url) => (...chunks) => (
-  //   <a href={url} target="_blank" rel="noopener noreferrer" class="external">
-  //     {chunks}
-  //   </a>
-  // );
-
   return (
     <div>
       <Dialog

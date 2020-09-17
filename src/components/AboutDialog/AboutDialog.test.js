@@ -7,7 +7,7 @@ import AboutDialog from './index';
 describe('For en locale', () => {
   test('renders `The Mao Kun Map` heading', () => {
     const { getByText } = render(<AboutDialog open={true} />, intlEnWrapper);
-    const titleText = getByText(/^the mao kun map$/i);
+    const titleText = getByText('About the Mao Kun Map');
     expect(titleText).toBeInTheDocument();
   });
 });

@@ -49,7 +49,12 @@ export default function AboutDialog(props) {
   });
 
   const externalLink = (url) => (...chunks) => (
-    <a href={url} target="_blank" rel="noopener noreferrer" class="external">
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="external"
+    >
       {chunks}
     </a>
   );
