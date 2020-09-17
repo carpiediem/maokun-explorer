@@ -9,11 +9,13 @@ import {
 } from 'react-leaflet';
 import { identified, selected, unknown } from '../MaoKunMap/icons';
 
+import { LocaleContext } from '../../LocaleContext';
 import './ModernMap.css';
 
 const ModernMap = forwardRef((props, ref) => {
   const [center] = useState({ lat: 32.039579, lng: 118.8 });
   const [zoom] = useState(13);
+  const [locale] = React.useContext(LocaleContext);
 
   // Map isn't changing when
 
@@ -21,7 +23,7 @@ const ModernMap = forwardRef((props, ref) => {
     .filter((m) => m.geometry.type === 'Point' && m.geometry.coordinates.length)
     .map((m) => ({
       key: m.properties.id,
-      name: m.properties.nameEn,
+      name: locale === 'en' ? m.properties.nameEn : m.properties.nameTc,
       icon:
         (props.selected.point === m.properties.id ? selected : identified)[
           m.properties.category
@@ -57,14 +59,8 @@ const ModernMap = forwardRef((props, ref) => {
         <ZoomControl position="bottomright" />
         {markers.map((m) => (
           <Marker {...m}>
-            {' '}
             {props.labelLocations && (
-              <Tooltip
-                direction="bottom"
-                offset={[0, -5]}
-                opacity={1}
-                permanent
-              >
+              <Tooltip direction="bottom" offset={[0, 0]} opacity={1} permanent>
                 {m.name}
               </Tooltip>
             )}

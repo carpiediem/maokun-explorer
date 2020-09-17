@@ -9,6 +9,7 @@ import {
 } from 'react-leaflet';
 // import { identified, unidentified, unknown } from './icons';
 
+import { LocaleContext } from '../../LocaleContext';
 import ZoomifyLayer from './ZoomifyLayer';
 import xyToLeaflet from '../../util/xyToLeaflet';
 
@@ -29,6 +30,7 @@ const ATTRIBUTION =
 function MaoKunMap(props) {
   const map = useRef(null);
   const [zoom] = React.useState(6);
+  const [locale] = React.useContext(LocaleContext);
 
   function handleMove(e) {
     const bounds = map.current.leafletElement.getBounds();
@@ -55,7 +57,7 @@ function MaoKunMap(props) {
     .filter((f) => f.geometry.type === 'Point')
     .map((f) => ({
       key: f.properties.id,
-      name: f.properties.nameEn,
+      name: locale === 'en' ? f.properties.nameEn : f.properties.nameTc,
       // icon:
       //   (f.geometry.coordinates.length ? identified : unidentified)[
       //     f.properties.category

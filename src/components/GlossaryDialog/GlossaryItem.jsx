@@ -9,9 +9,9 @@ import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiListItemText-primary': { color: 'red', fontWeight: 'bold' },
+    '& .MuiListItemText-primary': { color: 'darkRed', fontWeight: 'bold' },
   },
-  avatar: { backgroundColor: 'red' },
+  avatar: { backgroundColor: 'darkRed' },
 }));
 
 export default function AlignItemsList(props) {

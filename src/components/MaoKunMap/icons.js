@@ -4,7 +4,7 @@ const icon = (url, className) =>
   new L.Icon({
     iconUrl: url,
     iconSize: [25, 25],
-    iconAnchor: [23, 23],
+    iconAnchor: [13, 13],
   });
 
 export const identified = {
