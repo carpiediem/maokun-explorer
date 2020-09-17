@@ -1,0 +1,27 @@
+name: Run Tests
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  # cleanup:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Clear old artifacts
+  #       uses: kolpav/purge-artifacts-action@v1
+  #       with:
+  #         token: ${{ secrets.GITHUB_TOKEN }}
+  #         expire-in: 1hr
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - run: npm install
+      - run: npm test
+      # - name: Archive test coverage artifacts
+      #   uses: actions/upload-artifact@v1
+      #   with:
+      #     name: tbd
+      #     path: tbd

@@ -1,68 +1,63 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  <a href="https://zhenghe.rslc.us/" rel="noopener" target="_blank"><img width="150" src="https://zhenghe.rslc.us/mstile-150x150.png" alt="Mao Kun map logo"></a></p>
+</p>
 
-## Available Scripts
+<h1 align="center">Mao Kun Map Explorer</h1>
 
-In the project directory, you can run:
+<div align="center">
 
-### `yarn start`
+An interactive map navigating the treasure fleet voyages of [Zheng He](https://en.wikipedia.org/wiki/Zheng_He). Built with [React](https://reactjs.org/) and [Leaflet](https://leafletjs.com/).
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<!-- [![CircleCI](https://img.shields.io/circleci/project/github/carpiediem/maokun-explorer/master.svg)](https://circleci.com/gh/carpiediem/maokun-explorer/tree/master)
+[![Build Status](https://dev.azure.com/carpiediem/maokun-explorer/_apis/build/status/mui-org.material-ui?branchName=master)](https://dev.azure.com/carpiediem/maokun-explorer/_build/latest?definitionId=1&branchName=master)
+[![Coverage Status](https://img.shields.io/codecov/c/github/carpiediem/maokun-explorer/master.svg)](https://codecov.io/gh/carpiediem/maokun-explorer/branch/master)
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/1320/badge)](https://bestpractices.coreinfrastructure.org/projects/1320)
+![Code style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)
+[![Follow on Twitter](https://img.shields.io/twitter/follow/MaterialUI.svg?label=follow+Material-UI)](https://twitter.com/MaterialUI)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=carpiediem/maokun-explorer)](https://dependabot.com)
+[![PeerDependencies](https://david-dm.org/carpiediem/maokun-explorer/master/peer-status.svg?path=packages/material-ui)](https://david-dm.org/carpiediem/maokun-explorer/master?type=peer&path=packages/material-ui)
+[![Dependencies](https://david-dm.org/carpiediem/maokun-explorer/master/status.svg?path=packages/material-ui)](https://david-dm.org/carpiediem/maokun-explorer/master?path=packages/material-ui)
+[![DevDependencies](https://david-dm.org/carpiediem/maokun-explorer/master/dev-status.svg?path=packages/material-ui)](https://david-dm.org/carpiediem/maokun-explorer/master?type=dev)
+[![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/carpiediem/maokun-explorer.svg)](https://isitmaintained.com/project/carpiediem/maokun-explorer 'Average time to resolve an issue')
+[![Crowdin](https://d322cqt584bo4o.cloudfront.net/material-ui-docs/localized.svg?cache=v1)](https://translate.material-ui.com/project/material-ui-docs) -->
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+</div>
 
-### `yarn test`
+## Demo
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+View this web app at [https://zhenghe.rslc.us](https://zhenghe.rslc.us)
 
-### `yarn build`
+## Installation
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This website is built with [node.js](https://nodejs.org/), so ensure you have that installed. Clone a copy of this repository, then use npm or yarn to install dependancies.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```sh
+git clone https://github.com/carpiediem/maokun-explorer
+cd ./maokun-explorer
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage
 
-### `yarn eject`
+This website was built with [`create-react-app`](), so you can use standard commands:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- `npm start` to launch the site on your own machine
+- `npm run build` to build a static site for deployment
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Questions
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+You can reach me at maokun@rslcs.us
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Contributing
 
-## Learn More
+I'm open to design ideas or pull requests. Just [create an issue](https://github.com/carpiediem/maokun-explorer/issues) in GitHub.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Changelog
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Recently Updated?
+Please read the [changelog](https://github.com/carpiediem/maokun-explorer/releases).
 
-### Code Splitting
+## License
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+This project is licensed under the terms of the
+[MIT license](/LICENSE).
