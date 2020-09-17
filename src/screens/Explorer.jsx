@@ -14,6 +14,8 @@ import latlngBoundsReducer from '../util/latlngBoundsReducer';
 
 import './Explorer.css';
 
+const PLACES_PATH = 'geojson/maokun-places.geo.json';
+const PATHS_PATH = 'geojson/maokun-paths.geo.json';
 const DEFAULT_PREFS = {
   lockPanes: false,
   syncMaps: true,
@@ -32,7 +34,8 @@ const DEFAULT_PREFS = {
 
 function Explorer(props) {
   const modernMapRef = useRef(null);
-  const [geojson, setGeojson] = useState({ features: [] });
+  const [places, setPlaces] = useState({ features: [] });
+  const [paths, setPaths] = useState({ features: [] });
   const [maokunCenter, setMaokunCenter] = useState(null);
   const [glossary, setGlossary] = useState(false);
   const [about, setAbout] = useState(false);
@@ -45,13 +48,12 @@ function Explorer(props) {
   });
 
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch('geojson/maokun-places.geo.json');
-
-      setGeojson(await res.json());
-    };
-
-    fetchData();
+    fetch(PLACES_PATH)
+      .then((res) => res.json())
+      .then(setPlaces);
+    fetch(PATHS_PATH)
+      .then((res) => res.json())
+      .then(setPaths);
   }, []);
 
   function handleMove(xyBounds) {
@@ -59,7 +61,7 @@ function Explorer(props) {
 
     if (!modernMapRef.current) return;
 
-    const visiblePoints = geojson.features.filter(xyBoundsFilter(xyBounds));
+    const visiblePoints = places.features.filter(xyBoundsFilter(xyBounds));
     if (visiblePoints.length === 0) return;
 
     const latlngBounds = visiblePoints.reduce(latlngBoundsReducer, [
@@ -92,7 +94,8 @@ function Explorer(props) {
       >
         <MaoKunMap
           center={maokunCenter}
-          geojson={geojson}
+          places={places}
+          paths={paths}
           categories={prefs.categories}
           labelLocations={prefs.labelLocations}
           onMove={handleMove}
@@ -100,8 +103,8 @@ function Explorer(props) {
         />
         <ModernMap
           ref={modernMapRef}
-          geojson={geojson}
-          // pointIds={pointIds}
+          places={places}
+          paths={paths}
           labelLocations={prefs.labelLocations}
           onSelect={handleSelect}
         />
@@ -129,7 +132,7 @@ function Explorer(props) {
         }}
       />
       <PointDetails
-        geojson={geojson}
+        places={places}
         id={selected.point}
         onClose={() => setSelected({})}
       />

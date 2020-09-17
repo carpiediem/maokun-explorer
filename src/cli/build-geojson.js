@@ -53,6 +53,7 @@ const byCode = (agg, { code, x, y, lat, lng }) => {
     columns: POINTS_COLUMNS,
     cast,
     skip_empty_lines: true,
+    from: 2,
   });
   const pointFeatures = points.map(
     ({ x, y, lat, lng, kamalAngle, ...rest }, index) => ({
@@ -73,16 +74,19 @@ const byCode = (agg, { code, x, y, lat, lng }) => {
     cast,
     delimiter: '\t',
     skip_empty_lines: true,
+    from: 2,
   });
   const imagePaths = parse(imagePathCsv, {
     columns: IMAGE_PATH_COLUMNS,
     cast,
     skip_empty_lines: true,
+    from: 2,
   }).reduce(byCode, {});
   const geoPaths = parse(geoPathCsv, {
     columns: GEO_PATH_COLUMNS,
     cast,
     skip_empty_lines: true,
+    from: 2,
   }).reduce(byCode, {});
   const pathFeatures = rutters.map((properties) => ({
     type: 'Feature',
@@ -133,25 +137,25 @@ const byCode = (agg, { code, x, y, lat, lng }) => {
     ),
   });
 
-  writeFileSync('public/geojson/maokun-places.geo.json', pointsCollection, {
-    encoding: 'UTF-8',
-  });
+  writeFileSync(
+    'public/geojson/maokun-places.geo.json',
+    pointsCollection,
+    ENCUTF
+  );
   writeFileSync(
     'public/geojson/maokun-places-strict.geo.json',
     strictPointsCollection,
-    {
-      encoding: 'UTF-8',
-    }
+    ENCUTF
   );
-  writeFileSync('public/geojson/maokun-paths.geo.json', pathsCollection, {
-    encoding: 'UTF-8',
-  });
+  writeFileSync(
+    'public/geojson/maokun-paths.geo.json',
+    pathsCollection,
+    ENCUTF
+  );
   writeFileSync(
     'public/geojson/maokun-paths-strict.geo.json',
     strictPathsCollection,
-    {
-      encoding: 'UTF-8',
-    }
+    ENCUTF
   );
 
   console.log(

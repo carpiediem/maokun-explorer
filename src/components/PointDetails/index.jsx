@@ -36,11 +36,11 @@ function PointDetails(props) {
   const intl = useIntl();
   const [locale] = React.useContext(LocaleContext);
 
-  if (!props.geojson.features.length || !props.id) {
+  if (!props.places.features.length || !props.id) {
     return null;
   }
 
-  const { properties, geometry } = props.geojson.features.find(
+  const { properties, geometry } = props.places.features.find(
     ({ properties: { id } }) => id === props.id
   );
 

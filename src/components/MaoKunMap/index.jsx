@@ -1,9 +1,10 @@
 import React, { useRef } from 'react';
 import { CRS } from 'leaflet';
-import { Map, ZoomControl, Marker } from 'react-leaflet';
+import { Map, ZoomControl, Marker, Polyline } from 'react-leaflet';
 import { identified, unidentified, unknown } from './icons';
 
 import ZoomifyLayer from './ZoomifyLayer';
+import xyToLeaflet from '../../util/xyToLeaflet';
 
 import './MaoKunMap.css';
 
@@ -23,13 +24,6 @@ function MaoKunMap(props) {
   const map = useRef(null);
   const [zoom] = React.useState(6);
 
-  function toLatLng([x, y]) {
-    return {
-      lat: (y / MAOKUN_HEIGHT) * MAOKUN_SIZE.coordinates.lat, // map.current.edges.lat
-      lng: (x / MAOKUN_WIDTH) * MAOKUN_SIZE.coordinates.lng, // map.current.edges.lng
-    };
-  }
-
   function handleMove(e) {
     const bounds = map.current.leafletElement.getBounds();
 
@@ -45,19 +39,27 @@ function MaoKunMap(props) {
     });
   }
 
-  const markers = props.geojson.features
-    .filter((m) => m.geometry.type === 'Point')
-    .map((m) => ({
-      key: m.properties.id,
+  const markers = props.places.features
+    .filter((f) => f.geometry.type === 'Point')
+    .map((f) => ({
+      key: f.properties.id,
       icon:
-        (m.geometry.coordinates.length ? identified : unidentified)[
-          m.properties.category
+        (f.geometry.coordinates.length ? identified : unidentified)[
+          f.properties.category
         ] || unknown,
-      position: toLatLng(m.geometry.zoomify),
-      onClick: () => props.onSelect(m.properties.id, 'point'),
+      position: xyToLeaflet(f.geometry.zoomify),
+      onClick: () => props.onSelect(f.properties.id, 'point'),
     }));
 
-  const center = toLatLng(
+  const polylines = props.paths.features
+    .filter((f) => f.geometry.type === 'LineString' && f.properties.code.length)
+    .map((f) => ({
+      key: f.properties.code,
+      positions: xyToLeaflet(f.geometry.zoomify),
+      onClick: () => props.onSelect(f.properties.id, 'path'),
+    }));
+
+  const center = xyToLeaflet(
     props.center
       ? [
           MAOKUN_SIZE.zoomify[0] * props.center.xRatio,
@@ -86,6 +88,7 @@ function MaoKunMap(props) {
           height={MAOKUN_HEIGHT}
         />
         {showMarkers && markers.map((m) => <Marker {...m} />)}
+        {showMarkers && polylines.map((p) => <Polyline {...p} />)}
       </Map>
     </section>
   );
