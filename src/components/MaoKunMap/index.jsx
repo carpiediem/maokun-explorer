@@ -1,6 +1,12 @@
 import React, { useRef } from 'react';
 import { CRS } from 'leaflet';
-import { Map, ZoomControl, CircleMarker, Polyline } from 'react-leaflet';
+import {
+  Map,
+  ZoomControl,
+  CircleMarker,
+  Polyline,
+  Tooltip,
+} from 'react-leaflet';
 // import { identified, unidentified, unknown } from './icons';
 
 import ZoomifyLayer from './ZoomifyLayer';
@@ -45,10 +51,11 @@ function MaoKunMap(props) {
     evt.originalEvent.target.classList.add('selected');
   };
 
-  const markers = props.places.features
+  const markers = props.places
     .filter((f) => f.geometry.type === 'Point')
     .map((f) => ({
       key: f.properties.id,
+      name: f.properties.nameEn,
       // icon:
       //   (f.geometry.coordinates.length ? identified : unidentified)[
       //     f.properties.category
@@ -61,12 +68,12 @@ function MaoKunMap(props) {
       className: 'circle-marker',
     }));
 
-  const polylines = props.paths.features
+  const polylines = props.paths
     .filter((f) => f.geometry.type === 'LineString' && f.properties.code.length)
     .map((f) => ({
       key: f.properties.code,
       positions: xyToLeaflet(f.geometry.zoomify),
-      onClick: select(f.properties.id, 'path'),
+      onClick: select(f.properties.code, 'path'),
       className: 'path',
     }));
 
@@ -98,7 +105,22 @@ function MaoKunMap(props) {
           width={MAOKUN_WIDTH}
           height={MAOKUN_HEIGHT}
         />
-        {showMarkers && markers.map((m) => <CircleMarker {...m} />)}
+        {showMarkers &&
+          markers.map((m) => (
+            <CircleMarker {...m}>
+              {props.labelLocations && (
+                <Tooltip
+                  direction="bottom"
+                  offset={[0, 10]}
+                  opacity={1}
+                  permanent
+                >
+                  {m.name}
+                </Tooltip>
+              )}
+            </CircleMarker>
+          ))}
+
         {showMarkers && polylines.map((p) => <Polyline {...p} />)}
       </Map>
     </section>

@@ -9,6 +9,7 @@ import AboutDialog from '../components/AboutDialog';
 import LegendDialog from '../components/LegendDialog';
 import Menu from '../components/Menu';
 import PointDetails from '../components/PointDetails';
+import PathDetails from '../components/PathDetails';
 import xyBoundsFilter from '../util/xyBoundsFilter';
 import latlngBoundsReducer from '../util/latlngBoundsReducer';
 
@@ -31,11 +32,12 @@ const DEFAULT_PREFS = {
   },
   labelLocations: false,
 };
+const BOUNDS_MARGIN = 0.1; // degrees latitude or longitude
 
 function Explorer(props) {
   const modernMapRef = useRef(null);
-  const [places, setPlaces] = useState({ features: [] });
-  const [paths, setPaths] = useState({ features: [] });
+  const [places, setPlaces] = useState([]);
+  const [paths, setPaths] = useState([]);
   const [maokunCenter, setMaokunCenter] = useState(null);
   const [glossary, setGlossary] = useState(false);
   const [about, setAbout] = useState(false);
@@ -50,18 +52,20 @@ function Explorer(props) {
   useEffect(() => {
     fetch(PLACES_PATH)
       .then((res) => res.json())
-      .then(setPlaces);
+      .then(({ features }) => setPlaces(features));
     fetch(PATHS_PATH)
       .then((res) => res.json())
-      .then(setPaths);
+      .then(({ features }) => setPaths(features));
   }, []);
 
   function handleMove(xyBounds) {
     setBounds(xyBounds);
 
-    if (!modernMapRef.current) return;
+    if (!modernMapRef.current || !prefs.syncMaps) return;
 
-    const visiblePoints = places.features.filter(xyBoundsFilter(xyBounds));
+    const visiblePoints = places
+      .filter(({ properties }) => prefs.categories[properties.category])
+      .filter(xyBoundsFilter(xyBounds));
     if (visiblePoints.length === 0) return;
 
     const latlngBounds = visiblePoints.reduce(latlngBoundsReducer, [
@@ -69,7 +73,10 @@ function Explorer(props) {
       [-90, -180],
     ]);
 
-    modernMapRef.current.leafletElement.fitBounds(latlngBounds);
+    modernMapRef.current.leafletElement.fitBounds([
+      [latlngBounds[0][0] - BOUNDS_MARGIN, latlngBounds[0][1] - BOUNDS_MARGIN],
+      [latlngBounds[1][0] + BOUNDS_MARGIN, latlngBounds[1][1] + BOUNDS_MARGIN],
+    ]);
   }
 
   function handlePrefsChange(key, value) {
@@ -80,8 +87,13 @@ function Explorer(props) {
     Array.from(
       document.querySelectorAll('path.circle-marker, path.path')
     ).forEach((f) => f.classList.remove('selected'));
+
     setSelected({ [type]: id });
   }
+
+  const filteredPlaces = places.filter(
+    ({ properties }) => prefs.categories[properties.category]
+  );
 
   return (
     <React.Fragment>
@@ -97,7 +109,7 @@ function Explorer(props) {
       >
         <MaoKunMap
           center={maokunCenter}
-          places={places}
+          places={filteredPlaces}
           paths={paths}
           categories={prefs.categories}
           labelLocations={prefs.labelLocations}
@@ -107,7 +119,7 @@ function Explorer(props) {
         />
         <ModernMap
           ref={modernMapRef}
-          places={places}
+          places={filteredPlaces}
           paths={paths}
           labelLocations={prefs.labelLocations}
           selected={selected}
@@ -139,6 +151,11 @@ function Explorer(props) {
       <PointDetails
         places={places}
         id={selected.point}
+        onClose={() => handleSelect()}
+      />
+      <PathDetails
+        paths={paths}
+        id={selected.path}
         onClose={() => handleSelect()}
       />
     </React.Fragment>

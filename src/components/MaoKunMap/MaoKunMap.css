@@ -48,6 +48,18 @@
   stroke: lightGreen;
 }
 
+.maokun .leaflet-tooltip {
+  margin-top: 6px;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  color: darkred;
+}
+
+.maokun .leaflet-tooltip:before {
+  content: none;
+}
+
 .maokun img.leaflet-marker-icon {
   padding: 10px;
   border-radius: 50%;

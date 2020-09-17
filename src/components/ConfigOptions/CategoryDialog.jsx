@@ -1,6 +1,8 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { makeStyles } from '@material-ui/core/styles';
 import {
+  Button,
   Dialog,
   DialogContent,
   DialogTitle,
@@ -9,20 +11,28 @@ import {
   FormControlLabel,
   Switch,
 } from '@material-ui/core';
+import ShowIcon from '@material-ui/icons/Visibility';
+import HideIcon from '@material-ui/icons/VisibilityOff';
 
-const CATEGORIES = [
-  'town',
-  'area',
-  'building',
-  'mountain',
-  'peninsula',
-  'island',
-  'water body',
-  'descriptor',
-];
+import CATEGORIES from './categories.json';
+
+const useStyles = makeStyles((theme) => ({
+  toggleAll: {
+    '& .MuiButton-startIcon': {
+      marginLeft: 0,
+      marginRight: '18px',
+    },
+  },
+}));
 
 export default function CategoryDialog(props) {
   const intl = useIntl();
+  const classes = useStyles();
+
+  const allVisible = CATEGORIES.reduce(
+    (agg, cur) => agg && props.categories[cur],
+    true
+  );
 
   return (
     <Dialog
@@ -58,6 +68,23 @@ export default function CategoryDialog(props) {
               />
             ))}
           </FormGroup>
+          {allVisible ? (
+            <Button
+              className={classes.toggleAll}
+              startIcon={<HideIcon />}
+              onClick={() => props.onChange(null, false)}
+            >
+              Switch all off
+            </Button>
+          ) : (
+            <Button
+              className={classes.toggleAll}
+              startIcon={<ShowIcon />}
+              onClick={() => props.onChange(null, true)}
+            >
+              Switch all on
+            </Button>
+          )}
         </FormControl>
       </DialogContent>
     </Dialog>

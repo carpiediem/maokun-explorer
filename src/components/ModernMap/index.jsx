@@ -1,5 +1,12 @@
 import React, { useState, forwardRef } from 'react';
-import { Map, TileLayer, ZoomControl, Marker, Polyline } from 'react-leaflet';
+import {
+  Map,
+  TileLayer,
+  ZoomControl,
+  Marker,
+  Polyline,
+  Tooltip,
+} from 'react-leaflet';
 import { identified, selected, unknown } from '../MaoKunMap/icons';
 
 import './ModernMap.css';
@@ -10,10 +17,11 @@ const ModernMap = forwardRef((props, ref) => {
 
   // Map isn't changing when
 
-  const markers = props.places.features
+  const markers = props.places
     .filter((m) => m.geometry.type === 'Point' && m.geometry.coordinates.length)
     .map((m) => ({
       key: m.properties.id,
+      name: m.properties.nameEn,
       icon:
         (props.selected.point === m.properties.id ? selected : identified)[
           m.properties.category
@@ -25,7 +33,7 @@ const ModernMap = forwardRef((props, ref) => {
       onClick: () => props.onSelect(m.properties.id, 'point'),
     }));
 
-  const polylines = props.paths.features
+  const polylines = props.paths
     .filter(
       (f) =>
         f.geometry.type === 'LineString' &&
@@ -35,7 +43,7 @@ const ModernMap = forwardRef((props, ref) => {
     .map((f) => ({
       key: f.properties.code,
       positions: f.geometry.coordinates.map(([lng, lat]) => ({ lat, lng })),
-      onClick: () => props.onSelect(f.properties.id, 'path'),
+      onClick: () => props.onSelect(f.properties.code, 'path'),
     }));
 
   return (
@@ -48,7 +56,19 @@ const ModernMap = forwardRef((props, ref) => {
         />
         <ZoomControl position="bottomright" />
         {markers.map((m) => (
-          <Marker {...m} />
+          <Marker {...m}>
+            {' '}
+            {props.labelLocations && (
+              <Tooltip
+                direction="bottom"
+                offset={[0, -5]}
+                opacity={1}
+                permanent
+              >
+                {m.name}
+              </Tooltip>
+            )}
+          </Marker>
         ))}
 
         {polylines.map((p) => (

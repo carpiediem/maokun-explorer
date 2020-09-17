@@ -18,11 +18,21 @@ import { LocaleContext } from '../../LocaleContext';
 import LanguageDialog from './LanguageDialog';
 import CategoryDialog from './CategoryDialog';
 
+import CATEGORIES from './categories.json';
 const LOCALES = {
   en: 'English',
   zh: 'Traditional Chinese',
   'zh-cn': 'Simplified Chinese',
 };
+
+const allTrue = CATEGORIES.reduce((agg, cur) => {
+  agg[cur] = true;
+  return agg;
+}, {});
+const allFalse = CATEGORIES.reduce((agg, cur) => {
+  agg[cur] = false;
+  return agg;
+}, {});
 
 const useStyles = makeStyles((theme) => ({
   listItemText: {
@@ -129,8 +139,6 @@ function ConfigOptions(props) {
               id: props.labelLocations ? 'config.shown' : 'config.hidden',
               defaultMessage: props.labelLocations
                 ? 'Labels are shown'
-                : 'Labels are hidden'
-                ? 'Labels are shown'
                 : 'Labels are hidden',
             })}
             onClick={() =>
@@ -151,12 +159,16 @@ function ConfigOptions(props) {
       <CategoryDialog
         open={dialog === 'categories'}
         categories={props.categories}
-        onChange={(key, value) =>
+        onChange={(key, value) => {
+          if (key === null) {
+            props.onChange('categories', value ? allTrue : allFalse);
+            return;
+          }
           props.onChange(
             'categories',
             Object.assign({}, props.categories, { [key]: value })
-          )
-        }
+          );
+        }}
         onClose={() => setDialog(null)}
       />
     </React.Fragment>
