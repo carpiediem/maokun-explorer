@@ -43,6 +43,10 @@
   stroke: transparent;
 }
 
+.maokun .circle-marker.unidentified {
+  stroke-dasharray: 10 5;
+}
+
 .maokun .circle-marker.selected,
 .maokun path.path.leaflet-interactive.selected {
   stroke: lightGreen;

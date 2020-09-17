@@ -52,3 +52,16 @@
 .Resizer.disabled:hover {
   border-color: transparent;
 }
+
+a.direct {
+  padding-left: 0.5em;
+  color: grey;
+  font-size: 0.5em;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+h2:hover a.direct {
+  opacity: 1;
+}

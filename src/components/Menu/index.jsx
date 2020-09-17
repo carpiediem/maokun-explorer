@@ -108,23 +108,6 @@ function Menu(props) {
           <ListItem
             button
             onClick={() => {
-              props.onDialogClick('glossary');
-              setState(false);
-            }}
-          >
-            <ListItemIcon>
-              <ListIcon />
-            </ListItemIcon>
-            <ListItemText
-              primary={intl.formatMessage({
-                id: 'menu.glossary',
-                defaultMessage: 'Glossary',
-              })}
-            />
-          </ListItem>
-          <ListItem
-            button
-            onClick={() => {
               props.onDialogClick('about');
               setState(false);
             }}
@@ -153,6 +136,23 @@ function Menu(props) {
               primary={intl.formatMessage({
                 id: 'menu.legend',
                 defaultMessage: 'Map Legend',
+              })}
+            />
+          </ListItem>
+          <ListItem
+            button
+            onClick={() => {
+              props.onDialogClick('glossary');
+              setState(false);
+            }}
+          >
+            <ListItemIcon>
+              <ListIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary={intl.formatMessage({
+                id: 'menu.glossary',
+                defaultMessage: 'Glossary',
               })}
             />
           </ListItem>

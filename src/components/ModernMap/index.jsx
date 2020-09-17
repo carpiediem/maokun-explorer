@@ -17,8 +17,6 @@ const ModernMap = forwardRef((props, ref) => {
   const [zoom] = useState(13);
   const [locale] = React.useContext(LocaleContext);
 
-  // Map isn't changing when
-
   const markers = props.places
     .filter((m) => m.geometry.type === 'Point' && m.geometry.coordinates.length)
     .map((m) => ({
@@ -46,6 +44,8 @@ const ModernMap = forwardRef((props, ref) => {
       key: f.properties.code,
       positions: f.geometry.coordinates.map(([lng, lat]) => ({ lat, lng })),
       onClick: () => props.onSelect(f.properties.code, 'path'),
+      className:
+        props.selected.path === f.properties.code ? 'path selected' : 'path',
     }));
 
   return (

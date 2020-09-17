@@ -14,6 +14,7 @@ import xyBoundsFilter from '../util/xyBoundsFilter';
 import latlngBoundsReducer from '../util/latlngBoundsReducer';
 
 import './Explorer.css';
+import xyToLeaflet from '../util/xyToLeaflet';
 
 const PLACES_PATH = 'geojson/maokun-places.geo.json';
 const PATHS_PATH = 'geojson/maokun-paths.geo.json';
@@ -32,16 +33,19 @@ const DEFAULT_PREFS = {
   },
   labelLocations: false,
 };
-const BOUNDS_MARGIN = 0.1; // degrees latitude or longitude
+const BOUNDS_MARGIN = 0.08; // degrees latitude or longitude
 
 function Explorer(props) {
+  const maokunMapRef = useRef(null);
   const modernMapRef = useRef(null);
   const [places, setPlaces] = useState([]);
   const [paths, setPaths] = useState([]);
   const [maokunCenter, setMaokunCenter] = useState(null);
-  const [glossary, setGlossary] = useState(false);
-  const [about, setAbout] = useState(false);
-  const [legend, setLegend] = useState(false);
+  const [glossary, setGlossary] = useState(
+    window.location.hash === '#/glossary'
+  );
+  const [about, setAbout] = useState(window.location.hash === '#/about');
+  const [legend, setLegend] = useState(window.location.hash === '#/legend');
   const [selected, setSelected] = useState({});
   const [prefs, setPrefs] = useState(DEFAULT_PREFS);
   const [bounds, setBounds] = useState({
@@ -52,7 +56,27 @@ function Explorer(props) {
   useEffect(() => {
     fetch(PLACES_PATH)
       .then((res) => res.json())
-      .then(({ features }) => setPlaces(features));
+      .then(({ features }) => {
+        setPlaces(features);
+
+        const placeMatch = /#\/place\/(\d+)/.exec(window.location.hash);
+        if (!placeMatch) return;
+
+        const id = parseInt(placeMatch[1], 10);
+        const place = features.find((p) => p.properties.id === id);
+        if (!place) return;
+
+        setSelected({ point: id });
+        const xy = place.geometry.zoomify;
+        const margin = 500;
+
+        maokunMapRef.current.leafletElement.fitBounds(
+          xyToLeaflet([
+            [xy[0] - margin, xy[1] - margin],
+            [xy[0] + margin, xy[1] + margin],
+          ])
+        );
+      });
     fetch(PATHS_PATH)
       .then((res) => res.json())
       .then(({ features }) => setPaths(features));
@@ -108,6 +132,7 @@ function Explorer(props) {
         className={prefs.lockPanes ? 'locked' : ''}
       >
         <MaoKunMap
+          ref={maokunMapRef}
           center={maokunCenter}
           places={filteredPlaces}
           paths={paths}

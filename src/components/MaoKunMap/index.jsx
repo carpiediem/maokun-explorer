@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { forwardRef } from 'react';
 import { CRS } from 'leaflet';
 import {
   Map,
@@ -27,13 +27,13 @@ const START_PIXEL = [105513, 1863];
 const ATTRIBUTION =
   "<a href='https://en.wikipedia.org/wiki/Wubei_Zhi'>Mao Yuanyi</a> & <a href='https://barbierilow.faculty.history.ucsb.edu/Research/ZhengHeMapZoomify/ZhengHe.htm'>Prof. Anthony Barbieri</a>";
 
-function MaoKunMap(props) {
-  const map = useRef(null);
+const MaoKunMap = forwardRef((props, ref) => {
+  // const map = useRef(null);
   const [zoom] = React.useState(6);
   const [locale] = React.useContext(LocaleContext);
 
   function handleMove(e) {
-    const bounds = map.current.leafletElement.getBounds();
+    const bounds = ref.current.leafletElement.getBounds();
 
     props.onMove({
       _southWest: [
@@ -67,7 +67,9 @@ function MaoKunMap(props) {
       radius: 20,
       onClick: select(f.properties.id, 'point'),
       selected: props.selected.point === f.properties.id,
-      className: 'circle-marker',
+      className: f.geometry.coordinates.length
+        ? 'circle-marker'
+        : 'circle-marker unidentified',
     }));
 
   const polylines = props.paths
@@ -88,12 +90,12 @@ function MaoKunMap(props) {
       : START_PIXEL
   );
 
-  const showMarkers = map.current && map.current.leafletElement.getZoom() > 4;
+  const showMarkers = ref.current && ref.current.leafletElement.getZoom() > 4;
 
   return (
     <section className="maokun">
       <Map
-        ref={map}
+        ref={ref}
         crs={CRS.Simple}
         center={center}
         zoom={zoom}
@@ -127,6 +129,6 @@ function MaoKunMap(props) {
       </Map>
     </section>
   );
-}
+});
 
 export default MaoKunMap;

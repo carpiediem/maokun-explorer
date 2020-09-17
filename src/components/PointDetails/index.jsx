@@ -12,12 +12,13 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import MapIcon from '@material-ui/icons/Map';
 import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
+import ShareIcon from '@material-ui/icons/Share';
 
 import { LocaleContext } from '../../LocaleContext';
 import KamalDetails from './KamalDetails';
 import WikipediaButtonGroup, { WikipediaIcon } from './WikipediaButtonGroup';
 
-const drawerWidth = 240;
+const drawerWidth = 260;
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -36,7 +37,7 @@ function PointDetails(props) {
   const intl = useIntl();
   const [locale] = React.useContext(LocaleContext);
 
-  if (!props.places.length || !props.id) {
+  if (!props.places.length || props.id === null || props.id === undefined) {
     return null;
   }
 
@@ -47,7 +48,7 @@ function PointDetails(props) {
   return (
     <Drawer
       anchor="right"
-      open={!!props.id}
+      open={props.id !== null}
       onClose={props.onClose}
       className={classes.drawer}
       classes={{ paper: classes.drawerPaper }}
@@ -159,6 +160,16 @@ function PointDetails(props) {
                 </IconButton>
               </Tooltip>
             ))}
+          <Tooltip
+            title={intl.formatMessage({
+              id: 'details.directlink',
+              defaultMessage: 'Direct Link',
+            })}
+          >
+            <IconButton component="a" href={`#/place/${properties.id}`}>
+              <ShareIcon />
+            </IconButton>
+          </Tooltip>
         </CardActions>
       </Card>
     </Drawer>

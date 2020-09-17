@@ -8,7 +8,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  Divider,
+  // Divider,
   IconButton,
 } from '@material-ui/core';
 
@@ -39,6 +39,9 @@ export default function LegendDialog(props) {
           </IconButton>
         )}
         <FormattedMessage id="legend.title" defaultMessage="Map Legend" />
+        <a href="#/legend" title="Direct Link" className="direct">
+          #
+        </a>
       </DialogTitle>
 
       <DialogContent>
@@ -56,7 +59,7 @@ export default function LegendDialog(props) {
               />
             </ListItem>
           ))}
-          <Divider />
+          {/* <Divider />
           <ListItem>
             <ListItemIcon>
               <div className="square identified" />
@@ -78,7 +81,7 @@ export default function LegendDialog(props) {
                 defaultMessage: 'Unidentified Locations',
               })}
             />
-          </ListItem>
+          </ListItem> */}
         </List>
       </DialogContent>
     </Dialog>

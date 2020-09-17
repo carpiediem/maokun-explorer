@@ -38,14 +38,37 @@ export default function GlossaryDialog(props) {
           </IconButton>
         )}
         <FormattedMessage id="glossary.title" defaultMessage="Glossary" />
+        <a href="#/glossary" title="Direct Link" className="direct">
+          #
+        </a>
       </DialogTitle>
 
       <DialogContent>
         <List>
           <GlossaryItem
+            character="千戶所"
+            pinyin="qiānhùsuǒ"
+            definitionId="glossary.千戶所"
+          />
+          <GlossaryItem
+            character="衛"
+            pinyin="wèi"
+            definitionId="glossary.衛"
+          />
+          <GlossaryItem
             character="更"
             pinyin="gèng"
             definitionId="glossary.更"
+          />
+          <GlossaryItem
+            character="針"
+            pinyin="zhēn"
+            definitionId="glossary.針"
+          />
+          <GlossaryItem
+            character="托"
+            pinyin="tuō"
+            definitionId="glossary.托"
           />
         </List>
       </DialogContent>

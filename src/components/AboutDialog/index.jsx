@@ -43,6 +43,9 @@ export default function AboutDialog(props) {
           id="about.title"
           defaultMessage="About the Mao Kun Map"
         />
+        <a href="#/about" title="Direct Link" className="direct">
+          #
+        </a>
       </DialogTitle>
 
       <DialogContent>
