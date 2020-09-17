@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { CRS } from 'leaflet';
-import { Map, ZoomControl, Marker, Polyline } from 'react-leaflet';
-import { identified, unidentified, unknown } from './icons';
+import { Map, ZoomControl, CircleMarker, Polyline } from 'react-leaflet';
+// import { identified, unidentified, unknown } from './icons';
 
 import ZoomifyLayer from './ZoomifyLayer';
 import xyToLeaflet from '../../util/xyToLeaflet';
@@ -39,16 +39,26 @@ function MaoKunMap(props) {
     });
   }
 
+  const select = (id, type) => (evt) => {
+    props.onSelect(id, type);
+
+    evt.originalEvent.target.classList.add('selected');
+  };
+
   const markers = props.places.features
     .filter((f) => f.geometry.type === 'Point')
     .map((f) => ({
       key: f.properties.id,
-      icon:
-        (f.geometry.coordinates.length ? identified : unidentified)[
-          f.properties.category
-        ] || unknown,
-      position: xyToLeaflet(f.geometry.zoomify),
-      onClick: () => props.onSelect(f.properties.id, 'point'),
+      // icon:
+      //   (f.geometry.coordinates.length ? identified : unidentified)[
+      //     f.properties.category
+      //   ] || unknown,
+      // position: xyToLeaflet(f.geometry.zoomify),
+      center: xyToLeaflet(f.geometry.zoomify),
+      radius: 20,
+      onClick: select(f.properties.id, 'point'),
+      selected: props.selected.point === f.properties.id,
+      className: 'circle-marker',
     }));
 
   const polylines = props.paths.features
@@ -56,7 +66,8 @@ function MaoKunMap(props) {
     .map((f) => ({
       key: f.properties.code,
       positions: xyToLeaflet(f.geometry.zoomify),
-      onClick: () => props.onSelect(f.properties.id, 'path'),
+      onClick: select(f.properties.id, 'path'),
+      className: 'path',
     }));
 
   const center = xyToLeaflet(
@@ -87,7 +98,7 @@ function MaoKunMap(props) {
           width={MAOKUN_WIDTH}
           height={MAOKUN_HEIGHT}
         />
-        {showMarkers && markers.map((m) => <Marker {...m} />)}
+        {showMarkers && markers.map((m) => <CircleMarker {...m} />)}
         {showMarkers && polylines.map((p) => <Polyline {...p} />)}
       </Map>
     </section>

@@ -77,6 +77,9 @@ function Explorer(props) {
   }
 
   function handleSelect(id, type) {
+    Array.from(
+      document.querySelectorAll('path.circle-marker, path.path')
+    ).forEach((f) => f.classList.remove('selected'));
     setSelected({ [type]: id });
   }
 
@@ -98,6 +101,7 @@ function Explorer(props) {
           paths={paths}
           categories={prefs.categories}
           labelLocations={prefs.labelLocations}
+          selected={selected}
           onMove={handleMove}
           onSelect={handleSelect}
         />
@@ -106,6 +110,7 @@ function Explorer(props) {
           places={places}
           paths={paths}
           labelLocations={prefs.labelLocations}
+          selected={selected}
           onSelect={handleSelect}
         />
       </SplitPane>
@@ -134,7 +139,7 @@ function Explorer(props) {
       <PointDetails
         places={places}
         id={selected.point}
-        onClose={() => setSelected({})}
+        onClose={() => handleSelect()}
       />
     </React.Fragment>
   );

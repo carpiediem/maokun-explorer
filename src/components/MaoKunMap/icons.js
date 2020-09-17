@@ -26,5 +26,15 @@ export const unidentified = {
   'water body': icon('./icons/water body-unidentified.svg'),
   descriptor: icon('./icons/descriptor-unidentified.svg'),
 };
+export const selected = {
+  town: icon('./icons/town-selected.svg'),
+  area: icon('./icons/area-selected.svg'),
+  building: icon('./icons/building-selected.svg'),
+  mountain: icon('./icons/mountain-selected.svg'),
+  peninsula: icon('./icons/peninsula-selected.svg'),
+  island: icon('./icons/island-selected.svg'),
+  'water body': icon('./icons/water body-selected.svg'),
+  descriptor: icon('./icons/descriptor-selected.svg'),
+};
 
 export const unknown = icon('./icons/unknown.svg');

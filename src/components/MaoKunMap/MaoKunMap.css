@@ -25,12 +25,27 @@
 .maokun path.path.leaflet-interactive {
   -webkit-transition: opacity 1s; /* Safari prior 6.1 */
   transition: opacity 1s;
-  stroke: rgba(0, 255, 0, 0.25);
+  opacity: 0.5;
   stroke-width: 6;
 }
 
 .maokun path.path.leaflet-interactive:hover {
-  stroke: rgba(0, 255, 0, 0.5);
+  opacity: 0.15;
+}
+
+.maokun .circle-marker {
+  fill: transparent;
+  stroke: darkRed;
+  transition: stroke 1s;
+}
+
+.maokun .circle-marker:hover {
+  stroke: transparent;
+}
+
+.maokun .circle-marker.selected,
+.maokun path.path.leaflet-interactive.selected {
+  stroke: lightGreen;
 }
 
 .maokun img.leaflet-marker-icon {
