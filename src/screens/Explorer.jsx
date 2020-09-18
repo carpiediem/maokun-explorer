@@ -16,8 +16,8 @@ import latlngBoundsReducer from '../util/latlngBoundsReducer';
 import './Explorer.css';
 import xyToLeaflet from '../util/xyToLeaflet';
 
-const PLACES_PATH = 'geojson/maokun-places.geo.json';
-const PATHS_PATH = 'geojson/maokun-paths.geo.json';
+const PLACES_PATH = 'data/maokun-places.geo.json';
+const PATHS_PATH = 'data/maokun-paths.geo.json';
 const DEFAULT_PREFS = {
   lockPanes: false,
   syncMaps: true,

@@ -43,10 +43,10 @@ const byCode = (agg, { code, x, y, lat, lng }) => {
     ].map((p) => p.then((r) => r.text()))
   );
 
-  // writeFileSync('public/geojson/maokun-points.csv', pointsCsv, ENCUTF);
-  // writeFileSync('public/geojson/maokun-rutters.csv', ruttersTsv, ENCUTF);
-  // writeFileSync('public/geojson/maokun-imagePaths.csv', imagePathCsv, ENCUTF);
-  // writeFileSync('public/geojson/maokun-geoPaths.csv', geoPathCsv, ENCUTF);
+  writeFileSync('public/data/maokun-places.csv', pointsCsv, ENCUTF);
+  writeFileSync('public/data/maokun-rutters.csv', ruttersTsv, ENCUTF);
+  writeFileSync('public/data/maokun-imagePaths.csv', imagePathCsv, ENCUTF);
+  writeFileSync('public/data/maokun-geoPaths.csv', geoPathCsv, ENCUTF);
 
   //   const pointsCsv = await fetch(POINTS_URL).then((r) => r.text());
   const points = parse(pointsCsv, {
@@ -137,23 +137,15 @@ const byCode = (agg, { code, x, y, lat, lng }) => {
     ),
   });
 
+  writeFileSync('public/data/maokun-places.geo.json', pointsCollection, ENCUTF);
   writeFileSync(
-    'public/geojson/maokun-places.geo.json',
-    pointsCollection,
-    ENCUTF
-  );
-  writeFileSync(
-    'public/geojson/maokun-places-strict.geo.json',
+    'public/data/maokun-places-strict.geo.json',
     strictPointsCollection,
     ENCUTF
   );
+  writeFileSync('public/data/maokun-paths.geo.json', pathsCollection, ENCUTF);
   writeFileSync(
-    'public/geojson/maokun-paths.geo.json',
-    pathsCollection,
-    ENCUTF
-  );
-  writeFileSync(
-    'public/geojson/maokun-paths-strict.geo.json',
+    'public/data/maokun-paths-strict.geo.json',
     strictPathsCollection,
     ENCUTF
   );

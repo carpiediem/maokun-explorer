@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 // import { LocaleContext } from '../../LocaleContext';
 
-const drawerWidth = 260;
+const drawerWidth = 300;
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: { width: drawerWidth, height: 'auto', marginTop: 75 },
   content: { maxHeight: 'calc(100vh - 215px)', overflowY: 'auto' },
   name: { position: 'sticky', top: '-16px', backgroundColor: 'white' },
+  text: { paddingLeft: 16, fontSize: '0.85em', '& li': { padding: 0 } },
   translation: {},
 }));
 
@@ -48,8 +49,13 @@ function PathDetails(props) {
           <Typography variant="h5" component="h2" className={classes.name}>
             {properties.name}
           </Typography>
-          <Typography variant="body2" component="p" className={classes.text}>
-            {properties.text}
+          <Typography variant="body2" component="ul" className={classes.text}>
+            {properties.text
+              .split(/。\s*/)
+              .slice(0, -1)
+              .map((s) => (
+                <li>{s}。</li>
+              ))}
           </Typography>
 
           <hr />
@@ -58,7 +64,12 @@ function PathDetails(props) {
             component="p"
             className={classes.translation}
           >
-            {properties.translation}
+            {properties.translation
+              .split(/\.\s/)
+              .slice(0, -1)
+              .map((s) => (
+                <li>{s}.</li>
+              ))}
           </Typography>
         </CardContent>
       </Card>

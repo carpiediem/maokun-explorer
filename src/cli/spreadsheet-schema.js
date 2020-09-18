@@ -41,10 +41,10 @@ module.exports = {
     'code',
     'name',
     'locUrl',
-    'text',
     'landmarks',
-    'millsTranslation',
+    'text',
     'translation',
+    'millsTranslation',
   ],
   IMAGE_PATH_COLUMNS: ['code', 'x', 'y'],
   GEO_PATH_COLUMNS: [

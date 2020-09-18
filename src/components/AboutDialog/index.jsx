@@ -11,20 +11,11 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 
+import externalLink from '../externalLink';
+
 export default function AboutDialog(props) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-
-  const externalLink = (url) => (...chunks) => (
-    <a
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="external"
-    >
-      {chunks}
-    </a>
-  );
 
   return (
     <Dialog
@@ -82,6 +73,60 @@ export default function AboutDialog(props) {
             }}
           />
         </p>
+        <table>
+          <thead style={{ textAlign: 'left' }}>
+            <tr>
+              <th>Full data set</th>
+              <th>Strict GeoJSON Compatability</th>
+            </tr>
+          </thead>
+          <tbody style={{ verticalAlign: 'top' }}>
+            <tr>
+              <td>
+                <ul style={{ padding: '0 18px' }}>
+                  <li>
+                    <a href="/data/maokun-places.geo.json">
+                      maokun-places.geo.json
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/data/maokun-paths.geo.json">
+                      maokun-paths.geo.json
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/data/maokun-places.csv">maokun-places.csv</a>
+                  </li>
+                  <li>
+                    <a href="/data/maokun-rutters.csv">maokun-rutters.csv</a>
+                  </li>
+                  <li>
+                    <a href="/data/maokun-imagePaths.csv">
+                      maokun-imagePaths.csv
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/data/maokun-geoPaths.csv">maokun-geoPaths.csv</a>
+                  </li>
+                </ul>
+              </td>
+              <td>
+                <ul style={{ padding: '0 18px' }}>
+                  <li>
+                    <a href="/data/maokun-places-strict.geo.json">
+                      maokun-places-strict.geo.json
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/data/maokun-paths-strict.geo.json">
+                      maokun-paths-strict.geo.json
+                    </a>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
         <p>
           <FormattedMessage
             id="about.p5"
@@ -102,7 +147,10 @@ export default function AboutDialog(props) {
               a7: externalLink(
                 'http://ciuhct.org/en/members/jose-manuel-malhao-pereira'
               ),
-              a8: externalLink('https://www.reddit.com/r/ChineseLanguage/'),
+              a8: externalLink(
+                'https://www.ames.cam.ac.uk/people/dr-sally-church'
+              ),
+              a9: externalLink('https://www.reddit.com/r/ChineseLanguage/'),
             }}
           />
         </p>
