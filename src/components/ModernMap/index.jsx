@@ -3,7 +3,7 @@ import {
   Map,
   TileLayer,
   ZoomControl,
-  Marker,
+  CircleMarker,
   Polyline,
   Tooltip,
 } from 'react-leaflet';
@@ -22,15 +22,21 @@ const ModernMap = forwardRef((props, ref) => {
     .map((m) => ({
       key: m.properties.id,
       name: locale === 'en' ? m.properties.nameEn : m.properties.nameTc,
-      icon:
-        (props.selected.point === m.properties.id ? selected : identified)[
-          m.properties.category
-        ] || unknown,
-      position: {
+      // icon:
+      //   (props.selected.point === m.properties.id ? selected : identified)[
+      //     m.properties.category
+      //   ] || unknown,
+      // position: {
+      //   lat: m.geometry.coordinates[1],
+      //   lng: m.geometry.coordinates[0],
+      // },
+      center: {
         lat: m.geometry.coordinates[1],
         lng: m.geometry.coordinates[0],
       },
+      radius: 5,
       onClick: () => props.onSelect(m.properties.id, 'point'),
+      className: `circle-marker ${m.properties.category}`,
     }));
 
   const polylines = props.paths
@@ -58,13 +64,13 @@ const ModernMap = forwardRef((props, ref) => {
         />
         <ZoomControl position="bottomright" />
         {markers.map((m) => (
-          <Marker {...m}>
+          <CircleMarker {...m}>
             {props.labelLocations && (
               <Tooltip direction="bottom" offset={[0, 0]} opacity={1} permanent>
                 {m.name}
               </Tooltip>
             )}
-          </Marker>
+          </CircleMarker>
         ))}
 
         {polylines.map((p) => (

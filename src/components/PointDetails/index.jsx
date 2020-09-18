@@ -5,6 +5,7 @@ import {
   Card,
   CardContent,
   CardActions,
+  Chip,
   IconButton,
   Typography,
   Tooltip,
@@ -17,6 +18,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import { LocaleContext } from '../../LocaleContext';
 import KamalDetails from './KamalDetails';
 import WikipediaButtonGroup, { WikipediaIcon } from './WikipediaButtonGroup';
+import COLORS from '../ConfigOptions/categories-colors.json';
 
 const drawerWidth = 260;
 
@@ -68,16 +70,14 @@ function PointDetails(props) {
           >
             {properties.translation}
           </Typography>
-          <Typography
-            variant="caption"
-            component="p"
-            className={classes.category}
-          >
-            <FormattedMessage
-              id={`categories.${properties.category.toLowerCase()}`}
-              defaultMessage={properties.category}
-            />
-          </Typography>
+          <Chip
+            size="small"
+            label={intl.formatMessage({
+              id: `categories.${properties.category.toLowerCase()}`,
+              defaultMessage: properties.category,
+            })}
+            style={{ backgroundColor: COLORS[properties.category] }}
+          />
 
           <hr />
           <Typography variant="h5" component="h2">

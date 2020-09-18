@@ -1,14 +1,15 @@
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import {
+  Avatar,
   Dialog,
   DialogTitle,
   DialogContent,
+  Divider,
   List,
   ListItem,
-  ListItemIcon,
+  ListItemAvatar,
   ListItemText,
-  // Divider,
   IconButton,
 } from '@material-ui/core';
 
@@ -48,9 +49,9 @@ export default function LegendDialog(props) {
         <List component="nav" aria-label="main mailbox folders">
           {CATEGORIES.map((c) => (
             <ListItem key={c}>
-              <ListItemIcon>
-                <img src={`./icons/${c}-identified.svg`} alt={`${c} icon`} />
-              </ListItemIcon>
+              <ListItemAvatar>
+                <Avatar className={c}>&nbsp;</Avatar>
+              </ListItemAvatar>
               <ListItemText
                 primary={intl.formatMessage({
                   id: `categories.${c}`,
@@ -59,29 +60,18 @@ export default function LegendDialog(props) {
               />
             </ListItem>
           ))}
-          {/* <Divider />
+          <Divider />
           <ListItem>
-            <ListItemIcon>
-              <div className="square identified" />
-            </ListItemIcon>
-            <ListItemText
-              primary={intl.formatMessage({
-                id: `status.identified`,
-                defaultMessage: 'Identified Locations',
-              })}
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <div className="square unidentified" />
-            </ListItemIcon>
+            <ListItemAvatar>
+              <Avatar className="unidentified">&nbsp;</Avatar>
+            </ListItemAvatar>
             <ListItemText
               primary={intl.formatMessage({
                 id: `status.unidentified`,
                 defaultMessage: 'Unidentified Locations',
               })}
             />
-          </ListItem> */}
+          </ListItem>
         </List>
       </DialogContent>
     </Dialog>

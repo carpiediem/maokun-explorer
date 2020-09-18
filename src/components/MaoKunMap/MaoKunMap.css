@@ -57,11 +57,36 @@
   background-color: transparent;
   border: none;
   box-shadow: none;
-  color: darkred;
+  /* color: darkred; */
 }
 
 .maokun .leaflet-tooltip:before {
   content: none;
+}
+
+.maokun .circle-marker.town {
+  stroke: #bf5b17;
+}
+.maokun .circle-marker.area {
+  stroke: #ffff99;
+}
+.maokun .circle-marker.building {
+  stroke: #fdc086;
+}
+.maokun .circle-marker.mountain {
+  stroke: #666666;
+}
+.maokun .circle-marker.peninsula {
+  stroke: #beaed4;
+}
+.maokun .circle-marker.island {
+  stroke: #7fc97f;
+}
+.maokun .circle-marker.water.body {
+  stroke: #386cb0;
+}
+.maokun .circle-marker.descriptor {
+  stroke: #f0027f;
 }
 
 .maokun img.leaflet-marker-icon {

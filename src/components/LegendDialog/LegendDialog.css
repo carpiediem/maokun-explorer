@@ -19,3 +19,34 @@
 #legend .MuiListItemText-primary {
   text-transform: capitalize;
 }
+
+#legend .MuiAvatar-circle.town {
+  background-color: #bf5b17;
+}
+#legend .MuiAvatar-circle.area {
+  background-color: #ffff99;
+}
+#legend .MuiAvatar-circle.building {
+  background-color: #fdc086;
+}
+#legend .MuiAvatar-circle.mountain {
+  background-color: #666666;
+}
+#legend .MuiAvatar-circle.peninsula {
+  background-color: #beaed4;
+}
+#legend .MuiAvatar-circle.island {
+  background-color: #7fc97f;
+}
+#legend .MuiAvatar-circle.water.body {
+  background-color: #386cb0;
+}
+#legend .MuiAvatar-circle.descriptor {
+  background-color: #f0027f;
+}
+#legend .MuiAvatar-circle.unidentified {
+  width: 35.2px;
+  height: 35.2px;
+  background-color: transparent;
+  border: dashed black;
+}

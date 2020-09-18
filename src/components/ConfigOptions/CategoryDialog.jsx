@@ -9,12 +9,12 @@ import {
   FormControl,
   FormGroup,
   FormControlLabel,
-  Switch,
 } from '@material-ui/core';
 import ShowIcon from '@material-ui/icons/Visibility';
 import HideIcon from '@material-ui/icons/VisibilityOff';
 
-import CATEGORIES from './categories.json';
+import CATEGORIES from './categories-colors.json';
+import ColoredSwitch from './ColoredSwitch';
 
 const useStyles = makeStyles((theme) => ({
   toggleAll: {
@@ -29,7 +29,7 @@ export default function CategoryDialog(props) {
   const intl = useIntl();
   const classes = useStyles();
 
-  const allVisible = CATEGORIES.reduce(
+  const allVisible = Object.keys(CATEGORIES).reduce(
     (agg, cur) => agg && props.categories[cur],
     true
   );
@@ -49,11 +49,12 @@ export default function CategoryDialog(props) {
       <DialogContent>
         <FormControl component="fieldset">
           <FormGroup>
-            {CATEGORIES.map((category) => (
+            {Object.entries(CATEGORIES).map(([category, color]) => (
               <FormControlLabel
                 key={category}
                 control={
-                  <Switch
+                  <ColoredSwitch
+                    color={color}
                     checked={props.categories[category]}
                     onChange={() =>
                       props.onChange(category, !props.categories[category])

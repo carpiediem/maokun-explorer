@@ -28,7 +28,6 @@ const ATTRIBUTION =
   "<a href='https://en.wikipedia.org/wiki/Wubei_Zhi'>Mao Yuanyi</a> & <a href='https://barbierilow.faculty.history.ucsb.edu/Research/ZhengHeMapZoomify/ZhengHe.htm'>Prof. Anthony Barbieri</a>";
 
 const MaoKunMap = forwardRef((props, ref) => {
-  // const map = useRef(null);
   const [zoom] = React.useState(6);
   const [locale] = React.useContext(LocaleContext);
 
@@ -58,18 +57,13 @@ const MaoKunMap = forwardRef((props, ref) => {
     .map((f) => ({
       key: f.properties.id,
       name: locale === 'en' ? f.properties.nameEn : f.properties.nameTc,
-      // icon:
-      //   (f.geometry.coordinates.length ? identified : unidentified)[
-      //     f.properties.category
-      //   ] || unknown,
-      // position: xyToLeaflet(f.geometry.zoomify),
       center: xyToLeaflet(f.geometry.zoomify),
       radius: 20,
       onClick: select(f.properties.id, 'point'),
       selected: props.selected.point === f.properties.id,
       className: f.geometry.coordinates.length
-        ? 'circle-marker'
-        : 'circle-marker unidentified',
+        ? `circle-marker ${f.properties.category}`
+        : `circle-marker ${f.properties.category} unidentified`,
     }));
 
   const polylines = props.paths

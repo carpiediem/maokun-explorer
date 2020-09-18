@@ -34,7 +34,7 @@ function PathDetails(props) {
     ({ properties: { code } }) => code === props.id
   );
 
-  console.log(props);
+  // Bug: Sometimes .split() results in a single character item at the end of the array. Sometimes it doesn't.
 
   return (
     <Drawer
@@ -50,12 +50,9 @@ function PathDetails(props) {
             {properties.name}
           </Typography>
           <Typography variant="body2" component="ul" className={classes.text}>
-            {properties.text
-              .split(/。\s*/)
-              .slice(0, -1)
-              .map((s) => (
-                <li>{s}。</li>
-              ))}
+            {properties.text.split(/。\s*/).map((s) => (
+              <li>{s}。</li>
+            ))}
           </Typography>
 
           <hr />
@@ -64,12 +61,9 @@ function PathDetails(props) {
             component="p"
             className={classes.translation}
           >
-            {properties.translation
-              .split(/\.\s/)
-              .slice(0, -1)
-              .map((s) => (
-                <li>{s}.</li>
-              ))}
+            {properties.translation.split(/\.\s/).map((s) => (
+              <li>{s}.</li>
+            ))}
           </Typography>
         </CardContent>
       </Card>
