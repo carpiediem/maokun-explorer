@@ -49,21 +49,21 @@ const MaoKunMap = forwardRef((props, ref) => {
   const select = (id, type) => (evt) => {
     props.onSelect(id, type);
 
-    evt.originalEvent.target.classList.add('selected');
+    // evt.originalEvent.target.classList.add('selected');
   };
 
   const markers = props.places
     .filter((f) => f.geometry.type === 'Point')
     .map((f) => ({
       key: f.properties.id,
+      // ref: props.markerRefs.current[f.properties.id].maokun, // -2????
       name: locale === 'en' ? f.properties.nameEn : f.properties.nameTc,
       center: xyToLeaflet(f.geometry.zoomify),
       radius: 20,
       onClick: select(f.properties.id, 'point'),
-      selected: props.selected.point === f.properties.id,
-      className: f.geometry.coordinates.length
-        ? `circle-marker ${f.properties.category}`
-        : `circle-marker ${f.properties.category} unidentified`,
+      className: `circle-marker ${f.properties.category} id-${
+        f.properties.id
+      } ${f.geometry.coordinates.length ? '' : 'unidentified'}`,
     }));
 
   const polylines = props.paths
@@ -75,14 +75,14 @@ const MaoKunMap = forwardRef((props, ref) => {
       className: 'path',
     }));
 
-  const center = xyToLeaflet(
-    props.center
-      ? [
-          MAOKUN_SIZE.zoomify[0] * props.center.xRatio,
-          MAOKUN_SIZE.zoomify[1] * props.center.yRatio,
-        ]
-      : START_PIXEL
-  );
+  // const center = xyToLeaflet(
+  //   props.center
+  //     ? [
+  //         MAOKUN_SIZE.zoomify[0] * props.center.xRatio,
+  //         MAOKUN_SIZE.zoomify[1] * props.center.yRatio,
+  //       ]
+  //     : START_PIXEL
+  // );
 
   const showMarkers = ref.current && ref.current.leafletElement.getZoom() > 4;
 
@@ -91,7 +91,7 @@ const MaoKunMap = forwardRef((props, ref) => {
       <Map
         ref={ref}
         crs={CRS.Simple}
-        center={center}
+        center={props.center || xyToLeaflet(START_PIXEL)}
         zoom={zoom}
         onMove={handleMove}
         zoomControl={false}

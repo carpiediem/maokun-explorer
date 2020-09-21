@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   content: { maxHeight: 'calc(100vh - 215px)', overflowY: 'auto' },
   name: { position: 'sticky', top: '-16px', backgroundColor: 'white' },
   text: { paddingLeft: 16, fontSize: '0.85em', '& li': { padding: 0 } },
-  translation: {},
+  translation: { paddingLeft: 16, fontSize: '0.85em', '& li': { padding: 0 } },
 }));
 
 function PathDetails(props) {
@@ -40,7 +40,7 @@ function PathDetails(props) {
     <Drawer
       anchor="right"
       open={!!props.id}
-      onClose={props.onClose}
+      onClose={() => props.onSelect()}
       className={classes.drawer}
       classes={{ paper: classes.drawerPaper }}
     >
@@ -49,22 +49,19 @@ function PathDetails(props) {
           <Typography variant="h5" component="h2" className={classes.name}>
             {properties.name}
           </Typography>
-          <Typography variant="body2" component="ul" className={classes.text}>
-            {properties.text.split(/。\s*/).map((s) => (
-              <li>{s}。</li>
-            ))}
-          </Typography>
-
+          <Typography
+            variant="body2"
+            component="ol"
+            className={classes.text}
+            dangerouslySetInnerHTML={{ __html: properties.textHtml }}
+          />
           <hr />
           <Typography
             variant="body2"
-            component="p"
+            component="ol"
             className={classes.translation}
-          >
-            {properties.translation.split(/\.\s/).map((s) => (
-              <li>{s}.</li>
-            ))}
-          </Typography>
+            dangerouslySetInnerHTML={{ __html: properties.translationHtml }}
+          />
         </CardContent>
       </Card>
     </Drawer>

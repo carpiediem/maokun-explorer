@@ -36,7 +36,7 @@
 .maokun .circle-marker {
   fill: transparent;
   stroke: darkRed;
-  transition: stroke 1s;
+  transition: stroke-opacity 1s;
 }
 
 .maokun .circle-marker:hover {
@@ -57,11 +57,18 @@
   background-color: transparent;
   border: none;
   box-shadow: none;
-  /* color: darkred; */
 }
 
 .maokun .leaflet-tooltip:before {
   content: none;
+}
+
+.maokun .circle-marker.selected {
+  stroke-width: 8;
+}
+
+.maokun .circle-marker:hover {
+  stroke-opacity: 0;
 }
 
 .maokun .circle-marker.town {

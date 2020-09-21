@@ -45,6 +45,8 @@ module.exports = {
     'text',
     'translation',
     'millsTranslation',
+    'textHtml',
+    'translationHtml',
   ],
   IMAGE_PATH_COLUMNS: ['code', 'x', 'y'],
   GEO_PATH_COLUMNS: [

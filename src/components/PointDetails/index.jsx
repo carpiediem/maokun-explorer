@@ -51,7 +51,7 @@ function PointDetails(props) {
     <Drawer
       anchor="right"
       open={props.id !== null}
-      onClose={props.onClose}
+      onClose={() => props.onSelect()}
       className={classes.drawer}
       classes={{ paper: classes.drawerPaper }}
     >

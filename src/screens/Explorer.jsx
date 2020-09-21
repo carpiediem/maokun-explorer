@@ -33,6 +33,10 @@ const DEFAULT_PREFS = {
   },
   labelLocations: false,
 };
+const MAOKUN_SIZE = {
+  coordinates: { lat: -8.326171875, lng: 211.720703125 },
+  zoomify: [108401, 4263],
+};
 const BOUNDS_MARGIN = 0.08; // degrees latitude or longitude
 
 function Explorer(props) {
@@ -56,7 +60,7 @@ function Explorer(props) {
   useEffect(() => {
     fetch(PLACES_PATH)
       .then((res) => res.json())
-      .then(({ features }) => {
+      .then(({ features }, index) => {
         setPlaces(features);
 
         const placeMatch = /#\/place\/(\d+)/.exec(window.location.hash);
@@ -83,6 +87,8 @@ function Explorer(props) {
   }, []);
 
   function handleMove(xyBounds) {
+    if (selected.point || selected.path) return;
+
     setBounds(xyBounds);
 
     if (!modernMapRef.current || !prefs.syncMaps) return;
@@ -111,8 +117,58 @@ function Explorer(props) {
     Array.from(
       document.querySelectorAll('path.circle-marker, path.path')
     ).forEach((f) => f.classList.remove('selected'));
+    Array.from(
+      document.querySelectorAll('.modern path.circle-marker, path.path')
+    ).forEach((f) =>
+      f.setAttribute(
+        'd',
+        f
+          .getAttribute('d')
+          .replace(
+            'm-15,0a20,20 0 1,0 40,0 a20,20 0 1,0 -40,0 ',
+            'a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 '
+          )
+      )
+    );
 
     setSelected({ [type]: id });
+    if (!id) return;
+
+    if (type === 'point') {
+      const { coordinates, zoomify } = places.find(
+        (p) => p.properties.id === id
+      ).geometry;
+
+      // Recenter MaoKunMap
+      setMaokunCenter(xyToLeaflet(zoomify));
+
+      // Add `selected` class to CirlceMarker component's <path> element
+      Array.from(
+        document.querySelectorAll(`path.circle-marker.id-${id}`)
+      ).forEach((m) => m.classList.add('selected'));
+
+      // Change marker radius from 5 to 20 in ModernMap
+      const modernMarker = document.querySelector(
+        `section.modern path.circle-marker.id-${id}`
+      );
+      if (!modernMarker) return;
+
+      modernMarker.setAttribute(
+        'd',
+        modernMarker
+          .getAttribute('d')
+          .replace(
+            'a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 ',
+            'm-15,0a20,20 0 1,0 40,0 a20,20 0 1,0 -40,0 '
+          )
+      );
+
+      // Recenter ModernMap
+      modernMapRef.current.leafletElement.flyTo(
+        [coordinates[1], coordinates[0]],
+        9
+      );
+    }
   }
 
   const filteredPlaces = places.filter(
@@ -138,7 +194,6 @@ function Explorer(props) {
           paths={paths}
           categories={prefs.categories}
           labelLocations={prefs.labelLocations}
-          selected={selected}
           onMove={handleMove}
           onSelect={handleSelect}
         />
@@ -146,12 +201,22 @@ function Explorer(props) {
           ref={modernMapRef}
           places={filteredPlaces}
           paths={paths}
-          labelLocations={prefs.labelLocations}
           selected={selected}
+          labelLocations={prefs.labelLocations}
           onSelect={handleSelect}
         />
       </SplitPane>
-      <MiniMap bounds={bounds} onClick={setMaokunCenter} />
+      <MiniMap
+        bounds={bounds}
+        onClick={({ xRatio, yRatio }) =>
+          setMaokunCenter(
+            xyToLeaflet([
+              MAOKUN_SIZE.zoomify[0] * xRatio,
+              MAOKUN_SIZE.zoomify[1] * yRatio,
+            ])
+          )
+        }
+      />
       <GlossaryDialog open={glossary} handleClose={() => setGlossary(false)} />
       <AboutDialog open={about} handleClose={() => setAbout(false)} />
       <LegendDialog open={legend} handleClose={() => setLegend(false)} />
@@ -176,13 +241,9 @@ function Explorer(props) {
       <PointDetails
         places={places}
         id={selected.point}
-        onClose={() => handleSelect()}
+        onSelect={handleSelect}
       />
-      <PathDetails
-        paths={paths}
-        id={selected.path}
-        onClose={() => handleSelect()}
-      />
+      <PathDetails paths={paths} id={selected.path} onSelect={handleSelect} />
     </React.Fragment>
   );
 }

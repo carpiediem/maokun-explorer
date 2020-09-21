@@ -11,32 +11,47 @@
 }
 
 .modern .circle-marker {
-  stroke: none;
+  stroke-opacity: 0;
   fill-opacity: 1;
 }
+
+.modern .circle-marker.selected {
+  stroke-width: 8;
+  fill-opacity: 0;
+  stroke-opacity: 1;
+}
+
 .modern .circle-marker.town {
   fill: #bf5b17;
+  stroke: #bf5b17;
 }
 .modern .circle-marker.area {
   fill: #ffff99;
+  stroke: #ffff99;
 }
 .modern .circle-marker.building {
   fill: #fdc086;
+  stroke: #fdc086;
 }
 .modern .circle-marker.mountain {
   fill: #666666;
+  stroke: #666666;
 }
 .modern .circle-marker.peninsula {
   fill: #beaed4;
+  stroke: #beaed4;
 }
 .modern .circle-marker.island {
   fill: #7fc97f;
+  stroke: #7fc97f;
 }
 .modern .circle-marker.water.body {
   fill: #386cb0;
+  stroke: #386cb0;
 }
 .modern .circle-marker.descriptor {
   fill: #f0027f;
+  stroke: #f0027f;
 }
 
 .modern .leaflet-tooltip {

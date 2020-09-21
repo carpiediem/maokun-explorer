@@ -7,20 +7,21 @@ import {
   Polyline,
   Tooltip,
 } from 'react-leaflet';
-import { identified, selected, unknown } from '../MaoKunMap/icons';
+// import { identified, selected, unknown } from '../MaoKunMap/icons';
 
 import { LocaleContext } from '../../LocaleContext';
 import './ModernMap.css';
 
 const ModernMap = forwardRef((props, ref) => {
   const [center] = useState({ lat: 32.039579, lng: 118.8 });
-  const [zoom] = useState(13);
+  // const [zoom] = useState(13);
   const [locale] = React.useContext(LocaleContext);
 
   const markers = props.places
     .filter((m) => m.geometry.type === 'Point' && m.geometry.coordinates.length)
-    .map((m) => ({
+    .map((m, i) => ({
       key: m.properties.id,
+      // ref: props.markerRefs.current[m.properties.id - 1].modern,
       name: locale === 'en' ? m.properties.nameEn : m.properties.nameTc,
       // icon:
       //   (props.selected.point === m.properties.id ? selected : identified)[
@@ -34,9 +35,9 @@ const ModernMap = forwardRef((props, ref) => {
         lat: m.geometry.coordinates[1],
         lng: m.geometry.coordinates[0],
       },
-      radius: 5,
+      radius: props.selected.point === m.properties.id ? 20 : 5,
       onClick: () => props.onSelect(m.properties.id, 'point'),
-      className: `circle-marker ${m.properties.category}`,
+      className: `circle-marker ${m.properties.category} id-${m.properties.id}`,
     }));
 
   const polylines = props.paths
@@ -50,13 +51,12 @@ const ModernMap = forwardRef((props, ref) => {
       key: f.properties.code,
       positions: f.geometry.coordinates.map(([lng, lat]) => ({ lat, lng })),
       onClick: () => props.onSelect(f.properties.code, 'path'),
-      className:
-        props.selected.path === f.properties.code ? 'path selected' : 'path',
+      className: 'path',
     }));
 
   return (
     <section className="modern">
-      <Map ref={ref} center={center} zoom={zoom} zoomControl={false}>
+      <Map ref={ref} center={center} zoom={13} zoomControl={false}>
         <TileLayer
           attribution='&amp;copy <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
           url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
