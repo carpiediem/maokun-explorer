@@ -36,8 +36,9 @@ const ModernMap = forwardRef((props, ref) => {
         lng: m.geometry.coordinates[0],
       },
       radius: props.selected.point === m.properties.id ? 20 : 5,
-      onClick: () => props.onSelect(m.properties.id, 'point'),
+      onClick: () => props.onSelect(m.properties.id, 'point', 'modern'),
       className: `circle-marker ${m.properties.category} id-${m.properties.id}`,
+      category: m.properties.category,
     }));
 
   const polylines = props.paths
@@ -51,7 +52,7 @@ const ModernMap = forwardRef((props, ref) => {
       key: f.properties.code,
       positions: f.geometry.coordinates.map(([lng, lat]) => ({ lat, lng })),
       onClick: () => props.onSelect(f.properties.code, 'path'),
-      className: 'path',
+      className: `path ${f.properties.direction}`,
     }));
 
   return (
@@ -66,7 +67,13 @@ const ModernMap = forwardRef((props, ref) => {
         {markers.map((m) => (
           <CircleMarker {...m}>
             {props.labelLocations && (
-              <Tooltip direction="bottom" offset={[0, 0]} opacity={1} permanent>
+              <Tooltip
+                direction="bottom"
+                offset={[0, -5]}
+                opacity={1}
+                permanent
+                className={m.category}
+              >
                 {m.name}
               </Tooltip>
             )}

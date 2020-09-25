@@ -60,7 +60,7 @@ const MaoKunMap = forwardRef((props, ref) => {
       name: locale === 'en' ? f.properties.nameEn : f.properties.nameTc,
       center: xyToLeaflet(f.geometry.zoomify),
       radius: 20,
-      onClick: select(f.properties.id, 'point'),
+      onClick: select(f.properties.id, 'point', 'maokun'),
       className: `circle-marker ${f.properties.category} id-${
         f.properties.id
       } ${f.geometry.coordinates.length ? '' : 'unidentified'}`,
@@ -72,7 +72,7 @@ const MaoKunMap = forwardRef((props, ref) => {
       key: f.properties.code,
       positions: xyToLeaflet(f.geometry.zoomify),
       onClick: select(f.properties.code, 'path'),
-      className: 'path',
+      className: `path ${f.properties.direction}`,
     }));
 
   // const center = xyToLeaflet(
@@ -119,7 +119,9 @@ const MaoKunMap = forwardRef((props, ref) => {
             </CircleMarker>
           ))}
 
-        {showMarkers && polylines.map((p) => <Polyline {...p} />)}
+        {polylines.map((p) => (
+          <Polyline {...p} />
+        ))}
       </Map>
     </section>
   );

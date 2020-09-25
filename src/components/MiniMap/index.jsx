@@ -85,10 +85,10 @@ function MiniMap(props) {
         <rect x="15%" y="20%" width="2.25%" height="12%"></rect>
       </g>
       <g id="maldives">
-        <rect x="15%" y="50%" width="1%" height="20%"></rect>
+        <rect x="11.5%" y="50%" width="4.5%" height="20%"></rect>
       </g>
       <g id="srilanka">
-        <rect x="13%" y="20%" width="2%" height="50%"></rect>
+        <rect x="13%" y="20%" width="2%" height="30%"></rect>
       </g>
       <g id="india">
         <rect x="18.25%" y="40%" width="2%" height="10%"></rect>
@@ -136,7 +136,7 @@ function MiniMap(props) {
       <text x="54.75%" y="16%" textAnchor="middle">
         <FormattedMessage id="regions.guangxi" defaultMessage="Guangxi" />
       </text>
-      <text x="55.25%" y="60%" textAnchor="middle">
+      <text x="55.25%" y="60%" textAnchor="middle" className="secondary">
         <FormattedMessage id="regions.hainan" defaultMessage="Hainan" />
       </text>
       <text x="51%" y="60%" textAnchor="middle">
@@ -145,10 +145,10 @@ function MiniMap(props) {
       <text x="33.75%" y="85%" textAnchor="middle">
         <FormattedMessage id="regions.indonesia" defaultMessage="Indonesia" />
       </text>
-      <text x="45.25%" y="20%" textAnchor="middle">
+      <text x="45.25%" y="20%" textAnchor="middle" className="secondary">
         <FormattedMessage id="regions.khmer" defaultMessage="Cambodia/Laos" />
       </text>
-      <text x="42.5%" y="45%" textAnchor="middle">
+      <text x="42.5%" y="45%" textAnchor="middle" className="secondary">
         <FormattedMessage id="regions.thailand" defaultMessage="Thailand" />
       </text>
       <text x="24.25%" y="20%" textAnchor="middle">
@@ -157,22 +157,22 @@ function MiniMap(props) {
       <text x="32.5%" y="40%" textAnchor="middle">
         <FormattedMessage id="regions.malaysia" defaultMessage="Malaysia" />
       </text>
-      <text x="33.5%" y="16%" textAnchor="middle">
+      <text x="33.5%" y="16%" textAnchor="middle" className="secondary">
         <FormattedMessage id="regions.singapore" defaultMessage="Singapore" />
       </text>
-      <text x="19.75%" y="35%" textAnchor="middle">
+      <text x="19.75%" y="35%" textAnchor="middle" className="secondary">
         <FormattedMessage id="regions.myanmar" defaultMessage="Myanmar" />
       </text>
-      <text x="13.5%" y="16%" textAnchor="middle">
+      <text x="13.5%" y="16%" textAnchor="middle" className="secondary">
         <FormattedMessage id="regions.bangladesh" defaultMessage="Bangladesh" />
       </text>
-      <text x="15.5%" y="70%" textAnchor="middle">
+      <text x="13.75%" y="65%" textAnchor="middle" className="secondary">
         <FormattedMessage id="regions.maldives" defaultMessage="Maldives" />
       </text>
-      <text x="14%" y="50%" textAnchor="middle">
+      <text x="14%" y="45%" textAnchor="middle">
         <FormattedMessage id="regions.srilanka" defaultMessage="Sri Lanka" />
       </text>
-      <text x="10%" y="35%" textAnchor="middle">
+      <text x="10%" y="35%" textAnchor="middle" className="secondary">
         <FormattedMessage id="regions.india" defaultMessage="India" />
       </text>
       <text x="4.75%" y="25%" textAnchor="middle">
@@ -184,10 +184,10 @@ function MiniMap(props) {
       <text x="4.65%" y="95%" textAnchor="middle">
         <FormattedMessage id="regions.oman" defaultMessage="Oman" />
       </text>
-      <text x="8.625%" y="75%" textAnchor="middle">
+      <text x="8.625%" y="75%" textAnchor="middle" className="secondary">
         <FormattedMessage id="regions.yemen" defaultMessage="Yemen" />
       </text>
-      <text x="11%" y="98%" textAnchor="middle">
+      <text x="11%" y="98%" textAnchor="middle" className="secondary">
         <FormattedMessage id="regions.somalia" defaultMessage="Somalia" />
       </text>
       <text x="13.75%" y="85%" textAnchor="middle">

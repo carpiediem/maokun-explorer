@@ -158,7 +158,7 @@ function Explorer(props) {
       ).geometry;
 
       // Recenter MaoKunMap
-      setMaokunCenter(xyToLeaflet(zoomify));
+      if (source !== 'maokun') setMaokunCenter(xyToLeaflet(zoomify));
 
       // Add `selected` class to CirlceMarker component's <path> element
       Array.from(
@@ -182,10 +182,11 @@ function Explorer(props) {
       );
 
       // Recenter ModernMap
-      modernMapRef.current.leafletElement.flyTo(
-        [coordinates[1], coordinates[0]],
-        9
-      );
+      if (source !== 'modern')
+        modernMapRef.current.leafletElement.flyTo(
+          [coordinates[1], coordinates[0]],
+          9
+        );
     }
   }
 

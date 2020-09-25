@@ -54,14 +54,58 @@
   stroke: #f0027f;
 }
 
+/* .modern .leaflet-tooltip.town {
+  color: #bf5b17;
+}
+.modern .leaflet-tooltip.area {
+  color: #ffff99;
+}
+.modern .leaflet-tooltip.building {
+  color: #fdc086;
+}
+.modern .leaflet-tooltip.mountain {
+  color: #666666;
+}
+.modern .leaflet-tooltip.peninsula {
+  color: #beaed4;
+}
+.modern .leaflet-tooltip.island {
+  color: #7fc97f;
+}
+.modern .leaflet-tooltip.water.body {
+  color: #386cb0;
+}
+.modern .leaflet-tooltip.descriptor {
+  color: #f0027f;
+} */
+
 .modern .leaflet-tooltip {
   margin-top: 6px;
   background-color: transparent;
   border: none;
   box-shadow: none;
-  color: darkred;
+  /* color: darkred; */
 }
 
 .modern .leaflet-tooltip:before {
   content: none;
+}
+
+.modern .path {
+  stroke-dasharray: 100 5;
+  animation: dash 30s infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+.modern path.path.leaflet-interactive.out {
+  stroke: lightGreen;
+}
+
+.modern path.path.leaflet-interactive.in {
+  stroke: pink;
 }

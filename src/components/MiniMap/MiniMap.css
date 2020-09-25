@@ -28,6 +28,12 @@
   text-overflow: ellipsis;
 }
 
+@media screen and (max-width: 599px) {
+  #mini-map text.secondary {
+    display: none;
+  }
+}
+
 #mini-map g:nth-child(12n + 0),
 .q0-12 {
   fill: rgb(141, 211, 199);
