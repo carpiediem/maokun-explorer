@@ -41,6 +41,7 @@ module.exports = {
     'code',
     'name',
     'locUrl',
+    'direction',
     'landmarks',
     'text',
     'translation',
