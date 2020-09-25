@@ -1,3 +1,5 @@
+/* global gtag */
+
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import {
@@ -64,6 +66,12 @@ function Menu(props) {
     ) {
       return;
     }
+
+    gtag('event', 'menu toggled', {
+      event_category: 'UX',
+      event_label: 'menu toggled',
+      value: open,
+    });
 
     setState(open);
   };

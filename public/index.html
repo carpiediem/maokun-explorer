@@ -42,7 +42,14 @@
       }
       gtag('js', new Date());
 
-      gtag('config', 'UA-42937954-6');
+      const hashMatch = /#(\/[\w\/\d]+)/.exec(window.location.hash);
+      const params = hashMatch
+        ? {
+            page_location: location.href.replace('/#/', '/'),
+            page_path: hashMatch[1],
+          }
+        : {};
+      gtag('config', 'UA-42937954-6', params);
     </script>
   </body>
 </html>

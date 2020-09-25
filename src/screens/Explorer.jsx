@@ -1,3 +1,5 @@
+/* global gtag */
+
 import React, { useState, useEffect, useRef } from 'react';
 import SplitPane from 'react-split-pane';
 
@@ -42,6 +44,7 @@ const BOUNDS_MARGIN = 0.08; // degrees latitude or longitude
 function Explorer(props) {
   const maokunMapRef = useRef(null);
   const modernMapRef = useRef(null);
+  const [draggedMap, setDraggedMap] = useState(false);
   const [places, setPlaces] = useState([]);
   const [paths, setPaths] = useState([]);
   const [maokunCenter, setMaokunCenter] = useState(null);
@@ -89,6 +92,15 @@ function Explorer(props) {
   function handleMove(xyBounds) {
     if (selected.point || selected.path) return;
 
+    if (!draggedMap) {
+      setDraggedMap(true);
+      gtag('event', 'first map drag', {
+        event_category: 'UX',
+        event_label: 'first map drag',
+        // 'value': <value>
+      });
+    }
+
     setBounds(xyBounds);
 
     if (!modernMapRef.current || !prefs.syncMaps) return;
@@ -113,7 +125,13 @@ function Explorer(props) {
     setPrefs(Object.assign({}, prefs, { [key]: value }));
   }
 
-  function handleSelect(id, type) {
+  function handleSelect(id, type, source) {
+    gtag('event', type === 'point' ? 'place selection' : 'path selection', {
+      event_category: 'UX',
+      event_label: source,
+      value: id,
+    });
+
     Array.from(
       document.querySelectorAll('path.circle-marker, path.path')
     ).forEach((f) => f.classList.remove('selected'));
@@ -224,6 +242,13 @@ function Explorer(props) {
         prefs={prefs}
         onChange={handlePrefsChange}
         onDialogClick={(key) => {
+          gtag('event', 'dialog opened', {
+            event_category: 'UX',
+            event_label: 'dialog opened',
+            value: key,
+          });
+          // TBD: measure view time
+
           switch (key) {
             case 'about':
               setAbout(true);
