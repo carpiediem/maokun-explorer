@@ -185,7 +185,39 @@ export default function GlossaryDialog(props) {
                   ? 'https://en.wikipedia.org/wiki/Capella'
                   : 'https://zh.wikipedia.org/wiki/%E4%BA%94%E8%BB%8A%E4%BA%8C'
               ),
+              a5: externalLink(
+                locale === 'en'
+                  ? 'https://en.wikipedia.org/wiki/Beta_Pegasi'
+                  : 'https://zh.wikipedia.org/wiki/%E5%AE%A4%E5%AE%BF%E4%BA%8C'
+              ),
+              a6: externalLink(
+                locale === 'en'
+                  ? 'https://en.wikipedia.org/wiki/Fomalhaut'
+                  : 'https://zh.wikipedia.org/wiki/%E5%8C%97%E8%90%BD%E5%B8%88%E9%97%A8'
+              ),
             }}
+          />
+          <GlossaryItem
+            character="斗"
+            pinyin="Dòu"
+            definitionId="glossary.斗"
+            values={{
+              a1: externalLink(
+                locale === 'en'
+                  ? 'https://en.wikipedia.org/wiki/Dipper_(Chinese_constellation)'
+                  : 'https://zh.wikipedia.org/wiki/%E6%96%97_(%E6%98%9F%E5%AE%98)'
+              ),
+            }}
+          />
+          <GlossaryItem
+            character="落"
+            pinyin="luò"
+            definitionId="glossary.落"
+          />
+          <GlossaryItem
+            character="上"
+            pinyin="shàng"
+            definitionId="glossary.上"
           />
         </List>
       </DialogContent>
