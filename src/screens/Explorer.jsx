@@ -6,9 +6,9 @@ import SplitPane from 'react-split-pane';
 import MaoKunMap from '../components/MaoKunMap';
 import ModernMap from '../components/ModernMap';
 import MiniMap from '../components/MiniMap';
-import GlossaryDialog from '../components/GlossaryDialog';
 import AboutDialog from '../components/AboutDialog';
 import LegendDialog from '../components/LegendDialog';
+import GlossaryDialog from '../components/GlossaryDialog';
 import Menu from '../components/Menu';
 import PointDetails from '../components/PointDetails';
 import PathDetails from '../components/PathDetails';
@@ -236,9 +236,9 @@ function Explorer(props) {
           )
         }
       />
-      <GlossaryDialog open={glossary} handleClose={() => setGlossary(false)} />
       <AboutDialog open={about} handleClose={() => setAbout(false)} />
       <LegendDialog open={legend} handleClose={() => setLegend(false)} />
+      <GlossaryDialog open={glossary} handleClose={() => setGlossary(false)} />
       <Menu
         prefs={prefs}
         onChange={handlePrefsChange}

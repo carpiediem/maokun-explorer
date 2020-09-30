@@ -69,9 +69,9 @@ export default function GlossaryDialog(props) {
             }}
           />
           <GlossaryItem
-            character="千戶所"
-            pinyin="qiānhùsuǒ"
-            definitionId="glossary.千戶所"
+            character="所"
+            pinyin="suǒ"
+            definitionId="glossary.所"
           />
 
           <ListSubheader className={classes.subHeader}>
