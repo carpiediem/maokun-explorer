@@ -46,6 +46,7 @@ module.exports = {
     'text',
     'translation',
     'millsTranslation',
+    'notes',
     'textHtml',
     'translationHtml',
   ],
