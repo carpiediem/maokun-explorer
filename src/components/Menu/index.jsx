@@ -17,6 +17,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ListIcon from '@material-ui/icons/ListAlt';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import HeightIcon from '@material-ui/icons/Height';
 import NotListedLocationIcon from '@material-ui/icons/NotListedLocation';
 
 import ConfigOptions from '../ConfigOptions';
@@ -161,6 +162,23 @@ function Menu(props) {
               primary={intl.formatMessage({
                 id: 'menu.glossary',
                 defaultMessage: 'Glossary',
+              })}
+            />
+          </ListItem>
+          <ListItem
+            button
+            onClick={() => {
+              props.onDialogClick('latitudes');
+              setState(false);
+            }}
+          >
+            <ListItemIcon>
+              <HeightIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary={intl.formatMessage({
+                id: 'menu.navigation',
+                defaultMessage: 'Celestial Navigation',
               })}
             />
           </ListItem>

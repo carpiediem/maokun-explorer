@@ -9,6 +9,7 @@ import MiniMap from '../components/MiniMap';
 import AboutDialog from '../components/AboutDialog';
 import LegendDialog from '../components/LegendDialog';
 import GlossaryDialog from '../components/GlossaryDialog';
+import LatitudesDialog from '../components/LatitudesDialog';
 import Menu from '../components/Menu';
 import PointDetails from '../components/PointDetails';
 import PathDetails from '../components/PathDetails';
@@ -50,6 +51,9 @@ function Explorer(props) {
   const [maokunCenter, setMaokunCenter] = useState(null);
   const [glossary, setGlossary] = useState(
     window.location.hash === '#/glossary'
+  );
+  const [latitudes, setLatitudes] = useState(
+    window.location.hash === '#/latitudes'
   );
   const [about, setAbout] = useState(window.location.hash === '#/about');
   const [legend, setLegend] = useState(window.location.hash === '#/legend');
@@ -239,6 +243,10 @@ function Explorer(props) {
       <AboutDialog open={about} handleClose={() => setAbout(false)} />
       <LegendDialog open={legend} handleClose={() => setLegend(false)} />
       <GlossaryDialog open={glossary} handleClose={() => setGlossary(false)} />
+      <LatitudesDialog
+        open={latitudes}
+        handleClose={() => setLatitudes(false)}
+      />
       <Menu
         prefs={prefs}
         onChange={handlePrefsChange}
@@ -259,6 +267,9 @@ function Explorer(props) {
               break;
             case 'glossary':
               setGlossary(true);
+              break;
+            case 'latitudes':
+              setLatitudes(true);
               break;
             default:
           }

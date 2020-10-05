@@ -1,0 +1,447 @@
+[
+  {
+    "group": "Western Indian Coast",
+    "text": "柯枝國",
+    "location": "Kochi, India",
+    "id": 494,
+    "sight": "三指一角",
+    "altitude": 3.25,
+    "star": "Polaris",
+    "actual": 9.97
+  },
+  {
+    "group": "Western Indian Coast",
+    "text": "古里國",
+    "location": "Kozhikode, India",
+    "id": 1,
+    "sight": "四指",
+    "altitude": 4,
+    "star": "Polaris",
+    "actual": 11.25
+  },
+  {
+    "group": "Western Indian Coast",
+    "text": "哈哈迭微",
+    "location": "Mahe, India",
+    "id": 1,
+    "sight": "四指一角",
+    "altitude": 4.25,
+    "star": "Polaris",
+    "actual": 11.7917
+  },
+  {
+    "group": "Western Indian Coast",
+    "text": "歇立",
+    "location": "Ezhimala, India",
+    "id": 1,
+    "sight": "四指二角",
+    "altitude": 4.5,
+    "star": "Polaris",
+    "actual": 12.0183
+  },
+  {
+    "group": "Western Indian Coast",
+    "text": "莽葛奴兒",
+    "location": "Mangalore, India",
+    "id": 1,
+    "sight": "五指",
+    "altitude": 5,
+    "star": "Polaris",
+    "actual": 12.869543
+  },
+  {
+    "group": "Western Indian Coast",
+    "text": "阿者刁",
+    "location": "Anjediva Island, India",
+    "id": 1,
+    "sight": "六指",
+    "altitude": 6,
+    "star": "Polaris",
+    "actual": 14.7609
+  },
+  {
+    "group": "Western Indian Coast",
+    "text": "纏打兀兒",
+    "location": "Goa, India",
+    "id": 1,
+    "sight": "六指二角",
+    "altitude": 6.5,
+    "star": "Polaris",
+    "actual": 15.5
+  },
+  {
+    "group": "Western Indian Coast",
+    "text": "破兒牙",
+    "location": "Velaneshwar, India",
+    "id": 1,
+    "sight": "六指",
+    "altitude": 6,
+    "star": "Polaris",
+    "actual": 17.4047
+  },
+  {
+    "group": "Western Indian Coast",
+    "text": "跛兒牙",
+    "location": "Bankot, India?",
+    "id": 1,
+    "sight": "八指",
+    "altitude": 8,
+    "star": "Polaris",
+    "actual": 17.983
+  },
+  {
+    "group": "Western Indian Coast",
+    "text": "起兒未兒",
+    "location": "Chaul, India",
+    "id": 1,
+    "sight": "八指",
+    "altitude": 8,
+    "star": "Polaris",
+    "actual": 18.5
+  },
+  {
+    "group": "Western Indian Coast",
+    "text": "馬哈音",
+    "location": "Mahim, India",
+    "id": 1,
+    "sight": "九指",
+    "altitude": 9,
+    "star": "Polaris",
+    "actual": 18.975
+  },
+  {
+    "group": "Western Indian Coast",
+    "text": "麻樓",
+    "location": "Maroli, India",
+    "id": 1,
+    "sight": "十指",
+    "altitude": 10,
+    "star": "Polaris",
+    "actual": 21.024
+  },
+  {
+    "group": "Western Indian Coast",
+    "text": "坎八葉城",
+    "location": "Khambhat, India",
+    "id": 1,
+    "sight": "十一指",
+    "altitude": 11,
+    "star": "Polaris",
+    "actual": 22.3
+  },
+  {
+    "group": "Western Indian Coast",
+    "text": "雜葛得",
+    "location": "Dwarka, India",
+    "id": 1,
+    "sight": "十二指",
+    "altitude": 12,
+    "star": "Polaris",
+    "actual": 22.247
+  },
+  {
+    "group": "Western Indian Coast",
+    "text": "客實",
+    "location": "Kech, Pakistan",
+    "id": 1,
+    "sight": "十三指",
+    "altitude": 13,
+    "star": "Polaris",
+    "actual": 25.981
+  },
+  {
+    "group": "Maldives and Lakshadweep",
+    "text": "巳龍溜",
+    "location": "Laamu Atoll, Maldives",
+    "id": 1,
+    "sight": "華蓋五指二角",
+    "altitude": 5.5,
+    "star": "Kochab",
+    "actual": 1.9114588
+  },
+  {
+    "group": "Maldives and Lakshadweep",
+    "text": "沙利溜",
+    "location": "Mulaku Atoll, Maldives",
+    "id": 1,
+    "sight": "華蓋六指一角",
+    "altitude": 6.25,
+    "star": "Kochab",
+    "actual": 3.2
+  },
+  {
+    "group": "Maldives and Lakshadweep",
+    "text": "官嶼",
+    "location": "Malé, Maldives",
+    "id": 1,
+    "sight": "華蓋七指二角",
+    "altitude": 7.5,
+    "star": "Kochab",
+    "actual": 0
+  },
+  {
+    "group": "Maldives and Lakshadweep",
+    "text": "麻裡溪",
+    "location": "Minicoy Island, India",
+    "id": 1,
+    "sight": "北辰二指一角",
+    "altitude": 2.25,
+    "star": "Polaris",
+    "actual": 8.275
+  },
+  {
+    "group": "Maldives and Lakshadweep",
+    "text": "加平年溜",
+    "location": "Kalpeni Island, India",
+    "id": 1,
+    "sight": "北辰三指",
+    "altitude": 3,
+    "star": "Polaris",
+    "actual": 10.09
+  },
+  {
+    "group": "Maldives and Lakshadweep",
+    "text": "麻裡溪",
+    "location": "Andrott Island, India",
+    "id": 1,
+    "sight": "北辰四指",
+    "altitude": 4,
+    "star": "Polaris",
+    "actual": 10.81
+  },
+  {
+    "group": "Arabian Peninsula",
+    "text": "麻實吉",
+    "location": "Muscat, Oman",
+    "id": 1,
+    "sight": "看北辰十二指",
+    "altitude": 12,
+    "star": "Polaris",
+    "actual": 23.605
+  },
+  {
+    "group": "Arabian Peninsula",
+    "text": "大灣",
+    "location": "Gulf of Masirah",
+    "id": 1,
+    "sight": "北辰九指二角",
+    "altitude": 9.5,
+    "star": "Polaris",
+    "actual": 20.309
+  },
+  {
+    "group": "Arabian Peninsula",
+    "text": "阿胡那",
+    "location": "Ras Madrakah, Oman",
+    "id": 1,
+    "sight": "北辰九指",
+    "altitude": 9,
+    "star": "Polaris",
+    "actual": 18.978
+  },
+  {
+    "group": "Arabian Peninsula",
+    "text": "佐法兒",
+    "location": "Dhofar, Oman",
+    "id": 1,
+    "sight": "北辰八指",
+    "altitude": 8,
+    "star": "Polaris",
+    "actual": 18.311
+  },
+  {
+    "group": "Arabian Peninsula",
+    "text": "羅法",
+    "location": "Al Luḩayyah, Yemen",
+    "id": 1,
+    "sight": "北辰七指",
+    "altitude": 9,
+    "star": "Polaris",
+    "actual": 15.704
+  },
+  {
+    "group": "Arabian Peninsula",
+    "text": "失里兒",
+    "location": "Ash-Shihr, Yemen",
+    "id": 1,
+    "sight": "北辰六指",
+    "altitude": 6,
+    "star": "Polaris",
+    "actual": 14.764
+  },
+  {
+    "group": "Arabian Peninsula",
+    "text": "阿丹",
+    "location": "Aden, Yemen",
+    "id": 1,
+    "sight": "北辰五指",
+    "altitude": 5,
+    "star": "Polaris",
+    "actual": 12.8
+  },
+  {
+    "group": "East African Coast",
+    "text": "哈甫泥",
+    "location": "Hafun, Somalia",
+    "id": 1,
+    "sight": "一角四指",
+    "altitude": 4.25,
+    "star": "Polaris",
+    "actual": 10.453
+  },
+  {
+    "group": "East African Coast",
+    "text": "黑兒",
+    "location": "Ras el Cheil, Somalia",
+    "id": 1,
+    "sight": "一角三指",
+    "altitude": 3.25,
+    "star": "Polaris",
+    "actual": 7.799
+  },
+  {
+    "group": "East African Coast",
+    "text": "木骨都束",
+    "location": "Mogadishu, Somalia",
+    "id": 1,
+    "sight": "北辰二指一角",
+    "altitude": 2.25,
+    "star": "Polaris",
+    "actual": 2.033
+  },
+  {
+    "group": "East African Coast",
+    "text": "不剌哇",
+    "location": "Barawa, Somalia",
+    "id": 1,
+    "sight": "華蓋八指",
+    "altitude": 8,
+    "star": "χ Dra",
+    "actual": 1.114
+  },
+  {
+    "group": "East African Coast",
+    "text": "慢八撒",
+    "location": "Mombasa, Kenya",
+    "id": 1,
+    "sight": "華蓋七指",
+    "altitude": 9,
+    "star": "χ Dra",
+    "actual": -4.027
+  },
+  {
+    "group": "East African Coast",
+    "text": "門肥赤",
+    "location": "Mafia Island, Tanzania",
+    "id": 1,
+    "sight": "華蓋七指",
+    "altitude": 9,
+    "star": "χ Dra",
+    "actual": -7.85
+  },
+  {
+    "group": "Unnamed",
+    "location": "Pakistan coast",
+    "sight": "觜頭也有十指。",
+    "altitude": 10,
+    "star": ""
+  },
+  {
+    "group": "Unnamed",
+    "location": "Pakistan coast",
+    "sight": "在十指，山勢。",
+    "altitude": 10,
+    "star": ""
+  },
+  {
+    "group": "Unnamed",
+    "location": "near Ras Fartak",
+    "sight": "在三指，觜頭山勢。",
+    "altitude": 3,
+    "star": ""
+  },
+  {
+    "group": "Unnamed",
+    "location": "near As Salama",
+    "sight": "去到六指二角直遶《那里》",
+    "altitude": 6.5,
+    "star": ""
+  },
+  {
+    "group": "Unnamed",
+    "location": "Fartak range",
+    "sight": "又在六指二角內山。",
+    "altitude": 6.5,
+    "star": ""
+  },
+  {
+    "group": "Unnamed",
+    "location": "Arabian coast",
+    "sight": "十指去到十一指坐取船。",
+    "altitude": 10,
+    "star": ""
+  },
+  {
+    "group": "Unnamed",
+    "location": "Arabian coast",
+    "sight": "十指去到十一指坐取船。",
+    "altitude": 11,
+    "star": ""
+  },
+  {
+    "group": "Unnamed",
+    "location": "Arabian coast",
+    "sight": "九指二角，用丹辛針",
+    "altitude": 9.5,
+    "star": ""
+  },
+  {
+    "group": "Unnamed",
+    "location": "",
+    "sight": "觜頭去到十二指",
+    "altitude": 3,
+    "star": ""
+  },
+  {
+    "group": "Unnamed",
+    "location": "Strait of Hormuz",
+    "sight": "又在十二指觜頭去到十二指二角。",
+    "altitude": 12,
+    "star": ""
+  },
+  {
+    "group": "Unnamed",
+    "location": "Strait of Hormuz",
+    "sight": "又在十二指觜頭去到十二指二角。",
+    "altitude": 12.5,
+    "star": ""
+  },
+  {
+    "group": "Unnamed",
+    "location": "Strait of Hormuz",
+    "sight": "又去到十二指觜頭",
+    "altitude": 12,
+    "star": ""
+  },
+  {
+    "group": "Unnamed",
+    "location": "Persian Gulf",
+    "sight": "去十三指二角坐正北。",
+    "altitude": 13.5,
+    "star": ""
+  },
+  {
+    "group": "Unnamed",
+    "location": "African Coast",
+    "sight": "在華蓋星五指內",
+    "altitude": 5,
+    "star": "χ Dra"
+  },
+  {
+    "group": "Unnamed",
+    "location": "African Coast",
+    "sight": "去到北長星四指。",
+    "altitude": 4,
+    "star": "Polaris"
+  }
+]
