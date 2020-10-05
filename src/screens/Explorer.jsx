@@ -162,7 +162,8 @@ function Explorer(props) {
       ).geometry;
 
       // Recenter MaoKunMap
-      if (source !== 'maokun') setMaokunCenter(xyToLeaflet(zoomify));
+      if (source !== 'maokun' && zoomify[0])
+        setMaokunCenter(xyToLeaflet(zoomify));
 
       // Add `selected` class to CirlceMarker component's <path> element
       Array.from(
