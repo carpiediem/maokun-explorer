@@ -24,6 +24,7 @@ module.exports = {
     'region',
     'category',
     'kamalNotes',
+    'voyages',
     'sourceUrl',
     'wikiEn',
     'wikiZh',
@@ -40,6 +41,7 @@ module.exports = {
   RUTTERS_COLUMNS: [
     'code',
     'name',
+    'nameTc',
     'locUrl',
     'direction',
     'landmarks',
