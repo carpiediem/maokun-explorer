@@ -41,7 +41,7 @@ export default function GlossaryDialog(props) {
     >
       <DialogTitle>
         {fullScreen && (
-          <IconButton onClick={props.handleClose}>
+          <IconButton onClick={props.handleClose} style={{ marginLeft: -16 }}>
             <ChevronLeftIcon />
           </IconButton>
         )}
@@ -54,7 +54,10 @@ export default function GlossaryDialog(props) {
       <DialogContent>
         <List>
           <ListSubheader className={classes.subHeader}>
-            Ming Government Organization
+            <FormattedMessage
+              id="glossary.government"
+              defaultMessage="Ming Government Organization"
+            />
           </ListSubheader>
           <GlossaryItem
             character="衛"
@@ -75,7 +78,10 @@ export default function GlossaryDialog(props) {
           />
 
           <ListSubheader className={classes.subHeader}>
-            Navigation
+            <FormattedMessage
+              id="glossary.navigation"
+              defaultMessage="Navigation"
+            />
           </ListSubheader>
           <GlossaryItem
             character="更"
@@ -120,7 +126,9 @@ export default function GlossaryDialog(props) {
             definitionId="glossary.角"
           />
 
-          <ListSubheader className={classes.subHeader}>Stars</ListSubheader>
+          <ListSubheader className={classes.subHeader}>
+            <FormattedMessage id="glossary.stars" defaultMessage="Stars" />
+          </ListSubheader>
           <GlossaryItem
             character="北辰"
             pinyin="Běichén"

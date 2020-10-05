@@ -35,7 +35,7 @@ export default function LegendDialog(props) {
     >
       <DialogTitle>
         {fullScreen && (
-          <IconButton onClick={props.handleClose}>
+          <IconButton onClick={props.handleClose} style={{ marginLeft: -16 }}>
             <ChevronLeftIcon />
           </IconButton>
         )}

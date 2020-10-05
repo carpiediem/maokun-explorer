@@ -2,9 +2,12 @@ import React, { useContext } from 'react';
 import { IntlProvider } from 'react-intl';
 
 import getBrowserLocale from './util/getBrowserLocale';
+import defaultMessages from './translations/en.json';
+
 const messages = {
-  en: require('./translations/en'),
-  zh: require('./translations/zh'),
+  en: defaultMessages,
+  zh: Object.assign({}, defaultMessages, require('./translations/zh')),
+  oj: Object.assign({}, defaultMessages, {}),
 };
 
 export const LocaleContext = React.createContext();
@@ -26,9 +29,19 @@ export const intlEnWrapper = {
     </IntlProvider>
   ),
 };
+
 export const intlZhWrapper = {
   wrapper: ({ children }) => (
     <IntlProvider locale="zh" messages={messages.zh}>
+      {children}
+    </IntlProvider>
+  ),
+};
+
+// For testing default messages in an unsupported language
+export const intlOjWrapper = {
+  wrapper: ({ children }) => (
+    <IntlProvider locale="oj" messages={messages.oj} onError={() => {}}>
       {children}
     </IntlProvider>
   ),
