@@ -53,7 +53,7 @@ const MaoKunMap = forwardRef((props, ref) => {
   };
 
   const markers = props.places
-    .filter((f) => f.geometry.type === 'Point')
+    .filter((f) => f.geometry.type === 'Point' && f.geometry.zoomify[0])
     .map((f) => ({
       key: f.properties.id,
       // ref: props.markerRefs.current[f.properties.id].maokun, // -2????
