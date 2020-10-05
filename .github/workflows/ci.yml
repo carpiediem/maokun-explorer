@@ -1,0 +1,74 @@
+name: Node CI
+
+on:
+  pull_request:
+    types: [opened, ready_for_review]
+    branches:
+      - main
+
+jobs:
+  # cleanup:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Clear old artifacts
+  #       uses: kolpav/purge-artifacts-action@v1
+  #       with:
+  #         token: ${{ secrets.GITHUB_TOKEN }}
+  #         expire-in: 1hr
+
+  test:
+    name: Build with Node.js
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        node-version: [8.x, 10.x, 12.x]
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
+      - name: Checkout repo
+        uses: actions/checkout@v1
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: NPM install and test
+        run: |
+          npm install
+          npm test
+        env:
+          CI: true
+
+  approve:
+    name: Approve pull request
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: build
+    steps:
+      - uses: hmarr/auto-approve-action@v2.0.0
+        if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
+        with:
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
+
+  merge:
+    name: Merge pull request
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: approve
+    if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
+    steps:
+      - name: Merge
+        uses: actions/github-script@0.8.0
+        with:
+          script: |
+            await github.pulls.merge({
+              owner: context.payload.repository.owner.login,
+              repo: context.payload.repository.name,
+              pull_number: context.payload.pull_request.number
+            })
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
