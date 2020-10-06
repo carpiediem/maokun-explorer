@@ -321,13 +321,13 @@
   },
   {
     "group": "East African Coast",
-    "text": "慢八撒",
-    "location": "Mombasa, Kenya",
+    "text": "者剌則郎哈剌",
+    "location": "Zanzibar Archipelago",
     "id": 1,
     "sight": "華蓋七指",
-    "altitude": 9,
+    "altitude": 7,
     "star": "χ Dra",
-    "actual": -4.027
+    "actual": -5.9373
   },
   {
     "group": "East African Coast",
@@ -335,7 +335,7 @@
     "location": "Mafia Island, Tanzania",
     "id": 1,
     "sight": "華蓋七指",
-    "altitude": 9,
+    "altitude": 7,
     "star": "χ Dra",
     "actual": -7.85
   },
