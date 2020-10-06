@@ -28,9 +28,10 @@ const useStyles = makeStyles((theme) => ({
 export default function CategoryDialog(props) {
   const intl = useIntl();
   const classes = useStyles();
+  const { categories = {} } = props;
 
   const allVisible = Object.keys(CATEGORIES).reduce(
-    (agg, cur) => agg && props.categories[cur],
+    (agg, cur) => agg && categories[cur],
     true
   );
 
@@ -55,9 +56,9 @@ export default function CategoryDialog(props) {
                 control={
                   <ColoredSwitch
                     color={color}
-                    checked={props.categories[category]}
+                    checked={categories[category]}
                     onChange={() =>
-                      props.onChange(category, !props.categories[category])
+                      props.onChange(category, !categories[category])
                     }
                     name={category}
                   />

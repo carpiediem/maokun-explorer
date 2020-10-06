@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import {
   List,
@@ -14,7 +14,6 @@ import SyncIcon from '@material-ui/icons/Sync';
 import PlaceIcon from '@material-ui/icons/Place';
 import TextRotationNoneIcon from '@material-ui/icons/TextRotationNone';
 
-import { LocaleContext } from '../../LocaleContext';
 import LanguageDialog from './LanguageDialog';
 import CategoryDialog from './CategoryDialog';
 
@@ -46,8 +45,7 @@ const useStyles = makeStyles((theme) => ({
 function ConfigOptions(props) {
   const intl = useIntl();
   const classes = useStyles();
-  const [locale] = React.useContext(LocaleContext);
-  const [dialog, setDialog] = React.useState(null);
+  const [dialog, setDialog] = useState(null);
 
   return (
     <React.Fragment>
@@ -68,8 +66,8 @@ function ConfigOptions(props) {
               defaultMessage: 'Language',
             })}
             secondary={intl.formatMessage({
-              id: locale,
-              defaultMessage: LOCALES[locale],
+              id: intl.locale,
+              defaultMessage: LOCALES[intl.locale],
             })}
           />
         </ListItem>
@@ -114,7 +112,7 @@ function ConfigOptions(props) {
               id: 'config.showOverlays',
               defaultMessage: 'Show Overlays',
             })}
-            secondary={Object.entries(props.categories)
+            secondary={Object.entries(props.categories || {})
               .filter(([key, enabled]) => enabled)
               .map(([key]) =>
                 intl.formatMessage({
@@ -122,7 +120,7 @@ function ConfigOptions(props) {
                   defaultMessage: key,
                 })
               )
-              .join(', ')}
+              .join(intl.locale === 'en' ? ', ' : '，')}
             className={classes.listItemText}
           />
         </ListItem>
