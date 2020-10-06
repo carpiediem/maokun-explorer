@@ -51,7 +51,7 @@ jobs:
     name: Approve pull request
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    needs: build
+    needs: test
     steps:
       - uses: hmarr/auto-approve-action@v2.0.0
         if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
