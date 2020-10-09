@@ -46,7 +46,7 @@ This website was built with [`create-react-app`](), so you can use standard comm
 
 ## Questions
 
-You can reach me at maokun@rslcs.us
+You can reach me at maokun@rslc.us
 
 ## Contributing
 
