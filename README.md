@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://zhenghe.rslc.us/" rel="noopener" target="_blank"><img width="150" src="https://zhenghe.rslc.us/mstile-150x150.png" alt="Mao Kun map logo"></a></p>
+  <a href="https://zhenghe.rslc.us/" rel="noopener" target="_blank"><img width="150" src="https://barbierilow.faculty.history.ucsb.edu/Research/ZhengHeMapZoomify/ZhengHe/TileGroup0/6-51-0.jpg" alt="Mao Kun map tile"></a></p>
 </p>
 
 <h1 align="center">Mao Kun Map Explorer</h1>
