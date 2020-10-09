@@ -39,10 +39,15 @@ npm install
 
 ## Usage
 
-This website was built with [`create-react-app`](), so you can use standard commands:
+This website was built with [`create-react-app`](https://reactjs.org/docs/create-a-new-react-app.html), so you can use standard commands:
 
 - `npm start` to launch the site on your own machine
+- `npm test` to run the test suite with jest
 - `npm run build` to build a static site for deployment
+
+There is also a custom command to update data files from a spreadhsheet on Google Docs:
+
+- `npm run geojson`
 
 ## Questions
 
@@ -52,10 +57,6 @@ You can reach me at maokun@rslc.us
 
 I'm open to design ideas or pull requests. Just [create an issue](https://github.com/carpiediem/maokun-explorer/issues) in GitHub.
 
-## Changelog
-
-Recently Updated?
-Please read the [changelog](https://github.com/carpiediem/maokun-explorer/releases).
 
 ## License
 
