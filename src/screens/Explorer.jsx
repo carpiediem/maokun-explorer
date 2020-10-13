@@ -18,6 +18,8 @@ import latlngBoundsReducer from '../util/latlngBoundsReducer';
 
 import './Explorer.css';
 import xyToLeaflet from '../util/xyToLeaflet';
+// import highlightPlace from './highlightPlace';
+import highlightPath from './highlightPath';
 
 const PLACES_PATH = 'data/maokun-places.geo.json';
 const PATHS_PATH = 'data/maokun-paths.geo.json';
@@ -90,7 +92,19 @@ function Explorer(props) {
       });
     fetch(PATHS_PATH)
       .then((res) => res.json())
-      .then(({ features }) => setPaths(features));
+      .then(({ features }, index) => {
+        setPaths(features);
+
+        const pathMatch = /#\/path\/([\w-]+)/.exec(window.location.hash);
+
+        if (!pathMatch) return;
+
+        const code = parseInt(pathMatch[1], 10);
+        const path = features.find((p) => p.properties.code === code);
+        if (!path) return;
+
+        setSelected({ path: code });
+      });
   }, []);
 
   function handleMove(xyBounds) {
@@ -101,7 +115,6 @@ function Explorer(props) {
       gtag('event', 'first map drag', {
         event_category: 'UX',
         event_label: 'first map drag',
-        // 'value': <value>
       });
     }
 
@@ -138,7 +151,10 @@ function Explorer(props) {
 
     Array.from(
       document.querySelectorAll('path.circle-marker, path.path')
-    ).forEach((f) => f.classList.remove('selected'));
+    ).forEach((f) => {
+      f.classList.remove('selected');
+      f.classList.remove('path-landmark');
+    });
     Array.from(
       document.querySelectorAll('.modern path.circle-marker, path.path')
     ).forEach((f) =>
@@ -147,7 +163,7 @@ function Explorer(props) {
         f
           .getAttribute('d')
           .replace(
-            'm-15,0a20,20 0 1,0 40,0 a20,20 0 1,0 -40,0 ',
+            /m-\d+,0a\d+,\d+ 0 1,0 \d+,0 a\d+,\d+ 0 1,0 -\d+,0 /,
             'a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 '
           )
       )
@@ -156,42 +172,59 @@ function Explorer(props) {
     setSelected({ [type]: id });
     if (!id) return;
 
-    if (type === 'point') {
-      const { coordinates, zoomify } = places.find(
-        (p) => p.properties.id === id
-      ).geometry;
+    switch (type) {
+      case 'point':
+        const { coordinates, zoomify } = places.find(
+          (p) => p.properties.id === id
+        ).geometry;
 
-      // Recenter MaoKunMap
-      if (source !== 'maokun' && zoomify[0])
-        setMaokunCenter(xyToLeaflet(zoomify));
+        // Recenter MaoKunMap
+        if (source !== 'maokun' && zoomify[0])
+          maokunMapRef.current.leafletElement.flyToBounds(
+            xyToLeaflet(zoomify, 500),
+            { paddingBottomRight: [260, 0], paddingTopLeft: [0, 75] }
+          );
+        // setMaokunCenter(xyToLeaflet(zoomify));
 
-      // Add `selected` class to CirlceMarker component's <path> element
-      Array.from(
-        document.querySelectorAll(`path.circle-marker.id-${id}`)
-      ).forEach((m) => m.classList.add('selected'));
+        // Add `selected` class to CirlceMarker component's <path> element
+        Array.from(
+          document.querySelectorAll(`path.circle-marker.id-${id}`)
+        ).forEach((m) => m.classList.add('selected'));
 
-      // Change marker radius from 5 to 20 in ModernMap
-      const modernMarker = document.querySelector(
-        `section.modern path.circle-marker.id-${id}`
-      );
-      if (!modernMarker) return;
-
-      modernMarker.setAttribute(
-        'd',
-        modernMarker
-          .getAttribute('d')
-          .replace(
-            'a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 ',
-            'm-15,0a20,20 0 1,0 40,0 a20,20 0 1,0 -40,0 '
-          )
-      );
-
-      // Recenter ModernMap
-      if (source !== 'modern')
-        modernMapRef.current.leafletElement.flyTo(
-          [coordinates[1], coordinates[0]],
-          9
+        // Change marker radius from 5 to 20 in ModernMap
+        const modernMarker = document.querySelector(
+          `section.modern path.circle-marker.id-${id}`
         );
+        if (!modernMarker) return;
+
+        modernMarker.setAttribute(
+          'd',
+          modernMarker
+            .getAttribute('d')
+            .replace(
+              'a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 ',
+              'm-15,0a20,20 0 1,0 40,0 a20,20 0 1,0 -40,0 '
+            )
+        );
+
+        // Recenter ModernMap
+        if (source !== 'modern')
+          modernMapRef.current.leafletElement.flyToBounds(
+            [
+              [coordinates[1] - BOUNDS_MARGIN, coordinates[0] - BOUNDS_MARGIN],
+              [coordinates[1] + BOUNDS_MARGIN, coordinates[0] + BOUNDS_MARGIN],
+            ],
+
+            { paddingBottomRight: [260, 0] }
+          );
+        break;
+
+      case 'path':
+        highlightPath(id, paths, places);
+
+        break;
+
+      default:
     }
   }
 

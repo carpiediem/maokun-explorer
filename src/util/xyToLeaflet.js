@@ -8,12 +8,17 @@ const xyToLatlng = ([x, y]) => ({
   lng: (x / MAOKUN_SIZE.zoomify[0]) * MAOKUN_SIZE.coordinates.lng,
 });
 
-export default (input) => {
+export default (input, margin) => {
   if (!Array.isArray(input)) return [];
   if (input.length === 0) return [];
 
   if (typeof input[0] === 'number') {
-    return xyToLatlng(input);
+    if (!margin) return xyToLatlng(input);
+
+    return [
+      xyToLatlng([input[0] - margin, input[1] - margin]),
+      xyToLatlng([input[0] + margin, input[1] + margin]),
+    ];
   }
 
   if (Array.isArray(input[0]) && typeof input[0][0] === 'number') {

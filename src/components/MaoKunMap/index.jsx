@@ -47,7 +47,7 @@ const MaoKunMap = forwardRef((props, ref) => {
   }
 
   const select = (id, type) => (evt) => {
-    props.onSelect(id, type);
+    props.onSelect(id, type, 'maokun');
 
     // evt.originalEvent.target.classList.add('selected');
   };
@@ -72,7 +72,7 @@ const MaoKunMap = forwardRef((props, ref) => {
       key: f.properties.code,
       positions: xyToLeaflet(f.geometry.zoomify),
       onClick: select(f.properties.code, 'path'),
-      className: `path ${f.properties.direction}`,
+      className: `path ${f.properties.direction} code-${f.properties.code}`,
     }));
 
   // const center = xyToLeaflet(

@@ -1,9 +1,7 @@
 import React from 'react';
-// import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { Drawer, Card, CardContent, Chip, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
-// import { LocaleContext } from '../../LocaleContext';
 
 const drawerWidth = 310;
 
@@ -30,8 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 function PathDetails(props) {
   const classes = useStyles();
-  // const intl = useIntl();
-  // const [locale] = React.useContext(LocaleContext);
+  const intl = useIntl();
 
   if (!props.paths.length || !props.id) {
     return null;
@@ -40,8 +37,6 @@ function PathDetails(props) {
   const { properties } = props.paths.find(
     ({ properties: { code } }) => code === props.id
   );
-
-  // Bug: Sometimes .split() results in a single character item at the end of the array. Sometimes it doesn't.
 
   return (
     <Drawer
@@ -54,28 +49,18 @@ function PathDetails(props) {
       <Card className={classes.root}>
         <CardContent className={classes.content}>
           <Typography variant="h5" component="h2" className={classes.name}>
-            {properties.name}
+            {intl.locale === 'en' ? properties.name : properties.nameTc}
           </Typography>
           {properties.direction && (
             <Chip
               size="small"
-              label={
-                properties.direction === 'in'
-                  ? 'inbound, to China'
-                  : 'outbound, from China'
-              }
+              label={intl.formatMessage({
+                id: `paths.${properties.direction}`,
+              })}
               className={classes[properties.direction]}
             />
           )}
-          {/* <Typography
-              variant="caption"
-              component="p"
-              className={classes.direction}
-            >
-              {properties.direction === 'in'
-                ? 'inbound, to China'
-                : 'outbound, from China'}
-            </Typography> */}
+
           <Typography
             variant="body2"
             component="ol"

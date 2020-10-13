@@ -51,8 +51,8 @@ const ModernMap = forwardRef((props, ref) => {
     .map((f) => ({
       key: f.properties.code,
       positions: f.geometry.coordinates.map(([lng, lat]) => ({ lat, lng })),
-      onClick: () => props.onSelect(f.properties.code, 'path'),
-      className: `path ${f.properties.direction}`,
+      onClick: () => props.onSelect(f.properties.code, 'path', 'modern'),
+      className: `path ${f.properties.direction} code-${f.properties.code}`,
     }));
 
   return (

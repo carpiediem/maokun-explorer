@@ -54,6 +54,11 @@
   stroke: #f0027f;
 }
 
+.modern .circle-marker.path-landmark {
+  fill-opacity: 0;
+  stroke-opacity: 1;
+}
+
 /* .modern .leaflet-tooltip.town {
   color: #bf5b17;
 }
@@ -92,8 +97,11 @@
 }
 
 .modern .path {
-  stroke-dasharray: 100 5;
-  animation: dash 30s infinite;
+  stroke: lightblue;
+}
+
+.modern .path.selected {
+  stroke-width: 10;
 }
 
 @keyframes dash {
@@ -104,8 +112,12 @@
 
 .modern path.path.leaflet-interactive.out {
   stroke: lightGreen;
+  stroke-dasharray: 100 5;
+  animation: dash 30s infinite;
 }
 
 .modern path.path.leaflet-interactive.in {
   stroke: pink;
+  stroke-dasharray: 100 5;
+  animation: dash 30s infinite;
 }

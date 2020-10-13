@@ -49,7 +49,15 @@
 
 .maokun .circle-marker.selected,
 .maokun path.path.leaflet-interactive.selected {
-  stroke-width: 8;
+  stroke-width: 12;
+}
+
+.maokun .circle-marker.path-landmark {
+  stroke-width: 6;
+}
+
+.maokun path.path.leaflet-interactive {
+  stroke: lightBlue;
 }
 
 .maokun path.path.leaflet-interactive.out {
