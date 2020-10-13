@@ -56,7 +56,7 @@ const byCode = (agg, { code, x, y, lat, lng }) => {
     from: 2,
   });
   const pointFeatures = points.map(
-    ({ x, y, lat, lng, kamalAngle, ...rest }, index) => ({
+    ({ x, y, lat, lng, kamalAngle, voyages, ...rest }, index) => ({
       type: 'Feature',
       geometry: {
         type: 'Point',
@@ -64,7 +64,14 @@ const byCode = (agg, { code, x, y, lat, lng }) => {
         coordinates: lat === '' || !lat ? [] : [lng, lat],
         kamalAngle: kamalAngle === '' ? null : kamalAngle,
       },
-      properties: { id: index, ...rest },
+      properties: {
+        id: index,
+        voyages:
+          voyages === ''
+            ? []
+            : voyages.split(/\s*,\s*/).map((i) => parseInt(i, 10)),
+        ...rest,
+      },
     })
   );
   const pointBbox = points.reduce(getBounds, [180, 90, -180, -90]);
@@ -88,15 +95,29 @@ const byCode = (agg, { code, x, y, lat, lng }) => {
     skip_empty_lines: true,
     from: 2,
   }).reduce(byCode, {});
-  const pathFeatures = rutters.map((properties) => ({
-    type: 'Feature',
-    geometry: {
-      type: 'LineString',
-      zoomify: imagePaths[properties.code],
-      coordinates: geoPaths[properties.code],
-    },
-    properties,
-  }));
+
+  const pathFeatures = rutters.map((properties) => {
+    const landmarkIds = properties.landmarks
+      .filter((l) => l !== '')
+      .map((l) => {
+        const place = pointFeatures.find(
+          ({ properties }) => properties.label === l
+        );
+        if (!place)
+          console.warn(`Unrecognized landmark: ${l} in ${properties.code}`);
+
+        return place ? place.properties.id : null;
+      });
+    return {
+      type: 'Feature',
+      geometry: {
+        type: 'LineString',
+        zoomify: imagePaths[properties.code],
+        coordinates: geoPaths[properties.code],
+      },
+      properties: Object.assign(properties, { landmarks: landmarkIds }),
+    };
+  });
 
   const pointsCollection = JSON.stringify({
     type: 'FeatureCollection',
