@@ -17,6 +17,7 @@ import ShareIcon from '@material-ui/icons/Share';
 
 import { LocaleContext } from '../../LocaleContext';
 import KamalDetails from './KamalDetails';
+import VisitDetails from './VisitDetails';
 import WikipediaButtonGroup, { WikipediaIcon } from './WikipediaButtonGroup';
 import COLORS from '../ConfigOptions/categories-colors.json';
 
@@ -103,10 +104,12 @@ function PointDetails(props) {
             {locale === 'en' ? properties.othersEn : properties.othersTc}
           </Typography>
 
+          {properties.kamalNotes.length + properties.voyages.length && <hr />}
           <KamalDetails
             text={properties.kamalNotes}
             angle={geometry.kamalAngle}
           />
+          <VisitDetails voyages={properties.voyages} />
         </CardContent>
         <CardActions>
           {geometry.coordinates.length > 0 && (

@@ -10,7 +10,6 @@ function KamalDetails({ text, angle }) {
 
   return (
     <div>
-      <hr />
       <Typography color="textSecondary" component="p">
         <FormattedMessage
           id="details.navNotes"
