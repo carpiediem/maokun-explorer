@@ -23,7 +23,7 @@ export default function AboutDialog(props) {
       fullScreen={fullScreen}
       open={props.open}
       onClose={props.handleClose}
-      aria-labelledby="about-dialog-title"
+      aria-labelledby="about-dialog"
     >
       <DialogTitle>
         {fullScreen && (
@@ -83,7 +83,11 @@ export default function AboutDialog(props) {
         <p>
           <FormattedMessage id="about.p3" />
         </p>
-        <img src="./jmmp.jpg" width="100%" alt="Mao Kun Map on 20 A4 pages" />
+        <img
+          src="./images/jmmp.jpg"
+          width="100%"
+          alt="Mao Kun Map on 20 A4 pages"
+        />
         <p>
           <FormattedMessage id="about.p4" />
         </p>

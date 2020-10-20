@@ -42,7 +42,7 @@ test('renders photo', () => {
   const img = getByRole('img');
 
   expect(img).toBeInTheDocument();
-  expect(img.getAttribute('src')).toBe('./jmmp.jpg');
+  expect(img.getAttribute('src')).toBe('./images/jmmp.jpg');
 });
 
 test('renders links to data files', () => {

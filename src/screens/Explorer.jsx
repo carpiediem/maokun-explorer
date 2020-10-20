@@ -61,14 +61,14 @@ function Explorer(props) {
   const [places, setPlaces] = useState([]);
   const [paths, setPaths] = useState([]);
   const [maokunCenter, setMaokunCenter] = useState(null);
+  const [about, setAbout] = useState(window.location.hash === '#/about');
+  const [legend, setLegend] = useState(window.location.hash === '#/legend');
   const [glossary, setGlossary] = useState(
     window.location.hash === '#/glossary'
   );
   const [latitudes, setLatitudes] = useState(
     window.location.hash === '#/navigation'
   );
-  const [about, setAbout] = useState(window.location.hash === '#/about');
-  const [legend, setLegend] = useState(window.location.hash === '#/legend');
   const [selected, setSelected] = useState({});
   const [prefs, setPrefs] = useState(DEFAULT_PREFS);
   const [bounds, setBounds] = useState({
