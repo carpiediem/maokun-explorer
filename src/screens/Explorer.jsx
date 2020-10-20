@@ -9,7 +9,7 @@ import MiniMap from '../components/MiniMap';
 import AboutDialog from '../components/AboutDialog';
 import LegendDialog from '../components/LegendDialog';
 import GlossaryDialog from '../components/GlossaryDialog';
-import LatitudesDialog from '../components/LatitudesDialog';
+import NavigationDialog from '../components/NavigationDialog';
 import Menu from '../components/Menu';
 import PointDetails from '../components/PointDetails';
 import PathDetails from '../components/PathDetails';
@@ -65,7 +65,7 @@ function Explorer(props) {
     window.location.hash === '#/glossary'
   );
   const [latitudes, setLatitudes] = useState(
-    window.location.hash === '#/latitudes'
+    window.location.hash === '#/navigation'
   );
   const [about, setAbout] = useState(window.location.hash === '#/about');
   const [legend, setLegend] = useState(window.location.hash === '#/legend');
@@ -287,7 +287,7 @@ function Explorer(props) {
       <AboutDialog open={about} handleClose={() => setAbout(false)} />
       <LegendDialog open={legend} handleClose={() => setLegend(false)} />
       <GlossaryDialog open={glossary} handleClose={() => setGlossary(false)} />
-      <LatitudesDialog
+      <NavigationDialog
         open={latitudes}
         handleClose={() => setLatitudes(false)}
       />

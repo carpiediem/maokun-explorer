@@ -12,7 +12,10 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles } from '@material-ui/core/styles';
+import 'katex/dist/katex.min.css';
+import { BlockMath, InlineMath } from 'react-katex';
 
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
@@ -20,6 +23,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 // import { LocaleContext } from '../../LocaleContext';
 // import externalLink from '../externalLink';
+import getAzimuth from './getAzimuth';
 
 import sights from './maokun-sights.json';
 const groups = [
@@ -31,6 +35,7 @@ const groups = [
 
 const useStyles = makeStyles((theme) => ({
   root: {},
+  content: { overflowY: 'visible' },
   autoWidth: { width: 'auto' },
   subheader: {
     backgroundColor: 'beige',
@@ -51,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.action.hover,
     },
   },
+  daylight: { textDecoration: 'line-through' },
 }));
 
 const FINGER = 1.616666;
@@ -60,7 +66,7 @@ const POLAR_DISTANCE = {
   Kochab: 13.49038,
 };
 
-export default function GlossaryDialog(props) {
+export default function NavigationDialog(props) {
   const theme = useTheme();
   const classes = useStyles();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -103,13 +109,15 @@ export default function GlossaryDialog(props) {
         </a>
       </DialogTitle>
 
-      <DialogContent>
+      <DialogContent className={classes.content}>
         <h3>Latitude Calculations</h3>
         <p>
           Knowing the position of reference stars in the 1400s (from Stellarium)
           and the size of a "finger" (from antique kamals: 1° 37'), the Mao Kun
           Map's altitude sights can be converted to latitudes.
         </p>
+
+        <BlockMath math="lat_{calc} = ∂_{decl} + α_{altnpm} * 1.616 \frac{degrees}{finger}" />
 
         <h4>Known Locations</h4>
         <Table size="small" stickyHeader className={classes.autoWidth}>
@@ -118,7 +126,7 @@ export default function GlossaryDialog(props) {
               <TableCell>Label</TableCell>
               <TableCell>Location</TableCell>
               <TableCell>Sight</TableCell>
-              <TableCell>Altitude</TableCell>
+              <TableCell>Altitude (α)</TableCell>
               <TableCell>Star</TableCell>
               <TableCell align="right">Calculation</TableCell>
               <TableCell align="right">Error</TableCell>
@@ -250,15 +258,54 @@ export default function GlossaryDialog(props) {
           Al Mukalla, Yemen. Starset values have been calculated with a position
           at Sur, Oman.
         </p>
+
+        <BlockMath math="γ_{rise} = \cos^{-1}\frac{\sin ∂_{declination} }{\cos φ_{latitude}}" />
         <Table size="small" stickyHeader className={classes.autoWidth}>
           <TableHead className={classes.head}>
             <TableRow>
               <TableCell>Star</TableCell>
-              <TableCell>Rises at</TableCell>
-              <TableCell>Sets at</TableCell>
+              <Tooltip
+                title="Angular distance from the celestial equator in 1422"
+                placement="top"
+              >
+                <TableCell>Declination</TableCell>
+              </Tooltip>
+              <Tooltip
+                title="Measured near the Fartak Range, Yemen"
+                placement="top"
+              >
+                <TableCell>
+                  <InlineMath math="γ_{rise}" /> at 16.5º N
+                </TableCell>
+              </Tooltip>
+              <Tooltip title="Measured near Muscat, Oman" placement="top">
+                <TableCell>
+                  <InlineMath math="γ_{set}" /> at 23.7º N
+                </TableCell>
+              </Tooltip>
+              <Tooltip title="Measured near Qalhat, Oman" placement="top">
+                <TableCell>
+                  <InlineMath math="γ_{rise}" /> at 6.5º N
+                </TableCell>
+              </Tooltip>
+              <Tooltip
+                title="Measured near the Mudug region, Somalia"
+                placement="top"
+              >
+                <TableCell>
+                  <InlineMath math="γ_{set}" /> at 22.6º N
+                </TableCell>
+              </Tooltip>
             </TableRow>
           </TableHead>
           <TableBody>
+            <TableRow className={classes.subheader}>
+              <TableCell colSpan={6}>
+                <Typography variant="overline" display="block" gutterBottom>
+                  Posibilities for "Bùsī" (布司)
+                </Typography>
+              </TableCell>
+            </TableRow>
             <TableRow className={classes.row}>
               <TableCell>
                 <a
@@ -269,8 +316,13 @@ export default function GlossaryDialog(props) {
                   Pollux
                 </a>
               </TableCell>
-              <TableCell>after sunrise</TableCell>
-              <TableCell>302º</TableCell>
+              <TableCell>+29º 15' 18.2"</TableCell>
+              <TableCell className={classes.daylight}>
+                {getAzimuth(29, 15, 18.2, 16.5)}
+              </TableCell>
+              <TableCell>{getAzimuth(29, 15, 18.2, 23.7, true)}</TableCell>
+              <TableCell>--</TableCell>
+              <TableCell>--</TableCell>
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>
@@ -282,8 +334,11 @@ export default function GlossaryDialog(props) {
                   Procyon
                 </a>
               </TableCell>
-              <TableCell>after sunrise</TableCell>
-              <TableCell>277º</TableCell>
+              <TableCell>+6º 32' 58.3"</TableCell>
+              <TableCell className={classes.daylight}>TBD</TableCell>
+              <TableCell>TBD</TableCell>
+              <TableCell>--</TableCell>
+              <TableCell>--</TableCell>
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>
@@ -295,8 +350,11 @@ export default function GlossaryDialog(props) {
                   Acrab
                 </a>
               </TableCell>
-              <TableCell>108º</TableCell>
-              <TableCell>after sunrise</TableCell>
+              <TableCell>-18º 3' 27.6"</TableCell>
+              <TableCell>TBD</TableCell>
+              <TableCell className={classes.daylight}>TBD</TableCell>
+              <TableCell>--</TableCell>
+              <TableCell>--</TableCell>
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>
@@ -308,8 +366,11 @@ export default function GlossaryDialog(props) {
                   Capella
                 </a>
               </TableCell>
-              <TableCell>after sunrise</TableCell>
-              <TableCell>321º</TableCell>
+              <TableCell>+45º 10' 27.7"</TableCell>
+              <TableCell className={classes.daylight}>TBD</TableCell>
+              <TableCell>TBD</TableCell>
+              <TableCell>--</TableCell>
+              <TableCell>--</TableCell>
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>
@@ -321,8 +382,11 @@ export default function GlossaryDialog(props) {
                   Scheat
                 </a>
               </TableCell>
-              <TableCell>64º</TableCell>
-              <TableCell>daytime</TableCell>
+              <TableCell>+24º 59' 24.8"</TableCell>
+              <TableCell>TBD</TableCell>
+              <TableCell className={classes.daylight}>TBD</TableCell>
+              <TableCell>--</TableCell>
+              <TableCell>--</TableCell>
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>
@@ -334,8 +398,19 @@ export default function GlossaryDialog(props) {
                   Fomalhaut
                 </a>
               </TableCell>
-              <TableCell>124º</TableCell>
-              <TableCell>daytime</TableCell>
+              <TableCell>+32º 37' 13.3"</TableCell>
+              <TableCell>TBD</TableCell>
+              <TableCell className={classes.daylight}>TBD</TableCell>
+              <TableCell>--</TableCell>
+              <TableCell>--</TableCell>
+            </TableRow>
+
+            <TableRow className={classes.subheader}>
+              <TableCell colSpan={6}>
+                <Typography variant="overline" display="block" gutterBottom>
+                  Posibilities for "Dipper" (斗)
+                </Typography>
+              </TableCell>
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>
@@ -349,8 +424,11 @@ export default function GlossaryDialog(props) {
                 </a>
                 )
               </TableCell>
-              <TableCell>118º</TableCell>
-              <TableCell>after sunrise</TableCell>
+              <TableCell>+72º 26' 10.5"</TableCell>
+              <TableCell>--</TableCell>
+              <TableCell>--</TableCell>
+              <TableCell>TBD</TableCell>
+              <TableCell>TBD</TableCell>
             </TableRow>
           </TableBody>
         </Table>
