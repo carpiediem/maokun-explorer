@@ -45,7 +45,7 @@ This website was built with [`create-react-app`](https://reactjs.org/docs/create
 - `npm test` to run the test suite with jest
 - `npm run build` to build a static site for deployment
 
-There is also a custom command to update data files from a spreadhsheet on Google Docs:
+There is also a custom command to update data files from a spreadsheet on Google Docs:
 
 - `npm run geojson`
 
