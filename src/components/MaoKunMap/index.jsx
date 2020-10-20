@@ -60,7 +60,7 @@ const MaoKunMap = forwardRef((props, ref) => {
       name: locale === 'en' ? f.properties.nameEn : f.properties.nameTc,
       center: xyToLeaflet(f.geometry.zoomify),
       radius: 20,
-      onClick: select(f.properties.id, 'point', 'maokun'),
+      onClick: select(f.properties.id, 'point'),
       className: `circle-marker ${f.properties.category} id-${
         f.properties.id
       } ${f.geometry.coordinates.length ? '' : 'unidentified'}`,

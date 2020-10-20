@@ -45,7 +45,8 @@ module.exports = async function zoomifyDownload(baseUrl, directory, opts = {}) {
 
   let fetchFailed = false;
 
-  for (null; !fetchFailed; zoom++) {
+  while (!fetchFailed) {
+    zoom++;
     progress.setTotal(Math.pow(2, zoom) * Math.pow(2, zoom));
     let foundBottom = false;
     for (

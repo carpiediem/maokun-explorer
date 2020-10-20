@@ -14,7 +14,6 @@ import IntroAnimation from './IntroAnimation';
 const useStyles = makeStyles((theme) => ({
   paper: {
     width: 1000,
-    maxWidth: '90vw',
     minHeight: 600,
     color: 'white',
     textAlign: 'center',

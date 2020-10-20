@@ -1,6 +1,6 @@
 import L from 'leaflet';
 
-const icon = (url, className) =>
+const icon = (url) =>
   new L.Icon({
     iconUrl: url,
     iconSize: [25, 25],
