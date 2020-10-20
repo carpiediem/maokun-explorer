@@ -104,7 +104,9 @@ function PointDetails(props) {
             {locale === 'en' ? properties.othersEn : properties.othersTc}
           </Typography>
 
-          {properties.kamalNotes.length + properties.voyages.length && <hr />}
+          {properties.kamalNotes.length + properties.voyages.length ? (
+            <hr />
+          ) : null}
           <KamalDetails
             text={properties.kamalNotes}
             angle={geometry.kamalAngle}
