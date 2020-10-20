@@ -1,4 +1,6 @@
 {
+  "intro.abstract": "The Mao Kun Map plots a 15th-century journey from China to the Indian Ocean. To fit on printing plates, it warps the southern coast of Asia into a long strip and reads right-to-left.",
+
   "paths.in": "inbound, to China",
   "paths.out": "outbound, from China",
 

@@ -6,6 +6,7 @@ import SplitPane from 'react-split-pane';
 import MaoKunMap from '../components/MaoKunMap';
 import ModernMap from '../components/ModernMap';
 import MiniMap from '../components/MiniMap';
+import IntroDialog from '../components/IntroDialog';
 import AboutDialog from '../components/AboutDialog';
 import LegendDialog from '../components/LegendDialog';
 import GlossaryDialog from '../components/GlossaryDialog';
@@ -61,6 +62,7 @@ function Explorer(props) {
   const [places, setPlaces] = useState([]);
   const [paths, setPaths] = useState([]);
   const [maokunCenter, setMaokunCenter] = useState(null);
+  const [intro, setIntro] = useState(!/#\/\w+/.test(window.location.hash));
   const [about, setAbout] = useState(window.location.hash === '#/about');
   const [legend, setLegend] = useState(window.location.hash === '#/legend');
   const [glossary, setGlossary] = useState(
@@ -284,6 +286,7 @@ function Explorer(props) {
           )
         }
       />
+      <IntroDialog open={intro} handleClose={() => setIntro(false)} />
       <AboutDialog open={about} handleClose={() => setAbout(false)} />
       <LegendDialog open={legend} handleClose={() => setLegend(false)} />
       <GlossaryDialog open={glossary} handleClose={() => setGlossary(false)} />
