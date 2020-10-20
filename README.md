@@ -8,18 +8,13 @@
 
 An interactive map navigating the treasure fleet voyages of [Zheng He](https://en.wikipedia.org/wiki/Zheng_He). Built with [React](https://reactjs.org/) and [Leaflet](https://leafletjs.com/).
 
-<!-- [![CircleCI](https://img.shields.io/circleci/project/github/carpiediem/maokun-explorer/master.svg)](https://circleci.com/gh/carpiediem/maokun-explorer/tree/master)
-[![Build Status](https://dev.azure.com/carpiediem/maokun-explorer/_apis/build/status/mui-org.material-ui?branchName=master)](https://dev.azure.com/carpiediem/maokun-explorer/_build/latest?definitionId=1&branchName=master)
-[![Coverage Status](https://img.shields.io/codecov/c/github/carpiediem/maokun-explorer/master.svg)](https://codecov.io/gh/carpiediem/maokun-explorer/branch/master)
-[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/1320/badge)](https://bestpractices.coreinfrastructure.org/projects/1320)
-![Code style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)
-[![Follow on Twitter](https://img.shields.io/twitter/follow/MaterialUI.svg?label=follow+Material-UI)](https://twitter.com/MaterialUI)
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=carpiediem/maokun-explorer)](https://dependabot.com)
-[![PeerDependencies](https://david-dm.org/carpiediem/maokun-explorer/master/peer-status.svg?path=packages/material-ui)](https://david-dm.org/carpiediem/maokun-explorer/master?type=peer&path=packages/material-ui)
-[![Dependencies](https://david-dm.org/carpiediem/maokun-explorer/master/status.svg?path=packages/material-ui)](https://david-dm.org/carpiediem/maokun-explorer/master?path=packages/material-ui)
-[![DevDependencies](https://david-dm.org/carpiediem/maokun-explorer/master/dev-status.svg?path=packages/material-ui)](https://david-dm.org/carpiediem/maokun-explorer/master?type=dev)
-[![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/carpiediem/maokun-explorer.svg)](https://isitmaintained.com/project/carpiediem/maokun-explorer 'Average time to resolve an issue')
-[![Crowdin](https://d322cqt584bo4o.cloudfront.net/material-ui-docs/localized.svg?cache=v1)](https://translate.material-ui.com/project/material-ui-docs) -->
+[![CI Status](https://img.shields.io/github/workflow/status/carpiediem/maokun-explorer/Node%20CI)](https://github.com/carpiediem/maokun-explorer/actions?query=workflow%3A%22Node+CI%22)
+<!-- [![codecov](https://codecov.io/gh/carpiediem/maokun-explorer/branch/main/graph/badge.svg)](https://codecov.io/gh/carpiediem/maokun-explorer) -->
+[![CodeClimate maintainability grade](https://img.shields.io/codeclimate/maintainability/carpiediem/maokun-explorer)](https://codeclimate.com/github/carpiediem/maokun-explorer)
+[![DeepScan grade](https://deepscan.io/api/teams/10561/projects/14301/branches/262892/badge/grade.svg)](https://deepscan.io/dashboard/#view=project&tid=10561&pid=14301&bid=262892)
+[![Snyk vulnerabilities](https://snyk.io/test/github/carpiediem/maokun-explorer/badge.svg)](https://app.snyk.io/org/carpiediem/project/3c7090c8-ef35-4c70-8d3b-027cefd37f31)
+![License](https://img.shields.io/github/license/carpiediem/maokun-explorer)
+[![deployment status](https://img.shields.io/website?label=zhenghe.rslc.us&url=https%3A%2F%2Fzhenghe.rslc.us)](https://zhenghe.rslc.us)
 
 </div>
 
