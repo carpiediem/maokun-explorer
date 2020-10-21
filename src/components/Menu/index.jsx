@@ -17,12 +17,12 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ListIcon from '@material-ui/icons/ListAlt';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
-import HeightIcon from '@material-ui/icons/Height';
-import NotListedLocationIcon from '@material-ui/icons/NotListedLocation';
+import ExploreIcon from '@material-ui/icons/Explore';
+import PaletteIcon from '@material-ui/icons/Palette';
 
 import ConfigOptions from '../ConfigOptions';
 
-const drawerWidth = 240;
+const drawerWidth = 280;
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -139,7 +139,7 @@ function Menu(props) {
             }}
           >
             <ListItemIcon>
-              <NotListedLocationIcon />
+              <PaletteIcon />
             </ListItemIcon>
             <ListItemText
               primary={intl.formatMessage({
@@ -168,12 +168,12 @@ function Menu(props) {
           <ListItem
             button
             onClick={() => {
-              props.onDialogClick('latitudes');
+              props.onDialogClick('navigation');
               setState(false);
             }}
           >
             <ListItemIcon>
-              <HeightIcon />
+              <ExploreIcon />
             </ListItemIcon>
             <ListItemText
               primary={intl.formatMessage({

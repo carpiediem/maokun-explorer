@@ -75,8 +75,12 @@
   stroke: lightblue;
 }
 
-.modern .path.selected {
+.modern path.selected {
   stroke-width: 10;
+}
+
+.modern path.path.selected {
+  stroke-dasharray: 100 15 !important;
 }
 
 @keyframes dash {

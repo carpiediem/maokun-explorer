@@ -3,16 +3,16 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { intlEnWrapper, intlZhWrapper } from '../../LocaleContext';
-import CategoryDialog from './CategoryDialog';
+import FilterDialog from './FilterDialog';
 
-// jest.mock('./CategoryDialog', () => ({ open }) => (
-//   <div>{`CategoryDialog component: ${open ? '' : 'not '}visible`}</div>
+// jest.mock('./FilterDialog', () => ({ open }) => (
+//   <div>{`FilterDialog component: ${open ? '' : 'not '}visible`}</div>
 // ));
 
 describe('when props.open is false', () => {
   test('render nothing', () => {
     const { queryByText } = render(
-      <CategoryDialog open={false} />,
+      <FilterDialog open={false} />,
       intlEnWrapper
     );
     expect(queryByText(/\w/i)).toBeNull();
@@ -23,7 +23,7 @@ describe('when clicked outside the dialog', () => {
   test('Triggers onClose callback', () => {
     const closeAction = jest.fn();
     const { getByRole } = render(
-      <CategoryDialog open onClose={closeAction} />,
+      <FilterDialog open onClose={closeAction} />,
       intlEnWrapper
     );
 
@@ -36,9 +36,9 @@ describe('when clicked outside the dialog', () => {
 
 describe('when en locale is used', () => {
   test('Renders text in English', () => {
-    const { getByText } = render(<CategoryDialog open />, intlEnWrapper);
+    const { getByText } = render(<FilterDialog open />, intlEnWrapper);
 
-    expect(getByText('Choose Overlay Categories')).toBeInTheDocument();
+    expect(getByText('Filter Markers')).toBeInTheDocument();
     expect(getByText('town')).toBeInTheDocument();
     expect(getByText('area')).toBeInTheDocument();
     expect(getByText('building')).toBeInTheDocument();
@@ -53,7 +53,7 @@ describe('when en locale is used', () => {
 
 describe('when zh locale is used', () => {
   test('Renders text in Traditional Chinese', () => {
-    const { getByText } = render(<CategoryDialog open />, intlZhWrapper);
+    const { getByText } = render(<FilterDialog open />, intlZhWrapper);
 
     expect(getByText('選擇疊加類別')).toBeInTheDocument();
     expect(getByText('鎮')).toBeInTheDocument();

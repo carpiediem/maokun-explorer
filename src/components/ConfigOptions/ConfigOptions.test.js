@@ -8,8 +8,8 @@ import ConfigOptions from './index';
 jest.mock('./LanguageDialog', () => ({ open }) => (
   <div>{`LanguageDialog component: ${open ? '' : 'not '}visible`}</div>
 ));
-jest.mock('./CategoryDialog', () => ({ open }) => (
-  <div>{`CategoryDialog component: ${open ? '' : 'not '}visible`}</div>
+jest.mock('./FilterDialog', () => ({ open }) => (
+  <div>{`FilterDialog component: ${open ? '' : 'not '}visible`}</div>
 ));
 
 const ALL_CATEGORIES_FIXTURE = {
@@ -24,15 +24,11 @@ const ALL_CATEGORIES_FIXTURE = {
 };
 
 test('Initially hides dialogs', () => {
-  // TestingLibraryElementError: Found multiple elements with the text: LanguageDialog component: not visible
-
   const { getByText } = render(<ConfigOptions />, intlEnWrapper);
   expect(
     getByText('LanguageDialog component: not visible')
   ).toBeInTheDocument();
-  expect(
-    getByText('CategoryDialog component: not visible')
-  ).toBeInTheDocument();
+  expect(getByText('FilterDialog component: not visible')).toBeInTheDocument();
 });
 
 test('Renders five configuration options and a subheader', () => {
@@ -55,7 +51,7 @@ describe('when toggle buttons are clicked', () => {
     expect(changeAction).toHaveBeenCalledWith('lockPanes', true);
     userEvent.click(getByText('Sync Map Views'));
     expect(changeAction).toHaveBeenCalledWith('syncMaps', false);
-    userEvent.click(getByText('Label Locations'));
+    userEvent.click(getByText('Show Place Names'));
     expect(changeAction).toHaveBeenCalledWith('labelLocations', true);
 
     expect(changeAction).toHaveBeenCalledTimes(3);
@@ -69,8 +65,8 @@ describe('when submenu buttons are clicked', () => {
     userEvent.click(getByText('Language'));
     expect(getByText('LanguageDialog component: visible')).toBeInTheDocument();
 
-    userEvent.click(getByText('Show Overlays'));
-    expect(getByText('CategoryDialog component: visible')).toBeInTheDocument();
+    userEvent.click(getByText('Filter Markers'));
+    expect(getByText('FilterDialog component: visible')).toBeInTheDocument();
   });
 });
 
@@ -87,11 +83,9 @@ describe('when en locale is used', () => {
     const panelSizeValue = getByText('Draggable');
     const syncLabel = getByText('Sync Map Views');
     const syncValue = getByText('Synced');
-    const overlayLabel = getByText('Show Overlays');
-    const overlayValue = getByText(
-      'town, area, building, mountain, peninsula, island, water body, descriptor'
-    );
-    const labelLabel = getByText('Label Locations');
+    const overlayLabel = getByText('Filter Markers');
+    const overlayValue = getByText('all categories; all voyages');
+    const labelLabel = getByText('Show Place Names');
     const labelValue = getByText('Labels are hidden');
 
     expect(subheader).toBeInTheDocument();
@@ -122,7 +116,7 @@ describe('when zh locale is used', () => {
     const syncLabel = getByText('同步地圖');
     const syncValue = getByText('已同步');
     const overlayLabel = getByText('顯示覆蓋');
-    const overlayValue = getByText('鎮，區，建造，山，半島，島，水體，描述');
+    // const overlayValue = getByText('鎮，區，建造，山，半島，島，水體，描述'); // all categories; all voyages
     const labelLabel = getByText('標籤位置');
     const labelValue = getByText('標籤被隱藏');
 
@@ -134,7 +128,7 @@ describe('when zh locale is used', () => {
     expect(syncLabel).toBeInTheDocument();
     expect(syncValue).toBeInTheDocument();
     expect(overlayLabel).toBeInTheDocument();
-    expect(overlayValue).toBeInTheDocument();
+    // expect(overlayValue).toBeInTheDocument();
     expect(labelLabel).toBeInTheDocument();
     expect(labelValue).toBeInTheDocument();
   });

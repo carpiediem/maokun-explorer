@@ -26,5 +26,14 @@
   "glossary.布司": "This is mentioned in directions near Oman and Yemen. The Bu-Si (or Puu-Si) star is often mentioned as 'commonly used to cross oceans,' but it's unclear to me which star it refers to. I've seen mentions of <a1>Pollux</a1> (β Gem, 北布司), <a2>Procyon</a2> (α CMi, 南布司), <a3>Acrab</a3> (β Sco, 西南布司星), <a4>Capella</a4> (α Aur, 西北布司星), <a5>Scheat</a5> (β Peg, 室宿二), and <a6>Fomalhaut</a6> (α PsA, 北落师门).",
   "glossary.斗": "<a1>Dipper</a1> is one of the twenty-eight 'mansions' (or constellations) that the Chinese use to organize the northern sky. Although it makes the shape of a big ladle or spoon, it does not refer to the same stars as the Big Dipper in Ursa Major. Instead, China's Dipper shares the sky with Sagittarius.",
   "glossary.落": "In the context of stars used for direction finding (not latitude calculation, with a kamal), 落 refers to the time when a star is setting on the western horizon, after it crossed the sky.",
-  "glossary.上": "Likewise, 上 refers to the time when a star rises from the eastern horizon."
+  "glossary.上": "Likewise, 上 refers to the time when a star rises from the eastern horizon.",
+
+  "voyages.none": "no confirmed visits",
+  "voyages.1": "1st voyage: 1405-07",
+  "voyages.2": "2nd voyage: 1407-09",
+  "voyages.3": "3rd voyage: 1409-11",
+  "voyages.4": "4th voyage: 1413-15",
+  "voyages.5": "5th voyage: 1416-19",
+  "voyages.6": "6th voyage: 1421-22",
+  "voyages.7": "7th voyage: 1431-33"
 }

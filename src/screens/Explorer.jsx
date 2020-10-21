@@ -71,7 +71,7 @@ function Explorer(props) {
   const [glossary, setGlossary] = useState(
     window.location.hash === '#/glossary'
   );
-  const [latitudes, setLatitudes] = useState(
+  const [navigation, setNavigation] = useState(
     window.location.hash === '#/navigation'
   );
   const [selected, setSelected] = useState({});
@@ -124,6 +124,15 @@ function Explorer(props) {
       });
   }, []);
 
+  function voyageMatch(prefs, visits) {
+    if (visits.length === 0) return prefs.none;
+
+    return visits.reduce((agg, cur) => agg || prefs[cur], false);
+    // console.log(prefs, visits);
+
+    // return true;
+  }
+
   function handleMove(xyBounds) {
     if (selected.point || selected.path) return;
 
@@ -140,7 +149,11 @@ function Explorer(props) {
     if (!modernMapRef.current || !prefs.syncMaps) return;
 
     const visiblePoints = places
-      .filter(({ properties }) => prefs.categories[properties.category])
+      .filter(
+        ({ properties }) =>
+          prefs.categories[properties.category] &&
+          voyageMatch(prefs.voyages, properties.voyages)
+      )
       .filter(xyBoundsFilter(xyBounds));
     if (visiblePoints.length === 0) return;
 
@@ -248,7 +261,9 @@ function Explorer(props) {
   }
 
   const filteredPlaces = places.filter(
-    ({ properties }) => prefs.categories[properties.category]
+    ({ properties }) =>
+      prefs.categories[properties.category] &&
+      voyageMatch(prefs.voyages, properties.voyages)
   );
 
   return (
@@ -299,8 +314,8 @@ function Explorer(props) {
       <LegendDialog open={legend} handleClose={() => setLegend(false)} />
       <GlossaryDialog open={glossary} handleClose={() => setGlossary(false)} />
       <NavigationDialog
-        open={latitudes}
-        handleClose={() => setLatitudes(false)}
+        open={navigation}
+        handleClose={() => setNavigation(false)}
       />
       <Menu
         prefs={prefs}
@@ -323,8 +338,8 @@ function Explorer(props) {
             case 'glossary':
               setGlossary(true);
               break;
-            case 'latitudes':
-              setLatitudes(true);
+            case 'navigation':
+              setNavigation(true);
               break;
             default:
           }

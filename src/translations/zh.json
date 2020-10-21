@@ -4,6 +4,7 @@
   "menu.about": "關於地圖",
   "menu.legend": "地圖圖例",
   "menu.glossary": "詞彙表",
+  "menu.navigation": "天體導航",
 
   "config.language": "語言",
   "en": "英語",
@@ -21,6 +22,8 @@
 
   "config.chooseLanguage": "選擇語言",
   "config.chooseCategories": "選擇疊加類別",
+  "config.categories": "分類",
+  "config.voyages": "寶船參觀",
 
   "legend.title": "地圖圖例",
   "categories.town": "鎮",
