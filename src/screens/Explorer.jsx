@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SplitPane from 'react-split-pane';
 
+import Globe, { drawFov } from '../components/Globe';
 import MaoKunMap from '../components/MaoKunMap';
 import ModernMap from '../components/ModernMap';
 import MiniMap from '../components/MiniMap';
@@ -54,10 +55,12 @@ const MAOKUN_SIZE = {
   zoomify: [108401, 4263],
 };
 const BOUNDS_MARGIN = 0.08; // degrees latitude or longitude
+// const KOZHIKODE = [75.8278, 11.184141];
 
 function Explorer(props) {
   const maokunMapRef = useRef(null);
   const modernMapRef = useRef(null);
+  const globeFovRef = useRef(null);
   const [draggedMap, setDraggedMap] = useState(false);
   const [places, setPlaces] = useState([]);
   const [paths, setPaths] = useState([]);
@@ -148,6 +151,11 @@ function Explorer(props) {
       [latlngBounds[0][0] - BOUNDS_MARGIN, latlngBounds[0][1] - BOUNDS_MARGIN],
       [latlngBounds[1][0] + BOUNDS_MARGIN, latlngBounds[1][1] + BOUNDS_MARGIN],
     ]);
+
+    globeFovRef.current.setAttribute(
+      'd',
+      drawFov(modernMapRef.current.leafletElement.getBounds())
+    );
   }
 
   function handlePrefsChange(key, value) {
@@ -286,6 +294,7 @@ function Explorer(props) {
           )
         }
       />
+      <Globe fovRef={globeFovRef} />
       <IntroDialog open={intro} handleClose={() => setIntro(false)} />
       <AboutDialog open={about} handleClose={() => setAbout(false)} />
       <LegendDialog open={legend} handleClose={() => setLegend(false)} />
