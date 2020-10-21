@@ -3,9 +3,11 @@
 import { select } from 'd3-selection';
 import { feature } from 'topojson-client';
 
+import path from './path';
+
 const WORLD_GEOJSON = 'data/world-110m.geo.json';
 
-export default async function drawGlobe(path) {
+export default async function drawGlobe() {
   const g = select('svg#globe g.countries');
   const worldData = await fetch(WORLD_GEOJSON).then((res) => res.json());
 

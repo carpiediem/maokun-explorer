@@ -1,29 +1,12 @@
 import React, { useEffect } from 'react';
-import { geoOrthographic, geoPath } from 'd3-geo';
 
 import drawGlobe from './drawGlobe';
 import drawGraticule from './drawGraticule';
 
-const KOZHIKODE = [-75.75, -11.25];
-const projection = geoOrthographic().rotate(KOZHIKODE);
-const path = geoPath().projection(projection);
-
-export function drawFov({ _southWest, _northEast }) {
-  const projected = [
-    [_southWest.lng, _southWest.lat],
-    [_southWest.lng, _northEast.lat],
-    [_northEast.lng, _northEast.lat],
-    [_northEast.lng, _southWest.lat],
-    [_southWest.lng, _southWest.lat],
-  ].map(projection);
-
-  return `M ${projected.join(' ')}`;
-}
-
 export default function Globe(props) {
   useEffect(() => {
-    drawGraticule(path);
-    drawGlobe(path);
+    drawGraticule();
+    drawGlobe();
   });
 
   return (
@@ -41,7 +24,7 @@ export default function Globe(props) {
         ref={props.fovRef}
         fill="none"
         stroke="red"
-        strokeWidth="2px"
+        strokeWidth="5"
       />
     </svg>
   );

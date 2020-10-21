@@ -1,7 +1,9 @@
 import { select } from 'd3-selection';
 import { geoGraticule } from 'd3-geo';
 
-export default function drawGraticule(path) {
+import path from './path';
+
+export default function drawGraticule() {
   const g = select('svg#globe g.graticule');
   const graticule = geoGraticule().step([10, 10]);
 

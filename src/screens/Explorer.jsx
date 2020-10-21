@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SplitPane from 'react-split-pane';
 
-import Globe, { drawFov } from '../components/Globe';
+import Globe from '../components/Globe';
 import MaoKunMap from '../components/MaoKunMap';
 import ModernMap from '../components/ModernMap';
 import MiniMap from '../components/MiniMap';
@@ -19,6 +19,7 @@ import xyBoundsFilter from '../util/xyBoundsFilter';
 import latlngBoundsReducer from '../util/latlngBoundsReducer';
 
 import './Explorer.css';
+import drawFov from '../components/Globe/drawFov';
 import xyToLeaflet from '../util/xyToLeaflet';
 // import highlightPlace from './highlightPlace';
 import highlightPath from './highlightPath';
@@ -55,7 +56,6 @@ const MAOKUN_SIZE = {
   zoomify: [108401, 4263],
 };
 const BOUNDS_MARGIN = 0.08; // degrees latitude or longitude
-// const KOZHIKODE = [75.8278, 11.184141];
 
 function Explorer(props) {
   const maokunMapRef = useRef(null);
@@ -86,6 +86,8 @@ function Explorer(props) {
       .then((res) => res.json())
       .then(({ features }, index) => {
         setPlaces(features);
+
+        drawFov(modernMapRef.current.leafletElement.getBounds());
 
         const placeMatch = /#\/place\/(\d+)/.exec(window.location.hash);
         if (!placeMatch) return;
@@ -152,10 +154,7 @@ function Explorer(props) {
       [latlngBounds[1][0] + BOUNDS_MARGIN, latlngBounds[1][1] + BOUNDS_MARGIN],
     ]);
 
-    globeFovRef.current.setAttribute(
-      'd',
-      drawFov(modernMapRef.current.leafletElement.getBounds())
-    );
+    drawFov(modernMapRef.current.leafletElement.getBounds());
   }
 
   function handlePrefsChange(key, value) {
