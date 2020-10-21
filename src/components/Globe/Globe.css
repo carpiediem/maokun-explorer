@@ -1,0 +1,109 @@
+/* China */
+#Jiangsu {
+  fill: rgb(255, 255, 179) !important;
+}
+#Shanghai {
+  fill: rgb(190, 186, 218) !important;
+}
+#Zhejiang {
+  fill: rgb(251, 128, 114) !important;
+}
+#Fujian {
+  fill: rgb(128, 177, 211) !important;
+}
+#Guangdong {
+  fill: rgb(179, 222, 105) !important;
+}
+#Hainan {
+  fill: rgb(217, 217, 217) !important;
+}
+#Guangxi {
+  fill: rgb(252, 205, 229) !important;
+}
+
+/* Taiwan */
+#country-158 {
+  fill: rgb(253, 180, 98) !important;
+}
+
+/* Vietnam */
+#country-704 {
+  fill: rgb(188, 128, 189) !important;
+}
+
+/* Indonesia */
+#country-360 {
+  fill: rgb(204, 235, 197) !important;
+}
+
+/* Khmer */
+#country-116,
+#country-418 {
+  fill: rgb(255, 237, 111) !important;
+}
+
+/* Thailand */
+#country-764 {
+  fill: rgb(141, 211, 199) !important;
+}
+
+/* Malaysia */
+#country-458 {
+  fill: rgb(255, 255, 179) !important;
+}
+
+/* Singapore isn't in topojson */
+
+/* Myanmar */
+#country-104 {
+  fill: rgb(251, 128, 114) !important;
+}
+
+/* Bangladesh */
+#country-50 {
+  fill: rgb(128, 177, 211) !important;
+}
+
+/* Maldives aren't in topojson */
+
+/* Sri Lanka */
+#country-144 {
+  fill: rgb(179, 222, 105) !important;
+}
+
+/* India */
+#country-356 {
+  fill: rgb(252, 205, 229) !important;
+}
+
+/* Pakistan */
+#country-586 {
+  fill: rgb(217, 217, 217) !important;
+}
+
+/* Iran */
+#country-364 {
+  fill: rgb(188, 128, 189) !important;
+}
+
+/* Oman */
+#country-512 {
+  fill: rgb(204, 235, 197) !important;
+}
+
+/* Yemen */
+#country-887 {
+  fill: rgb(255, 237, 111) !important;
+}
+
+/* Somalia */
+#country-706 {
+  fill: rgb(141, 211, 199) !important;
+}
+
+/* East Africa */
+#country-404,
+#country-834,
+#country-508 {
+  fill: rgb(255, 255, 179) !important;
+}

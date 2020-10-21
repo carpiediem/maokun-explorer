@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import drawGlobe from './drawGlobe';
 import drawGraticule from './drawGraticule';
 
+import './Globe.css';
+
 export default function Globe(props) {
   useEffect(() => {
     drawGraticule();
@@ -19,6 +21,7 @@ export default function Globe(props) {
     >
       <g className="graticule"></g>
       <g className="countries"></g>
+      <g className="provinces"></g>
       <path
         className="field-of-view"
         ref={props.fovRef}
