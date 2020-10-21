@@ -3,7 +3,7 @@
 .maokun {
   width: 100%;
   height: 100%;
-  background-color: blue;
+  /* background-color: blue; */
 }
 
 .maokun .leaflet-container {
@@ -112,22 +112,4 @@
 }
 .maokun .circle-marker.descriptor {
   stroke: #f0027f;
-}
-
-.maokun img.leaflet-marker-icon {
-  padding: 10px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.8) 0%,
-    rgba(255, 255, 255, 0.25) 75%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  -webkit-transition: opacity 1s; /* Safari prior 6.1 */
-  transition: opacity 1s;
-}
-
-.maokun img.leaflet-marker-icon:hover {
-  opacity: 0;
 }

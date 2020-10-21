@@ -7,7 +7,6 @@ import {
   Polyline,
   Tooltip,
 } from 'react-leaflet';
-// import { identified, unidentified, unknown } from './icons';
 
 import { LocaleContext } from '../../LocaleContext';
 import ZoomifyLayer from './ZoomifyLayer';

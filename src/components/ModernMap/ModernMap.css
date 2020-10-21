@@ -1,7 +1,7 @@
 .modern {
   width: 100%;
   height: 100%;
-  background-color: red;
+  /* background-color: red; */
 }
 
 .modern .leaflet-container {
@@ -58,31 +58,6 @@
   fill-opacity: 0;
   stroke-opacity: 1;
 }
-
-/* .modern .leaflet-tooltip.town {
-  color: #bf5b17;
-}
-.modern .leaflet-tooltip.area {
-  color: #ffff99;
-}
-.modern .leaflet-tooltip.building {
-  color: #fdc086;
-}
-.modern .leaflet-tooltip.mountain {
-  color: #666666;
-}
-.modern .leaflet-tooltip.peninsula {
-  color: #beaed4;
-}
-.modern .leaflet-tooltip.island {
-  color: #7fc97f;
-}
-.modern .leaflet-tooltip.water.body {
-  color: #386cb0;
-}
-.modern .leaflet-tooltip.descriptor {
-  color: #f0027f;
-} */
 
 .modern .leaflet-tooltip {
   margin-top: 6px;
