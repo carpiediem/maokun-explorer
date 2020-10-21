@@ -49,7 +49,7 @@ export default function VisitDetails({ voyages }) {
       </Typography>
       <Typography variant="caption" component="p">
         {voyages.map((v, i) => (
-          <React.Fragment>
+          <React.Fragment key={v}>
             {i ? ', ' : ''}
             <a
               href={URLS[locale][v - 1]}

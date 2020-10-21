@@ -8,12 +8,12 @@
 
 An interactive map navigating the treasure fleet voyages of [Zheng He](https://en.wikipedia.org/wiki/Zheng_He). Built with [React](https://reactjs.org/) and [Leaflet](https://leafletjs.com/).
 
-[![CI Status](https://img.shields.io/github/workflow/status/carpiediem/maokun-explorer/Node%20CI)](https://github.com/carpiediem/maokun-explorer/actions?query=workflow%3A%22Node+CI%22)
 <!-- [![codecov](https://codecov.io/gh/carpiediem/maokun-explorer/branch/main/graph/badge.svg)](https://codecov.io/gh/carpiediem/maokun-explorer) -->
-[![CodeClimate maintainability grade](https://img.shields.io/codeclimate/maintainability/carpiediem/maokun-explorer)](https://codeclimate.com/github/carpiediem/maokun-explorer)
-[![DeepScan grade](https://deepscan.io/api/teams/10561/projects/14301/branches/262892/badge/grade.svg)](https://deepscan.io/dashboard/#view=project&tid=10561&pid=14301&bid=262892)
+
 [![Snyk vulnerabilities](https://snyk.io/test/github/carpiediem/maokun-explorer/badge.svg)](https://app.snyk.io/org/carpiediem/project/3c7090c8-ef35-4c70-8d3b-027cefd37f31)
-![License](https://img.shields.io/github/license/carpiediem/maokun-explorer)
+[![DeepScan grade](https://deepscan.io/api/teams/10561/projects/14301/branches/262892/badge/grade.svg)](https://deepscan.io/dashboard/#view=project&tid=10561&pid=14301&bid=262892)
+[![CodeClimate maintainability grade](https://img.shields.io/codeclimate/maintainability/carpiediem/maokun-explorer)](https://codeclimate.com/github/carpiediem/maokun-explorer)
+[![CI Status](https://img.shields.io/github/workflow/status/carpiediem/maokun-explorer/Node%20CI)](https://github.com/carpiediem/maokun-explorer/actions?query=workflow%3A%22Node+CI%22)
 [![deployment status](https://img.shields.io/website?label=zhenghe.rslc.us&url=https%3A%2F%2Fzhenghe.rslc.us)](https://zhenghe.rslc.us)
 
 </div>
@@ -40,9 +40,10 @@ This website was built with [`create-react-app`](https://reactjs.org/docs/create
 - `npm test` to run the test suite with jest
 - `npm run build` to build a static site for deployment
 
-There is also a custom command to update data files from a spreadsheet on Google Docs:
+Additional scripts:
 
-- `npm run geojson`
+- `npm run geojson` to update data files from a spreadsheet on Google Docs
+- `npm run tiles` to download an 88MB copy of the 9,887 image tiles that Leaflet arranges to display the Mao Kun map
 
 ## Questions
 
@@ -51,7 +52,6 @@ You can reach me at maokun@rslc.us
 ## Contributing
 
 I'm open to design ideas or pull requests. Just [create an issue](https://github.com/carpiediem/maokun-explorer/issues) in GitHub.
-
 
 ## License
 

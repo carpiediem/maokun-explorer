@@ -7,30 +7,19 @@ import {
   Polyline,
   Tooltip,
 } from 'react-leaflet';
-// import { identified, selected, unknown } from '../MaoKunMap/icons';
 
 import { LocaleContext } from '../../LocaleContext';
 import './ModernMap.css';
 
 const ModernMap = forwardRef((props, ref) => {
   const [center] = useState({ lat: 32.039579, lng: 118.8 });
-  // const [zoom] = useState(13);
   const [locale] = React.useContext(LocaleContext);
 
   const markers = props.places
     .filter((m) => m.geometry.type === 'Point' && m.geometry.coordinates.length)
     .map((m, i) => ({
       key: m.properties.id,
-      // ref: props.markerRefs.current[m.properties.id - 1].modern,
       name: locale === 'en' ? m.properties.nameEn : m.properties.nameTc,
-      // icon:
-      //   (props.selected.point === m.properties.id ? selected : identified)[
-      //     m.properties.category
-      //   ] || unknown,
-      // position: {
-      //   lat: m.geometry.coordinates[1],
-      //   lng: m.geometry.coordinates[0],
-      // },
       center: {
         lat: m.geometry.coordinates[1],
         lng: m.geometry.coordinates[0],
