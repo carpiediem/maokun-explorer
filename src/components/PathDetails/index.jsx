@@ -10,7 +10,10 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    '& .MuiBackdrop-root': { backgroundColor: 'transparent' },
+    '& .MuiBackdrop-root': {
+      backgroundColor: 'transparent',
+      pointerEvents: 'none',
+    },
   },
   drawerPaper: { width: drawerWidth, height: 'auto', marginTop: 75 },
   content: { maxHeight: 'calc(100vh - 215px)', overflowY: 'auto' },

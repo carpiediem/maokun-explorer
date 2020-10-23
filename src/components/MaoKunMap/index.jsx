@@ -1,4 +1,6 @@
-import React, { forwardRef } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+
+import React, { forwardRef, useEffect } from 'react';
 import { CRS } from 'leaflet';
 import {
   Map,
@@ -29,6 +31,14 @@ const ATTRIBUTION =
 const MaoKunMap = forwardRef((props, ref) => {
   const [zoom] = React.useState(6);
   const [locale] = React.useContext(LocaleContext);
+
+  useEffect(() => {
+    ref.current.leafletElement.on('click', (event) => {
+      console.log(event);
+      if (/leaflet-container/.test(event.originalEvent.path[0].className))
+        props.onClick();
+    });
+  }, []);
 
   function handleMove(e) {
     const bounds = ref.current.leafletElement.getBounds();

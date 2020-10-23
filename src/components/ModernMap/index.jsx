@@ -1,4 +1,6 @@
-import React, { useState, forwardRef } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+
+import React, { useState, useContext, useEffect, forwardRef } from 'react';
 import {
   Map,
   TileLayer,
@@ -13,7 +15,15 @@ import './ModernMap.css';
 
 const ModernMap = forwardRef((props, ref) => {
   const [center] = useState({ lat: 32.039579, lng: 118.8 });
-  const [locale] = React.useContext(LocaleContext);
+  const [locale] = useContext(LocaleContext);
+
+  useEffect(() => {
+    ref.current.leafletElement.on('click', (event) => {
+      console.log(event);
+      if (/leaflet-container/.test(event.originalEvent.path[0].className))
+        props.onClick();
+    });
+  }, []);
 
   const markers = props.places
     .filter((m) => m.geometry.type === 'Point' && m.geometry.coordinates.length)

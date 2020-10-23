@@ -28,7 +28,10 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    '& .MuiBackdrop-root': { backgroundColor: 'transparent' },
+    '& .MuiBackdrop-root': {
+      backgroundColor: 'transparent',
+      pointerEvents: 'none',
+    },
   },
   drawerPaper: { width: drawerWidth, height: 'auto', marginTop: 75 },
   translation: { color: '#888', fontSize: '0.8em' },
