@@ -9,13 +9,11 @@ const WORLD_TOPOJSON = 'data/world-110m.topo.json';
 const CHINA_GEOJSON = 'data/gadm36_CHN_1.geo.json';
 
 export default async function drawGlobe() {
-  // const g = select('svg#globe g.countries');
   const [worldData, chinaData] = await Promise.all([
     fetch(WORLD_TOPOJSON).then((res) => res.json()),
     fetch(CHINA_GEOJSON).then((res) => res.json()),
   ]);
   const { features } = feature(worldData, worldData.objects.countries);
-  console.log(features, chinaData);
 
   select('svg#globe g.countries')
     .selectAll('.segment')
@@ -38,8 +36,5 @@ export default async function drawGlobe() {
     .attr('class', 'segment')
     .attr('d', path)
     .attr('id', ({ properties }) => properties.NAME_1)
-    // .style('stroke', '#888')
-    // .style('stroke-width', '1px')
     .style('fill', 'none');
-  // .style('opacity', 0.7);
 }
