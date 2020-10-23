@@ -21,6 +21,7 @@ module.exports = {
     'nameEn',
     'othersTc',
     'othersEn',
+    'otherPossibilities',
     'region',
     'category',
     'kamalNotes',
