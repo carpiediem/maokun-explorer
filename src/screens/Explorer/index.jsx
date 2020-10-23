@@ -3,24 +3,24 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SplitPane from 'react-split-pane';
 
-import Globe from '../components/Globe';
-import MaoKunMap from '../components/MaoKunMap';
-import ModernMap from '../components/ModernMap';
-import MiniMap from '../components/MiniMap';
-import IntroDialog from '../components/IntroDialog';
-import AboutDialog from '../components/AboutDialog';
-import LegendDialog from '../components/LegendDialog';
-import GlossaryDialog from '../components/GlossaryDialog';
-import NavigationDialog from '../components/NavigationDialog';
-import Menu from '../components/Menu';
-import PointDetails from '../components/PointDetails';
-import PathDetails from '../components/PathDetails';
-import xyBoundsFilter from '../util/xyBoundsFilter';
-import latlngBoundsReducer from '../util/latlngBoundsReducer';
+import Globe from '../../components/Globe';
+import MaoKunMap from '../../components/MaoKunMap';
+import ModernMap from '../../components/ModernMap';
+import MiniMap from '../../components/MiniMap';
+import IntroDialog from '../../components/IntroDialog';
+import AboutDialog from '../../components/AboutDialog';
+import LegendDialog from '../../components/LegendDialog';
+import GlossaryDialog from '../../components/GlossaryDialog';
+import NavigationDialog from '../../components/NavigationDialog';
+import Menu from '../../components/Menu';
+import PointDetails from '../../components/PointDetails';
+import PathDetails from '../../components/PathDetails';
+import xyBoundsFilter from '../../util/xyBoundsFilter';
+import latlngBoundsReducer from '../../util/latlngBoundsReducer';
 
 import './Explorer.css';
-import drawFov from '../components/Globe/drawFov';
-import xyToLeaflet from '../util/xyToLeaflet';
+import drawFov from '../../components/Globe/drawFov';
+import xyToLeaflet from '../../util/xyToLeaflet';
 // import highlightPlace from './highlightPlace';
 import highlightPath from './highlightPath';
 
@@ -287,6 +287,7 @@ function Explorer(props) {
           labelLocations={prefs.labelLocations}
           onMove={handleMove}
           onSelect={handleSelect}
+          onClick={() => handleSelect({})}
         />
         <ModernMap
           ref={modernMapRef}
@@ -295,18 +296,23 @@ function Explorer(props) {
           selected={selected}
           labelLocations={prefs.labelLocations}
           onSelect={handleSelect}
+          onClick={() => {
+            console.log('click');
+            handleSelect({});
+          }}
         />
       </SplitPane>
       <MiniMap
         bounds={bounds}
-        onClick={({ xRatio, yRatio }) =>
+        onClick={({ xRatio, yRatio }) => {
+          handleSelect({});
           setMaokunCenter(
             xyToLeaflet([
               MAOKUN_SIZE.zoomify[0] * xRatio,
               MAOKUN_SIZE.zoomify[1] * yRatio,
             ])
-          )
-        }
+          );
+        }}
       />
       <Globe fovRef={globeFovRef} />
       <IntroDialog open={intro} handleClose={() => setIntro(false)} />
