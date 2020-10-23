@@ -19,6 +19,7 @@ export default function Globe(props) {
       viewBox="330 0 300 500"
       style={{ position: 'absolute', bottom: 5, left: 5, zIndex: 1000 }}
     >
+      <circle className="background" cx="480" cy="250" r="250" fill="white" />
       <g className="graticule"></g>
       <g className="countries"></g>
       <g className="provinces"></g>
