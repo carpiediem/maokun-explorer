@@ -15,6 +15,7 @@
     "eject": "react-scripts eject",
     "geojson": "node ./src/cli/build-geojson.js",
     "tiles": "node ./src/cli/download-tiles.js",
+    "wiki": "node ./src/cli/wikipedia-list.js",
     "extract-intl": "extract-messages -l=en,zh -o src/translations -d en --flat false 'src/**/!(*.test).js'"
   },
   "dependencies": {
