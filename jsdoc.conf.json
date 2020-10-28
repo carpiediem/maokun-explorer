@@ -1,5 +1,4 @@
 {
-  "FYI": "https://www.inkoop.io/blog/a-guide-to-js-docs-for-react-js/",
   "tags": {
     "allowUnknownTags": true,
     "dictionaries": ["jsdoc", "closure"]
