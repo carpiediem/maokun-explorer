@@ -37,8 +37,6 @@ export default function VisitDetails({ voyages }) {
 
   if (!voyages || voyages.length === 0) return null;
 
-  console.log(voyages);
-
   return (
     <div>
       <Typography color="textSecondary" component="p">

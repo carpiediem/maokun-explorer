@@ -1,0 +1,25 @@
+{
+  "lockPanes": false,
+  "syncMaps": true,
+  "categories": {
+    "town": true,
+    "area": true,
+    "building": true,
+    "mountain": true,
+    "peninsula": true,
+    "island": true,
+    "water body": true,
+    "descriptor": true
+  },
+  "voyages": {
+    "none": true,
+    "1": true,
+    "2": true,
+    "3": true,
+    "4": true,
+    "5": true,
+    "6": true,
+    "7": true
+  },
+  "labelLocations": false
+}

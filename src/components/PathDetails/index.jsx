@@ -18,16 +18,18 @@ import ShareIcon from '@material-ui/icons/Share';
 const drawerWidth = 310;
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: { pointerEvents: 'none' },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    '& .MuiBackdrop-root': {
-      backgroundColor: 'transparent',
-      pointerEvents: 'none',
-    },
+    '& .MuiBackdrop-root': { backgroundColor: 'transparent' },
   },
-  drawerPaper: { width: drawerWidth, height: 'auto', marginTop: 75 },
+  drawerPaper: {
+    width: drawerWidth,
+    height: 'auto',
+    marginTop: 75,
+    pointerEvents: 'all',
+  },
   content: { maxHeight: 'calc(100vh - 215px)', overflowY: 'auto' },
   name: {
     position: 'sticky',

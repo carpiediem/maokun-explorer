@@ -39,6 +39,10 @@
   transition: stroke-opacity 1s;
 }
 
+.maokun .leaflet-container.zoomed-out .circle-marker {
+  display: none;
+}
+
 .maokun .circle-marker:hover {
   stroke: transparent;
 }

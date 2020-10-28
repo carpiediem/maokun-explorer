@@ -1,36 +1,20 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
+import handleClick from './handleClick';
 import './MiniMap.css';
 
-const MAOKUN_WIDTH = 108401; // (423 * 256) + 113
-const MAOKUN_HEIGHT = 4263; // (16 * 256) + 167
-
-function MiniMap(props) {
-  const { _southWest, _northEast } = props.bounds;
-  const x = Math.max(0, (100 * _southWest[0]) / MAOKUN_WIDTH);
-  const y = Math.max(0, (100 * _northEast[1]) / MAOKUN_HEIGHT);
-  const bounds = {
-    x: `${x}%`,
-    y: `${y}%`,
-    width: `${Math.min(100, (100 * _northEast[0]) / MAOKUN_WIDTH) - x}%`,
-    height: `${Math.min(100, (100 * _southWest[1]) / MAOKUN_HEIGHT) - y}%`,
+function MiniMap({ bounds, onClick }) {
+  const { _southWest, _northEast } = bounds;
+  const view = {
+    x: `${100 * _southWest[0]}%`,
+    y: `${100 * _northEast[1]}%`,
+    width: `${100 * (_northEast[0] - _southWest[0])}%`,
+    height: `${100 * (_southWest[1] - _northEast[1])}%`,
   };
-  const MARGINS = { top: 10, left: 50, right: 50 };
-  const SIZE = {
-    width: window.innerWidth - MARGINS.left - MARGINS.right,
-    height: 55,
-  };
-
-  function handleClick(evt) {
-    props.onClick({
-      xRatio: (evt.nativeEvent.pageX - MARGINS.left) / SIZE.width,
-      yRatio: (evt.nativeEvent.pageY - MARGINS.top) / SIZE.height,
-    });
-  }
 
   return (
-    <svg id="mini-map" onClick={handleClick}>
+    <svg id="mini-map" onClick={handleClick(onClick)}>
       <g id="jiangsu">
         <rect x="87%" y="0%" width="13%" height="100%"></rect>
       </g>
@@ -196,10 +180,10 @@ function MiniMap(props) {
 
       <rect
         id="bounds"
-        x={bounds.x}
-        y={bounds.y}
-        width={bounds.width}
-        height={bounds.height}
+        x={view.x}
+        y={view.y}
+        width={view.width}
+        height={view.height}
       ></rect>
     </svg>
   );

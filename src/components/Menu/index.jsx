@@ -30,8 +30,6 @@ const useStyles = makeStyles((theme) => ({
     top: 0,
     left: '15px',
     zIndex: 999,
-    backgroundColor: 'rgba(255, 255, 255, 0.4)',
-    '&:hover': { backgroundColor: 'rgba(255, 255, 255,  0.8)' },
   },
   drawer: {
     width: drawerWidth,
@@ -54,6 +52,13 @@ const useStyles = makeStyles((theme) => ({
     verticalAlign: 'middle',
   },
 }));
+
+//   gtag('event', 'dialog opened', {
+//     event_category: 'UX',
+//     event_label: 'dialog opened',
+//     value: key,
+//   });
+//   // TBD: measure view time
 
 function Menu(props) {
   const [state, setState] = React.useState(false);
@@ -102,7 +107,7 @@ function Menu(props) {
             className={classes.closeButton}
           >
             <ChevronLeftIcon />
-          </IconButton>{' '}
+          </IconButton>
           <Typography variant="h6" noWrap className={classes.title}>
             <FormattedMessage
               id="menu.title"
@@ -117,7 +122,7 @@ function Menu(props) {
           <ListItem
             button
             onClick={() => {
-              props.onDialogClick('about');
+              props.setDialog('about');
               setState(false);
             }}
           >
@@ -134,7 +139,7 @@ function Menu(props) {
           <ListItem
             button
             onClick={() => {
-              props.onDialogClick('legend');
+              props.setDialog('legend');
               setState(false);
             }}
           >
@@ -151,7 +156,7 @@ function Menu(props) {
           <ListItem
             button
             onClick={() => {
-              props.onDialogClick('glossary');
+              props.setDialog('glossary');
               setState(false);
             }}
           >
@@ -168,7 +173,7 @@ function Menu(props) {
           <ListItem
             button
             onClick={() => {
-              props.onDialogClick('navigation');
+              props.setDialog('navigation');
               setState(false);
             }}
           >

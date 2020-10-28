@@ -25,16 +25,20 @@ import COLORS from '../ConfigOptions/categories-colors.json';
 const drawerWidth = 260;
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: { pointerEvents: 'none' },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
     '& .MuiBackdrop-root': {
       backgroundColor: 'transparent',
-      pointerEvents: 'none',
     },
   },
-  drawerPaper: { width: drawerWidth, height: 'auto', marginTop: 75 },
+  drawerPaper: {
+    width: drawerWidth,
+    height: 'auto',
+    marginTop: 75,
+    pointerEvents: 'all',
+  },
   translation: { color: '#888', fontSize: '0.8em' },
   otherNames: { color: '#888', fontSize: '0.8em' },
 }));
