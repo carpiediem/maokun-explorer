@@ -1,38 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { Typography } from '@material-ui/core';
+import Chip from '@material-ui/core/Chip';
+import Typography from '@material-ui/core/Typography';
 
-const YEARS = [
-  '1405-07',
-  '1407-09',
-  '1409-11',
-  '1413-15',
-  '1416-19',
-  '1421-22',
-  '1431-33',
-];
-const URLS = {
-  en: [
-    'https://en.wikipedia.org/wiki/Ming_treasure_voyages#First_voyage',
-    'https://en.wikipedia.org/wiki/Ming_treasure_voyages#Second_voyage',
-    'https://en.wikipedia.org/wiki/Ming_treasure_voyages#Third_voyage',
-    'https://en.wikipedia.org/wiki/Ming_treasure_voyages#Fourth_voyage',
-    'https://en.wikipedia.org/wiki/Ming_treasure_voyages#Fifth_voyage',
-    'https://en.wikipedia.org/wiki/Ming_treasure_voyages#Sixth_voyage',
-    'https://en.wikipedia.org/wiki/Ming_treasure_voyages#Seventh_voyage',
-  ],
-  zh: [
-    'https://zh.wikipedia.org/wiki/%E9%83%91%E5%92%8C%E4%B8%8B%E8%A5%BF%E6%B4%8B#%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%B8%8B%E8%A5%BF%E6%B4%8B',
-    'https://zh.wikipedia.org/wiki/%E9%83%91%E5%92%8C%E4%B8%8B%E8%A5%BF%E6%B4%8B#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E4%B8%8B%E8%A5%BF%E6%B4%8B',
-    'https://zh.wikipedia.org/wiki/%E9%83%91%E5%92%8C%E4%B8%8B%E8%A5%BF%E6%B4%8B#%E7%AC%AC%E4%B8%89%E6%AC%A1%E4%B8%8B%E8%A5%BF%E6%B4%8B',
-    'https://zh.wikipedia.org/wiki/%E9%83%91%E5%92%8C%E4%B8%8B%E8%A5%BF%E6%B4%8B#%E7%AC%AC%E5%9B%9B%E6%AC%A1%E4%B8%8B%E8%A5%BF%E6%B4%8B',
-    'https://zh.wikipedia.org/wiki/%E9%83%91%E5%92%8C%E4%B8%8B%E8%A5%BF%E6%B4%8B#%E7%AC%AC%E4%BA%94%E6%AC%A1%E4%B8%8B%E8%A5%BF%E6%B4%8B',
-    'https://zh.wikipedia.org/wiki/%E9%83%91%E5%92%8C%E4%B8%8B%E8%A5%BF%E6%B4%8B#%E7%AC%AC%E5%85%AD%E6%AC%A1%E4%B8%8B%E8%A5%BF%E6%B4%8B',
-    'https://zh.wikipedia.org/wiki/%E9%83%91%E5%92%8C%E4%B8%8B%E8%A5%BF%E6%B4%8B#%E7%AC%AC%E4%B8%83%E6%AC%A1%E4%B8%8B%E8%A5%BF%E6%B4%8B',
-  ],
-};
+import { YEARS, URLS } from './voyages.json';
 
-export default function VisitDetails({ voyages }) {
+/**
+ * Component for showing treasureship visits to a place
+ *
+ * @component
+ * @example
+ * const voyages = [4, 5];
+ * return (
+ *   <VisitDetails voyages={voyages} />
+ * )
+ */
+function VisitDetails({ voyages }) {
   const { locale } = useIntl();
 
   if (!voyages || voyages.length === 0) return null;
@@ -46,19 +30,28 @@ export default function VisitDetails({ voyages }) {
         />
       </Typography>
       <Typography variant="caption" component="p">
-        {voyages.map((v, i) => (
-          <React.Fragment key={v}>
-            {i ? ', ' : ''}
-            <a
-              href={URLS[locale][v - 1]}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {YEARS[v - 1]}
-            </a>
-          </React.Fragment>
+        {voyages.map((v) => (
+          <Chip
+            key={v}
+            size="small"
+            label={YEARS[v - 1]}
+            component="a"
+            href={URLS[locale][v - 1]}
+            target="_blank"
+            rel="noopener noreferrer"
+            clickable
+          />
         ))}
       </Typography>
     </div>
   );
 }
+
+VisitDetails.propTypes = {
+  /**
+   * An array of voyage indicies (1-based)
+   */
+  voyages: PropTypes.array.isRequired,
+};
+
+export default VisitDetails;

@@ -13,6 +13,7 @@
     "build": "react-scripts build",
     "test": "cross-env NODE_ICU_DATA=node_modules/full-icu react-scripts test",
     "eject": "react-scripts eject",
+    "docs": "jsdoc -c jsdoc.conf.json",
     "geojson": "node ./src/cli/build-geojson.js",
     "tiles": "node ./src/cli/download-tiles.js",
     "wiki": "node ./src/cli/wikipedia-list.js",
@@ -39,6 +40,7 @@
     "topojson-client": "^3.1.0"
   },
   "devDependencies": {
+    "better-docs": "^2.3.2",
     "cli-progress": "^3.8.2",
     "cross-env": "^7.0.2",
     "css-mediaquery": "^0.1.2",
@@ -46,7 +48,9 @@
     "extract-react-intl-messages": "4.1.1",
     "full-icu": "^1.3.1",
     "gm": "^1.23.1",
-    "jest-expect-message": "^1.0.2"
+    "jest-expect-message": "^1.0.2",
+    "jsdoc": "^3.6.6",
+    "prop-types": "^15.7.2"
   },
   "eslintConfig": {
     "extends": "react-app"

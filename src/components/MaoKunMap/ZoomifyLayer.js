@@ -1,24 +1,18 @@
-// @flow
-
 import isEqual from 'fast-deep-equal';
-import { withLeaflet, GridLayer, GridLayerProps } from 'react-leaflet';
-// import { LatLngBounds } from "leaflet";
+import { withLeaflet, GridLayer } from 'react-leaflet';
 
 import { TileLayerZoomify } from './L.TileLayer.Zoomify';
 
-type LeafletElement = TileLayerZoomify;
-type Props = { url: string } & GridLayerProps;
-
 const EVENTS_RE = /^on(.+)$/i;
 
-class ZoomifyLayer extends GridLayer<LeafletElement, Props> {
-  createLeafletElement(props: Props): LeafletElement {
+class ZoomifyLayer extends GridLayer {
+  createLeafletElement(props) {
     const { url, ...params } = props;
 
     return new TileLayerZoomify(url, this.getOptions(params));
   }
 
-  updateLeafletElement(fromProps: Props, toProps: Props) {
+  updateLeafletElement(fromProps, toProps) {
     super.updateLeafletElement(fromProps, toProps);
 
     const { url: prevUrl, opacity: _po, zIndex: _pz, ...prevProps } = fromProps;
@@ -34,7 +28,7 @@ class ZoomifyLayer extends GridLayer<LeafletElement, Props> {
     }
   }
 
-  getOptions(params: Object): Object {
+  getOptions(params) {
     const superOptions = super.getOptions(params);
     return Object.keys(superOptions).reduce((options, key) => {
       if (!EVENTS_RE.test(key)) {
