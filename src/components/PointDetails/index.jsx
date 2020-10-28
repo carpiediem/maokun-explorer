@@ -25,10 +25,10 @@ import COLORS from '../ConfigOptions/categories-colors.json';
 const drawerWidth = 260;
 
 const useStyles = makeStyles((theme) => ({
-  root: { pointerEvents: 'none' },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    pointerEvents: 'none',
     '& .MuiBackdrop-root': {
       backgroundColor: 'transparent',
     },

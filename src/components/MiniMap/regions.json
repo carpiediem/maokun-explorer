@@ -1,114 +1,217 @@
 [
-    {
-      "id": "jiangsu",
-      "name": "Jiangsu",
-      "x": 93.5,
-      "y": 60,
-      "rects": [{ "x": 87, "y": 0, "width": 13, "height": 100 }]
-    },
-    {
-      "id": "",
-      "name": "",
-      "x": null,
-      "y": null,
-      "rects": []
-    },
-    {
-      "id": "",
-      "name": "",
-      "x": null,
-      "y": null,
-      "rects": []
-    },
-    {
-      "id": "",
-      "name": "",
-      "x": null,
-      "y": null,
-      "rects": []
-    },
-    {
-      "id": "",
-      "name": "",
-      "x": null,
-      "y": null,
-      "rects": []
-    },
+  {
+    "id": "jiangsu",
+    "name": "Jiangsu",
+    "x": 93.5,
+    "y": 60,
+    "rects": [{ "x": 87, "y": 0, "width": 13, "height": 100 }]
+  },
+  {
+    "id": "shanghai",
+    "name": "Shanghai",
+    "x": 86.25,
+    "y": 90,
+    "rects": [{ "x": 85.5, "y": 0, "width": 1.5, "height": 100 }]
+  },
+  {
+    "id": "zhejiang",
+    "name": "Zhejiang",
+    "x": 78.75,
+    "y": 60,
+    "rects": [{ "x": 72, "y": 0, "width": 13.5, "height": 100 }]
+  },
+  {
+    "id": "fujian",
+    "name": "Fujian",
+    "x": 66,
+    "y": 60,
+    "rects": [{ "x": 60, "y": 0, "width": 12, "height": 100 }]
+  },
+  {
+    "id": "taiwan",
+    "name": "Taiwan",
+    "x": 65,
+    "y": 98,
+    "rects": [
+      { "x": 61, "y": 80, "width": 8, "height": 20 },
+      { "x": 61, "y": 50, "width": 1, "height": 30 }
+    ]
+  },
+  {
+    "id": "guangdong",
+    "name": "Guangdong",
+    "x": 57.625,
+    "y": 40,
+    "rects": [
+      { "x": 55.25, "y": 0, "width": 4.75, "height": 40 },
+      { "x": 56.25, "y": 40, "width": 3.75, "height": 40 }
+    ]
+  },
+  {
+    "id": "guangxi",
+    "name": "Guangxi",
+    "x": 54.75,
+    "y": 16,
+    "rects": [{ "x": 54.25, "y": 0, "width": 1, "height": 40 }]
+  },
+  {
+    "id": "hainan",
+    "name": "Hainan",
+    "secondary": true,
+    "x": 55.25,
+    "y": 60,
+    "rects": [{ "x": 54.25, "y": 40, "width": 2, "height": 25 }]
+  },
+  {
+    "id": "vietnam",
+    "name": "Vietnam",
+    "x": 51,
+    "y": 60,
+    "rects": [
+      { "x": 46, "y": 0, "width": 8.25, "height": 50 },
+      { "x": 48, "y": 50, "width": 6.25, "height": 50 }
+    ]
+  },
+  {
+    "id": "indonesia",
+    "name": "Indonesia",
+    "x": 33.75,
+    "y": 85,
+    "rects": [{ "x": 19.5, "y": 50, "width": 28.5, "height": 50 }]
+  },
+  {
+    "id": "khmer",
+    "name": "Cambodia/Laos",
+    "secondary": true,
+    "x": 45.25,
+    "y": 20,
+    "rects": [{ "x": 45.5, "y": 0, "width": 0.5, "height": 50 }]
+  },
+  {
+    "id": "thailand",
+    "name": "Thailand",
+    "secondary": true,
+    "x": 42.5,
+    "y": 45,
+    "rects": [
+      { "x": 39.5, "y": 0, "width": 6, "height": 50 },
+      { "x": 23, "y": 0, "width": 2.5, "height": 50 }
+    ]
+  },
+  {
+    "id": "thailand-2",
+    "name": "Thailand",
+    "secondary": true,
+    "x": 24.25,
+    "y": 20,
+    "rects": []
+  },
+  {
+    "id": "malaysia",
+    "name": "Malaysia",
+    "x": 32.5,
+    "y": 40,
+    "rects": [{ "x": 25.5, "y": 0, "width": 14, "height": 50 }]
+  },
+  {
+    "id": "singapore",
+    "name": "Singapore",
+    "secondary": true,
+    "x": 33.5,
+    "y": 16,
+    "rects": [{ "x": 33, "y": 0, "width": 1, "height": 10 }]
+  },
+  {
+    "id": "myanmar",
+    "name": "Myanmar",
+    "secondary": true,
+    "x": 19.75,
+    "y": 35,
+    "rects": [{ "x": 17.25, "y": 0, "width": 5.75, "height": 40 }]
+  },
+  {
+    "id": "bangladesh",
+    "name": "Bangladesh",
+    "secondary": true,
+    "x": 13.5,
+    "y": 16,
+    "rects": [
+      { "x": 10, "y": 0, "width": 7.25, "height": 20 },
+      { "x": 15, "y": 20, "width": 2.25, "height": 12 }
+    ]
+  },
+  {
+    "id": "maldives",
+    "name": "Maldives",
+    "secondary": true,
+    "x": 13.75,
+    "y": 65,
+    "rects": [{ "x": 11.5, "y": 50, "width": 4.5, "height": 20 }]
+  },
+  {
+    "id": "srilanka",
+    "name": "Sri Lanka",
+    "x": 14,
+    "y": 45,
+    "rects": [{ "x": 13, "y": 20, "width": 2, "height": 30 }]
+  },
+  {
+    "id": "india",
+    "name": "India",
+    "secondary": true,
+    "x": 10,
+    "y": 35,
+    "rects": [
+      { "x": 18.25, "y": 40, "width": 2, "height": 10 },
+      { "x": 6, "y": 0, "width": 4, "height": 20 },
+      { "x": 6, "y": 20, "width": 7, "height": 30 }
+    ]
+  },
+  {
+    "id": "pakistan",
+    "name": "Pakistan",
+    "x": 4.75,
+    "y": 25,
+    "rects": [{ "x": 3.5, "y": 0, "width": 2.5, "height": 50 }]
+  },
+  {
+    "id": "iran",
+    "name": "Iran",
+    "x": 1.5,
+    "y": 40,
+    "rects": [
+      { "x": 0, "y": 0, "width": 2, "height": 100 },
+      { "x": 2, "y": 0, "width": 1.5, "height": 50 }
+    ]
+  },
+  {
+    "id": "oman",
+    "name": "Oman",
+    "x": 4.65,
+    "y": 95,
+    "rects": [{ "x": 2, "y": 50, "width": 5.5, "height": 50 }]
+  },
+  {
+    "id": "yemen",
+    "name": "Yemen",
+    "secondary": true,
+    "x": 8.625,
+    "y": 75,
+    "rects": [{ "x": 7.5, "y": 60, "width": 2.25, "height": 40 }]
+  },
+  {
+    "id": "somalia",
+    "name": "Somalia",
+    "secondary": true,
+    "x": 11,
+    "y": 98,
+    "rects": [{ "x": 9.75, "y": 70, "width": 2.75, "height": 30 }]
+  },
+  {
+    "id": "eastafrica",
+    "name": "E. Africa",
+    "x": 13.75,
+    "y": 85,
+    "rects": [{ "x": 12.5, "y": 70, "width": 2.5, "height": 30 }]
+  }
 ]
-
-
-<text x="86.25%" y="90%" textAnchor="middle">
-        <FormattedMessage id="regions.shanghai" defaultMessage="Shanghai" />
-      </text>
-      <text x="78.75%" y="60%" textAnchor="middle">
-        <FormattedMessage id="regions.zhejiang" defaultMessage="Zhejiang" />
-      </text>
-      <text x="66%" y="60%" textAnchor="middle">
-        <FormattedMessage id="regions.fujian" defaultMessage="Fujian" />
-      </text>
-      <text x="65%" y="98%" textAnchor="middle">
-        <FormattedMessage id="regions.taiwan" defaultMessage="Taiwan" />
-      </text>
-      <text x="57.625%" y="40%" textAnchor="middle">
-        <FormattedMessage id="regions.guangdong" defaultMessage="Guangdong" />
-      </text>
-      <text x="54.75%" y="16%" textAnchor="middle">
-        <FormattedMessage id="regions.guangxi" defaultMessage="Guangxi" />
-      </text>
-      <text x="55.25%" y="60%" textAnchor="middle" className="secondary">
-        <FormattedMessage id="regions.hainan" defaultMessage="Hainan" />
-      </text>
-      <text x="51%" y="60%" textAnchor="middle">
-        <FormattedMessage id="regions.vietnam" defaultMessage="Vietnam" />
-      </text>
-      <text x="33.75%" y="85%" textAnchor="middle">
-        <FormattedMessage id="regions.indonesia" defaultMessage="Indonesia" />
-      </text>
-      <text x="45.25%" y="20%" textAnchor="middle" className="secondary">
-        <FormattedMessage id="regions.khmer" defaultMessage="Cambodia/Laos" />
-      </text>
-      <text x="42.5%" y="45%" textAnchor="middle" className="secondary">
-        <FormattedMessage id="regions.thailand" defaultMessage="Thailand" />
-      </text>
-      <text x="24.25%" y="20%" textAnchor="middle">
-        <FormattedMessage id="regions.thailand" defaultMessage="Thailand" />
-      </text>
-      <text x="32.5%" y="40%" textAnchor="middle">
-        <FormattedMessage id="regions.malaysia" defaultMessage="Malaysia" />
-      </text>
-      <text x="33.5%" y="16%" textAnchor="middle" className="secondary">
-        <FormattedMessage id="regions.singapore" defaultMessage="Singapore" />
-      </text>
-      <text x="19.75%" y="35%" textAnchor="middle" className="secondary">
-        <FormattedMessage id="regions.myanmar" defaultMessage="Myanmar" />
-      </text>
-      <text x="13.5%" y="16%" textAnchor="middle" className="secondary">
-        <FormattedMessage id="regions.bangladesh" defaultMessage="Bangladesh" />
-      </text>
-      <text x="13.75%" y="65%" textAnchor="middle" className="secondary">
-        <FormattedMessage id="regions.maldives" defaultMessage="Maldives" />
-      </text>
-      <text x="14%" y="45%" textAnchor="middle">
-        <FormattedMessage id="regions.srilanka" defaultMessage="Sri Lanka" />
-      </text>
-      <text x="10%" y="35%" textAnchor="middle" className="secondary">
-        <FormattedMessage id="regions.india" defaultMessage="India" />
-      </text>
-      <text x="4.75%" y="25%" textAnchor="middle">
-        <FormattedMessage id="regions.pakistan" defaultMessage="Pakistan" />
-      </text>
-      <text x="1.5%" y="40%" textAnchor="middle">
-        <FormattedMessage id="regions.iran" defaultMessage="Iran" />
-      </text>
-      <text x="4.65%" y="95%" textAnchor="middle">
-        <FormattedMessage id="regions.oman" defaultMessage="Oman" />
-      </text>
-      <text x="8.625%" y="75%" textAnchor="middle" className="secondary">
-        <FormattedMessage id="regions.yemen" defaultMessage="Yemen" />
-      </text>
-      <text x="11%" y="98%" textAnchor="middle" className="secondary">
-        <FormattedMessage id="regions.somalia" defaultMessage="Somalia" />
-      </text>
-      <text x="13.75%" y="85%" textAnchor="middle">
-        <FormattedMessage id="regions.eastafrica" defaultMessage="E. Africa" />
-      </text>
