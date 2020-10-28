@@ -19,12 +19,13 @@ function MiniMap({ bounds, onClick }) {
       <g className="colors">
         {regions.map(({ id, rects }) => (
           <g id={id} key={id}>
-            {rects.map(({ x, y, width, height }) => (
+            {rects.map(({ x, y, width, height }, i) => (
               <rect
                 x={`${x}%`}
                 y={`${y}%`}
                 width={`${width}%`}
                 height={`${height}%`}
+                key={i}
               ></rect>
             ))}
           </g>

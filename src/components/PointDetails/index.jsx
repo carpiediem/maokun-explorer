@@ -38,6 +38,11 @@ const useStyles = makeStyles((theme) => ({
     height: 'auto',
     marginTop: 75,
     pointerEvents: 'all',
+    '& .MuiChip-clickable': {
+      fontSize: '0.8em',
+      height: 16,
+      margin: '0 1px',
+    },
   },
   translation: { color: '#888', fontSize: '0.8em' },
   otherNames: { color: '#888', fontSize: '0.8em' },

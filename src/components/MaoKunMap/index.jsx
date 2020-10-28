@@ -7,7 +7,6 @@ import LabeledMarker from './LabeledMarker';
 
 import leafletClickListener from './leafletClickListener';
 import leafletViewListener from './leafletViewListener';
-// import getPercentageBounds from './getPercentageBounds';
 import xyToLeaflet from '../../util/xyToLeaflet';
 import MAOKUN_SIZE from './size';
 import './MaoKunMap.css';
@@ -33,7 +32,6 @@ const MaoKunMap = forwardRef(
             MAOKUN_SIZE.coordinates.lng / 2,
           ]}
           zoom={3}
-          // onMove={() => onViewChange(getPercentageBounds(mapRef))}
           onMove={leafletViewListener(onViewChange)}
           onZoomend={leafletViewListener(onViewChange)}
           onClick={leafletClickListener(onSelect)}
