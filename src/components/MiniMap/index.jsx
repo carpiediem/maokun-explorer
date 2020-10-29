@@ -5,15 +5,7 @@ import handleClick from './handleClick';
 import regions from './regions.json';
 import './MiniMap.css';
 
-function MiniMap({ bounds, onClick }) {
-  const { _southWest, _northEast } = bounds;
-  const view = {
-    x: `${100 * _southWest[0]}%`,
-    y: `${100 * _northEast[1]}%`,
-    width: `${100 * (_northEast[0] - _southWest[0])}%`,
-    height: `${100 * (_southWest[1] - _northEast[1])}%`,
-  };
-
+function MiniMap({ fovRef, bounds, onClick }) {
   return (
     <svg id="mini-map" onClick={handleClick(onClick)}>
       <g className="colors">
@@ -40,11 +32,12 @@ function MiniMap({ bounds, onClick }) {
       </g>
 
       <rect
+        ref={fovRef}
         id="bounds"
-        x={view.x}
-        y={view.y}
-        width={view.width}
-        height={view.height}
+        x="0%"
+        y="0%"
+        width="100%"
+        height="100%"
       ></rect>
     </svg>
   );

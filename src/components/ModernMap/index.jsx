@@ -1,6 +1,7 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, memo } from 'react';
 import { Map, TileLayer, ZoomControl, Polyline } from 'react-leaflet';
 
+import sameDataLength from '../../util/sameDataLength';
 import leafletClickListener from '../MaoKunMap/leafletClickListener';
 import toLatLngObject from '../../util/toLatLngObject';
 import LabeledMarker from './LabeledMarker';
@@ -25,7 +26,9 @@ const ModernMap = forwardRef((props, ref) => {
         center={[11.25, 75.75]}
         zoom={3}
         zoomControl={false}
-        onClick={leafletClickListener(props.onClick)}
+        onClick={leafletClickListener(props.onSelect)}
+        onMove={props.onViewChange}
+        onZoomend={props.onViewChange}
       >
         <TileLayer
           attribution={TILE_ATTRIBUTION}
@@ -58,4 +61,4 @@ const ModernMap = forwardRef((props, ref) => {
   );
 });
 
-export default ModernMap;
+export default memo(ModernMap, sameDataLength);

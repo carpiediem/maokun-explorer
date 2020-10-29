@@ -1,10 +1,11 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, memo } from 'react';
 import { CRS } from 'leaflet';
 import { Map, ZoomControl, Polyline } from 'react-leaflet';
 
 import ZoomifyLayer from './ZoomifyLayer';
 import LabeledMarker from './LabeledMarker';
 
+import sameDataLength from '../../util/sameDataLength';
 import leafletClickListener from './leafletClickListener';
 import leafletViewListener from './leafletViewListener';
 import xyToLeaflet from '../../util/xyToLeaflet';
@@ -15,6 +16,10 @@ const MAOKUN_URL =
   'https://barbierilow.faculty.history.ucsb.edu/Research/ZhengHeMapZoomify/ZhengHe/';
 const ATTRIBUTION =
   "<a href='https://en.wikipedia.org/wiki/Wubei_Zhi'>Mao Yuanyi</a> & <a href='https://barbierilow.faculty.history.ucsb.edu/Research/ZhengHeMapZoomify/ZhengHe.htm'>Prof. Anthony Barbieri</a>";
+const CENTER = [
+  MAOKUN_SIZE.coordinates.lat / 2,
+  MAOKUN_SIZE.coordinates.lng / 2,
+];
 
 const onZoomifyMap = (f) =>
   (f.geometry.type === 'Point' && f.geometry.zoomify[0]) ||
@@ -27,10 +32,7 @@ const MaoKunMap = forwardRef(
         <Map
           ref={mapRef}
           crs={CRS.Simple}
-          center={[
-            MAOKUN_SIZE.coordinates.lat / 2,
-            MAOKUN_SIZE.coordinates.lng / 2,
-          ]}
+          center={CENTER}
           zoom={3}
           onMove={leafletViewListener(onViewChange)}
           onZoomend={leafletViewListener(onViewChange)}
@@ -67,4 +69,4 @@ const MaoKunMap = forwardRef(
   }
 );
 
-export default MaoKunMap;
+export default memo(MaoKunMap, sameDataLength);

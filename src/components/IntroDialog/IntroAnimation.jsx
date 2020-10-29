@@ -45,7 +45,7 @@ export default function IntroDialog(props) {
         href="#continent"
         attributeName="opacity"
         values="1;0"
-        dur="3s"
+        dur="2s"
         fill="freeze"
       />
       <animate
@@ -54,7 +54,7 @@ export default function IntroDialog(props) {
         attributeName="d"
         values={`${coastStart};${coastStart};${coastMid};${coastEnd};${coastEnd};${coastMid};${coastStart}`}
         dur="6s"
-        begin="2s"
+        begin="1s"
         repeatCount="indefinite"
       />
       <animate
@@ -63,7 +63,7 @@ export default function IntroDialog(props) {
         attributeName="d"
         values={`${borneoStart};${borneoStart};${borneoMid};${borneoEnd};${borneoEnd};${borneoMid};${borneoStart}`}
         dur="6s"
-        begin="2s"
+        begin="1s"
         repeatCount="indefinite"
       />
       <animate
@@ -72,7 +72,7 @@ export default function IntroDialog(props) {
         attributeName="d"
         values={`${javaStart};${javaStart};${javaMid};${javaEnd};${javaEnd};${javaMid};${javaStart}`}
         dur="6s"
-        begin="2s"
+        begin="1s"
         repeatCount="indefinite"
       />
       <animate
@@ -81,7 +81,7 @@ export default function IntroDialog(props) {
         attributeName="d"
         values={`${sumatraStart};${sumatraStart};${sumatraMid};${sumatraEnd};${sumatraEnd};${sumatraMid};${sumatraStart}`}
         dur="6s"
-        begin="2s"
+        begin="1s"
         repeatCount="indefinite"
       />
       <animate
@@ -90,7 +90,7 @@ export default function IntroDialog(props) {
         attributeName="d"
         values={`${ceylonStart};${ceylonStart};${ceylonMid};${ceylonEnd};${ceylonEnd};${ceylonMid};${ceylonStart}`}
         dur="6s"
-        begin="2s"
+        begin="1s"
         repeatCount="indefinite"
       />
       <animate
@@ -99,7 +99,7 @@ export default function IntroDialog(props) {
         attributeName="d"
         values={`${hainanStart};${hainanStart};${hainanMid};${hainanEnd};${hainanEnd};${hainanMid};${hainanStart}`}
         dur="6s"
-        begin="2s"
+        begin="1s"
         repeatCount="indefinite"
       />
 
@@ -109,7 +109,7 @@ export default function IntroDialog(props) {
         attributeName="x"
         values="11200;11200;11800;14000;14000;11800;11200"
         dur="6s"
-        begin="2s"
+        begin="1s"
         repeatCount="indefinite"
       />
       <animate
@@ -118,7 +118,7 @@ export default function IntroDialog(props) {
         attributeName="y"
         values="7500;7500;6900;8400;8400;6900;7500"
         dur="6s"
-        begin="2s"
+        begin="1s"
         repeatCount="indefinite"
       />
       <animate
@@ -127,7 +127,7 @@ export default function IntroDialog(props) {
         attributeName="x"
         values="11800;11800;10800;8500;8500;10800;11800"
         dur="6s"
-        begin="2s"
+        begin="1s"
         repeatCount="indefinite"
       />
       <animate
@@ -136,7 +136,7 @@ export default function IntroDialog(props) {
         attributeName="y"
         values="9400;9400;9400;8300;8300;9400;9400"
         dur="6s"
-        begin="2s"
+        begin="1s"
         repeatCount="indefinite"
       />
       <animate
@@ -145,7 +145,7 @@ export default function IntroDialog(props) {
         attributeName="x"
         values="7800;7800;7800;2800;2800;7800;7800"
         dur="6s"
-        begin="2s"
+        begin="1s"
         repeatCount="indefinite"
       />
       <animate
@@ -154,7 +154,7 @@ export default function IntroDialog(props) {
         attributeName="y"
         values="9800;9800;9800;8550;8550;9800;9800"
         dur="6s"
-        begin="2s"
+        begin="1s"
         repeatCount="indefinite"
       />
       {/* @4700,7525? 
@@ -165,7 +165,7 @@ export default function IntroDialog(props) {
         type="rotate"
         values="0 0 0;0 0 0;0 0 0;15 0 0;15 0 0;0 0 0;"
         dur="6s"
-        begin="2s"
+        begin="1s"
         repeatCount="indefinite"
       /> */}
       <animate
@@ -174,7 +174,7 @@ export default function IntroDialog(props) {
         attributeName="x"
         values="5900;5900;5900;1500;1500;5900;5900"
         dur="6s"
-        begin="2s"
+        begin="1s"
         repeatCount="indefinite"
       />
       <animate
@@ -183,7 +183,7 @@ export default function IntroDialog(props) {
         attributeName="y"
         values="7400;7400;7400;9200;9200;7400;7400"
         dur="6s"
-        begin="2s"
+        begin="1s"
         repeatCount="indefinite"
       />
       <animate
@@ -192,7 +192,7 @@ export default function IntroDialog(props) {
         attributeName="x"
         values="2900;2900;3400;3600;3600;3400;2900"
         dur="6s"
-        begin="2s"
+        begin="1s"
         repeatCount="indefinite"
       />
       <animate
@@ -201,7 +201,7 @@ export default function IntroDialog(props) {
         attributeName="y"
         values="10000;10000;10200;9500;9500;10200;10000"
         dur="6s"
-        begin="2s"
+        begin="1s"
         repeatCount="indefinite"
       />
 

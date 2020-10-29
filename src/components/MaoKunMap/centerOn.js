@@ -10,14 +10,15 @@ export default (mapRef, center = MING_PALACE, margin = 800) => {
   if (!mapRef.current) return;
   if (!Array.isArray(center)) return;
   if (center.length === 0) return;
-
   if (typeof center[0] === 'number') {
     const leafletBounds = [
       xyToLatlng([center[0] - margin, center[1] - margin]),
       xyToLatlng([center[0] + margin, center[1] + margin]),
     ];
-
-    mapRef.current.leafletElement.flyToBounds(leafletBounds, { duration: 2 });
+  
+    mapRef.current.leafletElement.flyToBounds(leafletBounds, {
+      duration: 2,
+    });
     return;
   }
 

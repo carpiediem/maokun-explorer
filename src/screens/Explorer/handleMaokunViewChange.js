@@ -1,6 +1,6 @@
 import inMaokunView from '../../components/MaoKunMap/inMaokunView';
 import latlngBoundsReducer from '../../util/latlngBoundsReducer';
-import updateBounds from '../../components/Globe/updateBounds';
+import updateFov from '../../components/MiniMap/updateFov';
 
 const WHOLE_GLOBE = [
   [90, 180],
@@ -8,12 +8,11 @@ const WHOLE_GLOBE = [
 ];
 const BOUNDS_MARGIN = 0.08; // degrees latitude or longitude
 
-export default (modernMapRef, filteredPlaces, setPercentBounds) => (
-  percentBounds,
-  event
+export default (modernMapRef, minimapFovRef, filteredPlaces, selected) => (
+  percentBounds
 ) => {
-  // Update red box in MiniMap
-  setPercentBounds(percentBounds);
+  // Update red "field of view" box in MiniMap
+  updateFov(minimapFovRef, percentBounds);
 
   // Identify bounds of the places visible on the Mao Kun map
   const latlngBounds = filteredPlaces
@@ -24,9 +23,8 @@ export default (modernMapRef, filteredPlaces, setPercentBounds) => (
     [latlngBounds[1][0] + BOUNDS_MARGIN, latlngBounds[1][1] + BOUNDS_MARGIN],
   ];
 
-  // Update ModernMap
-  modernMapRef.current.leafletElement.fitBounds(boundsWithMargin);
-
-  // Update red box in Globe
-  updateBounds(boundsWithMargin);
+  // Update ModernMap (unless triggered by centerOn())
+  const timeSinceSelection = (Date.now() - selected.time) / 1000;
+  if (!selected.time || timeSinceSelection > 2)
+    modernMapRef.current.leafletElement.fitBounds(boundsWithMargin);
 };

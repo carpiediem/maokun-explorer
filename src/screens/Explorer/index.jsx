@@ -22,37 +22,38 @@ import maokunCenterOn from '../../components/MaoKunMap/centerOn';
 import modernCenterOn from '../../components/ModernMap/centerOn';
 
 import applyPrefs from './applyPrefs';
-import handleSelect from './handleSelect';
+import selectHof from './handleSelect';
 import handleMaokunViewChange from './handleMaokunViewChange';
+import handleModernViewChange from './handleModernViewChange';
 import DEFAULT_PREFS from '../../components/Menu/default-preferences.json';
 
 const PLACES_PATH = 'data/maokun-places.geo.json';
 const PATHS_PATH = 'data/maokun-paths.geo.json';
-const FULL_PERCENT_BOUNDS = { _northEast: [1, 0], _southWest: [0, 1] };
-const hashMatch = /^#\/(about|legend|glossary|navigation)$/.exec(
+const hashMatch = /^#\/(about|legend|glossary|navigation|place|path)/.exec(
   window.location.hash
 );
 
-function Explorer(props) {
+function Explorer() {
   const maokunMapRef = useRef(null);
   const modernMapRef = useRef(null);
+  const minimapFovRef = useRef(null);
   const globeFovRef = useRef(null);
   const [prefs, setPrefs] = useState(DEFAULT_PREFS);
-  const [percentBounds, setPercentBounds] = useState(FULL_PERCENT_BOUNDS);
-  const [places, setPlaces] = useState([]);
-  const [paths, setPaths] = useState([]);
-  const [selected, setSelected] = useState({});
+  const [data, setData] = useState({ places: [], paths: [] });
+  const [selected, setSelected] = useState({}); // CAN I GET RID OF THIS? WHY ISN'T MEMO KEEPING MODERNMAP FROM RERENDING
   const [dialog, setDialog] = useState(hashMatch ? hashMatch[1] : 'intro');
+
+  const handleSelect = selectHof(setSelected, data, maokunMapRef, modernMapRef);
 
   useEffect(() => {
     // Request data
     Promise.all([getGeoJson(PLACES_PATH), getGeoJson(PATHS_PATH)]).then(
       ([places, paths]) => {
-        setPlaces(places);
-        setPaths(paths);
+        setData({ places, paths });
 
         // Initialize to match URL hash
-        setSelected(readHash(places, paths, maokunMapRef, modernMapRef));
+        const toSelect = readHash(places, paths, maokunMapRef, modernMapRef);
+        if (toSelect !== {}) setSelected(toSelect);
       }
     );
   }, []);
@@ -61,7 +62,7 @@ function Explorer(props) {
     setPrefs(Object.assign({}, prefs, { [key]: value }));
   }
 
-  const filteredPlaces = places.filter(
+  const filteredPlaces = data.places.filter(
     applyPrefs(prefs.categories, prefs.voyages)
   );
 
@@ -80,29 +81,28 @@ function Explorer(props) {
         <MaoKunMap
           ref={maokunMapRef}
           places={filteredPlaces}
-          paths={paths}
-          categories={prefs.categories}
-          labelLocations={prefs.labelLocations}
+          paths={data.paths}
           onViewChange={handleMaokunViewChange(
             modernMapRef,
+            minimapFovRef,
             filteredPlaces,
-            setPercentBounds
+            selected
           )}
-          onSelect={handleSelect(setSelected, places, paths, modernMapRef)}
+          onSelect={handleSelect}
         />
         <ModernMap
           ref={modernMapRef}
           places={filteredPlaces}
-          paths={paths}
-          selected={selected}
+          paths={data.paths}
+          onViewChange={handleModernViewChange}
           labelLocations={prefs.labelLocations}
-          onSelect={handleSelect(setSelected, places, paths, modernMapRef)}
+          onSelect={handleSelect}
         />
       </SplitPane>
       <MiniMap
-        bounds={percentBounds}
+        fovRef={minimapFovRef}
         onClick={({ xRatio, yRatio }) => {
-          handleSelect(setSelected, places, paths, modernMapRef)({});
+          handleSelect();
           maokunCenterOn(maokunMapRef, [
             MAOKUN_SIZE.zoomify[0] * xRatio,
             MAOKUN_SIZE.zoomify[1] * yRatio,
@@ -141,14 +141,14 @@ function Explorer(props) {
         setPrefs={setPrefs}
       />
       <PointDetails
-        places={places}
+        places={data.places}
         id={selected.point}
-        onSelect={handleSelect(setSelected, places, paths, modernMapRef)}
+        onSelect={handleSelect}
       />
       <PathDetails
-        paths={paths}
+        paths={data.paths}
         id={selected.path}
-        onSelect={handleSelect(setSelected, places, paths, modernMapRef)}
+        onSelect={handleSelect}
       />
     </React.Fragment>
   );

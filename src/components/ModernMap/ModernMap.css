@@ -11,12 +11,13 @@
 }
 
 .modern .circle-marker {
+  stroke-width: 3px;
   stroke-opacity: 0;
   fill-opacity: 1;
 }
 
 .modern .circle-marker.selected {
-  stroke-width: 8;
+  /* stroke-width: 8; */
   fill-opacity: 0;
   stroke-opacity: 1;
 }
@@ -59,6 +60,10 @@
   stroke-opacity: 1;
 }
 
+.modern .circle-marker.not-on-mao-kun {
+  stroke-dasharray: 5;
+}
+
 .modern .leaflet-tooltip {
   margin-top: 6px;
   background-color: transparent;
@@ -71,11 +76,11 @@
   content: none;
 }
 
-.modern .path {
+.modern path.path {
   stroke: lightblue;
 }
 
-.modern path.selected {
+.modern path.path.selected {
   stroke-width: 10;
 }
 
