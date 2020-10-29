@@ -53,7 +53,7 @@ function Explorer() {
 
         // Initialize to match URL hash
         const toSelect = readHash(places, paths, maokunMapRef, modernMapRef);
-        if (toSelect !== {}) setSelected(toSelect);
+        if (toSelect.point || toSelect.path) setSelected(toSelect);
       }
     );
   }, []);

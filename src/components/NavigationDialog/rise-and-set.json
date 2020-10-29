@@ -1,0 +1,64 @@
+[
+  {
+    "name": "布司",
+    "pinyin": "Bùsī",
+    "riseLocationEn": "the Fartak Range, Yemen",
+    "setLocationEn": "Muscat, Oman",
+    "riseLat": 16.5,
+    "setLat": 23.7,
+    "candidates": [
+      {
+        "nameEn": "Pollux",
+        "declination": [29, 15, 18.2],
+        "rise": "9h19m",
+        "set": "23h02m"
+      },
+      {
+        "nameEn": "Procyon",
+        "declination": [6, 32, 58.3],
+        "rise": "9h49m",
+        "set": "22h15m"
+      },
+      {
+        "nameEn": "Acrab",
+        "declination": [-18, 3, 27.6],
+        "rise": "18h40m",
+        "set": "5h52m"
+      },
+      {
+        "nameEn": "Capella",
+        "declination": [45, 10, 27.7],
+        "rise": "6h11m",
+        "set": "21h15m"
+      },
+      {
+        "nameEn": "Scheat",
+        "declination": [24, 59, 24.8],
+        "rise": "0h51m",
+        "set": "14h17m"
+      },
+      {
+        "nameEn": "Fomalhaut",
+        "declination": [32, 37, 13.3],
+        "rise": "1h55m",
+        "set": "12h14m"
+      }
+    ]
+  },
+  {
+    "name": "斗",
+    "pinyin": "Dipper",
+    "riseLocationEn": "Qalhat, Oman",
+    "setLocationEn": "the Mudug region, Somalia",
+    "riseLat": 6.5,
+    "setLat": 22.6,
+    "candidates": [
+      {
+        "nameEn": "φ Sgr",
+        "declination": [72, 26, 10.5],
+        "rise": "21h45m",
+        "set": "8h50m"
+      }
+    ]
+  }
+]
