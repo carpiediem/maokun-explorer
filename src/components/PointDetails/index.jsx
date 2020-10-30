@@ -1,26 +1,18 @@
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
-import {
-  Drawer,
-  Card,
-  CardContent,
-  CardActions,
-  Chip,
-  IconButton,
-  Typography,
-  Tooltip,
-} from '@material-ui/core';
+import { Drawer, Card, CardContent, CardActions } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import MapIcon from '@material-ui/icons/Map';
 import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
 import ShareIcon from '@material-ui/icons/Share';
 
-import { LocaleContext } from '../../LocaleContext';
+import PointHeader from './PointHeader';
+import CategoryChip from './CategoryChip';
+import ModernNames from './ModernNames';
 import KamalDetails from './KamalDetails';
 import VisitDetails from './VisitDetails';
 import OtherPossibilities from './OtherPossibilities';
-import WikipediaButtonGroup, { WikipediaIcon } from './WikipediaButtonGroup';
-import COLORS from '../ConfigOptions/categories-colors.json';
+import CardAction from './CardAction';
+import WikipediaFlexiButton from './WikipediaFlexiButton/index';
 
 const drawerWidth = 260;
 
@@ -44,14 +36,10 @@ const useStyles = makeStyles((theme) => ({
       margin: '0 1px',
     },
   },
-  translation: { color: '#888', fontSize: '0.8em' },
-  otherNames: { color: '#888', fontSize: '0.8em' },
 }));
 
 function PointDetails(props) {
   const classes = useStyles();
-  const intl = useIntl();
-  const [locale] = React.useContext(LocaleContext);
 
   if (!props.places.length || props.id === null || props.id === undefined) {
     return null;
@@ -60,6 +48,14 @@ function PointDetails(props) {
   const { properties, geometry } = props.places.find(
     ({ properties: { id } }) => id === props.id
   );
+  const extraInfo =
+    properties.kamalNotes.length ||
+    properties.voyages.length ||
+    properties.otherPossibilities.length;
+  const mapUrl =
+    geometry.coordinates.length > 0
+      ? `https://www.google.com/maps/place/${geometry.coordinates[1]},${geometry.coordinates[0]}/@${geometry.coordinates[1]},${geometry.coordinates[0]},12z`
+      : null;
 
   return (
     <Drawer
@@ -71,57 +67,11 @@ function PointDetails(props) {
     >
       <Card className={classes.root}>
         <CardContent>
-          <Typography variant="h5" component="h2">
-            {properties.label}
-          </Typography>
-          <Typography variant="body2" component="p" className={classes.pinyin}>
-            {properties.pinyin}
-          </Typography>
-          <Typography
-            variant="body2"
-            component="p"
-            className={classes.translation}
-          >
-            {properties.translation}
-          </Typography>
-          <Chip
-            size="small"
-            label={intl.formatMessage({
-              id: `categories.${properties.category.toLowerCase()}`,
-              defaultMessage: properties.category,
-            })}
-            style={{ backgroundColor: COLORS[properties.category] }}
-          />
-
+          <PointHeader {...properties} />
+          <CategoryChip category={properties.category} />
           <hr />
-          <Typography variant="h5" component="h2">
-            {locale === 'en' ? properties.nameEn : properties.nameTc}
-          </Typography>
-          <Typography variant="body2" component="p" className={classes.region}>
-            {properties.region && (
-              <FormattedMessage
-                id={`regions.${properties.region.toLowerCase()}`}
-                defaultMessage={properties.region}
-              />
-            )}
-          </Typography>
-          <Typography
-            variant="body2"
-            component="p"
-            className={classes.otherNames}
-            title={intl.formatMessage({
-              id: 'details.aka',
-              defaultMessage: 'also known as',
-            })}
-          >
-            {locale === 'en' ? properties.othersEn : properties.othersTc}
-          </Typography>
-
-          {properties.kamalNotes.length ||
-          properties.voyages.length ||
-          properties.otherPossibilities.length ? (
-            <hr />
-          ) : null}
+          <ModernNames {...properties} />
+          {extraInfo ? <hr /> : null}
           <KamalDetails
             text={properties.kamalNotes}
             angle={geometry.kamalAngle}
@@ -130,67 +80,26 @@ function PointDetails(props) {
           <OtherPossibilities text={properties.otherPossibilities} />
         </CardContent>
         <CardActions>
-          {geometry.coordinates.length > 0 && (
-            <Tooltip
-              title={intl.formatMessage({
-                id: 'details.googleMaps',
-                defaultMessage: 'View in Google Maps',
-              })}
-            >
-              <IconButton
-                component="a"
-                href={`https://www.google.com/maps/place/${geometry.coordinates[1]},${geometry.coordinates[0]}/@${geometry.coordinates[1]},${geometry.coordinates[0]},12z`}
-                target="_blank"
-              >
-                <MapIcon />
-              </IconButton>
-            </Tooltip>
-          )}
-          {properties.sourceUrl && (
-            <Tooltip
-              title={intl.formatMessage({
-                id: 'details.reference',
-                defaultMessage: 'View reference',
-              })}
-            >
-              <IconButton
-                component="a"
-                href={properties.sourceUrl}
-                target="_blank"
-              >
-                <LocalLibraryIcon />
-              </IconButton>
-            </Tooltip>
-          )}
-          {(properties.wikiEn || properties.wikiZh) &&
-            (properties.wikiEn && properties.wikiZh ? (
-              <WikipediaButtonGroup {...properties} />
-            ) : (
-              <Tooltip
-                title={intl.formatMessage({
-                  id: 'details.reference',
-                  defaultMessage: 'View reference',
-                })}
-              >
-                <IconButton
-                  component="a"
-                  href={properties.wikiEn || properties.wikiZh}
-                  target="_blank"
-                >
-                  <WikipediaIcon />
-                </IconButton>
-              </Tooltip>
-            ))}
-          <Tooltip
-            title={intl.formatMessage({
-              id: 'details.directlink',
-              defaultMessage: 'Direct Link',
-            })}
-          >
-            <IconButton component="a" href={`#/place/${properties.id}`}>
-              <ShareIcon />
-            </IconButton>
-          </Tooltip>
+          <CardAction
+            href={mapUrl}
+            icon={<MapIcon />}
+            messageId="details.googleMaps"
+            defaultMessage="View in Google Maps"
+          />
+          <CardAction
+            href={properties.sourceUrl}
+            icon={<LocalLibraryIcon />}
+            messageId="details.reference"
+            defaultMessage="View reference"
+          />
+          <WikipediaFlexiButton {...properties} />
+          <CardAction
+            href={`#/place/${properties.id}`}
+            external={false}
+            icon={<ShareIcon />}
+            messageId="details.directlink"
+            defaultMessage="Direct Link"
+          />
         </CardActions>
       </Card>
     </Drawer>
