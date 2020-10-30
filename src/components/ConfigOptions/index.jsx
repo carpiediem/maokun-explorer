@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import {
-  List,
-  ListSubheader,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  ListItemSecondaryAction,
-  Switch,
-} from '@material-ui/core';
+import List from '@material-ui/core/List';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import Switch from '@material-ui/core/Switch';
 import { makeStyles } from '@material-ui/core/styles';
 import TranslateIcon from '@material-ui/icons/Translate';
 import LockIcon from '@material-ui/icons/Lock';
@@ -19,31 +17,15 @@ import TextRotationNoneIcon from '@material-ui/icons/TextRotationNone';
 import LanguageDialog from './LanguageDialog';
 import FilterDialog from './FilterDialog';
 import allOrCount from './allOrCount';
+import ListItemToggler from './ListItemToggler';
 
-import CATEGORIES from './categories.json';
-const VOYAGES = ['none', 1, 2, 3, 4, 5, 6, 7];
+import filterChangeHof from './filterChangeHof';
+
 const LOCALES = {
   en: 'English',
   zh: 'Traditional Chinese',
   'zh-cn': 'Simplified Chinese',
 };
-
-const ALL_CATEGORIES = CATEGORIES.reduce((agg, cur) => {
-  agg[cur] = true;
-  return agg;
-}, {});
-const NO_CATEGORIES = CATEGORIES.reduce((agg, cur) => {
-  agg[cur] = false;
-  return agg;
-}, {});
-const ALL_VOYAGES = VOYAGES.reduce((agg, cur) => {
-  agg[cur] = true;
-  return agg;
-}, {});
-const NO_VOYAGES = VOYAGES.reduce((agg, cur) => {
-  agg[cur] = false;
-  return agg;
-}, {});
 
 const useStyles = makeStyles((theme) => ({
   listItemText: {
@@ -58,6 +40,17 @@ function ConfigOptions(props) {
   const intl = useIntl();
   const classes = useStyles();
   const [dialog, setDialog] = useState(null);
+
+  const toggle = (pref) => () => props.onChange(pref, !props[pref]);
+  const handleLanguageChange = (language) => {
+    props.onChange('language', language);
+    setDialog(null);
+  };
+  const handleFilterChange = filterChangeHof(
+    props.onChange,
+    props.categories,
+    props.voyages
+  );
 
   return (
     <React.Fragment>
@@ -103,124 +96,40 @@ function ConfigOptions(props) {
           />
         </ListItem>
 
-        <ListItem
-          button
-          onClick={() => props.onChange('lockPanes', !props.lockPanes)}
-        >
-          <ListItemIcon>
-            <LockIcon />
-          </ListItemIcon>
-          <ListItemText
-            id="switch-list-lock-map-sizes"
-            primary={intl.formatMessage({
-              id: 'config.lockPanes',
-              defaultMessage: 'Lock Map Sizes',
-            })}
-            secondary={intl.formatMessage({
-              id: props.lockPanes ? 'config.locked' : 'config.draggable',
-              defaultMessage: props.lockPanes ? 'Locked' : 'Draggable',
-            })}
-          />
-          <ListItemSecondaryAction>
-            <Switch
-              color="primary"
-              edge="end"
-              checked={props.lockPanes}
-              inputProps={{ 'aria-labelledby': 'switch-list-lock-map-sizes' }}
-            />
-          </ListItemSecondaryAction>
-        </ListItem>
-        <ListItem
-          button
-          onClick={() => props.onChange('syncMaps', !props.syncMaps)}
-        >
-          <ListItemIcon>
-            <SyncIcon />
-          </ListItemIcon>
-          <ListItemText
-            id="switch-list-sync-maps"
-            primary={intl.formatMessage({
-              id: 'config.syncMaps',
-              defaultMessage: 'Sync Map Views',
-            })}
-            secondary={intl.formatMessage({
-              id: props.syncMaps ? 'config.synced' : 'config.independant',
-              defaultMessage: props.syncMaps ? 'Synced' : 'Independant',
-            })}
-          />
-          <ListItemSecondaryAction>
-            <Switch
-              color="primary"
-              edge="end"
-              checked={props.syncMaps}
-              inputProps={{ 'aria-labelledby': 'switch-list-sync-maps' }}
-            />
-          </ListItemSecondaryAction>
-        </ListItem>
-        <ListItem
-          button
-          onClick={() =>
-            props.onChange('labelLocations', !props.labelLocations)
-          }
-        >
-          <ListItemIcon>
-            <TextRotationNoneIcon />
-          </ListItemIcon>
-          <ListItemText
-            id="switch-list-label-locations"
-            primary={intl.formatMessage({
-              id: 'config.labelLocations',
-              defaultMessage: 'Show Place Names',
-            })}
-            secondary={intl.formatMessage({
-              id: props.labelLocations ? 'config.shown' : 'config.hidden',
-              defaultMessage: props.labelLocations
-                ? 'Labels are shown'
-                : 'Labels are hidden',
-            })}
-          />
-          <ListItemSecondaryAction>
-            <Switch
-              color="primary"
-              edge="end"
-              checked={props.labelLocations}
-              inputProps={{ 'aria-labelledby': 'switch-list-label-locations' }}
-            />
-          </ListItemSecondaryAction>
-        </ListItem>
+        <ListItemToggler
+          labelMessageId="config.lockPanes"
+          valueMessageIds={['config.draggable', 'config.locked']}
+          checked={props.lockPanes}
+          onClick={toggle('lockPanes')}
+          icon={<LockIcon />}
+        />
+        <ListItemToggler
+          labelMessageId="config.syncMaps"
+          valueMessageIds={['config.independant', 'config.synced']}
+          checked={props.syncMaps}
+          onClick={toggle('syncMaps')}
+          icon={<SyncIcon />}
+        />
+        <ListItemToggler
+          labelMessageId="config.labelLocations"
+          valueMessageIds={['config.hidden', 'config.shown']}
+          checked={props.labelLocations}
+          onClick={toggle('labelLocations')}
+          icon={<TextRotationNoneIcon />}
+        />
       </List>
+
       <LanguageDialog
         open={dialog === 'language'}
         categories={props.language}
-        onChange={(language) => {
-          props.onChange('language', language);
-          setDialog(null);
-        }}
+        onChange={handleLanguageChange}
         onClose={() => setDialog(null)}
       />
       <FilterDialog
         open={dialog === 'categories'}
         categories={props.categories}
         voyages={props.voyages}
-        onChange={(group, key, value) => {
-          if (key === null) {
-            switch (group) {
-              case 'categories':
-                props.onChange(group, value ? ALL_CATEGORIES : NO_CATEGORIES);
-                break;
-              case 'voyages':
-                props.onChange(group, value ? ALL_VOYAGES : NO_VOYAGES);
-                break;
-              default:
-            }
-
-            return;
-          }
-          props.onChange(
-            group,
-            Object.assign({}, props[group], { [key]: value })
-          );
-        }}
+        onChange={handleFilterChange}
         onClose={() => setDialog(null)}
       />
     </React.Fragment>
