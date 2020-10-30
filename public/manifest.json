@@ -1,6 +1,6 @@
 {
   "short_name": "Mao Kun Explorer",
-  "name": "Mao Kun Explorer: Navigate the Voyages of Zheng He",
+  "name": "Mao Kun Explorer: Navigate the 15th-Century Voyages of Zheng He",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,6 +10,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#b95644",
   "background_color": "#ffffff"
 }
