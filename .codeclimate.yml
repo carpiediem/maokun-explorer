@@ -1,0 +1,7 @@
+version: '2'
+exclude_patterns:
+  - '**/*.test.js'
+checks:
+  method-lines:
+    config:
+      threshold: 40
