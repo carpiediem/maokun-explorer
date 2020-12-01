@@ -41,7 +41,7 @@
   "devDependencies": {
     "better-docs": "^2.3.2",
     "cli-progress": "^3.8.2",
-    "cross-env": "^7.0.2",
+    "cross-env": "^7.0.3",
     "css-mediaquery": "^0.1.2",
     "csv-parse": "^4.12.0",
     "extract-react-intl-messages": "4.1.1",
