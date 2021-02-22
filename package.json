@@ -34,7 +34,7 @@
     "react-intl": "^5.8.8",
     "react-katex": "^2.0.2",
     "react-leaflet": "^2.8.0",
-    "react-scripts": "^4.0.0",
+    "react-scripts": "^4.0.3",
     "react-split-pane": "^0.1.92",
     "topojson-client": "^3.1.0"
   },
