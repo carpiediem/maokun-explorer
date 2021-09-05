@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { toDataURL } from 'qrcode';
 import { useIntl } from 'react-intl';
 import {
   Accordion,
@@ -43,17 +44,30 @@ const useStyles = makeStyles((theme) => ({
   text: { paddingLeft: 16, fontSize: '0.75em', '& li': { padding: 0 } },
   translation: { paddingLeft: 16, fontSize: '0.85em', '& li': { padding: 0 } },
   accordion: { marginTop: '1em' },
+  qrcode: {
+    display: 'block',
+    margin: '10px auto',
+  },
 }));
 
 function PathDetails(props) {
   const classes = useStyles();
   const intl = useIntl();
+  const [qrcode, setQrcode] = useState('https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif');
+  const [showingQrcode, setShowingQrcode] = useState(false);
+
+  const { properties } = props.paths?.find(({ properties: { code } }) => code === props.id) || {};
+
+  useEffect(() => {
+    if (!properties?.code) return;
+
+    setShowingQrcode(false);
+    toDataURL(`http://zhenghe.rslc.us/#/path/${properties.code}`).then(setQrcode);
+  }, [setQrcode, properties?.code]);
 
   if (!props.paths.length || !props.id) {
     return null;
   }
-
-  const { properties } = props.paths.find(({ properties: { code } }) => code === props.id);
 
   return (
     <Drawer
@@ -67,9 +81,15 @@ function PathDetails(props) {
         <CardContent className={classes.content}>
           <Typography variant="h5" component="h2" className={classes.name}>
             {intl.locale === 'en' ? properties.name : properties.nameTc}
-            <IconButton component="a" href={`#/path/${properties.code}`}>
-              <ShareIcon className={classes.share} />
-            </IconButton>
+            {props.outlinksDisabled ? (
+              <IconButton onClick={() => setShowingQrcode(true)}>
+                <ShareIcon className={classes.share} />
+              </IconButton>
+            ) : (
+              <IconButton component="a" href={`#/path/${properties.code}`}>
+                <ShareIcon className={classes.share} />
+              </IconButton>
+            )}
           </Typography>
           {properties.direction && (
             <Chip
@@ -80,6 +100,8 @@ function PathDetails(props) {
               className={classes[properties.direction]}
             />
           )}
+
+          {showingQrcode && <img alt="QR code of the URL for this path" src={qrcode} className={classes.qrcode} />}
 
           <Typography
             variant="body2"

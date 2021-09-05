@@ -11,6 +11,7 @@
   "about.p5": "This website was built by <a0>Ryan Carpenter</a0>, with the invaluable help of several historians and experts. I was initially inspired by <a1>Anthony Barbieri</a1>, who transformed scans of the map into an image tileset capable of powering interactive maps. <a2>Aaron Jia-rong CHEN (陈佳荣)</a2> has compiled an encyclopedic catalog of Ming- and Qing-era maps of Southeast Asia and the Indian Ocean in <a3>南溟網 (South Seas Network)</a3>. He has also been kind enough to answer many questions with remarkable speed and detail and also shared the notes of his colleague <a4>Jianqiu ZHU (朱鑒秋)</a4>. The work of <a5>Sheng-I HSU (徐勝一)</a5> helped me understand how the Earth's precession explains why the <a6>kamal</a6> measurements taken by Zheng He don't match what we would see today. He was also able to answer several of my questions regarding stellar observations in southeast Africa and the Maldives, where Polaris was not visible.",
   "about.p6": "<a7>José Manuel Malhão Pereira</a7> has done so much to illuminate the use of the navigation tools available to fifteenth century sailors, including helpful translations of his work from Portugese to English. <a8>Sally K. Church</a8> answered innumerable questions and illuminated my understanding of the research of JVG Mills (especially helpful when research libraries are closed for the pandemic). Lastly, Reddit users cabaran, rankwally, ralmin, Time_Swallow, treyparkermattstone, Rogerinplay, and soowhooh in <a9>the /r/ChineseLanguage community</a9> were a big help with transcribing and translating the map text. User houseforever led the translation of this page and the glossary into Chinese. Thanks so much to each of you.",
   "about.p7": "This site makes extensive use of open-source software. See a full OSS attribution list <a1>here</a1>.",
+  "about.qr": "To access project sources, download data sets, and link to other details, please visit the site on your own device.",
 
   "glossary.title": "Glossary of Unusual Chinese Characters",
   "glossary.衛": "A 'guard,' the highest-level unit in the Ming military hierarchy.  About 20% of the population of Ming China lived in 'military households,' which were expected to each supply one man to the army. The organization of these households was called the <a1>wei-suo</a1> or guard-battalion system, referring to the hierarchy of 5,600-man guards, 1,120-man battalions, and 112-man companies (百户), 56-man platoons (總旗), and 12-man squads (小旗).",
@@ -35,5 +36,18 @@
   "voyages.4": "4th voyage: 1413-15",
   "voyages.5": "5th voyage: 1416-19",
   "voyages.6": "6th voyage: 1421-22",
-  "voyages.7": "7th voyage: 1431-33"
+  "voyages.7": "7th voyage: 1431-33",
+
+  "en": "English",
+  "zh": "Chinese",
+  "config.lockPanes": "Lock Panes",
+  "config.locked": "Locked",
+  "config.draggable": "Draggable",
+  "config.syncMaps": "Sync Maps",
+  "config.synced": "Synced",
+  "config.independant": "Independant",
+  "config.showOverlays": "Show Overlays",
+  "config.labelLocations": "Label Locations",
+  "config.hidden": "Hidden",
+  "config.shown": "Shown"
 }

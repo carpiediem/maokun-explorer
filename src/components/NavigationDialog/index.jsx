@@ -182,27 +182,39 @@ export default function NavigationDialog(props) {
           <TableBody>
             <TableRow className={classes.row}>
               <TableCell>
-                <a href="https://en.wikipedia.org/wiki/Polaris" target="_blank" rel="noopener noreferrer">
-                  Polaris
-                </a>
+                {props.outlinksDisabled ? (
+                  'Polaris'
+                ) : (
+                  <a href="https://en.wikipedia.org/wiki/Polaris" target="_blank" rel="noopener noreferrer">
+                    Polaris
+                  </a>
+                )}
               </TableCell>
               <TableCell>0h09m46.20s</TableCell>
               <TableCell>+86º08'42.6"</TableCell>
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>
-                <a href="https://en.wikipedia.org/wiki/Chi_Draconis" target="_blank" rel="noopener noreferrer">
-                  χ Dra
-                </a>
+                {props.outlinksDisabled ? (
+                  'χ Dra'
+                ) : (
+                  <a href="https://en.wikipedia.org/wiki/Chi_Draconis" target="_blank" rel="noopener noreferrer">
+                    χ Dra
+                  </a>
+                )}
               </TableCell>
               <TableCell>18h31m19.12s</TableCell>
               <TableCell>+72º25'29.9"</TableCell>
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>
-                <a href="https://en.wikipedia.org/wiki/Beta_Ursae_Minoris" target="_blank" rel="noopener noreferrer">
-                  Kochab
-                </a>
+                {props.outlinksDisabled ? (
+                  'Kochab'
+                ) : (
+                  <a href="https://en.wikipedia.org/wiki/Beta_Ursae_Minoris" target="_blank" rel="noopener noreferrer">
+                    Kochab
+                  </a>
+                )}
               </TableCell>
               <TableCell>14h54m56.08s</TableCell>
               <TableCell>+76º30'34.6"</TableCell>
@@ -258,9 +270,13 @@ export default function NavigationDialog(props) {
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>
-                <a href="https://en.wikipedia.org/wiki/Pollux_(star)" target="_blank" rel="noopener noreferrer">
-                  Pollux
-                </a>
+                {props.outlinksDisabled ? (
+                  'Pollux'
+                ) : (
+                  <a href="https://en.wikipedia.org/wiki/Pollux_(star)" target="_blank" rel="noopener noreferrer">
+                    Pollux
+                  </a>
+                )}
               </TableCell>
               <TableCell>+29º 15' 18.2"</TableCell>
               <TableCell className={classes.daylight}>{getAzimuth(29, 15, 18.2, 16.5)}</TableCell>
@@ -270,9 +286,13 @@ export default function NavigationDialog(props) {
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>
-                <a href="https://en.wikipedia.org/wiki/Procyon" target="_blank" rel="noopener noreferrer">
-                  Procyon
-                </a>
+                {props.outlinksDisabled ? (
+                  'Procyon'
+                ) : (
+                  <a href="https://en.wikipedia.org/wiki/Procyon" target="_blank" rel="noopener noreferrer">
+                    Procyon
+                  </a>
+                )}
               </TableCell>
               <TableCell>+6º 32' 58.3"</TableCell>
               <TableCell className={classes.daylight}>TBD</TableCell>
@@ -282,9 +302,13 @@ export default function NavigationDialog(props) {
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>
-                <a href="https://en.wikipedia.org/wiki/Beta_Scorpii" target="_blank" rel="noopener noreferrer">
-                  Acrab
-                </a>
+                {props.outlinksDisabled ? (
+                  'Acrab'
+                ) : (
+                  <a href="https://en.wikipedia.org/wiki/Beta_Scorpii" target="_blank" rel="noopener noreferrer">
+                    Acrab
+                  </a>
+                )}
               </TableCell>
               <TableCell>-18º 3' 27.6"</TableCell>
               <TableCell>TBD</TableCell>
@@ -294,9 +318,13 @@ export default function NavigationDialog(props) {
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>
-                <a href="https://en.wikipedia.org/wiki/Capella" target="_blank" rel="noopener noreferrer">
-                  Capella
-                </a>
+                {props.outlinksDisabled ? (
+                  'Capella'
+                ) : (
+                  <a href="https://en.wikipedia.org/wiki/Capella" target="_blank" rel="noopener noreferrer">
+                    Capella
+                  </a>
+                )}
               </TableCell>
               <TableCell>+45º 10' 27.7"</TableCell>
               <TableCell className={classes.daylight}>TBD</TableCell>
@@ -306,9 +334,13 @@ export default function NavigationDialog(props) {
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>
-                <a href="https://en.wikipedia.org/wiki/Beta_Pegasi" target="_blank" rel="noopener noreferrer">
-                  Scheat
-                </a>
+                {props.outlinksDisabled ? (
+                  'Scheat'
+                ) : (
+                  <a href="https://en.wikipedia.org/wiki/Beta_Pegasi" target="_blank" rel="noopener noreferrer">
+                    Scheat
+                  </a>
+                )}
               </TableCell>
               <TableCell>+24º 59' 24.8"</TableCell>
               <TableCell>TBD</TableCell>
@@ -318,9 +350,13 @@ export default function NavigationDialog(props) {
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>
-                <a href="https://en.wikipedia.org/wiki/Fomalhaut" target="_blank" rel="noopener noreferrer">
-                  Fomalhaut
-                </a>
+                {props.outlinksDisabled ? (
+                  'Fomalhaut'
+                ) : (
+                  <a href="https://en.wikipedia.org/wiki/Fomalhaut" target="_blank" rel="noopener noreferrer">
+                    Fomalhaut
+                  </a>
+                )}
               </TableCell>
               <TableCell>+32º 37' 13.3"</TableCell>
               <TableCell>TBD</TableCell>
@@ -339,13 +375,17 @@ export default function NavigationDialog(props) {
             <TableRow className={classes.row}>
               <TableCell>
                 斗宿一 (
-                <a
-                  href="https://en.wikipedia.org/wiki/Dipper_(Chinese_constellation)"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  φ Sgr
-                </a>
+                {props.outlinksDisabled ? (
+                  'φ Sgr'
+                ) : (
+                  <a
+                    href="https://en.wikipedia.org/wiki/Dipper_(Chinese_constellation)"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    φ Sgr
+                  </a>
+                )}
                 )
               </TableCell>
               <TableCell>+72º 26' 10.5"</TableCell>

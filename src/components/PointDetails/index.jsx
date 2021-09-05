@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { toDataURL } from 'qrcode';
 import { Drawer, Card, CardContent, CardActions } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import MapIcon from '@material-ui/icons/Map';
@@ -36,22 +37,31 @@ const useStyles = makeStyles((theme) => ({
       margin: '0 1px',
     },
   },
+  qrcode: {
+    display: 'block',
+    margin: '10px auto',
+  },
 }));
 
 function PointDetails(props) {
   const classes = useStyles();
+  const [qrcode, setQrcode] = useState('https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif');
+  const [showingQrcode, setShowingQrcode] = useState(false);
+
+  const { properties, geometry } = props.places?.find(({ properties: { id } }) => id === props.id) || {};
+
+  useEffect(() => {
+    if (!properties?.id) return;
+
+    setShowingQrcode(false);
+    toDataURL(`http://zhenghe.rslc.us/#/place/${properties.id}`).then(setQrcode);
+  }, [setQrcode, properties?.id]);
 
   if (!props.places.length || props.id === null || props.id === undefined) {
     return null;
   }
 
-  const { properties, geometry } = props.places.find(
-    ({ properties: { id } }) => id === props.id
-  );
-  const extraInfo =
-    properties.kamalNotes.length ||
-    properties.voyages.length ||
-    properties.otherPossibilities.length;
+  const extraInfo = properties.kamalNotes.length || properties.voyages.length || properties.otherPossibilities.length;
   const mapUrl =
     geometry.coordinates.length > 0
       ? `https://www.google.com/maps/place/${geometry.coordinates[1]},${geometry.coordinates[0]}/@${geometry.coordinates[1]},${geometry.coordinates[0]},12z`
@@ -75,29 +85,43 @@ function PointDetails(props) {
           <KamalDetails text={properties.kamalNotes} angle={geometry.kamalAngle} />
           <VisitDetails voyages={properties.voyages} />
           <OtherPossibilities text={properties.otherPossibilities} />
+          {showingQrcode && <img alt="QR code of the URL for this place" src={qrcode} className={classes.qrcode} />}
         </CardContent>
-        <CardActions>
-          <CardAction
-            href={mapUrl}
-            icon={<MapIcon />}
-            messageId="details.googleMaps"
-            defaultMessage="View in Google Maps"
-          />
-          <CardAction
-            href={properties.sourceUrl}
-            icon={<LocalLibraryIcon />}
-            messageId="details.reference"
-            defaultMessage="View reference"
-          />
-          <WikipediaFlexiButton {...properties} />
-          <CardAction
-            href={`#/place/${properties.id}`}
-            external={false}
-            icon={<ShareIcon />}
-            messageId="details.directlink"
-            defaultMessage="Direct Link"
-          />
-        </CardActions>
+        {props.outlinksDisabled ? (
+          !showingQrcode && (
+            <CardActions>
+              <CardAction
+                onClick={() => setShowingQrcode(true)}
+                icon={<ShareIcon />}
+                messageId="details.qrcode"
+                defaultMessage="Share via QR Code"
+              />
+            </CardActions>
+          )
+        ) : (
+          <CardActions>
+            <CardAction
+              href={mapUrl}
+              icon={<MapIcon />}
+              messageId="details.googleMaps"
+              defaultMessage="View in Google Maps"
+            />
+            <CardAction
+              href={properties.sourceUrl}
+              icon={<LocalLibraryIcon />}
+              messageId="details.reference"
+              defaultMessage="View reference"
+            />
+            <WikipediaFlexiButton {...properties} />
+            <CardAction
+              href={`#/place/${properties.id}`}
+              external={false}
+              icon={<ShareIcon />}
+              messageId="details.directlink"
+              defaultMessage="Direct Link"
+            />
+          </CardActions>
+        )}
       </Card>
     </Drawer>
   );

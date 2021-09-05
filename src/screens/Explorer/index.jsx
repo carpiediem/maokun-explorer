@@ -41,6 +41,7 @@ function Explorer() {
   const [selected, setSelected] = useState({}); // CAN I GET RID OF THIS? WHY ISN'T MEMO KEEPING MODERNMAP FROM RERENDING
   const [dialog, setDialog] = useState(hashMatch ? hashMatch[1] : 'intro');
 
+  const outlinksDisabled = document.location.pathname === '/nls';
   const handleSelect = selectHof(setSelected, data, maokunMapRef, modernMapRef);
 
   useEffect(() => {
@@ -101,38 +102,18 @@ function Explorer() {
           modernCenterOn(modernMapRef);
         }}
       />
-      <AboutDialog
-        open={dialog === 'about'}
-        handleClose={() => setDialog(null)}
-      />
-      <LegendDialog
-        open={dialog === 'legend'}
-        handleClose={() => setDialog(null)}
-      />
-      <GlossaryDialog
-        open={dialog === 'glossary'}
-        handleClose={() => setDialog(null)}
-      />
-      <NavigationDialog
-        open={dialog === 'navigation'}
-        handleClose={() => setDialog(null)}
-      />
-      <Menu
-        prefs={prefs}
-        onChange={handlePrefsChange}
-        setDialog={setDialog}
-        setPrefs={setPrefs}
-      />
+      <AboutDialog open={dialog === 'about'} handleClose={() => setDialog(null)} outlinksDisabled={outlinksDisabled} />
+      <LegendDialog open={dialog === 'legend'} handleClose={() => setDialog(null)} />
+      <GlossaryDialog open={dialog === 'glossary'} handleClose={() => setDialog(null)} outlinksDisabled={outlinksDisabled} />
+      <NavigationDialog open={dialog === 'navigation'} handleClose={() => setDialog(null)} outlinksDisabled={outlinksDisabled} />
+      <Menu prefs={prefs} onChange={handlePrefsChange} setDialog={setDialog} setPrefs={setPrefs} />
       <PointDetails
         places={data.places}
         id={selected.point}
         onSelect={handleSelect}
+        outlinksDisabled={outlinksDisabled}
       />
-      <PathDetails
-        paths={data.paths}
-        id={selected.path}
-        onSelect={handleSelect}
-      />
+      <PathDetails paths={data.paths} id={selected.path} onSelect={handleSelect} outlinksDisabled={outlinksDisabled} />
     </React.Fragment>
   );
 }

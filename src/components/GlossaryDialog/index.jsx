@@ -58,6 +58,7 @@ export default function GlossaryDialog(props) {
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Military_of_the_Ming_dynasty#Guard_battalion_system'
                   : 'https://zh.wikipedia.org/wiki/%E8%A1%9B%E6%89%80%E5%88%B6',
+                props.outlinksDisabled,
               ),
             }}
           />
@@ -76,8 +77,12 @@ export default function GlossaryDialog(props) {
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Points_of_the_compass#Chinese_compass_points'
                   : 'https://zh.wikipedia.org/zh-hk/%E6%B5%B7%E9%81%93%E9%92%88%E7%BB%8F',
+                props.outlinksDisabled,
               ),
-              a2: externalLink('https://www.nasa.gov/sites/default/files/files/SMI_Problem12.pdf'),
+              a2: externalLink(
+                'https://www.nasa.gov/sites/default/files/files/SMI_Problem12.pdf',
+                props.outlinksDisabled,
+              ),
             }}
           />
           <GlossaryItem character="托" pinyin="tuō" definitionId="glossary.托" />
@@ -90,6 +95,7 @@ export default function GlossaryDialog(props) {
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Kamal_(navigation)'
                   : 'https://zh.wikipedia.org/wiki/%E8%BF%87%E6%B4%8B%E7%89%B5%E6%98%9F%E6%9C%AF#%E7%89%B5%E6%98%9F%E6%9D%BF',
+                props.outlinksDisabled,
               ),
             }}
           />
@@ -107,11 +113,13 @@ export default function GlossaryDialog(props) {
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Polaris'
                   : 'https://zh.wikipedia.org/wiki/%E5%8B%BE%E9%99%B3%E4%B8%80',
+                props.outlinksDisabled,
               ),
               a2: externalLink(
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Axial_precession'
                   : 'https://zh.wikipedia.org/wiki/%E6%AD%B2%E5%B7%AE',
+                props.outlinksDisabled,
               ),
             }}
           />
@@ -124,16 +132,19 @@ export default function GlossaryDialog(props) {
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Cassiopeia_in_Chinese_astronomy'
                   : 'https://zh.wikipedia.org/wiki/%E8%8F%AF%E8%93%8B_(%E6%98%9F%E5%AE%98)',
+                props.outlinksDisabled,
               ),
               a2: externalLink(
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Chi_Draconis'
                   : 'https://zh.wikipedia.org/wiki/%E5%BE%A1%E5%A5%B3%E5%9B%9B',
+                props.outlinksDisabled,
               ),
               a3: externalLink(
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Beta_Ursae_Minoris'
                   : 'https://zh.wikipedia.org/wiki/%E5%8C%97%E6%A5%B5%E4%BA%8C',
+                props.outlinksDisabled,
               ),
             }}
           />
@@ -146,31 +157,37 @@ export default function GlossaryDialog(props) {
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Pollux_(star)'
                   : 'https://zh.wikipedia.org/wiki/%E5%8C%97%E6%B2%B3%E4%B8%89',
+                props.outlinksDisabled,
               ),
               a2: externalLink(
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Procyon'
                   : 'https://zh.wikipedia.org/wiki/%E5%8D%97%E6%B2%B3%E4%B8%89',
+                props.outlinksDisabled,
               ),
               a3: externalLink(
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Beta_Scorpii'
                   : 'https://zh.wikipedia.org/wiki/%E6%88%BF%E5%AE%BF%E5%9B%9B',
+                props.outlinksDisabled,
               ),
               a4: externalLink(
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Capella'
                   : 'https://zh.wikipedia.org/wiki/%E4%BA%94%E8%BB%8A%E4%BA%8C',
+                props.outlinksDisabled,
               ),
               a5: externalLink(
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Beta_Pegasi'
                   : 'https://zh.wikipedia.org/wiki/%E5%AE%A4%E5%AE%BF%E4%BA%8C',
+                props.outlinksDisabled,
               ),
               a6: externalLink(
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Fomalhaut'
                   : 'https://zh.wikipedia.org/wiki/%E5%8C%97%E8%90%BD%E5%B8%88%E9%97%A8',
+                props.outlinksDisabled,
               ),
             }}
           />
@@ -183,6 +200,7 @@ export default function GlossaryDialog(props) {
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Dipper_(Chinese_constellation)'
                   : 'https://zh.wikipedia.org/wiki/%E6%96%97_(%E6%98%9F%E5%AE%98)',
+                props.outlinksDisabled,
               ),
             }}
           />
