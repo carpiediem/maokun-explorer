@@ -40,14 +40,7 @@ export default function IntroDialog(props) {
       xlink="http://www.w3.org/1999/xlink"
       className={classes.svg}
     >
-      <animate
-        id="fade"
-        href="#continent"
-        attributeName="opacity"
-        values="1;0"
-        dur="2s"
-        fill="freeze"
-      />
+      <animate id="fade" href="#continent" attributeName="opacity" values="1;0" dur="2s" fill="freeze" />
       <animate
         id="warploop-coastline"
         href="#coastline"

@@ -39,17 +39,11 @@ describe('maokun-places.geo.json', () => {
       expect(f.properties.othersTc).toEqual(expect.any(String));
       expect(f.properties.othersEn).toEqual(expect.any(String));
       expect(f.properties.region).toMatch(/[\w-]+/);
-      expect(CATEGORIES).toEqual(
-        expect.arrayContaining([f.properties.category])
-      );
+      expect(CATEGORIES).toEqual(expect.arrayContaining([f.properties.category]));
       expect(f.properties.kamalNotes).toEqual(expect.any(String));
       expect(f.properties.voyages).toEqual(expect.any(Array));
-      f.properties.voyages.forEach((i) =>
-        expect(i).toEqual(expect.any(Number))
-      );
-      expect([1, 2, 3, 4, 5, 6, 7]).toEqual(
-        expect.arrayContaining(f.properties.voyages)
-      );
+      f.properties.voyages.forEach((i) => expect(i).toEqual(expect.any(Number)));
+      expect([1, 2, 3, 4, 5, 6, 7]).toEqual(expect.arrayContaining(f.properties.voyages));
       expect(f.properties.othersEn).toEqual(expect.any(String));
       expect(f.properties.sourceUrl).toMatch(/^$|^https?:\/\/\w+/);
       expect(f.properties.wikiEn).toMatch(/^$|^https?:\/\/\w+/);
@@ -57,25 +51,17 @@ describe('maokun-places.geo.json', () => {
 
       expect(f.geometry.type).toEqual('Point');
       expect(f.geometry.coordinates).toEqual(expect.any(Array));
-      if (f.geometry.coordinates.length !== 0)
-        expect(f.geometry.coordinates.length).toEqual(2);
-      expect(
-        f.geometry.coordinates.every((v) => v === null || typeof v === 'number')
-      ).toBe(true);
+      if (f.geometry.coordinates.length !== 0) expect(f.geometry.coordinates.length).toEqual(2);
+      expect(f.geometry.coordinates.every((v) => v === null || typeof v === 'number')).toBe(true);
       expect(f.geometry.zoomify).toEqual(expect.any(Array));
       expect(f.geometry.zoomify.length).toEqual(2);
-      expect(
-        f.geometry.zoomify.every((v) => v === null || typeof v === 'number')
-      ).toBe(true);
-      if (f.geometry.kamalAngle !== null)
-        expect(f.geometry.kamalAngle).toEqual(expect.any(Number));
+      expect(f.geometry.zoomify.every((v) => v === null || typeof v === 'number')).toBe(true);
+      if (f.geometry.kamalAngle !== null) expect(f.geometry.kamalAngle).toEqual(expect.any(Number));
 
       // Excluding places not on the map
       if (f.properties.page !== null) {
         expect(f.properties.page).toEqual(expect.any(Number));
-        expect(f.properties.locUrl).toMatch(
-          /^https:\/\/loc.gov\/resource\/g7821rm\.gct00058\/\?/
-        );
+        expect(f.properties.locUrl).toMatch(/^https:\/\/loc.gov\/resource\/g7821rm\.gct00058\/\?/);
       }
     });
   });
@@ -92,9 +78,7 @@ describe('maokun-places-strict.geo.json', () => {
     placesStrict.features.forEach((f) => {
       expect(f.geometry.coordinates).toEqual(expect.any(Array));
       expect(f.geometry.coordinates.length).toEqual(2);
-      f.geometry.coordinates.forEach((v) =>
-        expect(v).toEqual(expect.any(Number))
-      );
+      f.geometry.coordinates.forEach((v) => expect(v).toEqual(expect.any(Number)));
     });
   });
 });
@@ -127,14 +111,12 @@ describe('maokun-paths.geo.json', () => {
       expect(f.properties.code).toMatch(/[\w-]+/);
       expect(f.properties.name).toMatch(/\w+/);
       expect(f.properties.nameTc).toMatch(/.*/);
-      expect(f.properties.locUrl).toMatch(
-        /^$|^https:\/\/(?:www\.)?loc.gov\/resource\/g7821rm\.gct00058\/\?/
-      );
+      expect(f.properties.locUrl).toMatch(/^$|^https:\/\/(?:www\.)?loc.gov\/resource\/g7821rm\.gct00058\/\?/);
       expect(f.properties.direction).toMatch(/^$|in|out/);
       expect(f.properties.landmarks).toEqual(expect.any(Array));
       f.properties.landmarks.forEach((landmarkId, index) =>
         // expect(landmarkId, `landmark #${index + 1} in path ${f.properties.code} was not found`).toEqual(expect.any(Number))
-        expect(landmarkId).toEqual(expect.any(Number))
+        expect(landmarkId).toEqual(expect.any(Number)),
       );
       expect(f.properties.text).toEqual(expect.any(String));
       expect(f.properties.translation).toMatch(/\w+/);

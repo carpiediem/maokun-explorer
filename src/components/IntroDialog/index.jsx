@@ -58,11 +58,7 @@ export default function IntroDialog(props) {
           <FormattedMessage id="intro.abstract" />
         </Typography>
         <IntroAnimation />
-        <Button
-          size="large"
-          className={classes.button}
-          onClick={props.handleClose}
-        >
+        <Button size="large" className={classes.button} onClick={props.handleClose}>
           Take a Look
         </Button>
       </DialogContent>

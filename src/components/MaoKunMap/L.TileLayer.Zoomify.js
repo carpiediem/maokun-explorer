@@ -97,10 +97,11 @@ export const TileLayerZoomify = TileLayer.extend({
   },
 
   // Construct the tile url, by inserting our tilegroup before we template the url
-  getTileUrl: (coords) =>
-    `${this._url}${this.options.tileGroupPrefix}${this._getTileGroup(coords)}/${this._getZoomForUrl()}-${coords.x}-${
-      coords.y
-    }.jpg`,
+  getTileUrl: function (coords) {
+    return `${this._url}${this.options.tileGroupPrefix}${this._getTileGroup(coords)}/${this._getZoomForUrl()}-${
+      coords.x
+    }-${coords.y}.jpg`;
+  },
 
   // Calculates the TileGroup number, each group contains 256 tiles. The tiles are stored from topleft to bottomright
   // e.g. https://barbierilow.faculty.history.ucsb.edu/Research/ZhengHeMapZoomify/ZhengHe/TileGroup24/9-257-8.jpg

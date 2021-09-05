@@ -54,21 +54,7 @@ module.exports = {
     'translationHtml',
   ],
   IMAGE_PATH_COLUMNS: ['code', 'x', 'y'],
-  GEO_PATH_COLUMNS: [
-    'code',
-    'lat',
-    'lng',
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-  ],
+  GEO_PATH_COLUMNS: ['code', 'lat', 'lng', null, null, null, null, null, null, null, null, null, null],
 
   cast: (value, { column }) => {
     switch (column) {

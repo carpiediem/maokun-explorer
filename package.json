@@ -71,8 +71,19 @@
       }
     },
     "rules": {
-      "import/no-anonymous-default-export": "off"
+      "import/no-anonymous-default-export": "off",
+      "jest/no-conditional-expect": "off"
     },
+    "overrides": [
+      {
+        "files": ["*.test.js","*.spec.js"],
+        "rules": {
+          "jest/no-conditional-expect": "off",
+          "sonarjs/no-duplicate-string": "off",
+          "sonarjs/no-identical-functions": "off"
+        }
+      }
+    ],
     "settings": {
       "react": {
         "version": "detect"
