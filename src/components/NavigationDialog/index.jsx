@@ -1,12 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  IconButton,
-  Typography,
-} from '@material-ui/core';
+import { Dialog, DialogTitle, DialogContent, IconButton, Typography } from '@material-ui/core';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -26,12 +20,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import getAzimuth from './getAzimuth';
 
 import sights from './maokun-sights.json';
-const groups = [
-  'Western Indian Coast',
-  'Maldives and Lakshadweep',
-  'Arabian Peninsula',
-  'East African Coast',
-];
+const groups = ['Western Indian Coast', 'Maldives and Lakshadweep', 'Arabian Peninsula', 'East African Coast'];
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -73,16 +62,11 @@ export default function NavigationDialog(props) {
   // const [locale] = React.useContext(LocaleContext);
 
   function latCalc(altitude, star) {
-    const latitude =
-      POLAR_DISTANCE[star] +
-      (star === 'Polaris' ? altitude * FINGER : -altitude * FINGER);
+    const latitude = POLAR_DISTANCE[star] + (star === 'Polaris' ? altitude * FINGER : -altitude * FINGER);
     return `${Math.abs(latitude).toFixed(2)}° ${latitude < 0 ? 'S' : 'N'}`;
   }
   function latError(altitude, star, latitude) {
-    const error =
-      POLAR_DISTANCE[star] +
-      (star === 'Polaris' ? altitude * FINGER : -altitude * FINGER) -
-      latitude;
+    const error = POLAR_DISTANCE[star] + (star === 'Polaris' ? altitude * FINGER : -altitude * FINGER) - latitude;
     return `${error > 0 ? '+' : ''}${error.toFixed(2)}°`;
   }
 
@@ -100,10 +84,7 @@ export default function NavigationDialog(props) {
             <ChevronLeftIcon />
           </IconButton>
         )}
-        <FormattedMessage
-          id="navigation.title"
-          defaultMessage="Celestial Navigation"
-        />
+        <FormattedMessage id="navigation.title" defaultMessage="Celestial Navigation" />
         <a href="#/navigation" title="Direct Link" className="direct">
           #
         </a>
@@ -112,9 +93,8 @@ export default function NavigationDialog(props) {
       <DialogContent className={classes.content}>
         <h3>Latitude Calculations</h3>
         <p>
-          Knowing the position of reference stars in the 1400s (from Stellarium)
-          and the size of a "finger" (from antique kamals: 1° 37'), the Mao Kun
-          Map's altitude sights can be converted to latitudes.
+          Knowing the position of reference stars in the 1400s (from Stellarium) and the size of a "finger" (from
+          antique kamals: 1° 37'), the Mao Kun Map's altitude sights can be converted to latitudes.
         </p>
 
         <BlockMath math="lat_{calc} = ∂_{decl} + α_{altnpm} * 1.616 \frac{degrees}{finger}" />
@@ -151,12 +131,8 @@ export default function NavigationDialog(props) {
                       <TableCell>{s.sight}</TableCell>
                       <TableCell>{s.altitude}</TableCell>
                       <TableCell>{s.star}</TableCell>
-                      <TableCell align="right">
-                        {latCalc(s.altitude, s.star)}
-                      </TableCell>
-                      <TableCell align="right">
-                        {latError(s.altitude, s.star, s.actual)}
-                      </TableCell>
+                      <TableCell align="right">{latCalc(s.altitude, s.star)}</TableCell>
+                      <TableCell align="right">{latError(s.altitude, s.star, s.actual)}</TableCell>
                     </TableRow>
                   ))}
               </React.Fragment>
@@ -184,9 +160,7 @@ export default function NavigationDialog(props) {
                   <TableCell>{s.sight}</TableCell>
                   <TableCell>{s.altitude}</TableCell>
                   <TableCell>{s.star}</TableCell>
-                  <TableCell align="right">
-                    {/* {latCalc(s.altitude, s.star)} */}
-                  </TableCell>
+                  <TableCell align="right">{/* {latCalc(s.altitude, s.star)} */}</TableCell>
                 </TableRow>
               ))}
           </TableBody>
@@ -194,9 +168,8 @@ export default function NavigationDialog(props) {
 
         <h3>Stars Used for Altitude Sights</h3>
         <p>
-          These stars are sighted with a kamal. Their angular distance from the
-          horizon (altitude) is used to determine latitude. Values below are for
-          1 May, 1422.
+          These stars are sighted with a kamal. Their angular distance from the horizon (altitude) is used to determine
+          latitude. Values below are for 1 May, 1422.
         </p>
         <Table size="small" stickyHeader className={classes.autoWidth}>
           <TableHead className={classes.head}>
@@ -209,11 +182,7 @@ export default function NavigationDialog(props) {
           <TableBody>
             <TableRow className={classes.row}>
               <TableCell>
-                <a
-                  href="https://en.wikipedia.org/wiki/Polaris"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="https://en.wikipedia.org/wiki/Polaris" target="_blank" rel="noopener noreferrer">
                   Polaris
                 </a>
               </TableCell>
@@ -222,11 +191,7 @@ export default function NavigationDialog(props) {
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>
-                <a
-                  href="https://en.wikipedia.org/wiki/Chi_Draconis"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="https://en.wikipedia.org/wiki/Chi_Draconis" target="_blank" rel="noopener noreferrer">
                   χ Dra
                 </a>
               </TableCell>
@@ -235,11 +200,7 @@ export default function NavigationDialog(props) {
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>
-                <a
-                  href="https://en.wikipedia.org/wiki/Beta_Ursae_Minoris"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="https://en.wikipedia.org/wiki/Beta_Ursae_Minoris" target="_blank" rel="noopener noreferrer">
                   Kochab
                 </a>
               </TableCell>
@@ -251,12 +212,10 @@ export default function NavigationDialog(props) {
 
         <h3>Stars Used for Azimuth Sights</h3>
         <p>
-          These stars are sighted while they are near the horizon. They rise and
-          set in known positions (for a given place and season), so they can be
-          used to keep a steady course. Values below (time and azimuth) are for
-          1 May, 1422. Starrise values have been calculated with a position at
-          Al Mukalla, Yemen. Starset values have been calculated with a position
-          at Sur, Oman.
+          These stars are sighted while they are near the horizon. They rise and set in known positions (for a given
+          place and season), so they can be used to keep a steady course. Values below (time and azimuth) are for 1 May,
+          1422. Starrise values have been calculated with a position at Al Mukalla, Yemen. Starset values have been
+          calculated with a position at Sur, Oman.
         </p>
 
         <BlockMath math="γ_{rise} = \cos^{-1}\frac{\sin ∂_{declination} }{\cos φ_{latitude}}" />
@@ -264,16 +223,10 @@ export default function NavigationDialog(props) {
           <TableHead className={classes.head}>
             <TableRow>
               <TableCell>Star</TableCell>
-              <Tooltip
-                title="Angular distance from the celestial equator in 1422"
-                placement="top"
-              >
+              <Tooltip title="Angular distance from the celestial equator in 1422" placement="top">
                 <TableCell>Declination</TableCell>
               </Tooltip>
-              <Tooltip
-                title="Measured near the Fartak Range, Yemen"
-                placement="top"
-              >
+              <Tooltip title="Measured near the Fartak Range, Yemen" placement="top">
                 <TableCell>
                   <InlineMath math="γ_{rise}" /> at 16.5º N
                 </TableCell>
@@ -288,10 +241,7 @@ export default function NavigationDialog(props) {
                   <InlineMath math="γ_{rise}" /> at 6.5º N
                 </TableCell>
               </Tooltip>
-              <Tooltip
-                title="Measured near the Mudug region, Somalia"
-                placement="top"
-              >
+              <Tooltip title="Measured near the Mudug region, Somalia" placement="top">
                 <TableCell>
                   <InlineMath math="γ_{set}" /> at 22.6º N
                 </TableCell>
@@ -308,29 +258,19 @@ export default function NavigationDialog(props) {
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>
-                <a
-                  href="https://en.wikipedia.org/wiki/Pollux_(star)"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="https://en.wikipedia.org/wiki/Pollux_(star)" target="_blank" rel="noopener noreferrer">
                   Pollux
                 </a>
               </TableCell>
               <TableCell>+29º 15' 18.2"</TableCell>
-              <TableCell className={classes.daylight}>
-                {getAzimuth(29, 15, 18.2, 16.5)}
-              </TableCell>
+              <TableCell className={classes.daylight}>{getAzimuth(29, 15, 18.2, 16.5)}</TableCell>
               <TableCell>{getAzimuth(29, 15, 18.2, 23.7, true)}</TableCell>
               <TableCell>--</TableCell>
               <TableCell>--</TableCell>
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>
-                <a
-                  href="https://en.wikipedia.org/wiki/Procyon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="https://en.wikipedia.org/wiki/Procyon" target="_blank" rel="noopener noreferrer">
                   Procyon
                 </a>
               </TableCell>
@@ -342,11 +282,7 @@ export default function NavigationDialog(props) {
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>
-                <a
-                  href="https://en.wikipedia.org/wiki/Beta_Scorpii"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="https://en.wikipedia.org/wiki/Beta_Scorpii" target="_blank" rel="noopener noreferrer">
                   Acrab
                 </a>
               </TableCell>
@@ -358,11 +294,7 @@ export default function NavigationDialog(props) {
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>
-                <a
-                  href="https://en.wikipedia.org/wiki/Capella"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="https://en.wikipedia.org/wiki/Capella" target="_blank" rel="noopener noreferrer">
                   Capella
                 </a>
               </TableCell>
@@ -374,11 +306,7 @@ export default function NavigationDialog(props) {
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>
-                <a
-                  href="https://en.wikipedia.org/wiki/Beta_Pegasi"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="https://en.wikipedia.org/wiki/Beta_Pegasi" target="_blank" rel="noopener noreferrer">
                   Scheat
                 </a>
               </TableCell>
@@ -390,11 +318,7 @@ export default function NavigationDialog(props) {
             </TableRow>
             <TableRow className={classes.row}>
               <TableCell>
-                <a
-                  href="https://en.wikipedia.org/wiki/Fomalhaut"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="https://en.wikipedia.org/wiki/Fomalhaut" target="_blank" rel="noopener noreferrer">
                   Fomalhaut
                 </a>
               </TableCell>

@@ -20,22 +20,12 @@ export default function AlignItemsList(props) {
     <React.Fragment>
       <ListItem alignItems="flex-start" className={classes.root}>
         <ListItemAvatar>
-          <Avatar
-            className={`${classes.avatar} ${
-              props.character.length > 1 && 'small'
-            }`}
-          >
-            {props.character}
-          </Avatar>
+          <Avatar className={`${classes.avatar} ${props.character.length > 1 && 'small'}`}>{props.character}</Avatar>
         </ListItemAvatar>
         <ListItemText
           primary={props.pinyin}
           secondary={
-            <FormattedMessage
-              id={props.definitionId}
-              defaultMessage="[missing definition]"
-              values={props.values}
-            />
+            <FormattedMessage id={props.definitionId} defaultMessage="[missing definition]" values={props.values} />
           }
         />
       </ListItem>

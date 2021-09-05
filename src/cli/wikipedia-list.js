@@ -15,9 +15,7 @@ const FOOTER = `
 |}`;
 
 function buildRef(sourceUrl) {
-  const urlMatch = /(^[^?]+)(?:\?id=DjQ9AAAAIAAJ&pg=PA|\?p=)?(\d*)/.exec(
-    sourceUrl
-  );
+  const urlMatch = /(^[^?]+)(?:\?id=DjQ9AAAAIAAJ&pg=PA|\?p=)?(\d*)/.exec(sourceUrl);
 
   if (!urlMatch) return '';
 
@@ -52,5 +50,5 @@ writeFileSync(
     .filter((p) => p.properties.page)
     .map(buildRow)
     .join('')}${FOOTER}`,
-  ENCUTF
+  ENCUTF,
 );

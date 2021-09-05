@@ -18,12 +18,7 @@ function MenuButtons({ anchorRef, href, open, setOpen }) {
   };
 
   return (
-    <ButtonGroup
-      variant="text"
-      color="primary"
-      ref={anchorRef}
-      aria-label="split button"
-    >
+    <ButtonGroup variant="text" color="primary" ref={anchorRef} aria-label="split button">
       <Button component="a" href={href} target="_blank">
         <WikipediaIcon />
       </Button>

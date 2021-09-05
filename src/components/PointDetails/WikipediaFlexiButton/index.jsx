@@ -29,12 +29,7 @@ function WikipediaFlexiButton({ wikiEn, wikiZh }) {
 
   return (
     <React.Fragment>
-      <MenuButtons
-        anchorRef={anchorRef}
-        open={open}
-        setOpen={setOpen}
-        href={locale === 'en' ? wikiEn : wikiZh}
-      />
+      <MenuButtons anchorRef={anchorRef} open={open} setOpen={setOpen} href={locale === 'en' ? wikiEn : wikiZh} />
       <LinksPopper
         anchorRef={anchorRef}
         open={open}

@@ -11,18 +11,13 @@ function KamalDetails({ text, angle }) {
   return (
     <div>
       <Typography color="textSecondary" component="p">
-        <FormattedMessage
-          id="details.navNotes"
-          defaultMessage="Kamal Measurement"
-        />
+        <FormattedMessage id="details.navNotes" defaultMessage="Kamal Measurement" />
       </Typography>
       <Typography variant="body2" component="p">
         {text}
       </Typography>
       <Typography variant="body2" component="p">
-        {asFraction(angle)}{' '}
-        <FormattedMessage id="details.fingers" defaultMessage="fingers" /> ≈{' '}
-        {asLatitude(angle)}{' '}
+        {asFraction(angle)} <FormattedMessage id="details.fingers" defaultMessage="fingers" /> ≈ {asLatitude(angle)}{' '}
         <FormattedMessage id="details.latitude" defaultMessage="latitude" />
       </Typography>
     </div>

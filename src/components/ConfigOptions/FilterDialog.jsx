@@ -35,23 +35,13 @@ export default function FilterDialog(props) {
   const classes = useStyles();
   const { categories = {}, voyages = {} } = props;
 
-  const allCategories = Object.keys(CATEGORIES).reduce(
-    (agg, cur) => agg && categories[cur],
-    true
-  );
+  const allCategories = Object.keys(CATEGORIES).reduce((agg, cur) => agg && categories[cur], true);
   const allVoyages = VOYAGES.reduce((agg, cur) => agg && voyages[cur], true);
 
   return (
-    <Dialog
-      open={props.open}
-      onClose={props.onClose}
-      aria-labelledby="form-dialog-title"
-    >
+    <Dialog open={props.open} onClose={props.onClose} aria-labelledby="form-dialog-title">
       <DialogTitle id="form-dialog-title">
-        <FormattedMessage
-          id="config.chooseCategories"
-          defaultMessage="Filter Markers"
-        />
+        <FormattedMessage id="config.chooseCategories" defaultMessage="Filter Markers" />
       </DialogTitle>
       <DialogContent className={classes.content}>
         <FormControl component="fieldset">
@@ -68,13 +58,7 @@ export default function FilterDialog(props) {
                       <ColoredSwitch
                         color={color}
                         checked={categories[category]}
-                        onChange={() =>
-                          props.onChange(
-                            'categories',
-                            category,
-                            !categories[category]
-                          )
-                        }
+                        onChange={() => props.onChange('categories', category, !categories[category])}
                         name={category}
                       />
                     }
@@ -115,9 +99,7 @@ export default function FilterDialog(props) {
                       <ColoredSwitch
                         color="darkRed"
                         checked={voyages[voyage]}
-                        onChange={() =>
-                          props.onChange('voyages', voyage, !voyages[voyage])
-                        }
+                        onChange={() => props.onChange('voyages', voyage, !voyages[voyage])}
                         name={voyage.toString()}
                       />
                     }

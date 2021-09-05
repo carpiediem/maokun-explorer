@@ -17,12 +17,7 @@ function ModernNames({ nameEn, nameTc, othersEn, othersTc, region }) {
         {intl.locale === 'en' ? nameEn : nameTc}
       </Typography>
       <Typography variant="body2" component="p" className={classes.region}>
-        {region && (
-          <FormattedMessage
-            id={`regions.${region.toLowerCase()}`}
-            defaultMessage={region}
-          />
-        )}
+        {region && <FormattedMessage id={`regions.${region.toLowerCase()}`} defaultMessage={region} />}
       </Typography>
       <Typography
         variant="body2"

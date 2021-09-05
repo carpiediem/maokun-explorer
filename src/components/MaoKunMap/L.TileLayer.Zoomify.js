@@ -27,9 +27,7 @@ export const TileLayerZoomify = TileLayer.extend({
 
     // Replace with automatic loading from ImageProperties.xml
     if (options.width < 0 || options.height < 0) {
-      throw new Error(
-        'The user must set the Width and Height of the Zoomify image'
-      );
+      throw new Error('The user must set the Width and Height of the Zoomify image');
     }
 
     var imageSize = point(options.width, options.height),
@@ -41,10 +39,7 @@ export const TileLayerZoomify = TileLayer.extend({
 
     // Register the image size in pixels and the grid size in # of tiles for each zoom level
 
-    while (
-      parseInt(imageSize.x, 10) > tileSize ||
-      parseInt(imageSize.y, 10) > tileSize
-    ) {
+    while (parseInt(imageSize.x, 10) > tileSize || parseInt(imageSize.y, 10) > tileSize) {
       imageSize = imageSize.divideBy(2).ceil();
       this._imageSize.push(imageSize);
       this._gridSize.push(this._getGridSize(imageSize));
@@ -60,24 +55,15 @@ export const TileLayerZoomify = TileLayer.extend({
 
     //Register our bounds for this zoomify layer based on the maximum zoom
     var maxZoomGrid = this._gridSize[options.maxNativeZoom];
-    var southWest = this._map.unproject(
-      [0, maxZoomGrid.y * tileSize],
-      options.maxNativeZoom
-    );
-    var northEast = this._map.unproject(
-      [maxZoomGrid.x * tileSize, 0],
-      options.maxNativeZoom
-    );
+    var southWest = this._map.unproject([0, maxZoomGrid.y * tileSize], options.maxNativeZoom);
+    var northEast = this._map.unproject([maxZoomGrid.x * tileSize, 0], options.maxNativeZoom);
     options.bounds = new LatLngBounds(southWest, northEast);
   },
 
   // Calculate the grid size for a given image size (based on tile size)
   _getGridSize: function (imageSize) {
     var tileSize = this.options.tileSize;
-    return point(
-      Math.ceil(imageSize.x / tileSize),
-      Math.ceil(imageSize.y / tileSize)
-    );
+    return point(Math.ceil(imageSize.x / tileSize), Math.ceil(imageSize.y / tileSize));
   },
 
   // Extend the add tile function to update our arbitrary sized border tiles
@@ -98,10 +84,7 @@ export const TileLayerZoomify = TileLayer.extend({
       tile = this._tiles[key].el;
 
     // Calculate the required size of the border tiles
-    var scaleFactor = point(
-      imageSize.x % realTileSize.x,
-      imageSize.y % realTileSize.y
-    ).unscaleBy(realTileSize);
+    var scaleFactor = point(imageSize.x % realTileSize.x, imageSize.y % realTileSize.y).unscaleBy(realTileSize);
 
     //Update tile dimensions if we are on a border
     if (imageSize.x % realTileSize.x > 0 && coords.x === gridSize.x - 1) {
@@ -114,28 +97,10 @@ export const TileLayerZoomify = TileLayer.extend({
   },
 
   // Construct the tile url, by inserting our tilegroup before we template the url
-  // this._url + 'TileGroup' + this._getTileGroup(tilePoint) + '/' + this._map.getZoom() + '-' + tilePoint.x + '-' + tilePoint.y + '.jpg';
-  getTileUrl: function (coords) {
-    const url =
-      this._url +
-      this.options.tileGroupPrefix +
-      this._getTileGroup(coords) +
-      '/' +
-      this._getZoomForUrl() +
-      '-' +
-      coords.x +
-      '-' +
-      coords.y +
-      '.jpg';
-
-    return url;
-
-    // // Set our TileGroup variable, and then let the original tile templater do the work
-    // this.options.g = this.options.tileGroupPrefix + this._getTileGroup(coords);
-    //
-    // // Call the original templater
-    // return TileLayer.prototype.getTileUrl.call(this, coords);
-  },
+  getTileUrl: (coords) =>
+    `${this._url}${this.options.tileGroupPrefix}${this._getTileGroup(coords)}/${this._getZoomForUrl()}-${coords.x}-${
+      coords.y
+    }.jpg`,
 
   // Calculates the TileGroup number, each group contains 256 tiles. The tiles are stored from topleft to bottomright
   // e.g. https://barbierilow.faculty.history.ucsb.edu/Research/ZhengHeMapZoomify/ZhengHe/TileGroup24/9-257-8.jpg

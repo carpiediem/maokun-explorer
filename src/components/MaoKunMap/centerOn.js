@@ -15,7 +15,7 @@ export default (mapRef, center = MING_PALACE, margin = 800) => {
       xyToLatlng([center[0] - margin, center[1] - margin]),
       xyToLatlng([center[0] + margin, center[1] + margin]),
     ];
-  
+
     mapRef.current.leafletElement.flyToBounds(leafletBounds, {
       duration: 2,
     });

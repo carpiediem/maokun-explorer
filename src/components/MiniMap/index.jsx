@@ -12,13 +12,7 @@ function MiniMap({ fovRef, bounds, onClick }) {
         {regions.map(({ id, rects }) => (
           <g id={id} key={id}>
             {rects.map(({ x, y, width, height }, i) => (
-              <rect
-                x={`${x}%`}
-                y={`${y}%`}
-                width={`${width}%`}
-                height={`${height}%`}
-                key={i}
-              ></rect>
+              <rect x={`${x}%`} y={`${y}%`} width={`${width}%`} height={`${height}%`} key={i}></rect>
             ))}
           </g>
         ))}
@@ -31,14 +25,7 @@ function MiniMap({ fovRef, bounds, onClick }) {
         ))}
       </g>
 
-      <rect
-        ref={fovRef}
-        id="bounds"
-        x="0%"
-        y="0%"
-        width="100%"
-        height="100%"
-      ></rect>
+      <rect ref={fovRef} id="bounds" x="0%" y="0%" width="100%" height="100%"></rect>
     </svg>
   );
 }

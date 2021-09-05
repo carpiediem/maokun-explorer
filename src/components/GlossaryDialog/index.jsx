@@ -3,14 +3,7 @@
 
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  List,
-  ListSubheader,
-  IconButton,
-} from '@material-ui/core';
+import { Dialog, DialogTitle, DialogContent, List, ListSubheader, IconButton } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -54,10 +47,7 @@ export default function GlossaryDialog(props) {
       <DialogContent>
         <List>
           <ListSubheader className={classes.subHeader}>
-            <FormattedMessage
-              id="glossary.government"
-              defaultMessage="Ming Government Organization"
-            />
+            <FormattedMessage id="glossary.government" defaultMessage="Ming Government Organization" />
           </ListSubheader>
           <GlossaryItem
             character="衛"
@@ -67,27 +57,16 @@ export default function GlossaryDialog(props) {
               a1: externalLink(
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Military_of_the_Ming_dynasty#Guard_battalion_system'
-                  : 'https://zh.wikipedia.org/wiki/%E8%A1%9B%E6%89%80%E5%88%B6'
+                  : 'https://zh.wikipedia.org/wiki/%E8%A1%9B%E6%89%80%E5%88%B6',
               ),
             }}
           />
-          <GlossaryItem
-            character="所"
-            pinyin="suǒ"
-            definitionId="glossary.所"
-          />
+          <GlossaryItem character="所" pinyin="suǒ" definitionId="glossary.所" />
 
           <ListSubheader className={classes.subHeader}>
-            <FormattedMessage
-              id="glossary.navigation"
-              defaultMessage="Navigation"
-            />
+            <FormattedMessage id="glossary.navigation" defaultMessage="Navigation" />
           </ListSubheader>
-          <GlossaryItem
-            character="更"
-            pinyin="gèng"
-            definitionId="glossary.更"
-          />
+          <GlossaryItem character="更" pinyin="gèng" definitionId="glossary.更" />
           <GlossaryItem
             character="針"
             pinyin="zhēn"
@@ -96,18 +75,12 @@ export default function GlossaryDialog(props) {
               a1: externalLink(
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Points_of_the_compass#Chinese_compass_points'
-                  : 'https://zh.wikipedia.org/zh-hk/%E6%B5%B7%E9%81%93%E9%92%88%E7%BB%8F'
+                  : 'https://zh.wikipedia.org/zh-hk/%E6%B5%B7%E9%81%93%E9%92%88%E7%BB%8F',
               ),
-              a2: externalLink(
-                'https://www.nasa.gov/sites/default/files/files/SMI_Problem12.pdf'
-              ),
+              a2: externalLink('https://www.nasa.gov/sites/default/files/files/SMI_Problem12.pdf'),
             }}
           />
-          <GlossaryItem
-            character="托"
-            pinyin="tuō"
-            definitionId="glossary.托"
-          />
+          <GlossaryItem character="托" pinyin="tuō" definitionId="glossary.托" />
           <GlossaryItem
             character="指"
             pinyin="zhǐ"
@@ -116,15 +89,11 @@ export default function GlossaryDialog(props) {
               a1: externalLink(
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Kamal_(navigation)'
-                  : 'https://zh.wikipedia.org/wiki/%E8%BF%87%E6%B4%8B%E7%89%B5%E6%98%9F%E6%9C%AF#%E7%89%B5%E6%98%9F%E6%9D%BF'
+                  : 'https://zh.wikipedia.org/wiki/%E8%BF%87%E6%B4%8B%E7%89%B5%E6%98%9F%E6%9C%AF#%E7%89%B5%E6%98%9F%E6%9D%BF',
               ),
             }}
           />
-          <GlossaryItem
-            character="角"
-            pinyin="jiǎo"
-            definitionId="glossary.角"
-          />
+          <GlossaryItem character="角" pinyin="jiǎo" definitionId="glossary.角" />
 
           <ListSubheader className={classes.subHeader}>
             <FormattedMessage id="glossary.stars" defaultMessage="Stars" />
@@ -137,12 +106,12 @@ export default function GlossaryDialog(props) {
               a1: externalLink(
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Polaris'
-                  : 'https://zh.wikipedia.org/wiki/%E5%8B%BE%E9%99%B3%E4%B8%80'
+                  : 'https://zh.wikipedia.org/wiki/%E5%8B%BE%E9%99%B3%E4%B8%80',
               ),
               a2: externalLink(
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Axial_precession'
-                  : 'https://zh.wikipedia.org/wiki/%E6%AD%B2%E5%B7%AE'
+                  : 'https://zh.wikipedia.org/wiki/%E6%AD%B2%E5%B7%AE',
               ),
             }}
           />
@@ -154,17 +123,17 @@ export default function GlossaryDialog(props) {
               a1: externalLink(
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Cassiopeia_in_Chinese_astronomy'
-                  : 'https://zh.wikipedia.org/wiki/%E8%8F%AF%E8%93%8B_(%E6%98%9F%E5%AE%98)'
+                  : 'https://zh.wikipedia.org/wiki/%E8%8F%AF%E8%93%8B_(%E6%98%9F%E5%AE%98)',
               ),
               a2: externalLink(
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Chi_Draconis'
-                  : 'https://zh.wikipedia.org/wiki/%E5%BE%A1%E5%A5%B3%E5%9B%9B'
+                  : 'https://zh.wikipedia.org/wiki/%E5%BE%A1%E5%A5%B3%E5%9B%9B',
               ),
               a3: externalLink(
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Beta_Ursae_Minoris'
-                  : 'https://zh.wikipedia.org/wiki/%E5%8C%97%E6%A5%B5%E4%BA%8C'
+                  : 'https://zh.wikipedia.org/wiki/%E5%8C%97%E6%A5%B5%E4%BA%8C',
               ),
             }}
           />
@@ -176,32 +145,32 @@ export default function GlossaryDialog(props) {
               a1: externalLink(
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Pollux_(star)'
-                  : 'https://zh.wikipedia.org/wiki/%E5%8C%97%E6%B2%B3%E4%B8%89'
+                  : 'https://zh.wikipedia.org/wiki/%E5%8C%97%E6%B2%B3%E4%B8%89',
               ),
               a2: externalLink(
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Procyon'
-                  : 'https://zh.wikipedia.org/wiki/%E5%8D%97%E6%B2%B3%E4%B8%89'
+                  : 'https://zh.wikipedia.org/wiki/%E5%8D%97%E6%B2%B3%E4%B8%89',
               ),
               a3: externalLink(
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Beta_Scorpii'
-                  : 'https://zh.wikipedia.org/wiki/%E6%88%BF%E5%AE%BF%E5%9B%9B'
+                  : 'https://zh.wikipedia.org/wiki/%E6%88%BF%E5%AE%BF%E5%9B%9B',
               ),
               a4: externalLink(
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Capella'
-                  : 'https://zh.wikipedia.org/wiki/%E4%BA%94%E8%BB%8A%E4%BA%8C'
+                  : 'https://zh.wikipedia.org/wiki/%E4%BA%94%E8%BB%8A%E4%BA%8C',
               ),
               a5: externalLink(
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Beta_Pegasi'
-                  : 'https://zh.wikipedia.org/wiki/%E5%AE%A4%E5%AE%BF%E4%BA%8C'
+                  : 'https://zh.wikipedia.org/wiki/%E5%AE%A4%E5%AE%BF%E4%BA%8C',
               ),
               a6: externalLink(
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Fomalhaut'
-                  : 'https://zh.wikipedia.org/wiki/%E5%8C%97%E8%90%BD%E5%B8%88%E9%97%A8'
+                  : 'https://zh.wikipedia.org/wiki/%E5%8C%97%E8%90%BD%E5%B8%88%E9%97%A8',
               ),
             }}
           />
@@ -213,20 +182,12 @@ export default function GlossaryDialog(props) {
               a1: externalLink(
                 locale === 'en'
                   ? 'https://en.wikipedia.org/wiki/Dipper_(Chinese_constellation)'
-                  : 'https://zh.wikipedia.org/wiki/%E6%96%97_(%E6%98%9F%E5%AE%98)'
+                  : 'https://zh.wikipedia.org/wiki/%E6%96%97_(%E6%98%9F%E5%AE%98)',
               ),
             }}
           />
-          <GlossaryItem
-            character="落"
-            pinyin="luò"
-            definitionId="glossary.落"
-          />
-          <GlossaryItem
-            character="上"
-            pinyin="shàng"
-            definitionId="glossary.上"
-          />
+          <GlossaryItem character="落" pinyin="luò" definitionId="glossary.落" />
+          <GlossaryItem character="上" pinyin="shàng" definitionId="glossary.上" />
         </List>
       </DialogContent>
     </Dialog>

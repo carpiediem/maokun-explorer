@@ -23,13 +23,7 @@ export default function Globe(props) {
       <g className="graticule"></g>
       <g className="countries"></g>
       <g className="provinces"></g>
-      <path
-        className="field-of-view"
-        ref={props.fovRef}
-        fill="none"
-        stroke="red"
-        strokeWidth="5"
-      />
+      <path className="field-of-view" ref={props.fovRef} fill="none" stroke="red" strokeWidth="5" />
     </svg>
   );
 }

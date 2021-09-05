@@ -8,9 +8,7 @@ import ConfigOptions from './index';
 jest.mock('./LanguageDialog', () => ({ open }) => (
   <div>{`LanguageDialog component: ${open ? '' : 'not '}visible`}</div>
 ));
-jest.mock('./FilterDialog', () => ({ open }) => (
-  <div>{`FilterDialog component: ${open ? '' : 'not '}visible`}</div>
-));
+jest.mock('./FilterDialog', () => ({ open }) => <div>{`FilterDialog component: ${open ? '' : 'not '}visible`}</div>);
 
 const ALL_CATEGORIES_FIXTURE = {
   town: true,
@@ -25,9 +23,7 @@ const ALL_CATEGORIES_FIXTURE = {
 
 test('Initially hides dialogs', () => {
   const { getByText } = render(<ConfigOptions />, intlEnWrapper);
-  expect(
-    getByText('LanguageDialog component: not visible')
-  ).toBeInTheDocument();
+  expect(getByText('LanguageDialog component: not visible')).toBeInTheDocument();
   expect(getByText('FilterDialog component: not visible')).toBeInTheDocument();
 });
 
@@ -41,10 +37,7 @@ test('Renders five configuration options and a subheader', () => {
 describe('when toggle buttons are clicked', () => {
   test('Triggers onChange callback', () => {
     const changeAction = jest.fn();
-    const { getByText } = render(
-      <ConfigOptions onChange={changeAction} syncMaps />,
-      intlEnWrapper
-    );
+    const { getByText } = render(<ConfigOptions onChange={changeAction} syncMaps />, intlEnWrapper);
     expect(changeAction).toHaveBeenCalledTimes(0);
 
     userEvent.click(getByText('Lock Map Sizes'));
@@ -72,10 +65,7 @@ describe('when submenu buttons are clicked', () => {
 
 describe('when en locale is used', () => {
   test('Renders text in English', () => {
-    const { getByText } = render(
-      <ConfigOptions syncMaps categories={ALL_CATEGORIES_FIXTURE} />,
-      intlEnWrapper
-    );
+    const { getByText } = render(<ConfigOptions syncMaps categories={ALL_CATEGORIES_FIXTURE} />, intlEnWrapper);
     const subheader = getByText('Preferences');
     const languageLabel = getByText('Language');
     const languageValue = getByText('English');
@@ -104,10 +94,7 @@ describe('when en locale is used', () => {
 
 describe('when zh locale is used', () => {
   test('Renders text in Traditional Chinese', () => {
-    const { getByText } = render(
-      <ConfigOptions syncMaps categories={ALL_CATEGORIES_FIXTURE} />,
-      intlZhWrapper
-    );
+    const { getByText } = render(<ConfigOptions syncMaps categories={ALL_CATEGORIES_FIXTURE} />, intlZhWrapper);
     const subheader = getByText('優先');
     const languageLabel = getByText('語言');
     const languageValue = getByText('繁體版');

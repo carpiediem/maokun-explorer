@@ -2,8 +2,7 @@ import centerMaoKun from '../components/MaoKunMap/centerOn';
 import centerModern from '../components/ModernMap/centerOn';
 
 export default (places, paths, maokunMapRef, modernMapRef) => {
-  const hashMatch =
-    /#\/(place|path)\/([\d\w-]+)/.exec(window.location.hash) || [];
+  const hashMatch = /#\/(place|path)\/([\d\w-]+)/.exec(window.location.hash) || [];
   let toSelect = {};
   let found = null;
 

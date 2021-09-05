@@ -7,10 +7,7 @@ import { LocaleContextProvider } from '../../LocaleContext';
 import LanguageDialog from './LanguageDialog';
 
 const enProvidor = (
-  <LocaleContextProvider
-    locale="en"
-    messages={require('../../translations/en.json')}
-  ></LocaleContextProvider>
+  <LocaleContextProvider locale="en" messages={require('../../translations/en.json')}></LocaleContextProvider>
 );
 // const zhProvidor = (
 //   <IntlProvider
@@ -29,10 +26,7 @@ describe('when props.open is false', () => {
 describe('when clicked outside the dialog', () => {
   test('Triggers onClose callback', () => {
     const closeAction = jest.fn();
-    const { getByRole } = render(
-      <LanguageDialog open handleClose={closeAction} />,
-      enProvidor
-    );
+    const { getByRole } = render(<LanguageDialog open handleClose={closeAction} />, enProvidor);
 
     userEvent.click(getByRole('none'));
     expect(closeAction).toHaveBeenCalled();

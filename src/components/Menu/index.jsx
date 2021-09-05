@@ -2,16 +2,7 @@
 
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import {
-  Drawer,
-  IconButton,
-  Typography,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Divider,
-} from '@material-ui/core';
+import { Drawer, IconButton, Typography, List, ListItem, ListItemIcon, ListItemText, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -66,10 +57,7 @@ function Menu(props) {
   const intl = useIntl();
 
   const toggleDrawer = (open) => (event) => {
-    if (
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
-    ) {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
 
@@ -102,17 +90,11 @@ function Menu(props) {
         classes={{ paper: classes.drawerPaper }}
       >
         <div className="header">
-          <IconButton
-            onClick={toggleDrawer(false)}
-            className={classes.closeButton}
-          >
+          <IconButton onClick={toggleDrawer(false)} className={classes.closeButton}>
             <ChevronLeftIcon />
           </IconButton>
           <Typography variant="h6" noWrap className={classes.title}>
-            <FormattedMessage
-              id="menu.title"
-              defaultMessage="Mao Kun Explorer"
-            />
+            <FormattedMessage id="menu.title" defaultMessage="Mao Kun Explorer" />
           </Typography>
         </div>
         <Divider />

@@ -17,14 +17,7 @@ const {
 
 const ENCUTF = { encoding: 'UTF-8' };
 const getBounds = (agg, { lat, lng }) =>
-  !lat
-    ? agg
-    : [
-        Math.min(agg[0], lat),
-        Math.min(agg[1], lng),
-        Math.max(agg[2], lat),
-        Math.max(agg[3], lng),
-      ];
+  !lat ? agg : [Math.min(agg[0], lat), Math.min(agg[1], lng), Math.max(agg[2], lat), Math.max(agg[3], lng)];
 const byCode = (agg, { code, x, y, lat, lng }) => {
   if (!x && !y && !lat && !lng) return agg;
   if (!agg[code]) agg[code] = [];
@@ -35,12 +28,9 @@ const byCode = (agg, { code, x, y, lat, lng }) => {
 (async () => {
   // REQUEST DATA FROM GOOGLE SHEETS
   const [pointsCsv, ruttersTsv, imagePathCsv, geoPathCsv] = await Promise.all(
-    [
-      fetch(POINTS_URL),
-      fetch(RUTTERS_URL),
-      fetch(IMAGE_PATH_URL),
-      fetch(GEO_PATH_URL),
-    ].map((p) => p.then((r) => r.text()))
+    [fetch(POINTS_URL), fetch(RUTTERS_URL), fetch(IMAGE_PATH_URL), fetch(GEO_PATH_URL)].map((p) =>
+      p.then((r) => r.text()),
+    ),
   );
 
   writeFileSync('public/data/maokun-places.csv', pointsCsv, ENCUTF);
@@ -55,25 +45,20 @@ const byCode = (agg, { code, x, y, lat, lng }) => {
     skip_empty_lines: true,
     from: 2,
   });
-  const pointFeatures = points.map(
-    ({ x, y, lat, lng, kamalAngle, voyages, ...rest }, index) => ({
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        zoomify: [x, y],
-        coordinates: lat === '' || !lat ? [] : [lng, lat],
-        kamalAngle: kamalAngle === '' ? null : kamalAngle,
-      },
-      properties: {
-        id: index,
-        voyages:
-          voyages === ''
-            ? []
-            : voyages.split(/\s*,\s*/).map((i) => parseInt(i, 10)),
-        ...rest,
-      },
-    })
-  );
+  const pointFeatures = points.map(({ x, y, lat, lng, kamalAngle, voyages, ...rest }, index) => ({
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      zoomify: [x, y],
+      coordinates: lat === '' || !lat ? [] : [lng, lat],
+      kamalAngle: kamalAngle === '' ? null : kamalAngle,
+    },
+    properties: {
+      id: index,
+      voyages: voyages === '' ? [] : voyages.split(/\s*,\s*/).map((i) => parseInt(i, 10)),
+      ...rest,
+    },
+  }));
   const pointBbox = points.reduce(getBounds, [180, 90, -180, -90]);
 
   const rutters = parse(ruttersTsv, {
@@ -100,11 +85,8 @@ const byCode = (agg, { code, x, y, lat, lng }) => {
     const landmarkIds = properties.landmarks
       .filter((l) => l !== '')
       .map((l) => {
-        const place = pointFeatures.find(
-          ({ properties }) => properties.label === l
-        );
-        if (!place)
-          console.warn(`Unrecognized landmark: ${l} in ${properties.code}`);
+        const place = pointFeatures.find(({ properties }) => properties.label === l);
+        if (!place) console.warn(`Unrecognized landmark: ${l} in ${properties.code}`);
 
         return place ? place.properties.id : null;
       });
@@ -134,16 +116,13 @@ const byCode = (agg, { code, x, y, lat, lng }) => {
       'Places mentioned in the Mao Kun map, excluding those without known geographic coordinates (required for strict geojson validation)',
     source: POINTS_EDITOR,
     bbox: pointBbox,
-    features: pointFeatures.filter(
-      ({ geometry }) => geometry.coordinates.length === 2
-    ),
+    features: pointFeatures.filter(({ geometry }) => geometry.coordinates.length === 2),
   });
 
   const pathsCollection = JSON.stringify({
     type: 'FeatureCollection',
     name: 'Paths',
-    description:
-      'The path around islands and peninsulas described by sailing directions on the Mao Kun map',
+    description: 'The path around islands and peninsulas described by sailing directions on the Mao Kun map',
     source: PATHS_EDITOR,
     features: pathFeatures,
   });
@@ -153,25 +132,15 @@ const byCode = (agg, { code, x, y, lat, lng }) => {
     description:
       'The path around islands and peninsulas described by sailing directions on the Mao Kun map (excluding paths without geographic coordinates defined)',
     source: PATHS_EDITOR,
-    features: pathFeatures.filter(
-      ({ geometry }) => geometry.coordinates && geometry.coordinates.length > 0
-    ),
+    features: pathFeatures.filter(({ geometry }) => geometry.coordinates && geometry.coordinates.length > 0),
   });
 
   writeFileSync('public/data/maokun-places.geo.json', pointsCollection, ENCUTF);
-  writeFileSync(
-    'public/data/maokun-places-strict.geo.json',
-    strictPointsCollection,
-    ENCUTF
-  );
+  writeFileSync('public/data/maokun-places-strict.geo.json', strictPointsCollection, ENCUTF);
   writeFileSync('public/data/maokun-paths.geo.json', pathsCollection, ENCUTF);
-  writeFileSync(
-    'public/data/maokun-paths-strict.geo.json',
-    strictPathsCollection,
-    ENCUTF
-  );
+  writeFileSync('public/data/maokun-paths-strict.geo.json', strictPathsCollection, ENCUTF);
 
   console.log(
-    `Saved ${pointFeatures.length} places and ${pathFeatures.length} paths in public/maokun-places.geo.json and maokun-paths.geo.json`
+    `Saved ${pointFeatures.length} places and ${pathFeatures.length} paths in public/maokun-places.geo.json and maokun-paths.geo.json`,
   );
 })();

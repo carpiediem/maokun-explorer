@@ -6,13 +6,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Switch from '@material-ui/core/Switch';
 
-function ListItemToggler({
-  checked,
-  labelMessageId,
-  valueMessageIds,
-  onClick,
-  icon,
-}) {
+function ListItemToggler({ checked, labelMessageId, valueMessageIds, onClick, icon }) {
   const { formatMessage } = useIntl();
 
   return (

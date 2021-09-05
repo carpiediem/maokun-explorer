@@ -72,10 +72,7 @@ function PointDetails(props) {
           <hr />
           <ModernNames {...properties} />
           {extraInfo ? <hr /> : null}
-          <KamalDetails
-            text={properties.kamalNotes}
-            angle={geometry.kamalAngle}
-          />
+          <KamalDetails text={properties.kamalNotes} angle={geometry.kamalAngle} />
           <VisitDetails voyages={properties.voyages} />
           <OtherPossibilities text={properties.otherPossibilities} />
         </CardContent>

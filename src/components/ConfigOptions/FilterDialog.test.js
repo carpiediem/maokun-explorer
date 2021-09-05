@@ -11,10 +11,7 @@ import FilterDialog from './FilterDialog';
 
 describe('when props.open is false', () => {
   test('render nothing', () => {
-    const { queryByText } = render(
-      <FilterDialog open={false} />,
-      intlEnWrapper
-    );
+    const { queryByText } = render(<FilterDialog open={false} />, intlEnWrapper);
     expect(queryByText(/\w/i)).toBeNull();
   });
 });
@@ -22,10 +19,7 @@ describe('when props.open is false', () => {
 describe('when clicked outside the dialog', () => {
   test('Triggers onClose callback', () => {
     const closeAction = jest.fn();
-    const { getByRole } = render(
-      <FilterDialog open onClose={closeAction} />,
-      intlEnWrapper
-    );
+    const { getByRole } = render(<FilterDialog open onClose={closeAction} />, intlEnWrapper);
 
     userEvent.click(getByRole('none'));
     expect(closeAction).toHaveBeenCalled();

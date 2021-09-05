@@ -1,12 +1,6 @@
 /* eslint-disable no-loop-func */
 
-const {
-  existsSync,
-  mkdirSync,
-  readdirSync,
-  createWriteStream,
-  unlinkSync,
-} = require('fs');
+const { existsSync, mkdirSync, readdirSync, createWriteStream, unlinkSync } = require('fs');
 const fetch = require('node-fetch');
 const gm = require('gm');
 const cliProgress = require('cli-progress');
@@ -14,10 +8,9 @@ const cliProgress = require('cli-progress');
 // const RE_FILENAME = /(\d+)-(\d+)-(\d+)\.\w+/;
 const progress = new cliProgress.SingleBar(
   {
-    format:
-      'Zoom level {zoom} ({side}x{side}): [{bar}] | {value}/{total} possible tiles | {path}',
+    format: 'Zoom level {zoom} ({side}x{side}): [{bar}] | {value}/{total} possible tiles | {path}',
   },
-  cliProgress.Presets.shades_classic
+  cliProgress.Presets.shades_classic,
 );
 
 module.exports = async function zoomifyDownload(baseUrl, directory, opts = {}) {
@@ -33,8 +26,7 @@ module.exports = async function zoomifyDownload(baseUrl, directory, opts = {}) {
 
   // GET 0-zoom tile
   if (!existsSync(directory)) mkdirSync(directory);
-  if (!existsSync(`${directory}/${opts.tileGroupPrefix}0`))
-    mkdirSync(`${directory}/${opts.tileGroupPrefix}0`);
+  if (!existsSync(`${directory}/${opts.tileGroupPrefix}0`)) mkdirSync(`${directory}/${opts.tileGroupPrefix}0`);
   await download(baseUrl, directory, `${opts.tileGroupPrefix}0/0-0-0.jpg`);
 
   // CHECK ASPECT RATIO
@@ -49,18 +41,10 @@ module.exports = async function zoomifyDownload(baseUrl, directory, opts = {}) {
     zoom++;
     progress.setTotal(Math.pow(2, zoom) * Math.pow(2, zoom));
     let foundBottom = false;
-    for (
-      let vIndex = vStart;
-      vIndex < Math.pow(2, zoom) && !foundBottom;
-      vIndex++
-    ) {
+    for (let vIndex = vStart; vIndex < Math.pow(2, zoom) && !foundBottom; vIndex++) {
       vStart = 0;
       let foundRight = false;
-      for (
-        let hIndex = hStart;
-        hIndex < Math.pow(2, zoom) && !foundRight;
-        hIndex++
-      ) {
+      for (let hIndex = hStart; hIndex < Math.pow(2, zoom) && !foundRight; hIndex++) {
         hStart = 0;
         if (!hasTileHere(aspectRatio, zoom, hIndex, vIndex)) continue;
 
@@ -132,9 +116,7 @@ function auditDirectory(directory) {
       return hIndexMatch ? Math.max(agg, parseInt(hIndexMatch[1], 10)) : agg;
     }, 0);
 
-  console.log(
-    `Restarting download from image ${zoom}-${hStart}-${vStart}.jpg (${count} already downloaded)`
-  );
+  console.log(`Restarting download from image ${zoom}-${hStart}-${vStart}.jpg (${count} already downloaded)`);
 
   return {
     count,
@@ -155,9 +137,7 @@ function hasTileHere(aspectRatio, zoom, hIndex, vIndex) {
 }
 
 function getSize(path) {
-  return new Promise((resolve, reject) =>
-    gm(path).size((err, size) => (err ? reject(err) : resolve(size)))
-  );
+  return new Promise((resolve, reject) => gm(path).size((err, size) => (err ? reject(err) : resolve(size))));
 }
 
 async function download(baseUrl, directory, path) {

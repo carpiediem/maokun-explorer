@@ -24,10 +24,7 @@ function VisitDetails({ voyages }) {
   return (
     <div>
       <Typography color="textSecondary" component="p">
-        <FormattedMessage
-          id="details.visited"
-          defaultMessage="Visited by Treasure-Ships"
-        />
+        <FormattedMessage id="details.visited" defaultMessage="Visited by Treasure-Ships" />
       </Typography>
       <Typography variant="caption" component="p">
         {voyages.map((v) => (

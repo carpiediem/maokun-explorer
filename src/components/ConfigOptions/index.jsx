@@ -5,8 +5,6 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import Switch from '@material-ui/core/Switch';
 import { makeStyles } from '@material-ui/core/styles';
 import TranslateIcon from '@material-ui/icons/Translate';
 import LockIcon from '@material-ui/icons/Lock';
@@ -46,20 +44,13 @@ function ConfigOptions(props) {
     props.onChange('language', language);
     setDialog(null);
   };
-  const handleFilterChange = filterChangeHof(
-    props.onChange,
-    props.categories,
-    props.voyages
-  );
+  const handleFilterChange = filterChangeHof(props.onChange, props.categories, props.voyages);
 
   return (
     <React.Fragment>
       <List>
         <ListSubheader component="div" id="nested-list-subheader">
-          <FormattedMessage
-            id="menu.preferences"
-            defaultMessage="Preferences"
-          />
+          <FormattedMessage id="menu.preferences" defaultMessage="Preferences" />
         </ListSubheader>
         <ListItem button onClick={() => setDialog('language')}>
           <ListItemIcon>

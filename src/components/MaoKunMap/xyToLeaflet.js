@@ -15,10 +15,7 @@ export default (input, margin) => {
   if (typeof input[0] === 'number') {
     if (!margin) return xyToLatlng(input);
 
-    return [
-      xyToLatlng([input[0] - margin, input[1] - margin]),
-      xyToLatlng([input[0] + margin, input[1] + margin]),
-    ];
+    return [xyToLatlng([input[0] - margin, input[1] - margin]), xyToLatlng([input[0] + margin, input[1] + margin])];
   }
 
   if (Array.isArray(input[0]) && typeof input[0][0] === 'number') {

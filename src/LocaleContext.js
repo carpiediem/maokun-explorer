@@ -15,11 +15,7 @@ export const useLocaleContext = () => useContext(LocaleContext);
 
 export const LocaleContextProvider = (props) => {
   const [locale, setLocale] = React.useState(getBrowserLocale());
-  return (
-    <LocaleContext.Provider value={[locale, setLocale]}>
-      {props.children}
-    </LocaleContext.Provider>
-  );
+  return <LocaleContext.Provider value={[locale, setLocale]}>{props.children}</LocaleContext.Provider>;
 };
 
 export const intlEnWrapper = {

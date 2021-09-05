@@ -16,32 +16,19 @@ function LinksPopper({ anchorRef, open, setOpen, options }) {
   };
 
   return (
-    <Popper
-      open={open}
-      anchorEl={anchorRef.current}
-      role={undefined}
-      transition
-      disablePortal
-    >
+    <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
       {({ TransitionProps, placement }) => (
         <Grow
           {...TransitionProps}
           style={{
-            transformOrigin:
-              placement === 'bottom' ? 'center top' : 'center bottom',
+            transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
           }}
         >
           <Paper>
             <ClickAwayListener onClickAway={handleClose}>
               <MenuList id="split-button-menu">
                 {options.map(({ href, text }) => (
-                  <MenuItem
-                    key={text}
-                    button
-                    component="a"
-                    href={href}
-                    target="_blank"
-                  >
+                  <MenuItem key={text} button component="a" href={href} target="_blank">
                     {text}
                   </MenuItem>
                 ))}

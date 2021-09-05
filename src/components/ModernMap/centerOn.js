@@ -20,7 +20,7 @@ export default function centerOn(mapRef, center = MING_PALACE, margin = 0.06) {
       center.map((latLng) => latLng.reverse()),
       {
         duration: 2,
-      }
+      },
     );
   }
 }

@@ -29,9 +29,7 @@ import DEFAULT_PREFS from '../../components/Menu/default-preferences.json';
 
 const PLACES_PATH = 'data/maokun-places.geo.json';
 const PATHS_PATH = 'data/maokun-paths.geo.json';
-const hashMatch = /^#\/(about|legend|glossary|navigation|place|path)/.exec(
-  window.location.hash
-);
+const hashMatch = /^#\/(about|legend|glossary|navigation|place|path)/.exec(window.location.hash);
 
 function Explorer() {
   const maokunMapRef = useRef(null);
@@ -47,34 +45,27 @@ function Explorer() {
 
   useEffect(() => {
     // Request data
-    Promise.all([getGeoJson(PLACES_PATH), getGeoJson(PATHS_PATH)]).then(
-      ([places, paths]) => {
-        setData({ places, paths });
+    Promise.all([getGeoJson(PLACES_PATH), getGeoJson(PATHS_PATH)]).then(([places, paths]) => {
+      setData({ places, paths });
 
-        // Initialize to match URL hash
-        const toSelect = readHash(places, paths, maokunMapRef, modernMapRef);
-        if (toSelect.point || toSelect.path) setSelected(toSelect);
-      }
-    );
+      // Initialize to match URL hash
+      const toSelect = readHash(places, paths, maokunMapRef, modernMapRef);
+      if (toSelect.point || toSelect.path) setSelected(toSelect);
+    });
   }, []);
 
   function handlePrefsChange(key, value) {
     setPrefs(Object.assign({}, prefs, { [key]: value }));
   }
 
-  const filteredPlaces = data.places.filter(
-    applyPrefs(prefs.categories, prefs.voyages)
-  );
+  const filteredPlaces = data.places.filter(applyPrefs(prefs.categories, prefs.voyages));
 
   return (
     <React.Fragment>
       <SplitPane
         split="horizontal"
         minSize={50}
-        defaultSize={
-          parseInt(localStorage.getItem('splitPos'), 10) ||
-          window.innerHeight / 2
-        }
+        defaultSize={parseInt(localStorage.getItem('splitPos'), 10) || window.innerHeight / 2}
         onChange={(size) => localStorage.setItem('splitPos', size)}
         className={prefs.lockPanes ? 'locked' : ''}
       >
@@ -82,12 +73,7 @@ function Explorer() {
           ref={maokunMapRef}
           places={filteredPlaces}
           paths={data.paths}
-          onViewChange={handleMaokunViewChange(
-            modernMapRef,
-            minimapFovRef,
-            filteredPlaces,
-            selected
-          )}
+          onViewChange={handleMaokunViewChange(modernMapRef, minimapFovRef, filteredPlaces, selected)}
           onSelect={handleSelect}
         />
         <ModernMap
@@ -103,10 +89,7 @@ function Explorer() {
         fovRef={minimapFovRef}
         onClick={({ xRatio, yRatio }) => {
           handleSelect();
-          maokunCenterOn(maokunMapRef, [
-            MAOKUN_SIZE.zoomify[0] * xRatio,
-            MAOKUN_SIZE.zoomify[1] * yRatio,
-          ]);
+          maokunCenterOn(maokunMapRef, [MAOKUN_SIZE.zoomify[0] * xRatio, MAOKUN_SIZE.zoomify[1] * yRatio]);
         }}
       />
       <Globe fovRef={globeFovRef} />

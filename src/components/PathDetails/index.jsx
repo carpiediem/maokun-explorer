@@ -53,9 +53,7 @@ function PathDetails(props) {
     return null;
   }
 
-  const { properties } = props.paths.find(
-    ({ properties: { code } }) => code === props.id
-  );
+  const { properties } = props.paths.find(({ properties: { code } }) => code === props.id);
 
   return (
     <Drawer
@@ -99,9 +97,7 @@ function PathDetails(props) {
           {properties.millsTranslation.length === 0 ? null : (
             <Accordion className={classes.accordion}>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography variant="caption">
-                  J.V.G. Mills' Translation
-                </Typography>
+                <Typography variant="caption">J.V.G. Mills' Translation</Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <Typography variant="body2">
