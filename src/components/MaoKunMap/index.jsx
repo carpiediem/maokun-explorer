@@ -21,7 +21,7 @@ const onZoomifyMap = (f) =>
   (f.geometry.type === 'Point' && f.geometry.zoomify[0]) ||
   (f.geometry.type === 'LineString' && f.properties.code.length);
 
-const MaoKunMap = forwardRef(({ places, paths, labelLocations, onSelect, onViewChange }, mapRef) => {
+const MaoKunMap = forwardRef(({ places, paths, labelLocations, onSelect, onClick, onViewChange }, mapRef) => {
   return (
     <section className="maokun">
       <Map
@@ -31,7 +31,7 @@ const MaoKunMap = forwardRef(({ places, paths, labelLocations, onSelect, onViewC
         zoom={3}
         onMove={leafletViewListener(onViewChange)}
         onZoomend={leafletViewListener(onViewChange)}
-        onClick={leafletClickListener(onSelect)}
+        onClick={leafletClickListener(onSelect, onClick)}
         zoomControl={false}
         className={'zoomed-out'}
       >

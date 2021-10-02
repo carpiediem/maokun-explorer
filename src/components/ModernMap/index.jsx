@@ -23,7 +23,7 @@ const ModernMap = forwardRef((props, ref) => {
         center={[11.25, 75.75]}
         zoom={3}
         zoomControl={false}
-        onClick={leafletClickListener(props.onSelect)}
+        onClick={leafletClickListener(props.onSelect, props.onClick)}
         onMove={props.onViewChange}
         onZoomend={props.onViewChange}
       >

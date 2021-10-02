@@ -13,11 +13,13 @@ import NavigationDialog from '../../components/NavigationDialog';
 import Menu from '../../components/Menu';
 import PointDetails from '../../components/PointDetails';
 import PathDetails from '../../components/PathDetails';
+import SelectionDrawer from '../../components/SelectionDrawer';
 
 import './Explorer.css';
 import getGeoJson from '../../util/getGeoJson';
 import readHash from '../../util/readHash';
 import MAOKUN_SIZE from '../../components/MaoKunMap/size.json';
+import {latlngToXy} from '../../components/MaoKunMap/xyToLeaflet';
 import maokunCenterOn from '../../components/MaoKunMap/centerOn';
 import modernCenterOn from '../../components/ModernMap/centerOn';
 
@@ -40,6 +42,8 @@ function Explorer() {
   const [data, setData] = useState({ places: [], paths: [] });
   const [selected, setSelected] = useState({}); // CAN I GET RID OF THIS? WHY ISN'T MEMO KEEPING MODERNMAP FROM RERENDING
   const [dialog, setDialog] = useState(hashMatch ? hashMatch[1] : 'intro');
+  const [maokunCoords, setMaokunCoords] = useState([]);
+  const [modernCoords, setModernCoords] = useState([]);
 
   const outlinksDisabled = document.location.pathname === '/nls';
   const handleSelect = selectHof(setSelected, data, maokunMapRef, modernMapRef);
@@ -59,6 +63,11 @@ function Explorer() {
     setPrefs(Object.assign({}, prefs, { [key]: value }));
   }
 
+  function handleReset() {
+    setMaokunCoords([]);
+    setModernCoords([]);
+  }
+
   const filteredPlaces = data.places.filter(applyPrefs(prefs.categories, prefs.voyages));
 
   return (
@@ -76,6 +85,7 @@ function Explorer() {
           paths={data.paths}
           onViewChange={handleMaokunViewChange(modernMapRef, minimapFovRef, filteredPlaces, selected)}
           onSelect={handleSelect}
+          onClick={(latlng) => setMaokunCoords((arr) => [...arr, latlngToXy(latlng)])}
         />
         <ModernMap
           ref={modernMapRef}
@@ -84,6 +94,7 @@ function Explorer() {
           onViewChange={handleModernViewChange}
           labelLocations={prefs.labelLocations}
           onSelect={handleSelect}
+          onClick={(latlng) => setModernCoords((arr) => [...arr, latlng])}
         />
       </SplitPane>
       <MiniMap
@@ -104,8 +115,16 @@ function Explorer() {
       />
       <AboutDialog open={dialog === 'about'} handleClose={() => setDialog(null)} outlinksDisabled={outlinksDisabled} />
       <LegendDialog open={dialog === 'legend'} handleClose={() => setDialog(null)} />
-      <GlossaryDialog open={dialog === 'glossary'} handleClose={() => setDialog(null)} outlinksDisabled={outlinksDisabled} />
-      <NavigationDialog open={dialog === 'navigation'} handleClose={() => setDialog(null)} outlinksDisabled={outlinksDisabled} />
+      <GlossaryDialog
+        open={dialog === 'glossary'}
+        handleClose={() => setDialog(null)}
+        outlinksDisabled={outlinksDisabled}
+      />
+      <NavigationDialog
+        open={dialog === 'navigation'}
+        handleClose={() => setDialog(null)}
+        outlinksDisabled={outlinksDisabled}
+      />
       <Menu prefs={prefs} onChange={handlePrefsChange} setDialog={setDialog} setPrefs={setPrefs} />
       <PointDetails
         places={data.places}
@@ -114,6 +133,7 @@ function Explorer() {
         outlinksDisabled={outlinksDisabled}
       />
       <PathDetails paths={data.paths} id={selected.path} onSelect={handleSelect} outlinksDisabled={outlinksDisabled} />
+      <SelectionDrawer modernCoords={modernCoords} maokunCoords={maokunCoords} onReset={handleReset} />
     </React.Fragment>
   );
 }

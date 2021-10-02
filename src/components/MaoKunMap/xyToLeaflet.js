@@ -24,3 +24,8 @@ export default (input, margin) => {
 
   return [];
 };
+
+export const latlngToXy = ({ lat, lng }) => [
+  (lng / MAOKUN_SIZE.coordinates.lng) * MAOKUN_SIZE.zoomify[0],
+  (lat / MAOKUN_SIZE.coordinates.lat) * MAOKUN_SIZE.zoomify[1],
+];
