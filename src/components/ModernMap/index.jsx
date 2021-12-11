@@ -7,6 +7,7 @@ import toLatLngObject from '../../util/toLatLngObject';
 import LabeledMarker from './LabeledMarker';
 import './ModernMap.css';
 
+const outlinksDisabled = document.location.pathname === '/nls';
 const TILE_SOURCE = 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png';
 const TILE_ATTRIBUTION =
   '&copy <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OSM</a>';
@@ -23,6 +24,7 @@ const ModernMap = forwardRef((props, ref) => {
         center={[11.25, 75.75]}
         zoom={3}
         zoomControl={false}
+        attributionControl={!outlinksDisabled}
         onClick={leafletClickListener(props.onSelect, props.onClick)}
         onMove={props.onViewChange}
         onZoomend={props.onViewChange}

@@ -12,6 +12,7 @@ import xyToLeaflet from '../../util/xyToLeaflet';
 import MAOKUN_SIZE from './size';
 import './MaoKunMap.css';
 
+const outlinksDisabled = document.location.pathname === '/nls';
 const MAOKUN_URL = 'https://barbierilow.faculty.history.ucsb.edu/Research/ZhengHeMapZoomify/ZhengHe/';
 const ATTRIBUTION =
   "<a href='https://en.wikipedia.org/wiki/Wubei_Zhi'>Mao Yuanyi</a> & <a href='https://barbierilow.faculty.history.ucsb.edu/Research/ZhengHeMapZoomify/ZhengHe.htm'>Prof. Anthony Barbieri</a>";
@@ -33,6 +34,7 @@ const MaoKunMap = forwardRef(({ places, paths, labelLocations, onSelect, onClick
         onZoomend={leafletViewListener(onViewChange)}
         onClick={leafletClickListener(onSelect, onClick)}
         zoomControl={false}
+        attributionControl={!outlinksDisabled}
         className={'zoomed-out'}
       >
         <ZoomControl position="topright" />
