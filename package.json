@@ -32,7 +32,7 @@
     "node-fetch": "^2.6.1",
     "qrcode": "^1.4.4",
     "react": "^16.14.0",
-    "react-intl": "^5.8.8",
+    "react-intl": "^5.8.9",
     "react-katex": "^2.0.2",
     "react-leaflet": "^2.8.0",
     "react-scripts": "^4.0.0",
