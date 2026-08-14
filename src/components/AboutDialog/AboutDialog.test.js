@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import mediaQuery from 'css-mediaquery';
 
@@ -16,31 +16,31 @@ function createMatchMedia(width) {
 
 test('a click outside the dialog triggers props.onClose()', () => {
   const closeAction = jest.fn();
-  const { getByRole } = render(<AboutDialog open={true} handleClose={closeAction} />, intlEnWrapper);
+  render(<AboutDialog open={true} handleClose={closeAction} />, intlEnWrapper);
 
-  userEvent.click(getByRole('none'));
+  userEvent.click(screen.getByRole('none'));
   expect(closeAction).toHaveBeenCalled();
 });
 
 test('renders a direct link in header', () => {
-  const { getByText } = render(<AboutDialog open={true} />, intlEnWrapper);
-  const directLink = getByText('#');
+  render(<AboutDialog open={true} />, intlEnWrapper);
+  const directLink = screen.getByText('#');
 
   expect(directLink).toBeInTheDocument();
   expect(directLink.getAttribute('href')).toBe('#/about');
 });
 
 test('renders photo', () => {
-  const { getByRole } = render(<AboutDialog open={true} />, intlEnWrapper);
-  const img = getByRole('img');
+  render(<AboutDialog open={true} />, intlEnWrapper);
+  const img = screen.getByRole('img');
 
   expect(img).toBeInTheDocument();
   expect(img.getAttribute('src')).toBe('./images/jmmp.jpg');
 });
 
 test('renders links to data files', () => {
-  const { getByRole } = render(<AboutDialog open={true} />, intlEnWrapper);
-  const table = getByRole('table');
+  render(<AboutDialog open={true} />, intlEnWrapper);
+  const table = screen.getByRole('table');
 
   expect(table).toBeInTheDocument();
   expect(table.querySelector('a[href="/data/maokun-places.geo.json"]')).toBeInTheDocument();
@@ -53,8 +53,8 @@ test('renders links to data files', () => {
 
 describe('when props.open is false', () => {
   test('render nothing', () => {
-    const { queryByText } = render(<AboutDialog open={false} />, intlEnWrapper);
-    expect(queryByText(/\w/i)).toBeNull();
+    render(<AboutDialog open={false} />, intlEnWrapper);
+    expect(screen.queryByText(/\w/i)).toBeNull();
   });
 });
 
@@ -64,8 +64,8 @@ describe('when screen width is below 960px', () => {
   });
 
   test('fill screen', () => {
-    const { getByRole } = render(<AboutDialog open={true} />, intlEnWrapper);
-    const dialogPaper = getByRole('dialog');
+    render(<AboutDialog open={true} />, intlEnWrapper);
+    const dialogPaper = screen.getByRole('dialog');
 
     expect(dialogPaper).toBeInTheDocument();
     expect(dialogPaper).toHaveClass('MuiDialog-paperFullScreen');
@@ -73,18 +73,18 @@ describe('when screen width is below 960px', () => {
 
   test('a click on the chevron button triggers props.onClose()', () => {
     const closeAction = jest.fn();
-    const { getByRole } = render(<AboutDialog open={true} handleClose={closeAction} />, intlEnWrapper);
+    render(<AboutDialog open={true} handleClose={closeAction} />, intlEnWrapper);
 
-    userEvent.click(getByRole('button'));
+    userEvent.click(screen.getByRole('button'));
     expect(closeAction).toHaveBeenCalled();
   });
 });
 
 describe('when en locale is used', () => {
   test('renders English text and links', () => {
-    const { getByText } = render(<AboutDialog open={true} />, intlEnWrapper);
-    const titleText = getByText('About the Mao Kun Map');
-    const paragraphText = getByText(/The data displayed in this map is available in/);
+    render(<AboutDialog open={true} />, intlEnWrapper);
+    const titleText = screen.getByText('About the Mao Kun Map');
+    const paragraphText = screen.getByText(/The data displayed in this map is available in/);
     const firstHref = document.querySelector('a.external').getAttribute('href');
 
     expect(titleText).toBeInTheDocument();
@@ -95,9 +95,9 @@ describe('when en locale is used', () => {
 
 describe('when zh locale is used', () => {
   test('renders Chinese text and links', () => {
-    const { getByText, getAllByText } = render(<AboutDialog open={true} />, intlZhWrapper);
-    const titleText = getAllByText(/^鄭和航海圖$/i);
-    const paragraphText = getByText(/^如果你想將其用在其他項目上/);
+    render(<AboutDialog open={true} />, intlZhWrapper);
+    const titleText = screen.getAllByText(/^鄭和航海圖$/i);
+    const paragraphText = screen.getByText(/^如果你想將其用在其他項目上/);
     const firstHref = document.querySelector('a.external').getAttribute('href');
 
     expect(titleText[0]).toBeInTheDocument();
@@ -108,9 +108,9 @@ describe('when zh locale is used', () => {
 
 describe('when an unsupported locale is used', () => {
   test('renders English text and links', () => {
-    const { getByText } = render(<AboutDialog open={true} />, intlOjWrapper);
-    const titleText = getByText('About the Mao Kun Map');
-    const paragraphText = getByText(/The data displayed in this map is available in/);
+    render(<AboutDialog open={true} />, intlOjWrapper);
+    const titleText = screen.getByText('About the Mao Kun Map');
+    const paragraphText = screen.getByText(/The data displayed in this map is available in/);
     // Currently chooses Chinese-language URL, by default. Not worth fixing right now.
     // const firstHref = document.querySelector('a.external').getAttribute('href');
 
