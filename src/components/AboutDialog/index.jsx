@@ -133,7 +133,7 @@ export default function AboutDialog(props) {
           <FormattedMessage
             id="about.p5"
             values={{
-              a0: externalLink('http://rslc.us', props.outlinksDisabled),
+              a0: externalLink('https://github.com/carpiediem', props.outlinksDisabled),
               a1: externalLink('https://www.history.ucsb.edu/faculty/anthony-barbieri/', props.outlinksDisabled),
               a2: externalLink('http://www.world10k.com/blog/?page_id=192', props.outlinksDisabled),
               a3: externalLink('http://www.world10k.com/world10k.html', props.outlinksDisabled),
