@@ -8,9 +8,9 @@ import LabeledMarker from './LabeledMarker';
 import './ModernMap.css';
 
 const outlinksDisabled = document.location.pathname === '/nls';
-const TILE_SOURCE = 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png';
+const TILE_SOURCE = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
 const TILE_ATTRIBUTION =
-  '&copy <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OSM</a>';
+  '&copy; <a href="https://carto.com/attributions">CARTO</a> &copy; <a href="http://openstreetmap.org">OSM</a>';
 
 const hasKnownLocation = (f) =>
   (f.geometry.type === 'Point' && f.geometry.coordinates[0]) ||
