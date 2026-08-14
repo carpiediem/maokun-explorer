@@ -54,44 +54,6 @@
     "prop-types": "^15.7.2",
     "react-dom": "^17.0.1"
   },
-  "eslintConfig": {
-    "plugins": [
-      "sonarjs"
-    ],
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ],
-    "parserOptions": {
-      "ecmaVersion": 2018,
-      "sourceType": "module",
-      "ecmaFeatures": {
-        "jsx": true
-      }
-    },
-    "rules": {
-      "import/no-anonymous-default-export": "off",
-      "jest/no-conditional-expect": "off"
-    },
-    "overrides": [
-      {
-        "files": [
-          "*.test.js",
-          "*.spec.js"
-        ],
-        "rules": {
-          "jest/no-conditional-expect": "off",
-          "sonarjs/no-duplicate-string": "off",
-          "sonarjs/no-identical-functions": "off"
-        }
-      }
-    ],
-    "settings": {
-      "react": {
-        "version": "detect"
-      }
-    }
-  },
   "prettier": {
     "semi": true,
     "trailingComma": "all",
