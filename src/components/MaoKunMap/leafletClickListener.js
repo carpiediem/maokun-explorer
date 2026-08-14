@@ -1,7 +1,5 @@
 export default (onSelect, onClick) =>
   ({ originalEvent, latlng, ...rest }) => {
-
-
     // console.log({ originalEvent, latlng, ...rest }, latlngToXy(latlng));
 
     if (onClick) onClick(latlng);

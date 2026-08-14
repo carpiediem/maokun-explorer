@@ -19,7 +19,7 @@ import './Explorer.css';
 import getGeoJson from '../../util/getGeoJson';
 import readHash from '../../util/readHash';
 import MAOKUN_SIZE from '../../components/MaoKunMap/size.json';
-import {latlngToXy} from '../../components/MaoKunMap/xyToLeaflet';
+import { latlngToXy } from '../../components/MaoKunMap/xyToLeaflet';
 import maokunCenterOn from '../../components/MaoKunMap/centerOn';
 import modernCenterOn from '../../components/ModernMap/centerOn';
 

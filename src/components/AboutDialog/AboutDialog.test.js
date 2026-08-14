@@ -43,11 +43,17 @@ test('renders links to data files', () => {
   const table = screen.getByRole('table');
 
   expect(table).toBeInTheDocument();
+  // eslint-disable-next-line testing-library/no-node-access -- matching links by href, not accessible content
   expect(table.querySelector('a[href="/data/maokun-places.geo.json"]')).toBeInTheDocument();
+  // eslint-disable-next-line testing-library/no-node-access -- matching links by href, not accessible content
   expect(table.querySelector('a[href="/data/maokun-paths.geo.json"]')).toBeInTheDocument();
+  // eslint-disable-next-line testing-library/no-node-access -- matching links by href, not accessible content
   expect(table.querySelector('a[href="/data/maokun-places.csv"]')).toBeInTheDocument();
+  // eslint-disable-next-line testing-library/no-node-access -- matching links by href, not accessible content
   expect(table.querySelector('a[href="/data/maokun-rutters.csv"]')).toBeInTheDocument();
+  // eslint-disable-next-line testing-library/no-node-access -- matching links by href, not accessible content
   expect(table.querySelector('a[href="/data/maokun-imagePaths.csv"]')).toBeInTheDocument();
+  // eslint-disable-next-line testing-library/no-node-access -- matching links by href, not accessible content
   expect(table.querySelector('a[href="/data/maokun-geoPaths.csv"]')).toBeInTheDocument();
 });
 
@@ -85,6 +91,7 @@ describe('when en locale is used', () => {
     render(<AboutDialog open={true} />, intlEnWrapper);
     const titleText = screen.getByText('About the Mao Kun Map');
     const paragraphText = screen.getByText(/The data displayed in this map is available in/);
+    // eslint-disable-next-line testing-library/no-node-access -- matching link by class, not accessible content
     const firstHref = document.querySelector('a.external').getAttribute('href');
 
     expect(titleText).toBeInTheDocument();
@@ -98,6 +105,7 @@ describe('when zh locale is used', () => {
     render(<AboutDialog open={true} />, intlZhWrapper);
     const titleText = screen.getAllByText(/^鄭和航海圖$/i);
     const paragraphText = screen.getByText(/^如果你想將其用在其他項目上/);
+    // eslint-disable-next-line testing-library/no-node-access -- matching link by class, not accessible content
     const firstHref = document.querySelector('a.external').getAttribute('href');
 
     expect(titleText[0]).toBeInTheDocument();
