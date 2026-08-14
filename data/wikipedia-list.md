@@ -1835,7 +1835,7 @@
 |-
 ! 雞籠山
 | Jīlóngshān
-| style="text-align:left" | Chicken Coop Island
+| style="text-align:left" | Chicken Coop Mountain
 | [[Núi Mô Cheo]]<ref>{{cite book |pages=274 |title= Ying-Yai Sheng-Lan: 'The Overall Survey of the Ocean's Shores' |author=Ma Huan |editor=J.V.G. Mills |year=1970 |isbn=9780521010320}}</ref>
 | Vietnam
 | [https://loc.gov/resource/g7821rm.gct00058/?sp=1 21]
