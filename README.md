@@ -1,7 +1,7 @@
 <!-- markdownlint-disable MD033 MD041 -->
 
 <p align="center">
-  <a href="https://carpiediem.github.io/maokun-explorer/" rel="noopener" target="_blank"><img width="150" src="https://barbierilow.faculty.history.ucsb.edu/Research/ZhengHeMapZoomify/ZhengHe/TileGroup0/6-51-0.jpg" alt="Mao Kun map tile"></a></p>
+  <a href="https://carpiediem.github.io/maokun-explorer/" rel="noopener" target="_blank"><img width="150" src="https://barbierilow.faculty.history.ucsb.edu/Research/ZhengHeMapZoomify/ZhengHe/TileGroup0/6-51-0.jpg" alt="Mao Kun map tile"></a>
 </p>
 
 <h1 align="center">Mao Kun Map Explorer</h1>
