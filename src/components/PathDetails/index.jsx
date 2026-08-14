@@ -62,7 +62,7 @@ function PathDetails(props) {
     if (!properties?.code) return;
 
     setShowingQrcode(false);
-    toDataURL(`http://zhenghe.rslc.us/#/path/${properties.code}`).then(setQrcode);
+    toDataURL(`https://carpiediem.github.io/maokun-explorer/#/path/${properties.code}`).then(setQrcode);
   }, [setQrcode, properties?.code]);
 
   if (!props.paths.length || !props.id) {

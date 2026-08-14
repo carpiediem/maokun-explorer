@@ -54,7 +54,7 @@ function PointDetails(props) {
     if (!properties?.id) return;
 
     setShowingQrcode(false);
-    toDataURL(`http://zhenghe.rslc.us/#/place/${properties.id}`).then(setQrcode);
+    toDataURL(`https://carpiediem.github.io/maokun-explorer/#/place/${properties.id}`).then(setQrcode);
   }, [setQrcode, properties?.id]);
 
   if (!props.places.length || props.id === null || props.id === undefined) {
