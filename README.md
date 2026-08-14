@@ -13,7 +13,6 @@ An interactive map navigating the treasure fleet voyages of [Zheng He](https://e
 <!-- [![codecov](https://codecov.io/gh/carpiediem/maokun-explorer/branch/main/graph/badge.svg)](https://codecov.io/gh/carpiediem/maokun-explorer) -->
 
 [![DeepScan grade](https://deepscan.io/api/teams/10561/projects/14301/branches/262892/badge/grade.svg)](https://deepscan.io/dashboard/#view=project&tid=10561&pid=14301&bid=262892)
-[![CodeClimate maintainability grade](https://img.shields.io/codeclimate/maintainability/carpiediem/maokun-explorer)](https://codeclimate.com/github/carpiediem/maokun-explorer)
 [![CI Status](https://img.shields.io/github/workflow/status/carpiediem/maokun-explorer/Node%20CI)](https://github.com/carpiediem/maokun-explorer/actions?query=workflow%3A%22Node+CI%22)
 
 </div>
