@@ -47,6 +47,13 @@ Additional scripts:
 
 You can reach me [by email](carpiediem+maokun@gmail.com)
 
+## Known vulnerabilities
+
+A few Dependabot alerts are left unaddressed intentionally:
+
+- **`webpack-dev-server`** — the patched `5.x` line removes the `onBeforeSetupMiddleware`/`onAfterSetupMiddleware` options that `react-scripts@5.0.1`'s dev server config relies on, so upgrading breaks `npm start` outright (`Invalid options object` at boot). These alerts only cover the local dev server, not the production build or deployed site, so the risk is limited to someone reaching a developer's own `npm start` instance. Fixing this properly would mean patching `react-scripts` internals (e.g. via `patch-package`) or migrating off Create React App.
+- **`vue-template-compiler`** — pulled in transitively by `better-docs` (used only for the `npm run docs` script), this package has no patched version published upstream yet.
+
 ## Contributing
 
 I'm open to design ideas or pull requests. Just [create an issue](https://github.com/carpiediem/maokun-explorer/issues) in GitHub.
