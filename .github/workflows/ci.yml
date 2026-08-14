@@ -42,7 +42,7 @@ jobs:
 
       - name: NPM install and test
         run: |
-          npm install
+          npm install --legacy-peer-deps
           npm test
         env:
           CI: true

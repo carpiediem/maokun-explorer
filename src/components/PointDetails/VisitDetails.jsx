@@ -4,7 +4,9 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import Chip from '@material-ui/core/Chip';
 import Typography from '@material-ui/core/Typography';
 
-import { YEARS, URLS } from './voyages.json';
+import voyagesData from './voyages.json';
+
+const { YEARS, URLS } = voyagesData;
 
 /**
  * Component for showing treasureship visits to a place
