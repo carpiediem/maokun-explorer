@@ -5,8 +5,10 @@ import userEvent from '@testing-library/user-event';
 import { intlEnWrapper, intlZhWrapper } from '../../LocaleContext';
 import ConfigOptions from './index';
 
-jest.mock('./LanguageDialog', () => ({ open }) => `LanguageDialog component: ${open ? '' : 'not '}visible`);
-jest.mock('./FilterDialog', () => ({ open }) => `FilterDialog component: ${open ? '' : 'not '}visible`);
+jest.mock('./LanguageDialog', () => ({ open }) =>
+  require('react').createElement('div', null, `LanguageDialog component: ${open ? '' : 'not '}visible`));
+jest.mock('./FilterDialog', () => ({ open }) =>
+  require('react').createElement('div', null, `FilterDialog component: ${open ? '' : 'not '}visible`));
 
 const ALL_CATEGORIES_FIXTURE = {
   town: true,
