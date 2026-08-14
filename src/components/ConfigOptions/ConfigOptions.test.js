@@ -5,13 +5,16 @@ import userEvent from '@testing-library/user-event';
 import { intlEnWrapper, intlZhWrapper } from '../../LocaleContext';
 import ConfigOptions from './index';
 
-jest.mock('./LanguageDialog', () => ({ open, onChange }) =>
-  require('react').createElement(
-    'div',
-    null,
-    `LanguageDialog component: ${open ? '' : 'not '}visible`,
-    open && require('react').createElement('button', { onClick: () => onChange('zh') }, 'pick zh'),
-  ),
+jest.mock(
+  './LanguageDialog',
+  () =>
+    ({ open, onChange }) =>
+      require('react').createElement(
+        'div',
+        null,
+        `LanguageDialog component: ${open ? '' : 'not '}visible`,
+        open && require('react').createElement('button', { onClick: () => onChange('zh') }, 'pick zh'),
+      ),
 );
 jest.mock(
   './FilterDialog',
