@@ -39,6 +39,9 @@
     "react-split-pane": "^0.1.92",
     "topojson-client": "^3.1.0"
   },
+  "overrides": {
+    "underscore": "1.13.8"
+  },
   "devDependencies": {
     "better-docs": "^2.3.2",
     "cli-progress": "^3.8.2",
