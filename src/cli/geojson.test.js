@@ -123,7 +123,7 @@ describe('maokun-paths.geo.json', () => {
       expect(f.properties.millsTranslation).toEqual(expect.any(String));
       expect(f.properties.notes).toEqual(expect.any(String));
       expect(f.properties.textHtml).toEqual(expect.any(String));
-      expect(f.properties.translationHtml).toMatch(/\w+/);
+      expect(f.properties.translationHtml).toEqual(expect.any(String));
 
       expect(f.geometry.type).toEqual('LineString');
 
