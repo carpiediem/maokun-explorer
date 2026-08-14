@@ -40,14 +40,14 @@
 
   "en": "English",
   "zh": "Chinese",
-  "config.lockPanes": "Lock Panes",
+  "config.lockPanes": "Lock Map Sizes",
   "config.locked": "Locked",
   "config.draggable": "Draggable",
-  "config.syncMaps": "Sync Maps",
+  "config.syncMaps": "Sync Map Views",
   "config.synced": "Synced",
   "config.independant": "Independant",
-  "config.showOverlays": "Show Overlays",
-  "config.labelLocations": "Label Locations",
-  "config.hidden": "Hidden",
+  "config.showOverlays": "Filter Markers",
+  "config.labelLocations": "Show Place Names",
+  "config.hidden": "Labels are hidden",
   "config.shown": "Shown"
 }
