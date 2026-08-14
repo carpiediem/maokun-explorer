@@ -1,0 +1,9 @@
+/node_modules
+/build
+/coverage
+/docs
+/oss-attribution
+/public/data
+/public/tiles
+/tiles
+package-lock.json

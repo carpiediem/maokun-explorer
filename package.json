@@ -14,6 +14,10 @@
     "build": "react-scripts build",
     "test": "cross-env NODE_ICU_DATA=node_modules/full-icu react-scripts test",
     "eject": "react-scripts eject",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "typecheck": "tsc --noEmit",
     "docs": "jsdoc -c jsdoc.conf.json",
     "geojson": "node ./src/cli/build-geojson.js",
     "tiles": "node ./src/cli/download-tiles.js",
@@ -60,8 +64,10 @@
     "gm": "^1.23.1",
     "jest-expect-message": "^1.0.2",
     "jsdoc": "^4.0.5",
+    "prettier": "^3.9.6",
     "prop-types": "^15.7.2",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "typescript": "^5.9.3"
   },
   "prettier": {
     "semi": true,
