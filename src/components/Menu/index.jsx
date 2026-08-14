@@ -57,6 +57,9 @@ function Menu(props) {
   const intl = useIntl();
 
   const toggleDrawer = (open) => (event) => {
+    // The Drawer's onClose is only ever invoked for backdrop clicks or the Escape key, so this
+    // guard is unreachable today; it's kept in case toggleDrawer is later wired to onKeyDown.
+    /* istanbul ignore next */
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
