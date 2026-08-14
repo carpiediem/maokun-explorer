@@ -14,7 +14,6 @@ An interactive map navigating the treasure fleet voyages of [Zheng He](https://e
 
 [![DeepScan grade](https://deepscan.io/api/teams/10561/projects/14301/branches/262892/badge/grade.svg)](https://deepscan.io/dashboard/#view=project&tid=10561&pid=14301&bid=262892)
 [![CI Status](https://img.shields.io/github/workflow/status/carpiediem/maokun-explorer/Node%20CI)](https://github.com/carpiediem/maokun-explorer/actions?query=workflow%3A%22Node+CI%22)
-[![deployment status](https://img.shields.io/website?label=zhenghe.rslc.us&url=https%3A%2F%2Fzhenghe.rslc.us)](https://zhenghe.rslc.us)
 
 </div>
 
