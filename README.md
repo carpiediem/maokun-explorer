@@ -10,10 +10,9 @@
 
 An interactive map navigating the treasure fleet voyages of [Zheng He](https://en.wikipedia.org/wiki/Zheng_He). Built with [React](https://reactjs.org/) and [Leaflet](https://leafletjs.com/).
 
-<!-- [![codecov](https://codecov.io/gh/carpiediem/maokun-explorer/branch/main/graph/badge.svg)](https://codecov.io/gh/carpiediem/maokun-explorer) -->
-
+[![codecov](https://codecov.io/gh/carpiediem/maokun-explorer/branch/main/graph/badge.svg)](https://codecov.io/gh/carpiediem/maokun-explorer)
 [![DeepScan grade](https://deepscan.io/api/teams/10561/projects/14301/branches/262892/badge/grade.svg)](https://deepscan.io/dashboard/#view=project&tid=10561&pid=14301&bid=262892)
-[![CI Status](https://img.shields.io/github/workflow/status/carpiediem/maokun-explorer/Node%20CI)](https://github.com/carpiediem/maokun-explorer/actions?query=workflow%3A%22Node+CI%22)
+[![CI Status](https://img.shields.io/github/actions/workflow/status/carpiediem/maokun-explorer/ci.yml?branch=main)](https://github.com/carpiediem/maokun-explorer/actions?query=workflow%3A%22Node+CI%22)
 
 </div>
 
