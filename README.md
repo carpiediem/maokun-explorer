@@ -49,7 +49,7 @@ Additional scripts:
 
 ## Questions
 
-You can reach me at maokun@rslc.us
+You can reach me [by email](carpiediem+maokun@gmail.com)
 
 ## Contributing
 
