@@ -98,6 +98,7 @@ function Explorer() {
           places={filteredPlaces}
           paths={data.paths}
           onViewChange={handleMaokunViewChange(modernMapRef, minimapFovRef, filteredPlaces, selected)}
+          labelLocations={prefs.labelLocations}
           onSelect={handleSelect}
           onClick={(latlng) => setMaokunCoords((arr) => [...arr, latlngToXy(latlng)])}
         />
