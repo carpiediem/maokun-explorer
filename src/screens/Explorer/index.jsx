@@ -25,6 +25,8 @@ import modernCenterOn from '../../components/ModernMap/centerOn';
 
 import applyPrefs from './applyPrefs';
 import selectHof from './handleSelect';
+import resetHighlights from './resetHighlights';
+import highlightPlace from './highlightPlace';
 import handleMaokunViewChange from './handleMaokunViewChange';
 import handleModernViewChange from './handleModernViewChange';
 import DEFAULT_PREFS from '../../components/Menu/default-preferences.json';
@@ -58,6 +60,18 @@ function Explorer() {
       if (toSelect.point || toSelect.path) setSelected(toSelect);
     });
   }, []);
+
+  // Apply marker highlighting once the selected place/path's markers exist in the DOM. This
+  // covers selection triggered by the initial URL hash, whose markers aren't rendered yet at the
+  // point readHash runs, as well as re-highlighting after the underlying data reloads.
+  useEffect(() => {
+    resetHighlights();
+    if (selected.point) highlightPlace(selected.point);
+    if (selected.path) {
+      const path = data.paths.find((p) => p.properties.code === selected.path);
+      if (path) path.properties.landmarks.forEach(highlightPlace);
+    }
+  }, [selected, data]);
 
   function handlePrefsChange(key, value) {
     setPrefs(Object.assign({}, prefs, { [key]: value }));
