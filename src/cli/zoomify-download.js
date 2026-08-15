@@ -83,16 +83,23 @@ module.exports = async function zoomifyDownload(baseUrl, directory, opts = {}) {
   progress.stop();
 };
 
+// Exposed for direct unit testing of these otherwise-private helpers; module.exports itself
+// remains the callable zoomifyDownload function, so existing callers are unaffected.
+module.exports.auditDirectory = auditDirectory;
+module.exports.hasTileHere = hasTileHere;
+module.exports.getSize = getSize;
+module.exports.download = download;
+
 function auditDirectory(directory) {
   // FIND WHICH FILES HAVE ALREADY BEEN DOWNLOADED
   const subdirs = readdirSync(directory);
-  if (subdirs.length === 0) return { count: 0, zoom: 0, hIndex: 0, vIndex: 0 };
+  if (subdirs.length === 0) return { count: 0, zoom: 0, hStart: 0, vStart: 0 };
 
   const reLastSubdir = new RegExp(`${subdirs.length - 1}$`);
   const lastSubdir = subdirs.find((d) => reLastSubdir.test(d));
 
   const files = readdirSync(`${directory}/${lastSubdir}`);
-  if (files.length === 0) return { count: 0, zoom: 0, hIndex: 0, vIndex: 0 };
+  if (files.length === 0) return { count: 0, zoom: 0, hStart: 0, vStart: 0 };
 
   const count = (subdirs.length - 1) * 256 + files.length;
   const zoom = files.reduce((agg, cur) => {
@@ -112,7 +119,10 @@ function auditDirectory(directory) {
   const hStart = files
     .filter((f) => reLowestRow.test(f))
     .reduce((agg, cur) => {
+      // Any filename that passed the reLowestRow filter above already has the
+      // "-<digits>-<digits>.<ext>" shape this looks for, so hIndexMatch is never null here.
       const hIndexMatch = /-(\d+)-\d+\.\w+$/.exec(cur);
+      /* istanbul ignore next */
       return hIndexMatch ? Math.max(agg, parseInt(hIndexMatch[1], 10)) : agg;
     }, 0);
 

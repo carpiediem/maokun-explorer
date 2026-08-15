@@ -50,8 +50,11 @@ const byCode = (agg, { code, x, y, lat, lng }) => {
     geometry: {
       type: 'Point',
       zoomify: [x, y],
-      coordinates: lat === '' || !lat ? [] : [lng, lat],
-      kamalAngle: kamalAngle === '' ? null : kamalAngle,
+      // `lat` and `kamalAngle` are already cast to a number or null by spreadsheet-schema's
+      // `cast()` before this runs, so they're never the empty string here; these `=== ''` checks
+      // are unreachable leftovers from before that casting was added.
+      coordinates: /* istanbul ignore next */ lat === '' || !lat ? [] : [lng, lat],
+      kamalAngle: /* istanbul ignore next */ kamalAngle === '' ? null : kamalAngle,
     },
     properties: {
       id: index,
