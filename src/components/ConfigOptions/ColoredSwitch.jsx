@@ -1,21 +1,23 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 
-export default function ColoredSwitch({ color, ...rest }) {
-  const ColorOnly = withStyles({
-    switchBase: {
-      color,
-      '&$checked': {
-        color,
-      },
-      '&$checked + $track': {
-        backgroundColor: color,
-      },
+const useStyles = makeStyles({
+  checked: {},
+  track: {},
+  switchBase: {
+    color: 'var(--switch-color)',
+    '&$checked': {
+      color: 'var(--switch-color)',
     },
-    checked: {},
-    track: {},
-  })(Switch);
+    '&$checked + $track': {
+      backgroundColor: 'var(--switch-color)',
+    },
+  },
+});
 
-  return <ColorOnly {...rest} />;
+export default function ColoredSwitch({ color, ...rest }) {
+  const classes = useStyles();
+  const style = color ? { '--switch-color': color } : undefined;
+  return <Switch classes={classes} style={style} {...rest} />;
 }
