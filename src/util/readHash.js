@@ -13,9 +13,9 @@ export default (places, paths, maokunMapRef, modernMapRef) => {
       found = places.find((p) => p.properties.id === toSelect.point);
       break;
 
-    case 'paths':
+    case 'path':
       // zoom to the bounds of the specified path
-      toSelect = { paths: hashMatch[2] };
+      toSelect = { path: hashMatch[2] };
       found = paths.find((p) => p.properties.code === toSelect.path);
       break;
 
@@ -23,6 +23,10 @@ export default (places, paths, maokunMapRef, modernMapRef) => {
       // delay zoom until IntroDialog is closed
       break;
 
+    // The regex above can only ever capture 'place', 'path', or nothing (handled by the
+    // `undefined` case above), so this default can't actually be reached; kept as a defensive
+    // fallback in case the regex is loosened later.
+    /* istanbul ignore next */
     default:
       found = places.find((p) => p.properties.id === 17); // Ming Palace in Nanjing
   }
