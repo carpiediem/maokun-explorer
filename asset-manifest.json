@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/maokun-explorer/static/css/main.086cbd1c.css",
-    "main.js": "/maokun-explorer/static/js/main.66489035.js",
+    "main.js": "/maokun-explorer/static/js/main.d76d0158.js",
     "static/media/KaTeX_AMS-Regular.ttf": "/maokun-explorer/static/media/KaTeX_AMS-Regular.797708391f0380251e6c.ttf",
     "static/media/KaTeX_Main-Regular.ttf": "/maokun-explorer/static/media/KaTeX_Main-Regular.c13710b121e1ae9a9d2f.ttf",
     "static/media/KaTeX_Main-Bold.ttf": "/maokun-explorer/static/media/KaTeX_Main-Bold.741b6dafa705c6d25b25.ttf",
@@ -61,10 +61,10 @@
     "static/media/KaTeX_Size3-Regular.woff2": "/maokun-explorer/static/media/KaTeX_Size3-Regular.943a01ec6dae1a54fa8b.woff2",
     "index.html": "/maokun-explorer/index.html",
     "main.086cbd1c.css.map": "/maokun-explorer/static/css/main.086cbd1c.css.map",
-    "main.66489035.js.map": "/maokun-explorer/static/js/main.66489035.js.map"
+    "main.d76d0158.js.map": "/maokun-explorer/static/js/main.d76d0158.js.map"
   },
   "entrypoints": [
     "static/css/main.086cbd1c.css",
-    "static/js/main.66489035.js"
+    "static/js/main.d76d0158.js"
   ]
 }
