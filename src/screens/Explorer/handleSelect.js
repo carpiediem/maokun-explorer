@@ -5,10 +5,12 @@ import highlightPlace from './highlightPlace';
 import maokunCenterOn from '../../components/MaoKunMap/centerOn';
 import modernCenterOn from '../../components/ModernMap/centerOn';
 
-export default (setSelected, { places, paths }, maokunMapRef, modernMapRef) =>
+export default (setSelected, selectedRef, { places, paths }, maokunMapRef, modernMapRef) =>
   (id, type, source) => {
     resetHighlights();
-    setSelected({ [type]: id, time: Date.now() });
+    const newSelected = { [type]: id, time: Date.now() };
+    selectedRef.current = newSelected;
+    setSelected(newSelected);
     if (!id) return;
 
     // Find feature
