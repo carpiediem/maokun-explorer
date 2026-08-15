@@ -8,8 +8,13 @@ import ConfigOptions from './index';
 jest.mock(
   './LanguageDialog',
   () =>
-    ({ open }) =>
-      require('react').createElement('div', null, `LanguageDialog component: ${open ? '' : 'not '}visible`),
+    ({ open, onChange }) =>
+      require('react').createElement(
+        'div',
+        null,
+        `LanguageDialog component: ${open ? '' : 'not '}visible`,
+        open && require('react').createElement('button', { onClick: () => onChange('zh') }, 'pick zh'),
+      ),
 );
 jest.mock(
   './FilterDialog',
@@ -97,6 +102,19 @@ describe('when en locale is used', () => {
     expect(overlayValue).toBeInTheDocument();
     expect(labelLabel).toBeInTheDocument();
     expect(labelValue).toBeInTheDocument();
+  });
+});
+
+describe('when a language is chosen from the language dialog', () => {
+  test('Triggers onChange and closes the dialog', () => {
+    const changeAction = jest.fn();
+    render(<ConfigOptions onChange={changeAction} />, intlEnWrapper);
+
+    userEvent.click(screen.getByText('Language'));
+    userEvent.click(screen.getByText('pick zh'));
+
+    expect(changeAction).toHaveBeenCalledWith('language', 'zh');
+    expect(screen.getByText('LanguageDialog component: not visible')).toBeInTheDocument();
   });
 });
 

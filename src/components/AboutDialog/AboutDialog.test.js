@@ -64,6 +64,18 @@ describe('when props.open is false', () => {
   });
 });
 
+describe('when props.outlinksDisabled is true', () => {
+  test('renders the QR code message and image instead of the data table', () => {
+    render(<AboutDialog open={true} outlinksDisabled />, intlEnWrapper);
+
+    expect(screen.getByText(/please visit the site on your own device/)).toBeInTheDocument();
+    expect(screen.queryByText('Full data set')).toBeNull();
+    expect(screen.getByAltText("QR code of this page's URL")).toBeInTheDocument();
+    // eslint-disable-next-line testing-library/no-node-access -- confirming no external links are rendered
+    expect(document.querySelector('a.external')).toBeNull();
+  });
+});
+
 describe('when screen width is below 960px', () => {
   beforeAll(() => {
     window.matchMedia = createMatchMedia(950);

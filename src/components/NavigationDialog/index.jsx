@@ -18,6 +18,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 // import { LocaleContext } from '../../LocaleContext';
 // import externalLink from '../externalLink';
 import getAzimuth from './getAzimuth';
+import { latCalc, latError } from './latitude';
 
 import sights from './maokun-sights.json';
 const groups = ['Western Indian Coast', 'Maldives and Lakshadweep', 'Arabian Peninsula', 'East African Coast'];
@@ -48,27 +49,11 @@ const useStyles = makeStyles((theme) => ({
   daylight: { textDecoration: 'line-through' },
 }));
 
-const FINGER = 1.616666;
-const POLAR_DISTANCE = {
-  Polaris: 3.8548333,
-  'χ Dra': 17.5750278,
-  Kochab: 13.49038,
-};
-
 export default function NavigationDialog(props) {
   const theme = useTheme();
   const classes = useStyles();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   // const [locale] = React.useContext(LocaleContext);
-
-  function latCalc(altitude, star) {
-    const latitude = POLAR_DISTANCE[star] + (star === 'Polaris' ? altitude * FINGER : -altitude * FINGER);
-    return `${Math.abs(latitude).toFixed(2)}° ${latitude < 0 ? 'S' : 'N'}`;
-  }
-  function latError(altitude, star, latitude) {
-    const error = POLAR_DISTANCE[star] + (star === 'Polaris' ? altitude * FINGER : -altitude * FINGER) - latitude;
-    return `${error > 0 ? '+' : ''}${error.toFixed(2)}°`;
-  }
 
   return (
     <Dialog
