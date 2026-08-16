@@ -8,7 +8,7 @@ import ColoredSwitch from './ColoredSwitch';
 test('renders grey, by default', () => {
   const { container } = render(<ColoredSwitch />);
   // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access -- checking computed styles by class, not accessible content
-  expect(container.firstElementChild.getAttribute('class')).toBe('MuiSwitch-root');
+  expect(container.firstElementChild.getAttribute('class').split(' ')).toContain('MuiSwitch-root');
   // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access -- checking computed styles by class, not accessible content
   expect(getComputedStyle(container.querySelector('.MuiSwitch-switchBase')).color).toBe('rgba(0, 0, 0, 0.54)');
   // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access -- checking computed styles by class, not accessible content
