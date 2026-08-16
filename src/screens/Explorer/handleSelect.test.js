@@ -40,11 +40,41 @@ describe('when id is falsy', () => {
     const maokunMapRef = fakeMapRef();
     const modernMapRef = fakeMapRef();
 
-    handleSelect(setSelected, { places: [PLACE], paths: [PATH] }, maokunMapRef, modernMapRef)(null, 'point', 'maokun');
+    handleSelect(
+      setSelected,
+      { current: {} },
+      { places: [PLACE], paths: [PATH] },
+      maokunMapRef,
+      modernMapRef,
+    )(null, 'point', 'maokun');
 
     expect(document.querySelector('path.circle-marker.id-1').classList.contains('selected')).toBe(false);
     expect(setSelected).toHaveBeenCalledWith({ point: null, time: expect.any(Number) });
     expect(global.gtag).not.toHaveBeenCalled();
+  });
+});
+
+describe('when a selection is made', () => {
+  test('updates selectedRef.current synchronously, before flying either map', () => {
+    const maokunMapRef = fakeMapRef();
+    const modernMapRef = fakeMapRef();
+    const selectedRef = { current: {} };
+    maokunMapRef.current.leafletElement.flyToBounds.mockImplementation(() => {
+      // At the moment the pan begins, the ref must already reflect the new selection so that
+      // any view-change handler triggered by this pan can tell it was self-inflicted.
+      expect(selectedRef.current).toEqual({ point: 1, time: expect.any(Number) });
+    });
+
+    handleSelect(
+      jest.fn(),
+      selectedRef,
+      { places: [PLACE], paths: [PATH] },
+      maokunMapRef,
+      modernMapRef,
+    )(1, 'point', 'modern');
+
+    expect(selectedRef.current).toEqual({ point: 1, time: expect.any(Number) });
+    expect(maokunMapRef.current.leafletElement.flyToBounds).toHaveBeenCalled();
   });
 });
 
@@ -54,7 +84,13 @@ describe('when a point is selected', () => {
     const maokunMapRef = fakeMapRef();
     const modernMapRef = fakeMapRef();
 
-    handleSelect(setSelected, { places: [PLACE], paths: [PATH] }, maokunMapRef, modernMapRef)(1, 'point', 'maokun');
+    handleSelect(
+      setSelected,
+      { current: {} },
+      { places: [PLACE], paths: [PATH] },
+      maokunMapRef,
+      modernMapRef,
+    )(1, 'point', 'maokun');
 
     expect(document.querySelector('section.maokun path.circle-marker.id-1').classList.contains('selected')).toBe(true);
     expect(setSelected).toHaveBeenCalledWith({ point: 1, time: expect.any(Number) });
@@ -69,7 +105,13 @@ describe('when a point is selected', () => {
     const maokunMapRef = fakeMapRef();
     const modernMapRef = fakeMapRef();
 
-    handleSelect(jest.fn(), { places: [PLACE], paths: [PATH] }, maokunMapRef, modernMapRef)(1, 'point', 'maokun');
+    handleSelect(
+      jest.fn(),
+      { current: {} },
+      { places: [PLACE], paths: [PATH] },
+      maokunMapRef,
+      modernMapRef,
+    )(1, 'point', 'maokun');
 
     expect(modernMapRef.current.leafletElement.flyToBounds).toHaveBeenCalled();
     expect(maokunMapRef.current.leafletElement.flyToBounds).not.toHaveBeenCalled();
@@ -79,7 +121,13 @@ describe('when a point is selected', () => {
     const maokunMapRef = fakeMapRef();
     const modernMapRef = fakeMapRef();
 
-    handleSelect(jest.fn(), { places: [PLACE], paths: [PATH] }, maokunMapRef, modernMapRef)(1, 'point', 'modern');
+    handleSelect(
+      jest.fn(),
+      { current: {} },
+      { places: [PLACE], paths: [PATH] },
+      maokunMapRef,
+      modernMapRef,
+    )(1, 'point', 'modern');
 
     expect(maokunMapRef.current.leafletElement.flyToBounds).toHaveBeenCalled();
     expect(modernMapRef.current.leafletElement.flyToBounds).not.toHaveBeenCalled();
@@ -89,7 +137,13 @@ describe('when a point is selected', () => {
     const maokunMapRef = fakeMapRef();
     const modernMapRef = fakeMapRef();
 
-    handleSelect(jest.fn(), { places: [PLACE], paths: [PATH] }, maokunMapRef, modernMapRef)(1, 'point', 'minimap');
+    handleSelect(
+      jest.fn(),
+      { current: {} },
+      { places: [PLACE], paths: [PATH] },
+      maokunMapRef,
+      modernMapRef,
+    )(1, 'point', 'minimap');
 
     expect(maokunMapRef.current.leafletElement.flyToBounds).not.toHaveBeenCalled();
     expect(modernMapRef.current.leafletElement.flyToBounds).not.toHaveBeenCalled();
@@ -101,7 +155,13 @@ describe('when a path is selected', () => {
     const maokunMapRef = fakeMapRef();
     const modernMapRef = fakeMapRef();
 
-    handleSelect(jest.fn(), { places: [PLACE], paths: [PATH] }, maokunMapRef, modernMapRef)('wei-1', 'path', 'maokun');
+    handleSelect(
+      jest.fn(),
+      { current: {} },
+      { places: [PLACE], paths: [PATH] },
+      maokunMapRef,
+      modernMapRef,
+    )('wei-1', 'path', 'maokun');
 
     document.querySelectorAll('section.maokun path.circle-marker').forEach((marker) => {
       expect(marker.classList.contains('path-landmark')).toBe(true);
@@ -124,6 +184,7 @@ describe('when the type is unrecognized', () => {
     expect(() =>
       handleSelect(
         jest.fn(),
+        { current: {} },
         { places: [PLACE], paths: [PATH] },
         maokunMapRef,
         modernMapRef,

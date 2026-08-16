@@ -42,13 +42,14 @@ function Explorer() {
   const globeFovRef = useRef(null);
   const [prefs, setPrefs] = useState(DEFAULT_PREFS);
   const [data, setData] = useState({ places: [], paths: [] });
-  const [selected, setSelected] = useState({}); // CAN I GET RID OF THIS? WHY ISN'T MEMO KEEPING MODERNMAP FROM RERENDING
+  const [selected, setSelected] = useState({});
+  const selectedRef = useRef({});
   const [dialog, setDialog] = useState(hashMatch ? hashMatch[1] : 'intro');
   const [maokunCoords, setMaokunCoords] = useState([]);
   const [modernCoords, setModernCoords] = useState([]);
 
   const outlinksDisabled = document.location.pathname === '/nls';
-  const handleSelect = selectHof(setSelected, data, maokunMapRef, modernMapRef);
+  const handleSelect = selectHof(setSelected, selectedRef, data, maokunMapRef, modernMapRef);
 
   useEffect(() => {
     // Request data
@@ -97,7 +98,7 @@ function Explorer() {
           ref={maokunMapRef}
           places={filteredPlaces}
           paths={data.paths}
-          onViewChange={handleMaokunViewChange(modernMapRef, minimapFovRef, filteredPlaces, selected)}
+          onViewChange={handleMaokunViewChange(modernMapRef, minimapFovRef, filteredPlaces, selectedRef)}
           labelLocations={prefs.labelLocations}
           onSelect={handleSelect}
           onClick={(latlng) => setMaokunCoords((arr) => [...arr, latlngToXy(latlng)])}

@@ -8,7 +8,7 @@ const WHOLE_GLOBE = [
 ];
 const BOUNDS_MARGIN = 0.08; // degrees latitude or longitude
 
-export default (modernMapRef, minimapFovRef, filteredPlaces, selected) => (percentBounds) => {
+export default (modernMapRef, minimapFovRef, filteredPlaces, selectedRef) => (percentBounds) => {
   // Update red "field of view" box in MiniMap
   updateFov(minimapFovRef, percentBounds);
 
@@ -20,6 +20,9 @@ export default (modernMapRef, minimapFovRef, filteredPlaces, selected) => (perce
   ];
 
   // Update ModernMap (unless triggered by centerOn())
-  const timeSinceSelection = (Date.now() - selected.time) / 1000;
-  if (!selected.time || timeSinceSelection > 2) modernMapRef.current.leafletElement.fitBounds(boundsWithMargin);
+  // Read from a ref, not a closed-over value, since MaoKunMap is memoized and this
+  // handler's closure is created once and never refreshed on re-render.
+  const { time } = selectedRef.current;
+  const timeSinceSelection = (Date.now() - time) / 1000;
+  if (!time || timeSinceSelection > 2) modernMapRef.current.leafletElement.fitBounds(boundsWithMargin);
 };
