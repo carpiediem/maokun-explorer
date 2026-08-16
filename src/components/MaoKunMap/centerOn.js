@@ -1,4 +1,5 @@
 import MAOKUN_SIZE from './size';
+import FLY_DURATION from './flyDuration';
 
 const MING_PALACE = [105513, 1863];
 const xyToLatlng = ([x, y]) => ({
@@ -17,14 +18,14 @@ export default (mapRef, center = MING_PALACE, margin = 800) => {
     ];
 
     mapRef.current.leafletElement.flyToBounds(leafletBounds, {
-      duration: 2,
+      duration: FLY_DURATION,
     });
     return;
   }
 
   if (Array.isArray(center[0]) && typeof center[0][0] === 'number') {
     mapRef.current.leafletElement.flyToBounds(center.map(xyToLatlng), {
-      duration: 2,
+      duration: FLY_DURATION,
     });
   }
 };
