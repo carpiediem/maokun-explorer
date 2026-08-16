@@ -29,6 +29,8 @@ import resetHighlights from './resetHighlights';
 import highlightPlace from './highlightPlace';
 import handleMaokunViewChange from './handleMaokunViewChange';
 import handleModernViewChange from './handleModernViewChange';
+import leafletViewListener from '../../components/MaoKunMap/leafletViewListener';
+import nearestPlace from './nearestPlace';
 import DEFAULT_PREFS from '../../components/Menu/default-preferences.json';
 
 const PLACES_PATH = 'data/maokun-places.geo.json';
@@ -117,7 +119,21 @@ function Explorer() {
         fovRef={minimapFovRef}
         onClick={({ xRatio, yRatio }) => {
           handleSelect();
-          maokunCenterOn(maokunMapRef, [MAOKUN_SIZE.zoomify[0] * xRatio, MAOKUN_SIZE.zoomify[1] * yRatio]);
+          const maokunXy = [MAOKUN_SIZE.zoomify[0] * xRatio, MAOKUN_SIZE.zoomify[1] * yRatio];
+          maokunCenterOn(maokunMapRef, maokunXy);
+
+          // Center roughly right away on the nearest known place, then once the Mao Kun map
+          // finishes flying there, refine the Modern map to the bounds of what's actually in
+          // view (same logic as normal panning) instead of staying zoomed to a single point.
+          const closest = nearestPlace(filteredPlaces, maokunXy);
+          modernCenterOn(modernMapRef, closest ? closest.geometry.coordinates : null, 4);
+
+          maokunMapRef.current.leafletElement.once('moveend', ({ target }) => {
+            selectedRef.current = {};
+            leafletViewListener(handleMaokunViewChange(modernMapRef, minimapFovRef, filteredPlaces, selectedRef))({
+              target,
+            });
+          });
         }}
       />
       <Globe fovRef={globeFovRef} />
