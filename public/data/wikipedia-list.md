@@ -71,7 +71,7 @@
 |-
 ! 宣課司
 | Xuānkèsī
-| style="text-align:left" | Propoganda Department
+| style="text-align:left" | Propaganda Department
 | [[near Longjiang Road?]]<ref>{{cite book |title= 新编郑和航海图集 |author=海军海洋测绘研究所 |year=1988 |isbn=9787114002298}}</ref>
 | Jiangsu
 | [https://loc.gov/resource/g7821rm.gct00058/?sp=1 1]
@@ -99,7 +99,7 @@
 |-
 ! 祭祀壇
 | jìsìtán
-| style="text-align:left" | sacraficial altar
+| style="text-align:left" | sacrificial altar
 | [[outside Jinchuan Gate]]<ref>{{cite book |title= 新编郑和航海图集 |author=海军海洋测绘研究所 |year=1988 |isbn=9787114002298}}</ref>
 | Jiangsu
 | [https://loc.gov/resource/g7821rm.gct00058/?sp=1 1]
@@ -170,7 +170,7 @@
 ! 通江橋
 | Tōngjiāngqiáo
 | style="text-align:left" | Through River Bridge
-| [[outside the gate of Zhuojinshang, wher Baobanchang Shipbuilding Lake once was]]<ref>{{cite book |title= 新编郑和航海图集 |author=海军海洋测绘研究所 |year=1988 |isbn=9787114002298}}</ref>
+| [[outside the gate of Zhuojinshang, where Baobanchang Shipbuilding Lake once was]]<ref>{{cite book |title= 新编郑和航海图集 |author=海军海洋测绘研究所 |year=1988 |isbn=9787114002298}}</ref>
 | Jiangsu
 | [https://loc.gov/resource/g7821rm.gct00058/?sp=1 2]
 |-
@@ -1226,7 +1226,7 @@
 |-
 ! 福建布政司
 | Fújiànbùzhèngsī
-| style="text-align:left" | Fortunate Construction Governament
+| style="text-align:left" | Fortunate Construction Government
 | [[Fuzhou]]<ref>{{cite book |pages=266 |title= Ying-Yai Sheng-Lan: 'The Overall Survey of the Ocean's Shores' |author=Ma Huan |editor=J.V.G. Mills |year=1970 |isbn=9780521010320}}</ref>
 | Fujian
 | [https://loc.gov/resource/g7821rm.gct00058/?sp=1 14]
@@ -1653,7 +1653,7 @@
 |-
 ! 高州
 | Gāozhōu
-| style="text-align:left" | High Provice
+| style="text-align:left" | High Province
 | [[Gaozhou City]]<ref>{{cite book |pages=272 |title= Ying-Yai Sheng-Lan: 'The Overall Survey of the Ocean's Shores' |author=Ma Huan |editor=J.V.G. Mills |year=1970 |isbn=9780521010320}}</ref>
 | Guangdong
 | [https://loc.gov/resource/g7821rm.gct00058/?sp=1 18]
@@ -3068,7 +3068,7 @@
 ! 有人家
 | yǒurénjiā
 | style="text-align:left" | Inhabited
-| [[reffering to Raya Island?]]
+| [[referring to Raya Island?]]
 | Indonesia
 | [https://loc.gov/resource/g7821rm.gct00058/?sp=1 32]
 |-
